@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="AiVantage favicon">
+  <defs>
+    <linearGradient id="aivantage-favicon-gradient" x1="12" x2="84" y1="16" y2="82" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="0.55" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+  <rect width="96" height="96" rx="24" fill="#050914"/>
+  <path d="M28 68 45.2 28h6.9L69 68h-8.6l-3.6-9.2H39.8L36.1 68H28Zm14.6-16.2h11.6l-5.8-15-5.8 15Z" fill="url(#aivantage-favicon-gradient)"/>
+  <circle cx="70" cy="27" r="5" fill="#67e8f9"/>
+</svg>

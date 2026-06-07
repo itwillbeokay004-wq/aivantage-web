@@ -1,0 +1,470 @@
+"use client";
+
+import { useEffect, useId, useRef, useState } from "react";
+import type { FormEvent } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import {
+  Bot,
+  CalendarCheck,
+  Loader2,
+  MessageCircle,
+  Mic2,
+  Send,
+  Sparkles,
+  UserRoundCheck,
+  X,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { TrackedLink, analyticsEvents, trackCtaClick } from "@/components/analytics";
+
+type QuickAction = {
+  label: string;
+  response: string;
+  icon: LucideIcon;
+  href?: string;
+};
+
+type ChatMessage = {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  href?: string;
+};
+
+type ChatApiResponse = {
+  ok?: boolean;
+  mode?: "ai" | "fallback";
+  reply?: string;
+};
+
+const MAX_CHAT_MESSAGE_LENGTH = 700;
+const aiChatEnabled = process.env.NEXT_PUBLIC_AI_CHAT_ENABLED === "true";
+
+const welcomeMessage =
+  "Hi, I’m the AiVantage assistant. I can help you explore AI agents, use cases, and demo options.";
+
+const genericFallbackResponse =
+  "I can help with AiVantage services, AI agents, automation use cases, pricing direction, and demo options. For detailed recommendations, booking a demo is the best next step.";
+
+const quickActions = [
+  {
+    label: "I need a website chatbot",
+    icon: MessageCircle,
+    response:
+      "A website chatbot can answer approved questions, capture lead details, route inquiries, and prepare clean handoffs for your team. A good first step is mapping your top visitor questions and desired conversion path.",
+  },
+  {
+    label: "I want an AI phone assistant",
+    icon: Mic2,
+    response:
+      "An AI phone assistant can help with call intake, missed-call follow-up, FAQs, appointment routing, and summaries. We would start by defining call types, escalation rules, and what the assistant should never handle alone.",
+  },
+  {
+    label: "I need lead qualification",
+    icon: UserRoundCheck,
+    response:
+      "A lead qualification agent can ask about needs, timeline, budget, location, and fit, then send a structured summary to your CRM or inbox so your team knows who to prioritize.",
+  },
+  {
+    label: "Book a demo",
+    icon: CalendarCheck,
+    response:
+      "Perfect — the demo page will collect your workflow goals, timeline, and team details so AiVantage can prepare a useful next step.",
+    href: "/book-demo",
+  },
+] satisfies readonly QuickAction[];
+
+export function ChatWidget() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [activePrompt, setActivePrompt] = useState<string | null>(null);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [inputValue, setInputValue] = useState("");
+  const [isSending, setIsSending] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const panelTitleId = useId();
+  const panelDescriptionId = useId();
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const triggerButtonRef = useRef<HTMLButtonElement | null>(null);
+  const wasOpenRef = useRef(false);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      wasOpenRef.current = true;
+      closeButtonRef.current?.focus();
+      return;
+    }
+
+    if (wasOpenRef.current) {
+      triggerButtonRef.current?.focus();
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ block: "nearest" });
+  }, [messages, isSending]);
+
+  function openWidget() {
+    trackCtaClick(analyticsEvents.chatWidgetOpen, { location: "chat_widget" });
+    setIsOpen(true);
+  }
+
+  function closeWidget() {
+    setIsOpen(false);
+  }
+
+  async function selectAction(action: QuickAction) {
+    setActivePrompt(action.label);
+    await submitPrompt(action.label, action.response, action.href);
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    await submitPrompt(inputValue, genericFallbackResponse);
+  }
+
+  async function submitPrompt(prompt: string, fallbackResponse: string, href?: string) {
+    const trimmedPrompt = prompt.trim().slice(0, MAX_CHAT_MESSAGE_LENGTH);
+
+    if (!trimmedPrompt || isSending) {
+      return;
+    }
+
+    const userMessage: ChatMessage = {
+      id: createMessageId(),
+      role: "user",
+      content: trimmedPrompt,
+    };
+    const previousMessages = messages.slice(-8).map((message) => ({
+      role: message.role,
+      content: message.content,
+    }));
+
+    setMessages((currentMessages) => [...currentMessages, userMessage]);
+    setInputValue("");
+    setStatusMessage(null);
+
+    if (!aiChatEnabled || href) {
+      setMessages((currentMessages) => [
+        ...currentMessages,
+        {
+          id: createMessageId(),
+          role: "assistant",
+          content: fallbackResponse,
+          href,
+        },
+      ]);
+      return;
+    }
+
+    setIsSending(true);
+
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: trimmedPrompt,
+          history: previousMessages,
+        }),
+      });
+      const data = (await response.json().catch(() => null)) as ChatApiResponse | null;
+
+      if (!response.ok || !data?.reply) {
+        throw new Error("Chat response unavailable.");
+      }
+
+      setMessages((currentMessages) => [
+        ...currentMessages,
+        {
+          id: createMessageId(),
+          role: "assistant",
+          content: data.reply ?? fallbackResponse,
+        },
+      ]);
+
+      if (data.mode === "fallback") {
+        setStatusMessage("AI mode fell back to a safe demo response.");
+      }
+    } catch {
+      setMessages((currentMessages) => [
+        ...currentMessages,
+        {
+          id: createMessageId(),
+          role: "assistant",
+          content: fallbackResponse,
+        },
+      ]);
+      setStatusMessage("AI mode is unavailable, so a safe fallback response was shown.");
+    } finally {
+      setIsSending(false);
+    }
+  }
+
+  const modeLabel = aiChatEnabled
+    ? "AI assistant mode — generated server-side when configured."
+    : "Demo assistant — not a live AI agent yet.";
+
+  return (
+    <div className="fixed bottom-4 right-4 z-50 sm:bottom-6 sm:right-6">
+      <AnimatePresence>
+        {isOpen ? (
+          <motion.section
+            key="chat-panel"
+            role="dialog"
+            aria-modal="false"
+            aria-labelledby={panelTitleId}
+            aria-describedby={panelDescriptionId}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 18, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 18, scale: 0.96 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.2, ease: "easeOut" }}
+            className="mb-4 flex max-h-[calc(100vh-7rem)] w-[calc(100vw-2rem)] max-w-[420px] flex-col overflow-hidden rounded-2xl border border-cyan-300/20 bg-[#050914]/95 shadow-2xl shadow-cyan-950/40 backdrop-blur-xl"
+          >
+            <div className="border-b border-white/10 bg-white/[0.04] p-4">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex gap-3">
+                  <div className="grid size-11 shrink-0 place-items-center rounded-md bg-cyan-300/10 text-cyan-200">
+                    <Bot className="size-5" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <p id={panelTitleId} className="font-semibold text-white">
+                      AiVantage assistant
+                    </p>
+                    <p
+                      id={panelDescriptionId}
+                      className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100"
+                    >
+                      {modeLabel}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  ref={closeButtonRef}
+                  type="button"
+                  onClick={closeWidget}
+                  className="grid size-10 shrink-0 place-items-center rounded-md border border-white/10 bg-white/[0.04] text-slate-300 transition hover:border-cyan-300/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  aria-label="Close AiVantage assistant"
+                >
+                  <X className="size-4" aria-hidden="true" />
+                </button>
+              </div>
+            </div>
+
+            <div className="min-h-0 flex-1 overflow-y-auto p-4">
+              <div className="flex gap-3">
+                <div className="grid size-8 shrink-0 place-items-center rounded-md bg-cyan-300/10 text-cyan-200">
+                  <Sparkles className="size-4" aria-hidden="true" />
+                </div>
+                <div className="rounded-xl border border-cyan-300/20 bg-cyan-300/[0.07] p-3 text-sm leading-6 text-cyan-50">
+                  {welcomeMessage}
+                </div>
+              </div>
+
+              <div className="mt-5">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                  Quick actions
+                </p>
+                <div className="grid gap-2">
+                  {quickActions.map((action) => {
+                    const Icon = action.icon;
+                    const isActive = activePrompt === action.label;
+
+                    return (
+                      <button
+                        key={action.label}
+                        type="button"
+                        onClick={() => void selectAction(action)}
+                        disabled={isSending}
+                        className={cn(
+                          "flex items-center gap-3 rounded-md border p-3 text-left text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-60",
+                          isActive
+                            ? "border-cyan-300/50 bg-cyan-300/10 text-white"
+                            : "border-white/10 bg-white/[0.04] text-slate-300 hover:border-white/20 hover:text-white",
+                        )}
+                        aria-pressed={isActive}
+                      >
+                        <Icon
+                          className="size-4 shrink-0 text-cyan-200"
+                          aria-hidden="true"
+                        />
+                        <span>{action.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="mt-5 space-y-3" aria-live="polite">
+                <AnimatePresence initial={false}>
+                  {messages.map((message) => (
+                    <motion.div
+                      key={message.id}
+                      initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
+                      transition={{ duration: shouldReduceMotion ? 0 : 0.18 }}
+                      className={cn(
+                        "flex gap-3",
+                        message.role === "user" ? "justify-end" : "justify-start",
+                      )}
+                    >
+                      {message.role === "assistant" ? (
+                        <div className="grid size-8 shrink-0 place-items-center rounded-md bg-cyan-300/10 text-cyan-200">
+                          <Bot className="size-4" aria-hidden="true" />
+                        </div>
+                      ) : null}
+                      <div
+                        className={cn(
+                          "max-w-[88%] rounded-xl p-3 text-sm leading-6",
+                          message.role === "user"
+                            ? "bg-white/10 text-slate-100"
+                            : "border border-cyan-300/20 bg-cyan-300/[0.07] text-cyan-50",
+                        )}
+                      >
+                        <p>{message.content}</p>
+                        {message.href ? (
+                          <Button asChild size="sm" className="mt-4">
+                            <TrackedLink
+                              href={message.href}
+                              eventProperties={{
+                                location: "chat_widget",
+                                label: "continue_to_demo",
+                              }}
+                              onClick={closeWidget}
+                            >
+                              Continue to demo
+                            </TrackedLink>
+                          </Button>
+                        ) : null}
+                      </div>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+
+                {isSending ? (
+                  <div className="flex gap-3">
+                    <div className="grid size-8 shrink-0 place-items-center rounded-md bg-cyan-300/10 text-cyan-200">
+                      <Bot className="size-4" aria-hidden="true" />
+                    </div>
+                    <div className="rounded-xl border border-cyan-300/20 bg-cyan-300/[0.07] px-4 py-3">
+                      <div
+                        className="flex h-6 items-center gap-1.5"
+                        aria-label="Assistant is typing"
+                      >
+                        {[0, 1, 2].map((dot) => (
+                          <motion.span
+                            key={dot}
+                            className="size-2 rounded-full bg-cyan-200"
+                            animate={
+                              shouldReduceMotion
+                                ? { opacity: 1, y: 0 }
+                                : { opacity: [0.35, 1, 0.35], y: [0, -3, 0] }
+                            }
+                            transition={{
+                              duration: shouldReduceMotion ? 0 : 0.75,
+                              repeat: shouldReduceMotion ? 0 : Infinity,
+                              delay: shouldReduceMotion ? 0 : dot * 0.12,
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
+
+                <div ref={messagesEndRef} />
+              </div>
+            </div>
+
+            <div className="border-t border-white/10 p-4">
+              {statusMessage ? (
+                <p className="mb-3 text-xs text-amber-100" aria-live="polite">
+                  {statusMessage}
+                </p>
+              ) : null}
+              <form
+                onSubmit={(event) => void handleSubmit(event)}
+                className="flex items-center gap-3 rounded-md border border-white/10 bg-[#07101f] p-3"
+              >
+                <label htmlFor="site-chat-message" className="sr-only">
+                  Ask the AiVantage assistant
+                </label>
+                <input
+                  id="site-chat-message"
+                  aria-label="Chat message"
+                  disabled={!aiChatEnabled || isSending}
+                  maxLength={MAX_CHAT_MESSAGE_LENGTH}
+                  value={
+                    aiChatEnabled
+                      ? inputValue
+                      : "Choose a quick action to preview a response"
+                  }
+                  onChange={(event) => setInputValue(event.target.value)}
+                  placeholder="Ask about AI agents, pricing, or demo options"
+                  className="min-w-0 flex-1 bg-transparent text-sm text-slate-300 outline-none placeholder:text-slate-400 disabled:text-slate-400"
+                />
+                <button
+                  type="submit"
+                  disabled={!aiChatEnabled || isSending || !inputValue.trim()}
+                  className="grid size-10 place-items-center rounded-md bg-primary text-primary-foreground transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-70"
+                  aria-label="Send chat message"
+                >
+                  {isSending ? (
+                    <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+                  ) : (
+                    <Send className="size-4" aria-hidden="true" />
+                  )}
+                </button>
+              </form>
+              <p className="mt-2 text-xs text-slate-400">
+                {aiChatEnabled
+                  ? "AI mode uses a secure server route. Sensitive details should wait for the demo call."
+                  : "Set NEXT_PUBLIC_AI_CHAT_ENABLED=true and OPENAI_API_KEY to enable real AI responses."}
+              </p>
+            </div>
+          </motion.section>
+        ) : null}
+      </AnimatePresence>
+
+      <button
+        ref={triggerButtonRef}
+        type="button"
+        onClick={openWidget}
+        className={cn(
+          "ml-auto flex min-h-14 items-center gap-3 rounded-full border border-cyan-300/30 bg-cyan-300 px-5 py-3 font-semibold text-slate-950 shadow-2xl shadow-cyan-950/40 transition hover:bg-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          isOpen ? "hidden" : "flex",
+        )}
+        aria-label="Open AiVantage assistant"
+        aria-expanded={isOpen}
+      >
+        <MessageCircle className="size-5" aria-hidden="true" />
+        <span className="hidden sm:inline">Ask AiVantage</span>
+      </button>
+    </div>
+  );
+}
+
+function createMessageId() {
+  return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}

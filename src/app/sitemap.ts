@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { resourceArticles } from "@/data/resources";
 import { siteConfig } from "@/data/site";
-import { localizeHref } from "@/lib/locale";
+import { localizeHref } from "@/lib/i18n";
 
 const routes = [
   "/",

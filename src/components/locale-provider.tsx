@@ -7,7 +7,7 @@ import {
   defaultLocale,
   localizeHref as localizeHrefForLocale,
   type Locale,
-} from "@/lib/locale";
+} from "@/lib/i18n";
 
 type LocaleContextValue = {
   locale: Locale;

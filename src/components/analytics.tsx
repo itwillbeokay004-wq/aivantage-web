@@ -7,7 +7,7 @@ import type { AnchorHTMLAttributes, MouseEvent, ReactNode } from "react";
 import type { LinkProps } from "next/link";
 
 import { useLocale } from "@/components/locale-provider";
-import { toInternalPath } from "@/lib/locale";
+import { toInternalPath } from "@/lib/i18n";
 
 export const analyticsEvents = {
   bookDemoClick: "book_demo_click",

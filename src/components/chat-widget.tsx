@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 import { useLocale } from "@/components/locale-provider";
 import { cn } from "@/lib/utils";
 import { TrackedLink, analyticsEvents, trackCtaClick } from "@/components/analytics";
-import type { Locale } from "@/lib/locale";
+import type { Locale } from "@/lib/i18n";
 
 type QuickAction = {
   label: string;

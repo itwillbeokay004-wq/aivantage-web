@@ -22,7 +22,7 @@ import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/ui/cta-button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ctaLabelsByLocale } from "@/data/site";
-import type { Locale } from "@/lib/locale";
+import type { Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import { getRequestLocale } from "@/lib/server-locale";
 

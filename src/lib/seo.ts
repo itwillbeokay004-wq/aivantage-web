@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { siteConfig } from "@/data/site";
-import { defaultLocale, localizeHref, type Locale } from "@/lib/locale";
+import { defaultLocale, localizeHref, type Locale } from "@/lib/i18n";
 
 export function absoluteUrl(path = "") {
   if (!path) {

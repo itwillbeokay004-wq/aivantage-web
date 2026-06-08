@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Bot, MessageSquare, Send } from "lucide-react";
 
 import { useLocale } from "@/components/locale-provider";
-import type { Locale } from "@/lib/locale";
+import type { Locale } from "@/lib/i18n";
 
 const chatDemoContent = {
   es: {

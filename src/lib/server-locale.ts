@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 
-import { defaultLocale, isLocale, type Locale } from "@/lib/locale";
+import { defaultLocale, isLocale, type Locale } from "@/lib/i18n";
 
 export async function getRequestLocale(): Promise<Locale> {
   const requestHeaders = await headers();

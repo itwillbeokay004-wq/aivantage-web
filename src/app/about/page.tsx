@@ -20,7 +20,7 @@ import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { siteConfig } from "@/data/site";
-import type { Locale } from "@/lib/locale";
+import type { Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import { getRequestLocale } from "@/lib/server-locale";
 

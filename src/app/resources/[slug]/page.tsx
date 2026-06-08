@@ -7,7 +7,7 @@ import { TrackedLink } from "@/components/analytics";
 import { Button } from "@/components/ui/button";
 import { resourceArticles, getResourceArticle } from "@/data/resources";
 import { siteConfig } from "@/data/site";
-import { localizeHref } from "@/lib/locale";
+import { localizeHref } from "@/lib/i18n";
 import { getRequestLocale } from "@/lib/server-locale";
 
 type ResourceArticlePageProps = {

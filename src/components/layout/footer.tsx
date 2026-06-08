@@ -7,7 +7,7 @@ import { useLocale } from "@/components/locale-provider";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { footerGroupsByLocale, siteConfig } from "@/data/site";
-import { localizeHref } from "@/lib/locale";
+import { localizeHref } from "@/lib/i18n";
 
 export function Footer() {
   const { locale } = useLocale();

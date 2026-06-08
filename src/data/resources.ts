@@ -1,4 +1,4 @@
-import type { Locale } from "@/lib/locale";
+import type { Locale } from "@/lib/i18n";
 
 export type ResourceArticle = {
   title: string;

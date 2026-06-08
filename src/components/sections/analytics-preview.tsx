@@ -4,7 +4,7 @@ import { BarChart3, Clock3, Handshake, MessagesSquare, UserPlus } from "lucide-r
 import type { LucideIcon } from "lucide-react";
 
 import { useLocale } from "@/components/locale-provider";
-import type { Locale } from "@/lib/locale";
+import type { Locale } from "@/lib/i18n";
 
 const analyticsContent = {
   es: {

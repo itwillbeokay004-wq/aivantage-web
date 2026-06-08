@@ -8,7 +8,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/components/locale-provider";
 import { cn } from "@/lib/utils";
-import type { Locale } from "@/lib/locale";
+import type { Locale } from "@/lib/i18n";
 
 const widgetContent = {
   es: {

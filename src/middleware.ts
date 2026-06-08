@@ -6,7 +6,7 @@ import {
   localizedRoutes,
   resolvePublicPathname,
   type Locale,
-} from "@/lib/locale";
+} from "@/lib/i18n";
 
 const legacyRootRoutes = new Set(
   Object.keys(localizedRoutes).filter((route) => route !== "/"),

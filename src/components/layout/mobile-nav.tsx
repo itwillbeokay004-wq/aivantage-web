@@ -12,7 +12,7 @@ import {
   navLinksByLocale,
   resourceNavLinksByLocale,
 } from "@/data/site";
-import { localizeHref } from "@/lib/locale";
+import { localizeHref } from "@/lib/i18n";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);

@@ -30,7 +30,7 @@ import {
   Zap,
 } from "lucide-react";
 
-import type { Locale } from "@/lib/locale";
+import type { Locale } from "@/lib/i18n";
 
 const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, "");
 const siteUrl = configuredSiteUrl || "https://aivantage.es";

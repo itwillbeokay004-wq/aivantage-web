@@ -114,6 +114,7 @@ export const navLinks = [
   { href: "/use-cases", label: "Use Cases" },
   { href: "/pricing", label: "Pricing" },
   { href: "/resources", label: "Resources" },
+  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] satisfies readonly NavItem[];
 
@@ -339,6 +340,7 @@ export const footerGroups = [
   {
     title: "Company",
     links: [
+      { href: "/about", label: "About" },
       { href: "/solutions", label: "Solutions" },
       { href: "/resources", label: "Resources" },
       { href: "/contact", label: "Contact" },

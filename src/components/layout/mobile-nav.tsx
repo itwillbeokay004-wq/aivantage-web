@@ -6,7 +6,7 @@ import { useEffect, useId, useState } from "react";
 
 import { TrackedLink } from "@/components/analytics";
 import { Button } from "@/components/ui/button";
-import { navLinks } from "@/data/site";
+import { navLinks, resourceNavLinks } from "@/data/site";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +29,7 @@ export function MobileNav() {
   }, [isOpen]);
 
   return (
-    <div className="lg:hidden">
+    <div className="mobile-nav-shell">
       <button
         type="button"
         className="grid size-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-950 shadow-sm"
@@ -51,25 +51,54 @@ export function MobileNav() {
         >
           <div className="container flex flex-col gap-2 py-4">
             <nav className="flex flex-col gap-2" aria-label="Mobile navigation">
-              {navLinks.map((link) => (
+              {navLinks.map((link, index) => (
+                <div key={link.href} className="contents">
                 <Link
-                  key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
                   className="rounded-md px-3 py-3 text-sm font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   {link.label}
                 </Link>
+                  {index === 0 ? (
+                    <div className="rounded-xl border border-slate-200 bg-slate-50 p-2">
+                      <p className="px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                        Resources
+                      </p>
+                      <div className="grid gap-1">
+                        {resourceNavLinks.map((resourceLink) => (
+                          <Link
+                            key={resourceLink.href}
+                            href={resourceLink.href}
+                            onClick={() => setIsOpen(false)}
+                            className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-white hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                          >
+                            {resourceLink.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
               ))}
             </nav>
-            <div className="mt-2 grid gap-3 sm:grid-cols-2">
+            <div className="mt-2 grid gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 sm:grid-cols-3">
               <Button asChild variant="secondary">
                 <TrackedLink
                   href="/contact"
                   onClick={() => setIsOpen(false)}
-                  eventProperties={{ location: "mobile_nav" }}
+                  eventProperties={{ location: "mobile_nav_login_placeholder" }}
                 >
-                  Contact Us
+                  Login
+                </TrackedLink>
+              </Button>
+              <Button asChild variant="secondary">
+                <TrackedLink
+                  href="/contact"
+                  onClick={() => setIsOpen(false)}
+                  eventProperties={{ location: "mobile_nav_signup" }}
+                >
+                  Sign up
                 </TrackedLink>
               </Button>
               <Button asChild>
@@ -78,7 +107,7 @@ export function MobileNav() {
                   onClick={() => setIsOpen(false)}
                   eventProperties={{ location: "mobile_nav" }}
                 >
-                  Book a Demo
+                  Book demo
                 </TrackedLink>
               </Button>
             </div>

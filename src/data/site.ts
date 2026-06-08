@@ -109,11 +109,14 @@ export const siteConfig = {
 
 export const navLinks = [
   { href: "/platform", label: "Platform" },
-  { href: "/solutions", label: "Solutions" },
-  { href: "/ai-models", label: "AI Models" },
-  { href: "/use-cases", label: "Use Cases" },
+  { href: "/solutions", label: "Customers" },
   { href: "/pricing", label: "Pricing" },
+] satisfies readonly NavItem[];
+
+export const resourceNavLinks = [
   { href: "/resources", label: "Resources" },
+  { href: "/use-cases", label: "Use Cases" },
+  { href: "/ai-models", label: "AI Models" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] satisfies readonly NavItem[];

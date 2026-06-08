@@ -111,6 +111,24 @@ body::before {
   background-size: 48px 48px;
 }
 
+.desktop-nav-shell {
+  display: none;
+}
+
+.mobile-nav-shell {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .desktop-nav-shell {
+    display: flex;
+  }
+
+  .mobile-nav-shell {
+    display: none;
+  }
+}
+
 .text-white,
 .text-slate-50,
 .text-slate-100,

@@ -12,6 +12,16 @@ const legacyRootRoutes = new Set(
   Object.keys(localizedRoutes).filter((route) => route !== "/"),
 );
 
+const routeRedirects = new Map<string, string>([
+  ...Object.entries(localizedRoutes)
+    .filter(([internalPath]) => internalPath !== "/")
+    .map(([internalPath, localizedPath]) => [
+      internalPath,
+      localizedPath[defaultLocale],
+    ] as const),
+  ["/resources", "/recursos"],
+]);
+
 function redirectTo(request: NextRequest, pathname: string) {
   const url = request.nextUrl.clone();
   url.pathname = pathname;
@@ -21,12 +31,17 @@ function redirectTo(request: NextRequest, pathname: string) {
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  const route = resolvePublicPathname(pathname);
+  const requestHeaders = new Headers(request.headers);
+  const existingLocale = request.headers.get("x-aivantage-locale");
+  const existingPathname = request.headers.get("x-aivantage-pathname");
+  const locale: Locale = isLocale(existingLocale) ? existingLocale : route.locale;
+
+  requestHeaders.set("x-aivantage-pathname", existingPathname ?? pathname);
+  requestHeaders.set("x-aivantage-locale", locale);
 
   if (legacyRootRoutes.has(pathname)) {
-    return redirectTo(
-      request,
-      localizedRoutes[pathname as keyof typeof localizedRoutes][defaultLocale],
-    );
+    return redirectTo(request, routeRedirects.get(pathname) ?? "/");
   }
 
   if (pathname.startsWith("/resources/")) {
@@ -39,26 +54,6 @@ export function middleware(request: NextRequest) {
 
   if (pathname === "/en/about" || pathname.startsWith("/en/about/")) {
     return redirectTo(request, "/en");
-  }
-
-  const route = resolvePublicPathname(pathname);
-  const requestHeaders = new Headers(request.headers);
-  const existingLocale = request.headers.get("x-aivantage-locale");
-  const existingPathname = request.headers.get("x-aivantage-pathname");
-  const locale: Locale = isLocale(existingLocale) ? existingLocale : route.locale;
-
-  requestHeaders.set("x-aivantage-pathname", existingPathname ?? pathname);
-  requestHeaders.set("x-aivantage-locale", locale);
-
-  if (route.internalPath !== pathname) {
-    const url = request.nextUrl.clone();
-    url.pathname = route.internalPath;
-
-    return NextResponse.rewrite(url, {
-      request: {
-        headers: requestHeaders,
-      },
-    });
   }
 
   return NextResponse.next({

@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
-import { usePathname } from "next/navigation";
 
 import { TrackedLink } from "@/components/analytics";
 import { useLocale } from "@/components/locale-provider";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { Button } from "@/components/ui/button";
 import {
   navLinksByLocale,
@@ -17,7 +17,6 @@ import { localizeHref } from "@/lib/i18n";
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const panelId = useId();
-  const pathname = usePathname();
   const { locale } = useLocale();
   const navLinks = navLinksByLocale[locale];
   const resourceNavLinks = resourceNavLinksByLocale[locale];
@@ -100,7 +99,7 @@ export function MobileNav() {
                 </div>
               ))}
             </nav>
-            <div className="mt-2 grid gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 sm:grid-cols-4">
+            <div className="mt-2 grid gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 sm:grid-cols-3">
               <Button asChild variant="secondary">
                 <TrackedLink
                   href="/contact"
@@ -128,23 +127,11 @@ export function MobileNav() {
                   {locale === "es" ? "Reservar una demo" : "Book demo"}
                 </TrackedLink>
               </Button>
-              <Button asChild variant="secondary">
-                <Link
-                  href={
-                    locale === "es"
-                      ? localizeHref(pathname, "en")
-                      : localizeHref(pathname, "es")
-                  }
-                  onClick={() => setIsOpen(false)}
-                  aria-label={
-                    locale === "es"
-                      ? "View site in English"
-                      : "Ver sitio en español"
-                  }
-                >
-                  {locale === "es" ? "English" : "Español"}
-                </Link>
-              </Button>
+              <LanguageSwitcher
+                className="sm:col-span-3"
+                onNavigate={() => setIsOpen(false)}
+                variant="mobile"
+              />
             </div>
           </div>
         </div>

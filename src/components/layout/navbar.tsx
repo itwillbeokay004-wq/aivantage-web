@@ -7,6 +7,7 @@ import { useEffect, useId, useState } from "react";
 
 import { TrackedLink } from "@/components/analytics";
 import { useLocale } from "@/components/locale-provider";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { Logo } from "@/components/logo";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import {
@@ -140,19 +141,7 @@ export function Navbar() {
           >
             {locale === "es" ? "Reservar una demo" : "Book a demo"}
           </TrackedLink>
-          <Link
-            href={
-              locale === "es"
-                ? localizeHref(pathname, "en")
-                : localizeHref(pathname, "es")
-            }
-            className="rounded-full px-3 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500 transition hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            aria-label={
-              locale === "es" ? "View site in English" : "Ver sitio en español"
-            }
-          >
-            {locale === "es" ? "EN" : "ES"}
-          </Link>
+          <LanguageSwitcher />
         </div>
         <MobileNav />
       </div>

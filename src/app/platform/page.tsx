@@ -36,7 +36,7 @@ export async function generateMetadata() {
     title: locale === "es" ? "Plataforma" : "Platform",
     description:
       locale === "es"
-        ? "Explora AiVantage como plataforma y servicio de agentes de IA para chat, voz, flujos, analítica y operaciones."
+        ? "Explora AiVantage como plataforma y servicio de agentes de IA para chat, voz, automatización de procesos, analítica y operaciones."
         : "Explore AiVantage as a full AI agent platform and service for chat, voice, workflow automation, analytics, and business operations.",
     path: "/platform",
     locale,
@@ -49,7 +49,7 @@ const platformContent = {
       {
         icon: Bot,
         title: "Constructor de agentes",
-        description: "Define objetivos, tono, reglas y traspasos.",
+        description: "Define objetivos, tono, reglas y criterios de derivación.",
       },
       {
         icon: BookOpen,
@@ -63,13 +63,13 @@ const platformContent = {
       },
       {
         icon: UserRoundCheck,
-        title: "Traspaso humano",
-        description: "Escala con contexto ya preparado.",
+        title: "Derivación a un humano",
+        description: "Pasa la conversación a una persona con contexto ya preparado.",
       },
       {
         icon: BarChart3,
         title: "Analítica",
-        description: "Mide leads, tiempo ahorrado, traspasos y calidad.",
+        description: "Mide clientes potenciales, tiempo ahorrado, derivaciones y calidad.",
       },
       {
         icon: ShieldCheck,
@@ -80,7 +80,7 @@ const platformContent = {
     howItWorks: [
       {
         title: "Descubrir",
-        description: "Elegir primero el flujo que vale la pena automatizar.",
+        description: "Elegir primero el proceso que vale la pena automatizar.",
       },
       {
         title: "Diseñar",
@@ -92,7 +92,7 @@ const platformContent = {
       },
       {
         title: "Desplegar",
-        description: "Lanzar en chat, voz, formularios y flujos.",
+        description: "Lanzar en chat, voz, formularios y procesos conectados.",
       },
       {
         title: "Optimizar",
@@ -102,17 +102,17 @@ const platformContent = {
     deepDives: [
       {
         icon: Workflow,
-        title: "Crear flujos de conversación personalizados",
-        description: "Guía soporte, calificación, agenda e intake.",
+        title: "Crear conversaciones personalizadas",
+        description: "Guía atención al cliente, cualificación, agenda y recepción.",
       },
       {
         icon: DatabaseZap,
-        title: "Conectar documentos y FAQs",
+        title: "Conectar documentos y preguntas frecuentes",
         description: "Mantén respuestas alineadas con información aprobada.",
       },
       {
         icon: MessageSquare,
-        title: "Capturar y calificar leads",
+        title: "Captar y cualificar clientes potenciales",
         description: "Recoge encaje, urgencia y datos de contacto.",
       },
       {
@@ -122,8 +122,8 @@ const platformContent = {
       },
       {
         icon: UserRoundCheck,
-        title: "Escalar a humanos",
-        description: "Traspasa cuando el valor, riesgo o confianza lo requiera.",
+        title: "Derivar a personas del equipo",
+        description: "Deriva cuando el valor, el riesgo o la confianza lo requieran.",
       },
       {
         icon: BarChart3,
@@ -145,8 +145,8 @@ const platformContent = {
     improvementList: [
       "Revisar lo que los agentes resolvieron correctamente",
       "Identificar huecos de conocimiento y prompts confusos",
-      "Ajustar reglas de traspaso para casos sensibles o valiosos",
-      "Expandir al siguiente flujo cuando los resultados sean claros",
+      "Ajustar reglas de derivación para casos sensibles o valiosos",
+      "Expandir al siguiente proceso cuando los resultados sean claros",
     ],
   },
   en: {
@@ -289,7 +289,7 @@ export default async function PlatformPage() {
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
                 {locale === "es"
-                  ? "Lanza agentes en chat, voz, flujos y analítica con un camino práctico desde la idea hasta producción."
+                  ? "Lanza agentes en chat, voz, procesos y analítica con un camino práctico desde la idea hasta producción."
                   : "Launch agents across chat, voice, workflows, and analytics — with a practical path from idea to production."}
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -318,7 +318,7 @@ export default async function PlatformPage() {
           eyebrow={locale === "es" ? "Pilares" : "Platform pillars"}
           title={
             locale === "es"
-              ? "Todo lo necesario para convertir agentes en flujos gestionados."
+              ? "Todo lo necesario para convertir agentes en procesos gestionados."
               : "Everything a business needs to turn agents into managed workflows."
           }
           description={
@@ -474,7 +474,7 @@ export default async function PlatformPage() {
             </div>
             <p className="mt-4 text-sm leading-7 text-slate-400">
               {locale === "es"
-                ? "Los agentes en producción deben mejorar con revisión de conversaciones, análisis de traspasos y ajuste de flujos."
+                    ? "Los agentes en producción deben mejorar con revisión de conversaciones, análisis de derivaciones y ajuste de procesos."
                 : "Production agents should improve over time through transcript review, handoff analysis, and workflow tuning."}
             </p>
             <ul className="mt-6 space-y-3">
@@ -500,12 +500,12 @@ export default async function PlatformPage() {
               </p>
               <h2 className="mt-3 text-balance text-3xl font-semibold tracking-normal text-white sm:text-4xl">
                 {locale === "es"
-                  ? "Mira cómo AiVantage apoyaría tu primer flujo con agente."
+                  ? "Mira cómo AiVantage apoyaría tu primer proceso con un agente."
                   : "See how AiVantage would support your first agent workflow."}
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-300">
                 {locale === "es"
-                  ? "Trae un flujo. Mapearemos el agente, traspasos y camino de lanzamiento."
+                  ? "Trae un proceso. Mapearemos el agente, las derivaciones y el camino de lanzamiento."
                   : "Bring one workflow. We’ll map the agent, handoffs, and launch path."}
               </p>
               <div className="mt-8 flex justify-center">

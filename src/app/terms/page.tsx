@@ -39,14 +39,14 @@ const termsContent = {
         title: "Solicitudes de demo y contacto",
         body: [
           "Enviar un formulario, solicitud de demo o mensaje de chat no crea una relación de cliente, acuerdo de servicio, alianza ni obligación de AiVantage de prestar servicios.",
-          "Cualquier alcance, precio, plazo, plan de implementación o compromiso de soporte debe acordarse en un contrato escrito separado entre AiVantage y el cliente.",
+          "Cualquier alcance, precio, plazo, plan de implementación o compromiso de acompañamiento debe acordarse en un contrato escrito separado entre AiVantage y el cliente.",
         ],
       },
       {
         title: "Sin garantías",
         body: [
-          "El contenido del sitio se ofrece con fines informativos generales. AiVantage no garantiza que cualquier flujo, agente, integración o resultado descrito esté disponible, sea adecuado, esté libre de errores o produzca un resultado específico para cada negocio.",
-          "Los sistemas de IA pueden cometer errores y deben diseñarse con revisión, monitoreo y traspasos humanos apropiados.",
+          "El contenido del sitio se ofrece con fines informativos generales. AiVantage no garantiza que cualquier proceso, agente, integración o resultado descrito esté disponible, sea adecuado, esté libre de errores o produzca un resultado específico para cada negocio.",
+          "Los sistemas de IA pueden cometer errores y deben diseñarse con revisión, monitoreo y derivaciones a personas apropiadas.",
         ],
       },
       {

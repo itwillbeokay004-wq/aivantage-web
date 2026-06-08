@@ -83,7 +83,7 @@ export default async function ResourceArticlePage({
       takeaways: "Ideas clave",
       sidebarTitle: "¿Quieres aplicarlo a tu negocio?",
       sidebar:
-        "AiVantage puede mapear un primer agente de IA práctico alrededor de tus canales, conocimiento y reglas de traspaso.",
+        "AiVantage puede mapear un primer agente de IA práctico alrededor de tus canales, conocimiento y reglas de derivación.",
       cta: "Reservar demo",
     },
     en: {

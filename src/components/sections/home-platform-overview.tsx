@@ -28,12 +28,12 @@ const steps = {
     {
       icon: Rocket,
       title: "Despliega",
-      description: "Lanza en chat, voz y flujos de trabajo.",
+      description: "Lanza en chat, voz y procesos conectados.",
     },
     {
       icon: BarChart3,
       title: "Monitorea",
-      description: "Mide calidad, uso y traspasos.",
+      description: "Mide calidad, uso y derivaciones.",
     },
     {
       icon: BrainCircuit,
@@ -43,7 +43,7 @@ const steps = {
     {
       icon: Settings2,
       title: "Escala",
-      description: "Expande a más flujos de trabajo.",
+      description: "Expande a más procesos.",
     },
   ],
   en: [

@@ -18,7 +18,7 @@ const workflowContent = {
     eyebrow: "Flujo del agente",
     title: "Del primer contacto a la siguiente acción correcta.",
     description:
-      "Flujo de ejemplo. Cada nodo se puede adaptar a los sistemas y reglas de traspaso de tu equipo.",
+      "Flujo de ejemplo. Cada nodo se puede adaptar a los sistemas y reglas de derivación de tu equipo.",
     nodes: [
       {
         icon: Globe,
@@ -42,7 +42,7 @@ const workflowContent = {
       },
       {
         icon: UserRoundCheck,
-        title: "Traspaso humano",
+        title: "Derivación a un humano",
         description: "Enruta casos especiales con un resumen útil.",
       },
     ],

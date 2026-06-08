@@ -15,7 +15,7 @@ export async function generateMetadata() {
     title: locale === "es" ? "Casos de uso" : "Use Cases",
     description:
       locale === "es"
-        ? "Explora casos prácticos de agentes de IA para soporte, ventas, intake de voz, reservas, seguimiento de leads y conocimiento interno."
+        ? "Explora casos prácticos de agentes de IA para atención al cliente, ventas, recepción de voz, reservas, seguimiento de clientes potenciales y conocimiento interno."
         : "Explore practical AI agent use cases for support, sales, voice intake, scheduling, lead follow-up, and internal helpdesks.",
     path: "/use-cases",
     locale,
@@ -53,12 +53,12 @@ export default async function UseCasesPage() {
             </div>
             <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
               {locale === "es"
-                ? "Ejemplos de agentes de IA para flujos prácticos."
+                  ? "Ejemplos de agentes de IA para procesos prácticos."
                 : "AI agent examples for practical workflows."}
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
               {locale === "es"
-                ? "Explora intake web, seguimiento de voz, soporte, operaciones inmobiliarias, reservas y conocimiento interno."
+                  ? "Explora recepción web, seguimiento de voz, atención al cliente, operaciones inmobiliarias, reservas y conocimiento interno."
                 : "Explore website intake, voice follow-up, support, property operations, bookings, and internal knowledge."}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -79,7 +79,7 @@ export default async function UseCasesPage() {
               <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-4">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
-                    {locale === "es" ? "Mapa de flujo" : "Workflow Map"}
+                    {locale === "es" ? "Mapa del proceso" : "Workflow Map"}
                   </p>
                   <p className="mt-1 text-sm text-slate-400">
                     {locale === "es" ? "De intención a resultado." : "Intent to outcome."}
@@ -118,7 +118,7 @@ export default async function UseCasesPage() {
                   </p>
                   <p className="mt-1 text-sm text-slate-400">
                     {locale === "es"
-                      ? "Soporte, ventas, operaciones, voz o web."
+                      ? "Atención al cliente, ventas, operaciones, voz o web."
                       : "Support, sales, operations, voice, or website."}
                   </p>
                 </div>
@@ -144,7 +144,7 @@ export default async function UseCasesPage() {
           eyebrow={locale === "es" ? "Ejemplos" : "Examples"}
           title={
             locale === "es"
-              ? "Filtra casos de uso por canal, equipo o flujo."
+              ? "Filtra casos de uso por canal, equipo o proceso."
               : "Filter use cases by channel, team, or workflow."
           }
           description={
@@ -163,16 +163,16 @@ export default async function UseCasesPage() {
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-100">
-                {locale === "es" ? "Estrategia de flujo" : "Workflow Strategy"}
+                {locale === "es" ? "Estrategia de proceso" : "Workflow Strategy"}
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
                 {locale === "es"
-                  ? "¿Tienes un flujo en mente? Vamos a mapearlo."
+                  ? "¿Tienes un proceso en mente? Vamos a mapearlo."
                   : "Have a workflow in mind? Let’s map it."}
               </h2>
               <p className="mt-4 max-w-2xl leading-7 text-slate-300">
                 {locale === "es"
-                  ? "Trae preguntas repetitivas, llamadas perdidas o traspasos lentos. Los convertiremos en un plan práctico de agente IA."
+                  ? "Trae preguntas repetitivas, llamadas perdidas o derivaciones lentas. Las convertiremos en un plan práctico de agente de IA."
                   : "Bring the repetitive questions, missed calls, or slow handoffs. We’ll turn them into a practical AI agent plan."}
               </p>
             </div>

@@ -28,7 +28,7 @@ export async function generateMetadata() {
     title: locale === "es" ? "Soluciones" : "Solutions",
     description:
       locale === "es"
-        ? "Explora soluciones de automatización con IA para soporte, leads, reservas, real estate, operaciones, llamadas, chat y seguimiento."
+        ? "Explora soluciones de automatización con IA para atención al cliente, clientes potenciales, reservas, inmobiliarias, operaciones, llamadas, chat y seguimiento."
         : "Explore AiVantage AI automation solutions for customer support, lead qualification, appointment booking, real estate, operations, voice calls, chat, and follow-up.",
     path: "/solutions",
     locale,
@@ -37,29 +37,29 @@ export async function generateMetadata() {
 
 const solutionsContent = {
   es: {
-    cardKicker: "Construido como flujo práctico.",
+    cardKicker: "Construido como proceso práctico.",
     detailLabels: {
       problem: "Problema",
       agentDoes: "Qué hace el agente",
-      workflow: "Flujo de ejemplo",
+      workflow: "Proceso de ejemplo",
       outcome: "Resultado de negocio",
     },
     solutionCards: [
       {
         icon: Headphones,
-        title: "Automatización de soporte al cliente",
+        title: "Automatización de atención al cliente",
         problem: "Los equipos responden las mismas preguntas todo el día.",
-        agentDoes: "Responde FAQs, recopila contexto y escala casos complejos.",
-        workflow: "Pregunta → respuesta aprobada → resolución o traspaso.",
+        agentDoes: "Responde preguntas frecuentes, recopila contexto y deriva casos complejos.",
+        workflow: "Pregunta → respuesta aprobada → resolución o derivación.",
         outcome: "Respuestas más rápidas y menos tickets repetitivos.",
       },
       {
         icon: UserPlus,
-        title: "Calificación de leads",
+        title: "Cualificación de clientes potenciales",
         problem: "Las consultas llegan sin contexto suficiente.",
         agentDoes: "Pregunta por encaje, presupuesto, plazo y urgencia.",
-        workflow: "Chat → señales de encaje → traspaso limpio a ventas.",
-        outcome: "Mejores leads y seguimiento más rápido.",
+        workflow: "Chat → señales de encaje → derivación limpia a ventas.",
+        outcome: "Mejores clientes potenciales y seguimiento más rápido.",
       },
       {
         icon: CalendarCheck,
@@ -71,11 +71,11 @@ const solutionsContent = {
       },
       {
         icon: Building2,
-        title: "Asistente de real estate y property management",
+        title: "Asistente para inmobiliarias y gestión de propiedades",
         problem: "Las preguntas llegan por demasiados canales.",
-        agentDoes: "Responde sobre listados, califica renters y recopila solicitudes.",
-        workflow: "Consulta → criterios → respuesta aprobada o traspaso para tour.",
-        outcome: "Leasing más rápido e intake más ordenado.",
+        agentDoes: "Responde sobre inmuebles, cualifica personas interesadas y recopila solicitudes.",
+        workflow: "Consulta → criterios → respuesta aprobada o derivación para visita.",
+        outcome: "Alquileres más ágiles y recepción más ordenada.",
       },
       {
         icon: Workflow,
@@ -83,22 +83,22 @@ const solutionsContent = {
         problem: "Los equipos pierden tiempo buscando respuestas.",
         agentDoes: "Encuentra políticas, enruta solicitudes y recopila datos faltantes.",
         workflow: "Pregunta → búsqueda en conocimiento → tarea enrutada.",
-        outcome: "Soporte interno más rápido.",
+        outcome: "Ayuda interna más rápida.",
       },
       {
         icon: PhoneCall,
         title: "Asistente de llamadas de voz",
         problem: "Las llamadas se pierden o se atienden con prisa.",
         agentDoes: "Captura intención, resume llamadas y marca urgencia.",
-        workflow: "Llamada → intake → traspaso estructurado.",
+        workflow: "Llamada → recepción → derivación estructurada.",
         outcome: "Mejor cobertura y contexto más limpio.",
       },
       {
         icon: MessageSquare,
         title: "Asistente de chat web",
         problem: "Los visitantes se van sin respuesta.",
-        agentDoes: "Responde FAQs, guía siguientes pasos y captura contacto.",
-        workflow: "Pregunta → respuesta → reserva o traspaso.",
+        agentDoes: "Responde preguntas frecuentes, guía siguientes pasos y captura contacto.",
+        workflow: "Pregunta → respuesta → reserva o derivación.",
         outcome: "Conversaciones web más útiles.",
       },
       {
@@ -106,20 +106,20 @@ const solutionsContent = {
         title: "Automatización de seguimiento",
         problem: "El seguimiento se olvida o llega tarde.",
         agentDoes: "Envía recordatorios, resúmenes y próximos pasos.",
-        workflow: "Intake → siguiente toque → seguimiento a tiempo.",
+        workflow: "Recepción → siguiente contacto → seguimiento a tiempo.",
         outcome: "Menos oportunidades perdidas.",
       },
     ],
     industries: [
       {
         icon: Building2,
-        name: "Real Estate",
-        description: "Califica compradores, renters y sellers.",
+        name: "Inmobiliarias",
+        description: "Cualifica compradores, vendedores e interesados en alquiler.",
       },
       {
         icon: Building2,
-        name: "Property Management",
-        description: "Gestiona residentes, leasing e intake de mantenimiento.",
+        name: "Gestión de propiedades",
+        description: "Gestiona residentes, alquileres y solicitudes de mantenimiento.",
       },
       {
         icon: Workflow,
@@ -128,13 +128,13 @@ const solutionsContent = {
       },
       {
         icon: Headphones,
-        name: "Consultorios de salud",
-        description: "Apoya intake, agenda y FAQs no clínicas.",
+        name: "Clínicas y consultas",
+        description: "Ayuda con recepción, citas y preguntas no clínicas.",
       },
       {
         icon: CheckCircle2,
-        name: "Oficinas legales",
-        description: "Filtra consultas y organiza intake inicial.",
+        name: "Despachos legales",
+        description: "Filtra consultas y organiza la recepción inicial.",
       },
       {
         icon: MessageSquare,
@@ -144,7 +144,7 @@ const solutionsContent = {
       {
         icon: UserPlus,
         name: "Educación",
-        description: "Guía admisiones, soporte y agenda.",
+        description: "Guía admisiones, orientación y agenda.",
       },
       {
         icon: PhoneCall,
@@ -305,12 +305,12 @@ export default async function SolutionsPage() {
               </p>
               <h1 className="text-balance text-4xl font-semibold tracking-normal text-white sm:text-6xl">
                 {locale === "es"
-                  ? "Agentes de IA diseñados alrededor de tus flujos de negocio."
+                  ? "Agentes de IA diseñados alrededor de tus procesos de negocio."
                   : "AI agents built around your business workflows."}
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
                 {locale === "es"
-                  ? "Automatiza los momentos donde los clientes necesitan respuestas y los equipos necesitan traspasos claros."
+                  ? "Automatiza los momentos donde los clientes necesitan respuestas y los equipos necesitan derivaciones claras."
                   : "Automate the moments where customers need answers and teams need clean handoffs."}
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -341,7 +341,7 @@ export default async function SolutionsPage() {
           }
           description={
             locale === "es"
-              ? "Flujos enfocados para soporte, ventas, llamadas, reservas y operaciones."
+              ? "Procesos enfocados para atención al cliente, ventas, llamadas, reservas y operaciones."
               : "Focused workflows for support, sales, calls, bookings, and operations."
           }
         />
@@ -398,7 +398,7 @@ export default async function SolutionsPage() {
                 }
                 description={
                   locale === "es"
-                    ? "Útil donde se acumulan preguntas, intake, reservas y seguimiento."
+                    ? "Útil donde se acumulan preguntas, recepción, reservas y seguimiento."
                     : "Useful where questions, intake, bookings, and follow-up pile up."
                 }
               />
@@ -444,7 +444,7 @@ export default async function SolutionsPage() {
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-300">
               {locale === "es"
-                ? "Comparte el flujo. Mapearemos el primer agente útil."
+                ? "Comparte el proceso. Mapearemos el primer agente útil."
                 : "Share the workflow. We’ll map the first useful agent."}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">

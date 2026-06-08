@@ -16,7 +16,7 @@ const channels = {
     {
       icon: PhoneCall,
       title: "Llamadas de voz",
-      description: "Gestiona intake y resume llamadas.",
+      description: "Gestiona recepción y resume llamadas.",
     },
     {
       icon: Mail,
@@ -70,7 +70,7 @@ export function HomeOmnichannel() {
             }
             description={
               locale === "es"
-                ? "Chat, llamadas, seguimiento y APIs en un flujo conectado."
+                ? "Chat, llamadas, seguimiento y APIs en un proceso conectado."
                 : "Chat, calls, follow-up, and APIs in one connected flow."
             }
           />

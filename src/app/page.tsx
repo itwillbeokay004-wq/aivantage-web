@@ -16,11 +16,11 @@ export async function generateMetadata() {
   return pageMetadata({
     title:
       locale === "es"
-        ? "Agentes de IA para soporte, ventas y operaciones"
+        ? "Agentes de IA para atención al cliente, ventas y operaciones"
         : "AI agents for support, sales, and operations",
     description:
       locale === "es"
-        ? "AiVantage diseña y despliega agentes de IA personalizados para chat web, llamadas de voz, captura de leads, reservas, soporte y flujos de negocio."
+        ? "AiVantage diseña y despliega agentes de IA personalizados para chat web, llamadas de voz, captación de clientes potenciales, reservas, atención al cliente y automatización de procesos."
         : "AiVantage designs and deploys custom AI agents for website chat, voice calls, lead capture, booking, support, and business workflows.",
     path: "/",
     locale,

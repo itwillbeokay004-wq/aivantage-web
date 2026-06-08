@@ -25,7 +25,7 @@ const trustItems = {
     },
     {
       icon: UsersRound,
-      title: "Traspaso humano",
+      title: "Derivación a un humano",
       description: "Escala con contexto y resúmenes.",
     },
   ],
@@ -68,7 +68,7 @@ export function HomeSecurityTrust() {
           }
           description={
             locale === "es"
-              ? "Privacidad, supervisión y traspaso humano integrados."
+              ? "Privacidad, supervisión y derivación a una persona integradas."
               : "Privacy, oversight, and human handoff built in."
           }
         />

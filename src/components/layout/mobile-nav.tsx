@@ -125,7 +125,7 @@ export function MobileNav() {
                   onClick={() => setIsOpen(false)}
                   eventProperties={{ location: "mobile_nav" }}
                 >
-                  {locale === "es" ? "Reservar demo" : "Book demo"}
+                  {locale === "es" ? "Reservar una demo" : "Book demo"}
                 </TrackedLink>
               </Button>
               <Button asChild variant="secondary">

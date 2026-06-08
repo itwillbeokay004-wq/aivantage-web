@@ -17,11 +17,11 @@ import { demoSchema, type DemoFormValues } from "@/lib/schemas";
 const teamSizes = ["1-10", "11-50", "51-250", "251-1,000", "1,000+"];
 const useCases = {
   es: [
-    "Soporte al cliente",
-    "Calificación de ventas",
-    "Intake de voz",
+    "Atención al cliente",
+    "Cualificación para ventas",
+    "Recepción de llamadas",
     "Operaciones internas",
-    "Múltiples flujos",
+    "Múltiples procesos",
   ],
   en: [
     "Customer support",
@@ -220,7 +220,7 @@ export function DemoForm() {
             id="demo-message"
             placeholder={
               locale === "es"
-                ? "Comparte los sistemas, canales o flujos que quieres revisar."
+                ? "Comparte los sistemas, canales o procesos que quieres revisar."
                 : "Share the systems, channels, or workflows you want to discuss."
             }
             aria-invalid={Boolean(errors.message)}

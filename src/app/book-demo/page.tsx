@@ -12,10 +12,10 @@ export async function generateMetadata() {
   const locale = await getRequestLocale();
 
   return pageMetadata({
-    title: locale === "es" ? "Reservar demo" : "Book a Demo",
+    title: locale === "es" ? "Reservar una demo" : "Book a Demo",
     description:
       locale === "es"
-        ? "Reserva una demo de AiVantage para explorar agentes de IA personalizados para chat, voz y automatización de flujos."
+        ? "Reserva una demo de AiVantage para explorar agentes de IA personalizados para chat, voz y automatización de procesos."
         : "Book an AiVantage demo to explore custom AI agents for chat, voice, and workflow automation.",
     path: "/book-demo",
     locale,
@@ -24,9 +24,9 @@ export async function generateMetadata() {
 
 const demoAgenda = {
   es: [
-    "Identificar tu mejor primer flujo de automatización",
+    "Identificar tu mejor primer proceso para automatizar",
     "Revisar canales y sistemas que los agentes deberían conectar",
-    "Hablar de límites, traspasos y calendario de lanzamiento",
+    "Hablar de límites, derivaciones y calendario de lanzamiento",
   ],
   en: [
     "Identify your best first automation workflow",
@@ -41,7 +41,7 @@ export default async function BookDemoPage() {
   return (
     <>
       <PageHero
-        eyebrow={locale === "es" ? "Reservar demo" : "Book a Demo"}
+        eyebrow={locale === "es" ? "Reservar una demo" : "Book a Demo"}
         title={
           locale === "es"
             ? "Mira cómo un agente AiVantage podría funcionar en tu negocio."
@@ -49,7 +49,7 @@ export default async function BookDemoPage() {
         }
         description={
           locale === "es"
-            ? "Solicita una sesión de trabajo con AiVantage. Nos enfocaremos en tu flujo, no en una demo genérica."
+            ? "Solicita una sesión de trabajo con AiVantage. Nos enfocaremos en tu proceso, no en una demo genérica."
             : "Request a working session with AiVantage. We will focus on your workflow, not a generic product tour."
         }
       />
@@ -94,7 +94,7 @@ export default async function BookDemoPage() {
             }
             description={
               locale === "es"
-                ? "Si un agente de IA no es el paso correcto, lo diremos. Si lo es, saldrás con un primer flujo y alcance claros."
+                ? "Si un agente de IA no es el paso correcto, lo diremos. Si lo es, saldrás con un primer proceso y alcance claros."
                 : "If an AI agent is not the right move, we will say so. If it is, you will leave with a clear first workflow and scope."
             }
           />

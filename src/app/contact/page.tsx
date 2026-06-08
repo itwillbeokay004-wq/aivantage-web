@@ -15,7 +15,7 @@ export async function generateMetadata() {
     title: locale === "es" ? "Contacto" : "Contact",
     description:
       locale === "es"
-        ? "Contacta con AiVantage para hablar de automatización con IA, agentes de IA, voz y flujos personalizados."
+        ? "Contacta con AiVantage para hablar de automatización con IA, agentes de IA, voz y procesos personalizados."
         : "Contact AiVantage to discuss AI automation, AI agents, voice workflows, and custom business automation.",
     path: "/contact",
     locale,
@@ -41,7 +41,7 @@ export default async function ContactPage() {
       title: locale === "es" ? "Cobertura" : "Serving",
       description:
         locale === "es"
-          ? "Equipos remote-first en Estados Unidos y Europa"
+          ? "Equipos distribuidos en Estados Unidos y Europa"
           : "Remote-first teams across the US and Europe",
     },
   ];
@@ -57,7 +57,7 @@ export default async function ContactPage() {
         }
         description={
           locale === "es"
-            ? "Comparte el flujo que quieres mejorar y te ayudaremos a identificar el camino más rápido hacia un lanzamiento útil y controlado."
+            ? "Comparte el proceso que quieres mejorar y te ayudaremos a identificar el camino más rápido hacia un lanzamiento útil y controlado."
             : "Share the workflow you want to improve and we will help identify the fastest path to a useful, controlled launch."
         }
       />

@@ -119,11 +119,11 @@ export default async function RootLayout({
             : "AI agent automation services",
         serviceType:
           locale === "es"
-            ? "Automatización con IA, agentes de IA, chat, voz y flujos de trabajo"
+            ? "Automatización con IA, agentes de IA, chat, voz y automatización de procesos"
             : "AI automation, AI agents, chat automation, voice automation, and workflow automation",
         description:
           locale === "es"
-            ? "AiVantage diseña, despliega y gestiona agentes de IA personalizados para soporte, ventas, operaciones, experiencia del cliente y automatización de flujos de negocio."
+            ? "AiVantage diseña, despliega y gestiona agentes de IA personalizados para atención al cliente, ventas, operaciones, comunicación con clientes y automatización de procesos."
             : "AiVantage designs, deploys, and manages custom AI agents for support, sales, operations, customer engagement, and business workflow automation.",
         provider: {
           "@id": organizationId,

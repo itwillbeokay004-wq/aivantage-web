@@ -21,7 +21,7 @@ export function HomeFinalCta() {
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600">
             {locale === "es"
-              ? "Trae un flujo de trabajo. Mapearemos el primer agente y el camino de lanzamiento."
+              ? "Trae un proceso concreto. Mapearemos el primer agente de IA y el camino de implementación."
               : "Bring one workflow. We’ll map the first agent and launch path."}
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
@@ -29,7 +29,7 @@ export function HomeFinalCta() {
               {ctaLabels.bookDemo}
             </CtaButton>
             <CtaButton href="/contact" variant="secondary" size="lg" showIcon={false}>
-              {locale === "es" ? "Contactar" : "Contact Us"}
+              {ctaLabels.contactUs}
             </CtaButton>
           </div>
         </div>

@@ -13,7 +13,7 @@ import {
 import { useLocale } from "@/components/locale-provider";
 
 const workflowNodes = {
-  es: ["Lead", "Calificar", "Reservar", "Seguimiento"],
+  es: ["Cliente", "Cualificar", "Reservar", "Seguimiento"],
   en: ["Lead", "Score", "Book", "Follow up"],
 } as const;
 
@@ -21,7 +21,7 @@ const analytics = {
   es: [
     { label: "Respondidas", value: "1,248" },
     { label: "Reservadas", value: "186" },
-    { label: "Traspasos", value: "42" },
+    { label: "Derivaciones", value: "42" },
   ],
   en: [
     { label: "Answered", value: "1,248" },
@@ -101,7 +101,7 @@ export function HomeProductMockup() {
                 {locale === "es" ? "Agente de voz" : "Voice agent"}
               </p>
               <p className="text-xs text-slate-500">
-                {locale === "es" ? "Intake y enrutamiento" : "Call intake and routing"}
+                {locale === "es" ? "Recepción y enrutamiento" : "Call intake and routing"}
               </p>
             </div>
           </div>
@@ -141,7 +141,7 @@ export function HomeProductMockup() {
         >
           <div className="mb-4 flex items-center gap-3 text-sm font-semibold text-slate-950">
             <Workflow className="size-5 text-blue-700" />
-            {locale === "es" ? "Nodos de flujo" : "Workflow nodes"}
+            {locale === "es" ? "Pasos del proceso" : "Workflow nodes"}
           </div>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             {workflowNodes[locale].map((node, index) => (

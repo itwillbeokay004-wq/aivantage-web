@@ -16,7 +16,7 @@ import { contactSchema, type ContactFormValues } from "@/lib/schemas";
 
 const interests = {
   es: [
-    "Automatización de soporte",
+    "Automatización de atención al cliente",
     "Automatización de ventas",
     "Agentes de voz",
     "Flujos internos",
@@ -169,7 +169,7 @@ export function ContactForm() {
             id="contact-message"
             placeholder={
               locale === "es"
-                ? "Cuéntanos sobre el proceso, conversación o flujo que quieres automatizar."
+                ? "Cuéntanos qué proceso, conversación o tarea quieres automatizar."
                 : "Tell us about the process, conversation, or workflow you want to automate."
             }
             aria-invalid={Boolean(errors.message)}

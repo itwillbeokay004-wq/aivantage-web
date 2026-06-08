@@ -31,7 +31,7 @@ export async function generateMetadata() {
     title: locale === "es" ? "Sobre AiVantage" : "About AiVantage",
     description:
       locale === "es"
-        ? "Conoce cómo AiVantage ayuda a diseñar, desplegar y mejorar agentes de IA prácticos para soporte, ventas, operaciones y experiencia del cliente."
+        ? "Conoce cómo AiVantage ayuda a diseñar, desplegar y mejorar agentes de IA prácticos para atención al cliente, ventas, operaciones y comunicación con clientes."
         : "Learn how AiVantage helps businesses design, deploy, and improve practical AI agents for support, sales, operations, and customer engagement.",
     path: "/about",
     locale,
@@ -43,13 +43,13 @@ const aboutContent = {
     principles: [
       {
         icon: ClipboardList,
-        title: "Flujo antes que espectáculo",
+        title: "Proceso antes que espectáculo",
         description: "Empezamos con el proceso antes de elegir herramientas.",
       },
       {
         icon: LockKeyhole,
         title: "Control como parte de calidad",
-        description: "Usamos conocimiento aprobado, fallbacks, traspasos y límites.",
+        description: "Usamos conocimiento aprobado, respuestas de seguridad, derivaciones y límites.",
       },
       {
         icon: BarChart3,
@@ -72,22 +72,22 @@ const aboutContent = {
       },
       {
         title: "Optimizar",
-        description: "Ajustar respuestas, enrutamiento y el siguiente flujo.",
+        description: "Ajustar respuestas, enrutamiento y el siguiente proceso.",
       },
     ],
     focusAreas: [
       "Agentes de chat web que califican demanda",
-      "Asistentes de voz para llamadas perdidas e intake",
+      "Asistentes de voz para llamadas perdidas y recepción",
       "Agentes de conocimiento basados en contenido aprobado",
       "Automatización de citas y seguimiento",
-      "Traspasos humanos con resúmenes",
+      "Derivaciones a personas con resúmenes",
       "Analítica que muestra qué resolvieron los agentes",
     ],
     trustPoints: [
       {
         icon: Bot,
         value: "Custom",
-        label: "agentes alrededor de tu flujo",
+        label: "agentes alrededor de tu proceso",
       },
       {
         icon: Workflow,
@@ -97,7 +97,7 @@ const aboutContent = {
       {
         icon: Handshake,
         value: "Humano listo",
-        label: "traspasos para momentos importantes",
+        label: "derivaciones para momentos importantes",
       },
       {
         icon: Radar,
@@ -107,7 +107,7 @@ const aboutContent = {
     ],
     visual: {
       eyebrow: "Centro de mando de agentes",
-      title: "Mapa de flujo del negocio",
+      title: "Mapa de proceso del negocio",
       layers: ["Intención", "Conocimiento", "Acción"],
       layerCopy: "La capa {number} revisa el camino antes de continuar.",
       outcomeTitle: "Resultado de ejemplo",
@@ -278,12 +278,12 @@ export default async function AboutPage() {
         }
         description={
           locale === "es"
-            ? `${siteConfig.name} convierte conversaciones y tareas repetibles en flujos gestionados con agentes de IA.`
+            ? `${siteConfig.name} convierte conversaciones y tareas repetibles en procesos gestionados con agentes de IA.`
             : `${siteConfig.name} turns repeatable conversations and tasks into managed AI agent workflows.`
         }
         primaryCta={{
           href: "/book-demo",
-          label: locale === "es" ? "Reservar demo" : "Book a Demo",
+          label: locale === "es" ? "Reservar una demo" : "Book a Demo",
         }}
         secondaryCta={{
           href: "/use-cases",
@@ -304,7 +304,7 @@ export default async function AboutPage() {
               }
               description={
                 locale === "es"
-                  ? "Respuestas más rápidas, traspasos limpios, menos preguntas repetidas y mejora medible."
+                  ? "Respuestas más rápidas, derivaciones claras, menos preguntas repetidas y mejora medible."
                   : "Faster responses, cleaner handoffs, fewer repeat questions, and measurable lift."
               }
             />
@@ -345,7 +345,7 @@ export default async function AboutPage() {
             }
             description={
               locale === "es"
-                ? "Útil, medible y controlada para flujos reales."
+                ? "Útil, medible y controlada para procesos reales."
                 : "Useful, measurable, and controlled enough for real workflows."
             }
           />
@@ -385,7 +385,7 @@ export default async function AboutPage() {
               }
               description={
                 locale === "es"
-                  ? "Trae el contexto. Damos forma al flujo y camino de lanzamiento."
+                  ? "Trae el contexto. Damos forma al proceso y al camino de lanzamiento."
                   : "Bring the context. We shape the workflow and launch path."
               }
             />
@@ -421,7 +421,7 @@ export default async function AboutPage() {
                 eyebrow={locale === "es" ? "Dónde ayudamos" : "Where we help"}
                 title={
                   locale === "es"
-                    ? "Enfocados en flujos que crean impacto inmediato."
+                    ? "Enfocados en procesos que crean impacto inmediato."
                     : "Focused on the workflows that create immediate business leverage."
                 }
                 description={
@@ -474,7 +474,7 @@ export default async function AboutPage() {
         }
         description={
           locale === "es"
-            ? "Reserva una demo y mapearemos un flujo de alto valor."
+            ? "Reserva una demo y mapearemos un proceso de alto valor."
             : "Book a demo and we’ll map one high-value workflow."
         }
       />

@@ -21,13 +21,13 @@ export function Footer() {
             <Logo />
             <p className="mt-5 text-sm leading-7 text-slate-600">
               {locale === "es"
-                ? "Agentes de IA listos para producción para soporte, ventas, operaciones y experiencia del cliente."
+                ? "Agentes de IA listos para producción para atención al cliente, ventas, operaciones y comunicación con clientes."
                 : "Production-ready AI agents for support, sales, operations, and customer engagement."}
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button asChild>
                 <TrackedLink href="/book-demo" eventProperties={{ location: "footer" }}>
-                  {locale === "es" ? "Reservar demo" : "Book a Demo"}
+                  {locale === "es" ? "Reservar una demo" : "Book a Demo"}
                 </TrackedLink>
               </Button>
               <Button asChild variant="secondary">

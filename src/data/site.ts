@@ -52,6 +52,9 @@ export type NavItem = {
 export type CtaLabels = {
   bookDemo: string;
   startFreeConsultation: string;
+  seeUseCases: string;
+  contactUs: string;
+  letsTalk: string;
 };
 
 export type IconContentItem = {
@@ -104,9 +107,9 @@ export const siteConfig = {
   domain: "aivantage.es",
   url: siteUrl,
   email: "hello@aivantage.es",
-  tagline: "Tu ventaja con IA, construida para negocios reales.",
+  tagline: "Tu ventaja con IA, diseñada para negocios reales.",
   description:
-    "AiVantage ayuda a las empresas a diseñar, desplegar y gestionar agentes de IA para soporte, ventas, operaciones y experiencia del cliente.",
+    "AiVantage ayuda a empresas a diseñar, implementar y mejorar agentes de IA para atención al cliente, ventas, operaciones y comunicación con clientes.",
 } satisfies SiteConfig;
 
 export const siteConfigByLocale = {
@@ -115,20 +118,20 @@ export const siteConfigByLocale = {
     ...siteConfig,
     tagline: "Your AI advantage, built for real business.",
     description:
-      "AiVantage helps businesses design, deploy, and manage AI agents for support, sales, operations, and customer engagement.",
+      "AiVantage helps businesses design, deploy, and improve AI agents for support, sales, operations, and customer engagement.",
   },
 } satisfies Record<Locale, SiteConfig>;
 
 export const navLinks = [
   { href: "/platform", label: "Platform" },
-  { href: "/solutions", label: "Customers" },
+  { href: "/solutions", label: "Solutions" },
   { href: "/pricing", label: "Pricing" },
 ] satisfies readonly NavItem[];
 
 export const navLinksByLocale = {
   es: [
     { href: "/platform", label: "Plataforma" },
-    { href: "/solutions", label: "Clientes" },
+    { href: "/solutions", label: "Soluciones" },
     { href: "/pricing", label: "Precios" },
   ],
   en: navLinks,
@@ -151,155 +154,330 @@ export const resourceNavLinksByLocale = {
   en: resourceNavLinks,
 } satisfies Record<Locale, readonly NavItem[]>;
 
+export const navigationItemsByLocale = {
+  es: [
+    { href: "/platform", label: "Plataforma" },
+    { href: "/solutions", label: "Soluciones" },
+    { href: "/ai-models", label: "Modelos de IA" },
+    { href: "/use-cases", label: "Casos de uso" },
+    { href: "/pricing", label: "Precios" },
+    { href: "/resources", label: "Recursos" },
+    { href: "/contact", label: "Contacto" },
+  ],
+  en: [
+    { href: "/platform", label: "Platform" },
+    { href: "/solutions", label: "Solutions" },
+    { href: "/ai-models", label: "AI Models" },
+    { href: "/use-cases", label: "Use Cases" },
+    { href: "/pricing", label: "Pricing" },
+    { href: "/resources", label: "Resources" },
+    { href: "/contact", label: "Contact" },
+  ],
+} satisfies Record<Locale, readonly NavItem[]>;
+
+export const navigationItems = navigationItemsByLocale.en;
+
 export const ctaLabels = {
   bookDemo: "Book a Demo",
   startFreeConsultation: "Start Free Consultation",
+  seeUseCases: "See Use Cases",
+  contactUs: "Contact Us",
+  letsTalk: "Let’s Talk",
 } satisfies CtaLabels;
 
 export const ctaLabelsByLocale = {
   es: {
-    bookDemo: "Reservar demo",
-    startFreeConsultation: "Consulta gratuita",
+    bookDemo: "Reservar una demo",
+    startFreeConsultation: "Solicitar una consulta",
+    seeUseCases: "Ver casos de uso",
+    contactUs: "Contactar",
+    letsTalk: "Hablemos",
   },
   en: ctaLabels,
 } satisfies Record<Locale, CtaLabels>;
 
-export const platformFeatures = [
-  {
-    icon: Bot,
-    title: "AI Agent Builder",
-    description: "Design agents around goals, tone, rules, and handoff paths.",
-  },
-  {
-    icon: BookOpen,
-    title: "Knowledge Base",
-    description: "Ground answers in approved content, policies, and documents.",
-  },
-  {
-    icon: Mic2,
-    title: "Chat + Voice Agents",
-    description: "Launch assistants for chat, calls, and internal support.",
-  },
-  {
-    icon: Workflow,
-    title: "Workflow Automation",
-    description: "Create tickets, schedule meetings, and trigger follow-ups.",
-  },
-  {
-    icon: Handshake,
-    title: "Human Handoff",
-    description: "Route important conversations with context and summaries.",
-  },
-  {
-    icon: BarChart3,
-    title: "Analytics + Monitoring",
-    description: "Track quality, conversion, handoffs, and outcomes.",
-  },
-  {
-    icon: Cable,
-    title: "Integrations",
-    description: "Connect CRMs, calendars, helpdesks, and APIs.",
-  },
-  {
-    icon: LockKeyhole,
-    title: "Security Controls",
-    description: "Add permissions, audit trails, and safe fallbacks.",
-  },
-] satisfies readonly IconContentItem[];
+export const platformFeaturesByLocale = {
+  es: [
+    {
+      icon: Bot,
+      title: "Constructor de agentes de IA",
+      description: "Diseña agentes con objetivos, tono, reglas y criterios claros de derivación.",
+    },
+    {
+      icon: BookOpen,
+      title: "Base de conocimiento",
+      description: "Conecta respuestas a documentación, políticas y contenido aprobado.",
+    },
+    {
+      icon: Mic2,
+      title: "Agentes para chat y voz",
+      description: "Atiende conversaciones web, llamadas e interacciones internas desde una misma lógica.",
+    },
+    {
+      icon: Workflow,
+      title: "Automatización de procesos",
+      description: "Crea tareas, agenda citas y activa seguimientos sin trabajo manual repetitivo.",
+    },
+    {
+      icon: Handshake,
+      title: "Derivación a un humano",
+      description: "Pasa la conversación a una persona del equipo con contexto y resumen.",
+    },
+    {
+      icon: BarChart3,
+      title: "Analítica y seguimiento",
+      description: "Mide calidad, conversiones, derivaciones y resultados de cada agente.",
+    },
+    {
+      icon: Cable,
+      title: "Integraciones",
+      description: "Conecta CRM, calendarios, email, helpdesk y APIs internas.",
+    },
+    {
+      icon: LockKeyhole,
+      title: "Controles de seguridad",
+      description: "Define permisos, registros de actividad, respuestas de seguridad y límites operativos.",
+    },
+  ],
+  en: [
+    {
+      icon: Bot,
+      title: "AI Agent Builder",
+      description: "Design agents around goals, tone, rules, and handoff paths.",
+    },
+    {
+      icon: BookOpen,
+      title: "Knowledge Base",
+      description: "Ground answers in approved content, policies, and documents.",
+    },
+    {
+      icon: Mic2,
+      title: "Chat + Voice Agents",
+      description: "Launch assistants for chat, calls, and internal support.",
+    },
+    {
+      icon: Workflow,
+      title: "Workflow Automation",
+      description: "Create tickets, schedule meetings, and trigger follow-ups.",
+    },
+    {
+      icon: Handshake,
+      title: "Human Handoff",
+      description: "Route important conversations with context and summaries.",
+    },
+    {
+      icon: BarChart3,
+      title: "Analytics + Monitoring",
+      description: "Track quality, conversion, handoffs, and outcomes.",
+    },
+    {
+      icon: Cable,
+      title: "Integrations",
+      description: "Connect CRMs, calendars, helpdesks, and APIs.",
+    },
+    {
+      icon: LockKeyhole,
+      title: "Security Controls",
+      description: "Add permissions, audit trails, and safe fallbacks.",
+    },
+  ],
+} satisfies Record<Locale, readonly IconContentItem[]>;
 
-export const useCases = [
-  {
-    title: "Customer Support",
-    metric: "24/7",
-    label: "first-line coverage",
-    description: "Answer FAQs, collect context, and escalate cleanly.",
-  },
-  {
-    title: "Lead Qualification",
-    metric: "+32%",
-    label: "higher intent capture",
-    description: "Qualify fit and route sales-ready prospects.",
-  },
-  {
-    title: "Appointment Booking",
-    metric: "18 hrs",
-    label: "saved weekly",
-    description: "Book meetings and reduce back-and-forth.",
-  },
-  {
-    title: "Real Estate Leasing Assistant",
-    metric: "5 min",
-    label: "median response",
-    description: "Answer listings, qualify renters, and schedule tours.",
-  },
-  {
-    title: "Internal Operations Assistant",
-    metric: "3.4x",
-    label: "faster answers",
-    description: "Find policies, submit requests, and update systems.",
-  },
-  {
-    title: "FAQ + Knowledge Base Agent",
-    metric: "-28%",
-    label: "repeat questions",
-    description: "Turn documents into reliable answers.",
-  },
-  {
-    title: "Call Handling",
-    metric: "0 missed",
-    label: "after-hours calls",
-    description: "Capture intent, route urgency, and summarize calls.",
-  },
-  {
-    title: "Follow-up Automation",
-    metric: "100%",
-    label: "consistent next steps",
-    description: "Send reminders, summaries, and next steps.",
-  },
-] satisfies readonly UseCase[];
+export const platformFeatures = platformFeaturesByLocale.en;
 
-export const industries = [
-  {
-    icon: Building2,
-    name: "Real Estate",
-    description: "Qualify buyers, renters, and sellers.",
-  },
-  {
-    icon: Home,
-    name: "Property Management",
-    description: "Handle residents, leasing, and maintenance intake.",
-  },
-  {
-    icon: Wrench,
-    name: "Local Services",
-    description: "Book jobs and capture service details.",
-  },
-  {
-    icon: Stethoscope,
-    name: "Healthcare Offices",
-    description: "Support intake, scheduling, and non-clinical FAQs.",
-  },
-  {
-    icon: Scale,
-    name: "Legal Offices",
-    description: "Screen inquiries and organize intake.",
-  },
-  {
-    icon: ShoppingCart,
-    name: "E-commerce",
-    description: "Answer product, order, and return questions.",
-  },
-  {
-    icon: GraduationCap,
-    name: "Education",
-    description: "Guide admissions, support, and scheduling.",
-  },
-  {
-    icon: Wrench,
-    name: "Home Services",
-    description: "Turn calls and visits into booked jobs.",
-  },
-] satisfies readonly Industry[];
+export const useCasesByLocale = {
+  es: [
+    {
+      title: "Atención al cliente",
+      metric: "24/7",
+      label: "primera respuesta",
+      description: "Responde preguntas frecuentes, recoge contexto y deriva casos complejos.",
+    },
+    {
+      title: "Cualificación de clientes potenciales",
+      metric: "+32%",
+      label: "mejor seguimiento",
+      description: "Identifica intención, encaje y prioridad antes de pasar la conversación a ventas.",
+    },
+    {
+      title: "Reserva de citas",
+      metric: "18 h",
+      label: "ahorradas por semana",
+      description: "Agenda reuniones y reduce mensajes de ida y vuelta.",
+    },
+    {
+      title: "Asistente para alquileres inmobiliarios",
+      metric: "5 min",
+      label: "respuesta media",
+      description: "Responde sobre inmuebles, cualifica interesados y coordina visitas.",
+    },
+    {
+      title: "Asistente interno de operaciones",
+      metric: "3,4x",
+      label: "respuestas más rápidas",
+      description: "Encuentra políticas, recopila datos y enruta solicitudes internas.",
+    },
+    {
+      title: "Agente de preguntas frecuentes",
+      metric: "-28%",
+      label: "consultas repetidas",
+      description: "Convierte documentación aprobada en respuestas claras y consistentes.",
+    },
+    {
+      title: "Gestión de llamadas",
+      metric: "0",
+      label: "llamadas sin registrar",
+      description: "Recoge intención, detecta urgencia y resume llamadas para el equipo.",
+    },
+    {
+      title: "Automatización de seguimiento",
+      metric: "100%",
+      label: "próximos pasos claros",
+      description: "Envía recordatorios, resúmenes y mensajes de seguimiento a tiempo.",
+    },
+  ],
+  en: [
+    {
+      title: "Customer Support",
+      metric: "24/7",
+      label: "first-line coverage",
+      description: "Answer FAQs, collect context, and escalate cleanly.",
+    },
+    {
+      title: "Lead Qualification",
+      metric: "+32%",
+      label: "higher intent capture",
+      description: "Qualify fit and route sales-ready prospects.",
+    },
+    {
+      title: "Appointment Booking",
+      metric: "18 hrs",
+      label: "saved weekly",
+      description: "Book meetings and reduce back-and-forth.",
+    },
+    {
+      title: "Real Estate Leasing Assistant",
+      metric: "5 min",
+      label: "median response",
+      description: "Answer listings, qualify renters, and schedule tours.",
+    },
+    {
+      title: "Internal Operations Assistant",
+      metric: "3.4x",
+      label: "faster answers",
+      description: "Find policies, submit requests, and update systems.",
+    },
+    {
+      title: "FAQ + Knowledge Base Agent",
+      metric: "-28%",
+      label: "repeat questions",
+      description: "Turn documents into reliable answers.",
+    },
+    {
+      title: "Call Handling",
+      metric: "0 missed",
+      label: "after-hours calls",
+      description: "Capture intent, route urgency, and summarize calls.",
+    },
+    {
+      title: "Follow-up Automation",
+      metric: "100%",
+      label: "consistent next steps",
+      description: "Send reminders, summaries, and next steps.",
+    },
+  ],
+} satisfies Record<Locale, readonly UseCase[]>;
+
+export const useCases = useCasesByLocale.en;
+
+export const industriesByLocale = {
+  es: [
+    {
+      icon: Building2,
+      name: "Inmobiliarias",
+      description: "Cualifica compradores, vendedores e interesados en alquiler.",
+    },
+    {
+      icon: Home,
+      name: "Gestión de propiedades",
+      description: "Gestiona consultas de residentes, alquileres y mantenimiento.",
+    },
+    {
+      icon: Wrench,
+      name: "Servicios locales",
+      description: "Convierte consultas en citas, presupuestos y trabajos programados.",
+    },
+    {
+      icon: Stethoscope,
+      name: "Clínicas y consultas",
+      description: "Ayuda con información general, citas y preguntas no clínicas.",
+    },
+    {
+      icon: Scale,
+      name: "Despachos legales",
+      description: "Organiza consultas iniciales y recopila datos antes de la llamada.",
+    },
+    {
+      icon: ShoppingCart,
+      name: "E-commerce",
+      description: "Responde sobre productos, pedidos, entregas y devoluciones.",
+    },
+    {
+      icon: GraduationCap,
+      name: "Educación",
+      description: "Guía procesos de admisión, orientación y atención a estudiantes.",
+    },
+    {
+      icon: Wrench,
+      name: "Servicios para el hogar",
+      description: "Atiende llamadas y formularios para reservar trabajos con más rapidez.",
+    },
+  ],
+  en: [
+    {
+      icon: Building2,
+      name: "Real Estate",
+      description: "Qualify buyers, renters, and sellers.",
+    },
+    {
+      icon: Home,
+      name: "Property Management",
+      description: "Handle residents, leasing, and maintenance intake.",
+    },
+    {
+      icon: Wrench,
+      name: "Local Services",
+      description: "Book jobs and capture service details.",
+    },
+    {
+      icon: Stethoscope,
+      name: "Healthcare Offices",
+      description: "Support intake, scheduling, and non-clinical FAQs.",
+    },
+    {
+      icon: Scale,
+      name: "Legal Offices",
+      description: "Screen inquiries and organize intake.",
+    },
+    {
+      icon: ShoppingCart,
+      name: "E-commerce",
+      description: "Answer product, order, and return questions.",
+    },
+    {
+      icon: GraduationCap,
+      name: "Education",
+      description: "Guide admissions, support, and scheduling.",
+    },
+    {
+      icon: Wrench,
+      name: "Home Services",
+      description: "Turn calls and visits into booked jobs.",
+    },
+  ],
+} satisfies Record<Locale, readonly Industry[]>;
+
+export const industries = industriesByLocale.en;
 
 export const pricingPlans = [
   {
@@ -389,7 +567,7 @@ export const footerGroupsByLocale = {
         { href: "/solutions", label: "Soluciones" },
         { href: "/resources", label: "Recursos" },
         { href: "/contact", label: "Contacto" },
-        { href: "/book-demo", label: "Reservar demo" },
+        { href: "/book-demo", label: "Reservar una demo" },
       ],
     },
     {

@@ -31,7 +31,7 @@ const privacyContent = {
       {
         title: "Información recopilada a través de formularios",
         body: [
-          "Cuando envías un formulario de contacto, solicitud de demo u otro formulario similar, AiVantage puede recopilar datos como nombre, email profesional, empresa, tamaño de equipo, área de interés, plazo y notas sobre el flujo que quieres discutir.",
+          "Cuando envías un formulario de contacto, solicitud de demo u otro formulario similar, AiVantage puede recopilar datos como nombre, email profesional, empresa, tamaño de equipo, área de interés, plazo y notas sobre el proceso que quieres discutir.",
           "Evita enviar información personal, financiera, médica, legal o confidencial a través de formularios web salvo que AiVantage lo solicite mediante un proceso seguro apropiado.",
         ],
       },

@@ -138,7 +138,7 @@ export function Navbar() {
             className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             eventProperties={{ location: "navbar" }}
           >
-            {locale === "es" ? "Reservar demo" : "Book a demo"}
+            {locale === "es" ? "Reservar una demo" : "Book a demo"}
           </TrackedLink>
           <Link
             href={

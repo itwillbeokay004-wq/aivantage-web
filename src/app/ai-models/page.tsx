@@ -33,7 +33,7 @@ export async function generateMetadata() {
     title: locale === "es" ? "Modelos de IA" : "AI Models",
     description:
       locale === "es"
-        ? "Aprende cómo AiVantage ayuda a elegir e integrar capacidades de modelos de IA para texto, voz, documentos, scoring, resúmenes, decisiones y extracción."
+        ? "Aprende cómo AiVantage ayuda a elegir e integrar capacidades de modelos de IA para texto, voz, documentos, evaluación, resúmenes, decisiones y extracción."
         : "Learn how AiVantage helps businesses choose and integrate AI model capabilities for text, voice, documents, scoring, summaries, decisions, multilingual support, and extraction.",
     path: "/ai-models",
     locale,
@@ -51,31 +51,31 @@ const aiModelsContent = {
       {
         icon: AudioLines,
         title: "Conversaciones de voz",
-        description: "Apoya intake de llamadas, transcripciones y flujos de voz.",
+        description: "Ayuda con recepción de llamadas, transcripciones y procesos de voz.",
       },
       {
         icon: FileSearch,
         title: "Comprensión de documentos",
-        description: "Encuentra respuestas en políticas, FAQs, manuales y docs.",
+        description: "Encuentra respuestas en políticas, preguntas frecuentes, manuales y documentos.",
       },
       {
         icon: BrainCircuit,
-        title: "Puntuación de leads",
+        title: "Evaluación de clientes potenciales",
         description: "Evalúa encaje, urgencia, plazo y datos faltantes.",
       },
       {
         icon: ListChecks,
         title: "Resúmenes",
-        description: "Convierte llamadas, chats y formularios en notas de traspaso.",
+        description: "Convierte llamadas, chats y formularios en notas de derivación.",
       },
       {
         icon: Bot,
-        title: "Decisiones de flujo",
+        title: "Decisiones de proceso",
         description: "Elige próximos pasos por reglas, confianza y contexto.",
       },
       {
         icon: Languages,
-        title: "Soporte multilingüe",
+        title: "Atención multilingüe",
         description: "Apoya enrutamiento y respuestas en varios idiomas.",
       },
       {
@@ -97,64 +97,64 @@ const aiModelsContent = {
       },
       {
         icon: BrainCircuit,
-        title: "Encaje con el flujo",
+        title: "Encaje con el proceso",
         copy: "Elige capacidades según el trabajo del agente.",
       },
     ],
     providerNote:
-      "Los proveedores se tratan como opciones de implementación. Esta página no afirma alianzas oficiales ni endorsements.",
+      "Los proveedores se tratan como opciones de implementación. Esta página no afirma alianzas oficiales ni avales.",
     safetyControls: [
       {
         icon: ShieldCheck,
-        title: "Guardrails",
-        description: "Define respuestas, rechazos y reglas de escalado.",
+        title: "Límites operativos",
+        description: "Define respuestas, rechazos y reglas de derivación.",
       },
       {
         icon: FileSearch,
         title: "Conocimiento aprobado",
-        description: "Usa documentos, FAQs y políticas aprobadas por tu equipo.",
+        description: "Usa documentos, preguntas frecuentes y políticas aprobadas por tu equipo.",
       },
       {
         icon: ListChecks,
-        title: "Respuestas fallback",
+        title: "Respuestas de reserva",
         description: "Usa lenguaje seguro cuando la confianza sea baja.",
       },
       {
         icon: UserRoundCheck,
-        title: "Traspaso humano",
-        description: "Escala momentos sensibles o de alto valor.",
+        title: "Derivación a un humano",
+        description: "Deriva momentos sensibles o de alto valor.",
       },
       {
         icon: TableProperties,
-        title: "Logs de auditoría placeholder",
-        description: "Planifica registros trazables de decisiones y traspasos.",
+        title: "Registros de auditoría",
+        description: "Planifica registros trazables de decisiones y derivaciones.",
       },
     ],
     faqs: [
       {
         question: "¿La IA puede responder desde mis documentos?",
         answer:
-          "Sí. Los agentes pueden consultar documentos aprobados, FAQs, políticas y contenido de conocimiento antes de responder.",
+          "Sí. Los agentes pueden consultar documentos aprobados, preguntas frecuentes, políticas y contenido de conocimiento antes de responder.",
       },
       {
         question: "¿Puede hablar con clientes?",
         answer:
-          "Sí, cuando voz está dentro del alcance. Podemos diseñar intake, resúmenes y traspasos.",
+          "Sí, cuando voz está dentro del alcance. Podemos diseñar recepción de llamadas, resúmenes y derivaciones.",
       },
       {
         question: "¿Puede conectarse a mi CRM?",
         answer:
-          "Sí. Los agentes pueden crear registros, añadir notas, enrutar leads o activar seguimientos.",
+          "Sí. Los agentes pueden crear registros, añadir notas, derivar clientes potenciales o activar seguimientos.",
       },
       {
         question: "¿Puede tomar el control una persona?",
         answer:
-          "Sí. El traspaso puede activarse por solicitudes sensibles, baja confianza o leads valiosos.",
+          "Sí. La derivación puede activarse por solicitudes sensibles, baja confianza o clientes potenciales valiosos.",
       },
       {
         question: "¿Cómo protegen datos sensibles?",
         answer:
-          "Limitamos el acceso, usamos fuentes aprobadas y planificamos controles alrededor del flujo.",
+          "Limitamos el acceso, usamos fuentes aprobadas y planificamos controles alrededor del proceso.",
       },
     ],
   },
@@ -309,7 +309,7 @@ export default async function AiModelsPage() {
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
                 {locale === "es"
-                  ? "Alinea capacidades de modelo con el flujo: chat, voz, documentos, scoring, resúmenes, decisiones o extracción."
+                  ? "Alinea capacidades de modelo con el proceso: chat, voz, documentos, evaluación, resúmenes, decisiones o extracción."
                   : "Match model capabilities to the workflow: chat, voice, documents, scoring, summaries, decisions, or extraction."}
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -338,7 +338,7 @@ export default async function AiModelsPage() {
           eyebrow={locale === "es" ? "Capacidades" : "Model capabilities"}
           title={
             locale === "es"
-              ? "Diferentes flujos necesitan diferentes tipos de inteligencia."
+              ? "Diferentes procesos necesitan diferentes tipos de inteligencia."
               : "Different workflows need different kinds of intelligence."
           }
           description={
@@ -421,7 +421,7 @@ export default async function AiModelsPage() {
           }
           description={
             locale === "es"
-              ? "Decide qué puede responder la IA, qué debe evitar y cuándo traspasar."
+              ? "Decide qué puede responder la IA, qué debe evitar y cuándo derivar a una persona."
               : "Decide what AI can answer, avoid, and hand off."
           }
         />
@@ -446,7 +446,7 @@ export default async function AiModelsPage() {
       <section className="border-y border-white/10 bg-white/[0.025]">
         <div className="container py-16">
           <SectionHeading
-            eyebrow="FAQ"
+            eyebrow={locale === "es" ? "Preguntas frecuentes" : "FAQ"}
             title={
               locale === "es"
                 ? "Preguntas comunes sobre modelos de IA."
@@ -454,7 +454,7 @@ export default async function AiModelsPage() {
             }
             description={
               locale === "es"
-                ? "La implementación depende de flujo, datos, canales, integraciones y controles."
+                ? "La implementación depende del proceso, los datos, los canales, las integraciones y los controles."
                 : "Implementation depends on workflow, data, channels, integrations, and controls."
             }
           />
@@ -490,7 +490,7 @@ export default async function AiModelsPage() {
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-300">
               {locale === "es"
-                ? "Comparte el flujo. Definiremos capacidades, controles e integraciones."
+                ? "Comparte el proceso. Definiremos capacidades, controles e integraciones."
                 : "Share the workflow. We’ll scope the model capabilities, controls, and integrations."}
             </p>
             <div className="mt-8 flex justify-center">

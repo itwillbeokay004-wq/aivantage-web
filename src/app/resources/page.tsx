@@ -18,7 +18,7 @@ export async function generateMetadata() {
     title: locale === "es" ? "Recursos" : "Resources",
     description:
       locale === "es"
-        ? "Artículos prácticos de automatización con IA para pequeñas empresas, chatbots web, agentes de voz, property management, FAQs y traspaso humano."
+        ? "Artículos prácticos de automatización con IA para pequeñas empresas, chatbots web, agentes de voz, gestión de propiedades, preguntas frecuentes y derivación a un humano."
         : "Practical AI automation articles for small businesses, website chatbots, AI voice agents, property management, FAQs, and human handoff design.",
     path: "/resources",
     locale,
@@ -36,12 +36,12 @@ export default async function ResourcesPage() {
         eyebrow={locale === "es" ? "Recursos" : "Resources"}
         title={
           locale === "es"
-            ? "Guías prácticas de automatización con IA para flujos reales."
+            ? "Guías prácticas de automatización con IA para procesos reales."
             : "Practical AI automation guides for real business workflows."
         }
         description={
           locale === "es"
-            ? "Explora artículos sobre agentes de IA, chatbots web, voz, property management, bases de conocimiento y traspaso humano."
+            ? "Explora artículos sobre agentes de IA, chatbots web, voz, gestión de propiedades, bases de conocimiento y derivación a un humano."
             : "Explore starter articles on AI agents, website chatbots, voice automation, property management, knowledge bases, and human handoff design."
         }
         primaryCta={{ href: "/book-demo", label: ctaLabels.bookDemo }}
@@ -61,7 +61,7 @@ export default async function ResourcesPage() {
           }
           description={
             locale === "es"
-              ? "Sin CMS por ahora: estos recursos usan datos estáticos locales y páginas placeholder."
+              ? "Sin CMS por ahora: estos recursos usan datos estáticos locales y páginas de contenido inicial."
               : "No CMS yet — these resources are powered by local static data and placeholder article pages that can evolve into a full content system later."
           }
         />
@@ -119,12 +119,12 @@ export default async function ResourcesPage() {
             <div>
               <h2 className="text-2xl font-semibold text-white">
                 {locale === "es"
-                  ? "¿Quieres una guía sobre tu flujo exacto?"
+                  ? "¿Quieres una guía sobre tu proceso exacto?"
                   : "Want a guide on your exact workflow?"}
               </h2>
               <p className="mt-3 max-w-2xl leading-7 text-slate-400">
                 {locale === "es"
-                  ? "Comparte lo que quieres automatizar y AiVantage puede mapear el primer agente útil, reglas de traspaso y conexiones."
+                  ? "Comparte lo que quieres automatizar y AiVantage puede mapear el primer agente útil, reglas de derivación y conexiones."
                   : "Share what you are trying to automate and AiVantage can help map the first useful agent, handoff rules, and system connections."}
               </p>
             </div>

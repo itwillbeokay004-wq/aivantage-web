@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { TrackedLink } from "@/components/analytics";
 import { useLocale } from "@/components/locale-provider";
 import { Button } from "@/components/ui/button";
+import { ctaLabelsByLocale } from "@/data/site";
 
 export function CtaBand({
   title,
@@ -14,13 +15,14 @@ export function CtaBand({
   description?: string;
 }) {
   const { locale } = useLocale();
+  const ctaLabels = ctaLabelsByLocale[locale];
   const fallbackTitle =
     locale === "es"
       ? "¿Listo para construir tu ventaja con IA?"
       : "Ready to build your AI advantage?";
   const fallbackDescription =
     locale === "es"
-      ? "Reserva una sesión y mapearemos el primer agente que tu negocio debería lanzar."
+      ? "Solicita una sesión y mapearemos el primer agente de IA que tu negocio debería lanzar."
       : "Book a working session and we will map the first agent your business should launch.";
 
   return (
@@ -38,13 +40,13 @@ export function CtaBand({
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">
               <TrackedLink href="/book-demo" eventProperties={{ location: "cta_band" }}>
-                {locale === "es" ? "Reservar demo" : "Book a Demo"}
+                {ctaLabels.bookDemo}
                 <ArrowRight className="size-4" />
               </TrackedLink>
             </Button>
             <Button asChild variant="secondary" size="lg">
               <TrackedLink href="/use-cases" eventProperties={{ location: "cta_band" }}>
-                {locale === "es" ? "Ver casos de uso" : "See Use Cases"}
+                {ctaLabels.seeUseCases}
               </TrackedLink>
             </Button>
           </div>

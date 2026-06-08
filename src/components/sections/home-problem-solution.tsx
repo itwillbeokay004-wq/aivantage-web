@@ -9,7 +9,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 const problemSolutions = {
   es: [
     {
-      problem: "Leads perdidos",
+      problem: "Clientes potenciales perdidos",
       solution: "Califica y dirige prospectos al instante.",
     },
     {
@@ -59,7 +59,7 @@ export function HomeProblemSolution() {
         }
         description={
           locale === "es"
-            ? "Empieza donde importan la velocidad, la consistencia y los traspasos."
+            ? "Empieza donde importan la velocidad, la consistencia y las derivaciones claras."
             : "Start where speed, consistency, and handoffs matter."
         }
       />

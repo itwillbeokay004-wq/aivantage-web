@@ -18,7 +18,7 @@ const chatDemoContent = {
     sendAria: "Enviar prompt demo",
     samplePrompts: [
       {
-        prompt: "¿Puedes calificar este lead?",
+        prompt: "¿Puedes cualificar a este cliente potencial?",
         response:
           "Sí. Preguntaría por plazo, presupuesto, ubicación, necesidad y etapa de decisión, y enviaría un resumen puntuado al CRM.",
       },
@@ -30,10 +30,10 @@ const chatDemoContent = {
       {
         prompt: "¿Puedes responder una pregunta de property management?",
         response:
-          "Sí. Puedo responder preguntas aprobadas sobre renta, mantenimiento, criterios de leasing, amenidades y horarios.",
+          "Sí. Puedo responder preguntas aprobadas sobre renta, mantenimiento, criterios de alquiler, amenidades y horarios.",
       },
       {
-        prompt: "¿Puedes resumir un caso de soporte?",
+        prompt: "¿Puedes resumir una consulta de atención al cliente?",
         response:
           "Sí. Puedo capturar el problema, urgencia, intentos previos, contexto de cuenta y la siguiente acción recomendada.",
       },

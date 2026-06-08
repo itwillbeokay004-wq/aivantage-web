@@ -25,7 +25,7 @@ export async function generateMetadata() {
     title: locale === "es" ? "Precios" : "Pricing",
     description:
       locale === "es"
-        ? "Precios personalizados de AiVantage para automatización con IA, asistentes web, agentes de voz, integraciones, analítica, gobernanza y soporte."
+        ? "Precios personalizados de AiVantage para automatización con IA, asistentes web, agentes de voz, integraciones, analítica y gobernanza."
         : "Custom AiVantage pricing for AI automation, website assistants, voice agents, integrations, analytics, governance, and ongoing support.",
     path: "/pricing",
     locale,
@@ -45,23 +45,23 @@ const pricingTiers = {
       features: [
         "Asistente IA para web",
         "Base de conocimiento básica",
-        "Captura de leads",
+        "Captación de clientes potenciales",
         "Reporte mensual",
       ],
     },
     {
       name: "Growth",
       eyebrow: "Alcance personalizado",
-      description: "Para equipos que automatizan soporte y ventas.",
+      description: "Para equipos que automatizan atención al cliente y ventas.",
       icon: Layers3,
       cta: "Reservar demo",
       href: "/book-demo",
       featured: true,
       features: [
         "Todo en Starter",
-        "Flujos personalizados",
+        "Procesos personalizados",
         "Integraciones CRM/calendario",
-        "Traspaso humano",
+        "Derivación a un humano",
         "Opción de agente de voz",
       ],
     },
@@ -79,7 +79,7 @@ const pricingTiers = {
         "APIs personalizadas",
         "Analítica avanzada",
         "Controles de gobernanza",
-        "Soporte prioritario",
+        "Acompañamiento prioritario",
       ],
     },
   ],
@@ -138,9 +138,9 @@ const pricingTiers = {
 const pricingPrinciples = {
   es: [
     "Sin precio fijo antes del descubrimiento",
-    "Alcance basado en canales, sistemas y complejidad",
+    "Alcance basado en canales, sistemas y complejidad operativa",
     "Construido para lanzar algo útil, no shelfware",
-    "Soporte continuo disponible después del despliegue",
+    "Acompañamiento continuo disponible después del despliegue",
   ],
   en: [
     "No fixed package pricing before discovery",
@@ -160,7 +160,7 @@ const faqs = {
     {
       question: "¿AiVantage puede trabajar con mi web actual?",
       answer:
-        "Sí. Podemos definir un asistente embebible, traspasos desde formularios, eventos de analítica o integraciones personalizadas.",
+        "Sí. Podemos definir un asistente embebible, derivaciones desde formularios, eventos de analítica o integraciones personalizadas.",
     },
     {
       question: "¿Necesito equipo técnico?",
@@ -170,17 +170,17 @@ const faqs = {
     {
       question: "¿Puede responder llamadas?",
       answer:
-        "Sí. Los flujos de voz pueden manejar intake, llamadas perdidas, FAQs y resúmenes.",
+        "Sí. Los agentes de voz pueden gestionar recepción de llamadas, llamadas perdidas, preguntas frecuentes y resúmenes.",
     },
     {
       question: "¿Puede integrarse con mi CRM?",
       answer:
-        "Sí. El alcance CRM puede incluir captura de leads, notas, citas, traspasos y reporting.",
+        "Sí. El alcance CRM puede incluir captación de clientes potenciales, notas, citas, derivaciones e informes.",
     },
     {
-      question: "¿Hay soporte continuo?",
+      question: "¿Hay acompañamiento continuo?",
       answer:
-        "Sí. El soporte puede incluir monitoreo, reportes, actualizaciones, mejoras y revisión de calidad.",
+        "Sí. El acompañamiento puede incluir seguimiento, informes, actualizaciones, mejoras y revisión de calidad.",
     },
   ],
   en: [
@@ -239,7 +239,7 @@ export default async function PricingPage() {
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">
               {locale === "es"
-                ? "Empezamos por el flujo, canales, integraciones y soporte que tu negocio necesita."
+                ? "Empezamos por el proceso, los canales y las integraciones que tu negocio necesita."
                 : "Start with the workflow, channels, integrations, and support your business needs."}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
@@ -293,7 +293,7 @@ export default async function PricingPage() {
           }
           description={
             locale === "es"
-              ? "Sin precios fijos todavía. Cada implementación se ajusta al flujo real."
+              ? "Sin precios fijos todavía. Cada implementación se ajusta al proceso real."
               : "No fixed pricing yet. Every build is scoped around the actual workflow."
           }
         />
@@ -369,7 +369,7 @@ export default async function PricingPage() {
       <section className="border-y border-white/10 bg-white/[0.025]">
         <div className="container py-16 sm:py-20">
           <SectionHeading
-            eyebrow="FAQ"
+            eyebrow={locale === "es" ? "Preguntas frecuentes" : "FAQ"}
             title={
               locale === "es"
                 ? "Preguntas comunes sobre precio y configuración."
@@ -416,7 +416,7 @@ export default async function PricingPage() {
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
                 {locale === "es"
-                  ? "¿Quieres precio para tu flujo exacto?"
+                  ? "¿Quieres precio para tu proceso exacto?"
                   : "Want pricing for your exact workflow?"}
               </h2>
               <p className="mt-4 max-w-2xl leading-7 text-slate-300">

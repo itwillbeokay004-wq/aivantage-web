@@ -15,7 +15,7 @@ const voiceCardContent = {
     elapsed: "00:42 transcurridos",
     outcomeTitle: "Resultado resuelto",
     outcome:
-      "Lead calificado, preferencia de tour capturada, nota CRM redactada y traspaso preparado para el equipo de leasing.",
+      "Cliente potencial cualificado, preferencia de visita registrada, nota CRM redactada y derivación preparada para el equipo inmobiliario.",
     transcriptSnippets: [
       {
         speaker: "Llamante",

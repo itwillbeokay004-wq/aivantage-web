@@ -33,7 +33,7 @@ type Category = (typeof categories)[number];
 const categoryLabels = {
   es: {
     All: "Todos",
-    Support: "Soporte",
+    Support: "Atención",
     Sales: "Ventas",
     Operations: "Operaciones",
     "Real Estate": "Inmobiliario",
@@ -66,22 +66,22 @@ const useCaseCards = {
   es: [
     {
       icon: MessageSquare,
-      title: "Agente de captura de leads web",
+      title: "Agente de captación web",
       description: "Convierte visitas web en consultas estructuradas.",
       trigger: "Un visitante pregunta por precio, servicio o disponibilidad.",
-      agentDoes: "Responde, califica, captura datos y enruta el lead.",
+      agentDoes: "Responde, cualifica, recoge datos y deriva al cliente potencial.",
       systems: ["Chat web", "CRM", "Email", "Calendario"],
       outcome: "Conversaciones más útiles desde el tráfico existente.",
       categories: ["Sales", "Website"],
     },
     {
       icon: Building2,
-      title: "Asistente de leasing",
+      title: "Asistente para alquileres",
       description: "Responde preguntas sobre unidades, tours y requisitos.",
       trigger: "Un renter pregunta por una propiedad o tour.",
-      agentDoes: "Responde, revisa preferencias, califica y prepara handoff.",
+      agentDoes: "Responde, revisa preferencias, cualifica y prepara la derivación.",
       systems: ["Website", "CRM", "Calendario", "Base de propiedades"],
-      outcome: "Respuesta más rápida y mejor intake de prospectos.",
+      outcome: "Respuesta más rápida y mejor recepción de clientes potenciales.",
       categories: ["Real Estate", "Sales", "Website"],
     },
     {
@@ -106,10 +106,10 @@ const useCaseCards = {
     },
     {
       icon: Headphones,
-      title: "Agente FAQ de soporte",
+      title: "Agente de preguntas frecuentes",
       description: "Responde preguntas repetidas desde conocimiento aprobado.",
       trigger: "Un cliente hace una pregunta común.",
-      agentDoes: "Busca FAQs, responde y escala si la confianza es baja.",
+      agentDoes: "Busca respuestas aprobadas, responde y deriva si la confianza es baja.",
       systems: ["Base de conocimiento", "Helpdesk", "Chat web", "Email"],
       outcome: "Respuestas más rápidas y menos tickets repetitivos.",
       categories: ["Support", "Website"],

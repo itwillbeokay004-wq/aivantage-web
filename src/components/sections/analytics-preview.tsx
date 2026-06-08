@@ -21,7 +21,7 @@ const analyticsContent = {
       },
       {
         icon: UserPlus,
-        label: "Leads capturados",
+        label: "Clientes potenciales captados",
         value: "186",
         detail: "Contactos calificados de ejemplo",
       },
@@ -33,7 +33,7 @@ const analyticsContent = {
       },
       {
         icon: Handshake,
-        label: "Traspasos humanos",
+        label: "Derivaciones a personas",
         value: "42",
         detail: "Casos revisados de ejemplo",
       },

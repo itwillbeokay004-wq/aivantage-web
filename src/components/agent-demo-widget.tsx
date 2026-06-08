@@ -21,7 +21,7 @@ const widgetContent = {
     sendAria: "Enviar respuesta de ejemplo",
     scenarios: [
       {
-        label: "Soporte",
+        label: "Atención",
         channel: "Chat",
         icon: Bot,
         user: "¿Puedes revisar por qué cambió mi factura?",
@@ -34,7 +34,7 @@ const widgetContent = {
         label: "Ventas",
         channel: "Voz",
         icon: Mic2,
-        user: "Necesito automatizar leads entrantes.",
+        user: "Necesito automatizar clientes potenciales entrantes.",
         agent:
           "Capturé los requisitos, marqué la urgencia como alta y encontré dos horarios de demo esta semana.",
         action: "Horario de demo propuesto",
@@ -42,7 +42,7 @@ const widgetContent = {
       },
       {
         label: "Ops",
-        channel: "Workflow",
+        channel: "Proceso",
         icon: Workflow,
         user: "Asigna esta tarea de onboarding al responsable correcto.",
         agent:
@@ -83,7 +83,7 @@ const widgetContent = {
       },
       {
         label: "Ops",
-        channel: "Workflow",
+        channel: "Proceso",
         icon: Workflow,
         user: "Route this onboarding task to the right owner.",
         agent:

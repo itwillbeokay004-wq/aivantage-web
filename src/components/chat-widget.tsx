@@ -79,19 +79,19 @@ const chatWidgetContent = {
         label: "Necesito un chatbot web",
         icon: MessageCircle,
         response:
-          "Un chatbot web puede responder preguntas aprobadas, capturar datos de leads, enrutar consultas y preparar traspasos claros para tu equipo. El primer paso es mapear las preguntas frecuentes y el camino de conversión.",
+          "Un chatbot web puede responder preguntas aprobadas, captar datos de clientes potenciales, enrutar consultas y preparar derivaciones claras para tu equipo. El primer paso es mapear las preguntas frecuentes y el camino de conversión.",
       },
       {
         label: "Quiero un asistente telefónico con IA",
         icon: Mic2,
         response:
-          "Un asistente telefónico con IA puede ayudar con recepción de llamadas, seguimiento de llamadas perdidas, FAQs, reservas y resúmenes. Empezaríamos definiendo tipos de llamada, reglas de escalado y límites de seguridad.",
+          "Un asistente telefónico con IA puede ayudar con recepción de llamadas, seguimiento de llamadas perdidas, preguntas frecuentes, reservas y resúmenes. Empezaríamos definiendo tipos de llamada, reglas de derivación y límites de seguridad.",
       },
       {
-        label: "Necesito calificar leads",
+        label: "Necesito cualificar clientes potenciales",
         icon: UserRoundCheck,
         response:
-          "Un agente de calificación puede preguntar por necesidad, plazo, presupuesto, ubicación y encaje, y enviar un resumen estructurado a tu CRM o email para priorizar mejor.",
+          "Un agente de cualificación puede preguntar por necesidad, plazo, presupuesto, ubicación y encaje, y enviar un resumen estructurado a tu CRM o email para priorizar mejor.",
       },
       {
         label: "Reservar demo",

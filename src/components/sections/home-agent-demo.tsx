@@ -10,7 +10,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 const samples = {
   es: [
     {
-      question: "¿Puedes calificar un lead?",
+      question: "¿Puedes cualificar a un cliente potencial?",
       response:
         "Puedo preguntar presupuesto, plazo, necesidad y etapa de decisión, y crear un resumen puntuado para ventas.",
     },
@@ -20,7 +20,7 @@ const samples = {
         "Sí. Puedo recopilar preferencias, revisar horarios, confirmar detalles y enviar recordatorios.",
     },
     {
-      question: "¿Puedes responder FAQs?",
+      question: "¿Puedes responder preguntas frecuentes?",
       response:
         "Puedo usar conocimiento aprobado para responder preguntas comunes y escalar lo que necesite revisión humana.",
     },

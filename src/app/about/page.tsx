@@ -32,43 +32,36 @@ const principles = [
   {
     icon: ClipboardList,
     title: "Workflow before wow-factor",
-    description:
-      "We start with the business process, the customer moment, and the operational bottleneck before choosing tools.",
+    description: "Start with the process before choosing tools.",
   },
   {
     icon: LockKeyhole,
     title: "Control is part of quality",
-    description:
-      "Useful agents need approved knowledge, clear fallbacks, human handoff, auditability, and boundaries from day one.",
+    description: "Use approved knowledge, fallbacks, handoffs, and boundaries.",
   },
   {
     icon: BarChart3,
     title: "Launch, measure, improve",
-    description:
-      "The first version is only the beginning. We track outcomes and refine agents around real conversations.",
+    description: "Track outcomes and refine from real conversations.",
   },
 ];
 
 const partnerSteps = [
   {
     title: "Map",
-    description:
-      "We identify where customers wait, leads leak, and teams repeat the same work every week.",
+    description: "Find where customers wait and teams repeat work.",
   },
   {
     title: "Design",
-    description:
-      "We shape the agent, knowledge sources, escalation rules, integrations, and success metrics.",
+    description: "Shape the agent, sources, rules, integrations, and metrics.",
   },
   {
     title: "Launch",
-    description:
-      "We deploy the workflow across the right channel, test live behavior, and prepare your team.",
+    description: "Deploy, test behavior, and prepare your team.",
   },
   {
     title: "Optimize",
-    description:
-      "We review conversations, tune answers, improve routing, and expand into the next workflow.",
+    description: "Tune answers, routing, and the next workflow.",
   },
 ];
 
@@ -132,7 +125,7 @@ function AboutSystemVisual() {
               <div className="mb-4 h-1.5 rounded-full bg-gradient-to-r from-cyan-300 to-purple-300" />
               <p className="text-sm font-semibold text-white">{item}</p>
               <p className="mt-2 text-xs leading-5 text-slate-400">
-                Layer {index + 1} validates the agent path before automation continues.
+                Layer {index + 1} checks the path before automation continues.
               </p>
             </div>
           ))}
@@ -146,8 +139,7 @@ function AboutSystemVisual() {
                 Example outcome
               </p>
               <p className="mt-1 text-sm leading-6 text-slate-300">
-                A visitor asks a question, the agent qualifies intent, books the
-                next step, and sends your team a clean summary.
+                The agent qualifies intent, books the next step, and sends a summary.
               </p>
             </div>
           </div>
@@ -163,7 +155,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About AiVantage"
         title="AI automation built for useful work, not theater."
-        description={`${siteConfig.name} helps businesses turn everyday conversations and repeatable tasks into managed AI agent workflows across support, sales, operations, and customer engagement.`}
+        description={`${siteConfig.name} turns repeatable conversations and tasks into managed AI agent workflows.`}
         primaryCta={{ href: "/book-demo", label: "Book a Demo" }}
         secondaryCta={{ href: "/use-cases", label: "See Use Cases" }}
       />
@@ -175,7 +167,7 @@ export default function AboutPage() {
               align="left"
               eyebrow="Our point of view"
               title="The best AI agents are designed around the way your business already moves."
-              description="AiVantage is built for teams that want practical automation: faster responses, better lead capture, cleaner handoffs, fewer repetitive questions, and measurable operational lift."
+              description="Faster responses, cleaner handoffs, fewer repeat questions, and measurable lift."
             />
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg">
@@ -208,7 +200,7 @@ export default function AboutPage() {
           <SectionHeading
             eyebrow="How we think"
             title="Principles that keep AI automation grounded."
-            description="We design agents to be useful, measurable, and safe enough for real customer and team workflows."
+            description="Useful, measurable, and controlled enough for real workflows."
           />
           <div className="mt-12 grid gap-4 md:grid-cols-3">
             {principles.map((principle, index) => {
@@ -240,7 +232,7 @@ export default function AboutPage() {
               align="left"
               eyebrow="Working together"
               title="A practical path from idea to production agent."
-              description="You bring the business context. We help shape the AI agent workflow, connect the right knowledge, and launch with clear guardrails."
+              description="Bring the context. We shape the workflow and launch path."
             />
           </Reveal>
           <div className="space-y-3">
@@ -273,7 +265,7 @@ export default function AboutPage() {
                 align="left"
                 eyebrow="Where we help"
                 title="Focused on the workflows that create immediate business leverage."
-                description="The first agent should solve a real operational problem. AiVantage helps teams choose a focused launch path and then expand from there."
+                description="Start with one real bottleneck, then expand what works."
               />
             </Reveal>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -313,7 +305,7 @@ export default function AboutPage() {
 
       <CtaBand
         title="Let’s build the first agent your business can actually use."
-        description="Book a demo and we will map one high-value workflow, the data it needs, and the safest path to launch."
+        description="Book a demo and we’ll map one high-value workflow."
       />
     </>
   );

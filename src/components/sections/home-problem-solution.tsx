@@ -6,19 +6,19 @@ import { SectionHeading } from "@/components/ui/section-heading";
 const problemSolutions = [
   {
     problem: "Missed leads",
-    solution: "Instantly qualify inquiries and route ready prospects to the right person.",
+    solution: "Qualify and route prospects instantly.",
   },
   {
     problem: "Repetitive questions",
-    solution: "Answer common requests from approved knowledge without making teams repeat themselves.",
+    solution: "Answer from approved knowledge.",
   },
   {
     problem: "Slow response times",
-    solution: "Keep web, phone, and message channels responsive even after business hours.",
+    solution: "Respond across channels after hours.",
   },
   {
     problem: "Manual follow-ups",
-    solution: "Trigger reminders, summaries, next steps, and workflow updates automatically.",
+    solution: "Trigger summaries and next steps.",
   },
 ];
 
@@ -27,8 +27,8 @@ export function HomeProblemSolution() {
     <section className="container py-16">
       <SectionHeading
         eyebrow="Problem and solution"
-        title="Turn the everyday bottlenecks into agent-powered workflows."
-        description="AiVantage starts with the operational moments where speed, consistency, and clean handoffs matter most."
+        title="Fix the bottlenecks customers feel first."
+        description="Start where speed, consistency, and handoffs matter."
       />
       <div className="mt-12 grid gap-4 md:grid-cols-2">
         {problemSolutions.map((item, index) => (
@@ -43,9 +43,6 @@ export function HomeProblemSolution() {
                   <AlertCircle className="size-4" />
                   {item.problem}
                 </div>
-                <p className="mt-3 text-sm leading-6 text-slate-400">
-                  Work slows down when this depends on manual attention.
-                </p>
               </div>
               <ArrowRight className="hidden size-5 text-cyan-200 sm:block" aria-hidden="true" />
               <div>

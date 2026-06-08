@@ -37,66 +37,55 @@ const pillars = [
   {
     icon: Bot,
     title: "Agent Builder",
-    description:
-      "Shape custom agents with goals, tone, intake questions, escalation rules, and clear business outcomes.",
+    description: "Set goals, tone, rules, and handoffs.",
   },
   {
     icon: BookOpen,
     title: "Knowledge Base",
-    description:
-      "Ground answers in approved FAQs, documents, policies, service details, and operational playbooks.",
+    description: "Ground answers in approved content.",
   },
   {
     icon: Plug,
     title: "Integrations",
-    description:
-      "Connect agents to the systems where customer records, calendars, tickets, and follow-ups live.",
+    description: "Connect CRM, calendar, tickets, and follow-up tools.",
   },
   {
     icon: UserRoundCheck,
     title: "Human Handoff",
-    description:
-      "Route high-value or sensitive conversations to the right person with context already prepared.",
+    description: "Escalate with context already prepared.",
   },
   {
     icon: BarChart3,
     title: "Analytics",
-    description:
-      "Monitor conversations, captured leads, saved time, conversion paths, handoffs, and quality signals.",
+    description: "Track leads, time saved, handoffs, and quality.",
   },
   {
     icon: ShieldCheck,
     title: "Governance",
-    description:
-      "Plan roles, review paths, audit trails, and workflow boundaries before automation goes live.",
+    description: "Define access, review paths, and boundaries.",
   },
 ];
 
 const howItWorks = [
   {
     title: "Discover",
-    description:
-      "Map the highest-value conversations, missed opportunities, manual steps, and systems involved.",
+    description: "Pick the workflow worth automating first.",
   },
   {
     title: "Design",
-    description:
-      "Define the agent experience, data sources, handoff rules, and success metrics for launch.",
+    description: "Define the agent, sources, rules, and metrics.",
   },
   {
     title: "Train",
-    description:
-      "Connect approved knowledge, write conversation paths, and test edge cases before deployment.",
+    description: "Connect knowledge and test edge cases.",
   },
   {
     title: "Deploy",
-    description:
-      "Launch agents across chat, voice, forms, follow-up channels, and internal workflows.",
+    description: "Launch across chat, voice, forms, and workflows.",
   },
   {
     title: "Optimize",
-    description:
-      "Review analytics, improve responses, tune automation, and expand into the next use case.",
+    description: "Tune performance and expand what works.",
   },
 ];
 
@@ -104,38 +93,32 @@ const deepDives = [
   {
     icon: Workflow,
     title: "Build custom conversation flows",
-    description:
-      "Design guided paths for support, qualification, scheduling, intake, and internal requests.",
+    description: "Guide support, qualification, scheduling, and intake.",
   },
   {
     icon: DatabaseZap,
     title: "Connect documents and FAQs",
-    description:
-      "Give agents approved context so answers stay aligned with your policies and current operations.",
+    description: "Keep answers aligned with approved information.",
   },
   {
     icon: MessageSquare,
     title: "Capture and qualify leads",
-    description:
-      "Collect intent, budget, timeline, location, and urgency before sending clean summaries to your team.",
+    description: "Collect fit, urgency, and contact details.",
   },
   {
     icon: CalendarDays,
     title: "Book appointments",
-    description:
-      "Coordinate availability, confirm details, and trigger reminders or follow-ups after booking.",
+    description: "Confirm details and trigger reminders.",
   },
   {
     icon: UserRoundCheck,
     title: "Escalate to humans",
-    description:
-      "Send conversations to people when confidence, policy, value, or sensitivity calls for review.",
+    description: "Handoff when value, risk, or confidence requires it.",
   },
   {
     icon: BarChart3,
     title: "Track performance",
-    description:
-      "Measure what agents handled, where they handed off, and which workflows need improvement.",
+    description: "See what worked, what escalated, and what needs tuning.",
   },
 ];
 
@@ -166,9 +149,8 @@ export default function PlatformPage() {
                 One platform to design, deploy, and improve AI agents.
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-                AiVantage helps businesses launch AI agents across chat, voice,
-                workflow automation, and analytics so teams can answer faster,
-                capture more demand, and improve daily operations.
+                Launch agents across chat, voice, workflows, and analytics —
+                with a practical path from idea to production.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <CtaButton href="/book-demo" size="lg">
@@ -195,7 +177,7 @@ export default function PlatformPage() {
         <SectionHeading
           eyebrow="Platform pillars"
           title="Everything a business needs to turn agents into managed workflows."
-          description="AiVantage combines service design, agent configuration, knowledge grounding, integrations, and ongoing optimization in one practical operating model."
+          description="Design, knowledge, integrations, analytics, and governance in one operating model."
         />
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {pillars.map((pillar, index) => {
@@ -223,7 +205,7 @@ export default function PlatformPage() {
                 align="left"
                 eyebrow="How it works"
                 title="A launch process built for useful automation."
-                description="The platform is supported by a service workflow that keeps strategy, build quality, launch, and improvement connected."
+                description="Start focused. Launch safely. Improve with real usage."
               />
             </Reveal>
             <div className="space-y-3">
@@ -251,7 +233,7 @@ export default function PlatformPage() {
         <SectionHeading
           eyebrow="Feature deep dives"
           title="Agent features designed around real business movement."
-          description="AiVantage is strongest when agents do more than answer. They collect, decide, route, schedule, and help teams improve the process."
+          description="Agents can answer, collect, route, schedule, and report."
         />
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {deepDives.map((feature, index) => {
@@ -281,7 +263,7 @@ export default function PlatformPage() {
                 align="left"
                 eyebrow="Integrations"
                 title="Connect agents to the tools your team already uses."
-                description="These integration tiles are placeholders for common launch paths. AiVantage can scope direct API work when your systems need a custom connection."
+                description="Start with common tools. Add custom APIs when needed."
               />
             </Reveal>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -317,9 +299,8 @@ export default function PlatformPage() {
               </h2>
             </div>
             <p className="mt-4 text-sm leading-7 text-slate-400">
-              A production agent should get easier to trust over time. AiVantage
-              uses performance review, transcript patterns, handoff analysis,
-              and workflow tuning to improve the experience after deployment.
+              Production agents should improve over time through transcript
+              review, handoff analysis, and workflow tuning.
             </p>
             <ul className="mt-6 space-y-3">
               {[
@@ -351,8 +332,7 @@ export default function PlatformPage() {
                 See how AiVantage would support your first agent workflow.
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-300">
-                Bring one support, sales, or operations workflow. We will map
-                how an agent could answer, act, hand off, and report on results.
+                Bring one workflow. We’ll map the agent, handoffs, and launch path.
               </p>
               <div className="mt-8 flex justify-center">
                 <CtaButton href="/book-demo" size="lg">

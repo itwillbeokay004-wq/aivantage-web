@@ -127,50 +127,42 @@ export const platformFeatures = [
   {
     icon: Bot,
     title: "AI Agent Builder",
-    description:
-      "Design task-focused agents with goals, tone, escalation logic, and business rules built around your customer journey.",
+    description: "Design agents around goals, tone, rules, and handoff paths.",
   },
   {
     icon: BookOpen,
     title: "Knowledge Base",
-    description:
-      "Ground every answer in approved content, policies, documents, product details, and service playbooks.",
+    description: "Ground answers in approved content, policies, and documents.",
   },
   {
     icon: Mic2,
     title: "Chat + Voice Agents",
-    description:
-      "Launch assistants for website chat, phone intake, messaging channels, and internal support desks.",
+    description: "Launch assistants for chat, calls, and internal support.",
   },
   {
     icon: Workflow,
     title: "Workflow Automation",
-    description:
-      "Let agents create tickets, update records, schedule meetings, trigger follow-ups, and move work between systems.",
+    description: "Create tickets, schedule meetings, and trigger follow-ups.",
   },
   {
     icon: Handshake,
     title: "Human Handoff",
-    description:
-      "Route sensitive or high-value conversations to the right person with summaries, context, and recommended next steps.",
+    description: "Route important conversations with context and summaries.",
   },
   {
     icon: BarChart3,
     title: "Analytics + Monitoring",
-    description:
-      "Track containment, conversion, response quality, call outcomes, costs, and the workflows that need tuning.",
+    description: "Track quality, conversion, handoffs, and outcomes.",
   },
   {
     icon: Cable,
     title: "Integrations",
-    description:
-      "Connect AI agents to CRMs, calendars, helpdesks, property systems, ecommerce tools, and private APIs.",
+    description: "Connect CRMs, calendars, helpdesks, and APIs.",
   },
   {
     icon: LockKeyhole,
     title: "Security Controls",
-    description:
-      "Use permissions, audit trails, approval gates, data handling rules, and safe fallback paths for production use.",
+    description: "Add permissions, audit trails, and safe fallbacks.",
   },
 ] satisfies readonly IconContentItem[];
 
@@ -179,57 +171,49 @@ export const useCases = [
     title: "Customer Support",
     metric: "24/7",
     label: "first-line coverage",
-    description:
-      "Answer common questions, collect context, troubleshoot routine issues, and escalate complex cases with clean notes.",
+    description: "Answer FAQs, collect context, and escalate cleanly.",
   },
   {
     title: "Lead Qualification",
     metric: "+32%",
     label: "higher intent capture",
-    description:
-      "Ask the right questions, score fit, enrich CRM records, and route ready prospects to sales without delay.",
+    description: "Qualify fit and route sales-ready prospects.",
   },
   {
     title: "Appointment Booking",
     metric: "18 hrs",
     label: "saved weekly",
-    description:
-      "Coordinate availability, book meetings, send reminders, and reduce back-and-forth for teams with busy calendars.",
+    description: "Book meetings and reduce back-and-forth.",
   },
   {
     title: "Real Estate Leasing Assistant",
     metric: "5 min",
     label: "median response",
-    description:
-      "Respond to listing inquiries, qualify renters, answer property questions, and schedule tours from one agent flow.",
+    description: "Answer listings, qualify renters, and schedule tours.",
   },
   {
     title: "Internal Operations Assistant",
     metric: "3.4x",
     label: "faster answers",
-    description:
-      "Help teams find policies, submit requests, update systems, and complete repeatable internal workflows.",
+    description: "Find policies, submit requests, and update systems.",
   },
   {
     title: "FAQ + Knowledge Base Agent",
     metric: "-28%",
     label: "repeat questions",
-    description:
-      "Turn existing docs into reliable answers that stay aligned with your approved source material.",
+    description: "Turn documents into reliable answers.",
   },
   {
     title: "Call Handling",
     metric: "0 missed",
     label: "after-hours calls",
-    description:
-      "Capture caller intent, gather structured details, route urgent requests, and summarize every conversation.",
+    description: "Capture intent, route urgency, and summarize calls.",
   },
   {
     title: "Follow-up Automation",
     metric: "100%",
     label: "consistent next steps",
-    description:
-      "Send timely check-ins, reminders, summaries, and handoff messages based on customer status and intent.",
+    description: "Send reminders, summaries, and next steps.",
   },
 ] satisfies readonly UseCase[];
 
@@ -237,50 +221,42 @@ export const industries = [
   {
     icon: Building2,
     name: "Real Estate",
-    description:
-      "Qualify buyers, renters, and sellers while keeping property teams responsive across every listing channel.",
+    description: "Qualify buyers, renters, and sellers.",
   },
   {
     icon: Home,
     name: "Property Management",
-    description:
-      "Handle resident questions, maintenance intake, leasing inquiries, renewals, and operational routing.",
+    description: "Handle residents, leasing, and maintenance intake.",
   },
   {
     icon: Wrench,
     name: "Local Services",
-    description:
-      "Book appointments, answer service questions, capture job details, and follow up after every inquiry.",
+    description: "Book jobs and capture service details.",
   },
   {
     icon: Stethoscope,
     name: "Healthcare Offices",
-    description:
-      "Support front-desk workflows with intake, scheduling guidance, reminders, and non-clinical FAQs.",
+    description: "Support intake, scheduling, and non-clinical FAQs.",
   },
   {
     icon: Scale,
     name: "Legal Offices",
-    description:
-      "Screen inquiries, collect matter details, route prospects, and keep intake organized for review.",
+    description: "Screen inquiries and organize intake.",
   },
   {
     icon: ShoppingCart,
     name: "E-commerce",
-    description:
-      "Answer product, shipping, return, and order questions while identifying revenue opportunities.",
+    description: "Answer product, order, and return questions.",
   },
   {
     icon: GraduationCap,
     name: "Education",
-    description:
-      "Guide students, parents, and staff through admissions, support, scheduling, and knowledge requests.",
+    description: "Guide admissions, support, and scheduling.",
   },
   {
     icon: Wrench,
     name: "Home Services",
-    description:
-      "Turn calls and website visits into booked jobs with fast intake, estimates, and follow-up workflows.",
+    description: "Turn calls and visits into booked jobs.",
   },
 ] satisfies readonly Industry[];
 
@@ -368,26 +344,22 @@ export const solutions = [
   {
     icon: Headphones,
     title: "Support teams",
-    description:
-      "Give customers fast answers while routing complex issues to people with context already prepared.",
+    description: "Answer faster and escalate with context.",
   },
   {
     icon: CircleDollarSign,
     title: "Sales teams",
-    description:
-      "Qualify demand, answer buyer questions, book meetings, and keep follow-up consistent after first touch.",
+    description: "Qualify demand and book meetings.",
   },
   {
     icon: Workflow,
     title: "Operations teams",
-    description:
-      "Automate repeatable requests, internal lookups, routing, reporting, and system updates.",
+    description: "Automate requests, lookups, and updates.",
   },
   {
     icon: Landmark,
     title: "Service businesses",
-    description:
-      "Handle calls, forms, bookings, and customer questions with dependable workflows built around daily operations.",
+    description: "Handle calls, forms, bookings, and FAQs.",
   },
 ] satisfies readonly IconContentItem[];
 
@@ -395,26 +367,22 @@ export const modelStack = [
   {
     icon: BrainCircuit,
     title: "Model routing",
-    description:
-      "Route tasks to the right mix of fast, capable, and cost-efficient models based on risk and context.",
+    description: "Route tasks to the right model for the job.",
   },
   {
     icon: DatabaseZap,
     title: "Private retrieval",
-    description:
-      "Ground responses in approved content, customer records, product catalogs, and operational data.",
+    description: "Ground responses in approved business context.",
   },
   {
     icon: FileCheck2,
     title: "Quality evaluation",
-    description:
-      "Test agent behavior with scenario suites, human review loops, and production conversation scoring.",
+    description: "Test behavior before and after launch.",
   },
   {
     icon: Network,
     title: "Tool orchestration",
-    description:
-      "Let agents call APIs, schedule meetings, update tickets, create quotes, and trigger internal workflows.",
+    description: "Let agents call APIs and trigger workflows.",
   },
 ] satisfies readonly IconContentItem[];
 

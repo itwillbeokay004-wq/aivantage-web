@@ -29,82 +29,66 @@ const solutionCards = [
   {
     icon: Headphones,
     title: "Customer Support Automation",
-    problem: "Support teams spend too much time answering the same questions.",
-    agentDoes:
-      "Answers common issues, collects account context, suggests next steps, and escalates complex cases.",
-    workflow:
-      "Customer asks a question, agent checks approved knowledge, resolves the issue, or creates a handoff summary.",
-    outcome: "Faster first responses and fewer repetitive tickets for the team.",
+    problem: "Teams answer the same questions all day.",
+    agentDoes: "Answers FAQs, collects context, and escalates complex cases.",
+    workflow: "Question → approved answer → resolution or handoff.",
+    outcome: "Faster replies and fewer repetitive tickets.",
   },
   {
     icon: UserPlus,
     title: "Lead Qualification",
-    problem: "New inquiries arrive without enough detail to prioritize follow-up.",
-    agentDoes:
-      "Asks qualifying questions about need, budget, timeline, location, and urgency.",
-    workflow:
-      "Visitor starts chat, agent gathers fit signals, scores intent, and sends a clean record to sales.",
-    outcome: "Better lead quality and quicker response to high-intent prospects.",
+    problem: "Inquiries lack context.",
+    agentDoes: "Asks fit, budget, timeline, and urgency questions.",
+    workflow: "Chat → fit signals → clean sales handoff.",
+    outcome: "Better leads and faster follow-up.",
   },
   {
     icon: CalendarCheck,
     title: "Appointment Booking",
-    problem: "Scheduling takes too many messages and slows down customer momentum.",
-    agentDoes:
-      "Collects preferences, checks available times, confirms details, and triggers reminders.",
-    workflow:
-      "Customer requests a time, agent proposes options, confirms the booking, and logs the appointment.",
-    outcome: "Less back-and-forth and more booked meetings from inbound interest.",
+    problem: "Scheduling creates friction.",
+    agentDoes: "Checks times, confirms details, and sends reminders.",
+    workflow: "Request → options → confirmed appointment.",
+    outcome: "Less back-and-forth, more bookings.",
   },
   {
     icon: Building2,
     title: "Real Estate & Property Management Assistant",
-    problem: "Listing, leasing, and resident questions arrive across too many channels.",
-    agentDoes:
-      "Answers property questions, qualifies renters, collects maintenance details, and schedules tours.",
-    workflow:
-      "Prospect asks about a unit, agent confirms criteria, shares approved details, and prepares a tour handoff.",
-    outcome: "More responsive leasing and cleaner operational intake.",
+    problem: "Questions arrive across too many channels.",
+    agentDoes: "Answers listings, qualifies renters, and collects requests.",
+    workflow: "Inquiry → criteria → approved answer or tour handoff.",
+    outcome: "Faster leasing and cleaner intake.",
   },
   {
     icon: Workflow,
     title: "Internal Operations Assistant",
-    problem: "Employees lose time looking for policies, forms, owners, and status updates.",
-    agentDoes:
-      "Finds internal answers, routes requests, gathers missing information, and updates workflow records.",
-    workflow:
-      "Team member asks for help, agent checks the knowledge base, completes intake, and routes the task.",
-    outcome: "Faster internal support and fewer manual routing steps.",
+    problem: "Teams lose time finding answers.",
+    agentDoes: "Finds policies, routes requests, and gathers missing details.",
+    workflow: "Question → knowledge lookup → routed task.",
+    outcome: "Faster internal support.",
   },
   {
     icon: PhoneCall,
     title: "Voice Call Assistant",
-    problem: "Calls are missed, rushed, or hard to summarize consistently.",
-    agentDoes:
-      "Handles intake, captures caller intent, summarizes the conversation, and flags urgent needs.",
-    workflow:
-      "Caller reaches the voice agent, shares the request, and the agent creates a structured handoff.",
-    outcome: "Better call coverage without losing important context.",
+    problem: "Calls get missed or rushed.",
+    agentDoes: "Captures intent, summarizes calls, and flags urgency.",
+    workflow: "Call → intake → structured handoff.",
+    outcome: "Better coverage and cleaner context.",
   },
   {
     icon: MessageSquare,
     title: "Website Chat Assistant",
-    problem: "Website visitors leave when they cannot get quick answers or clear next steps.",
-    agentDoes:
-      "Guides visitors, answers FAQs, recommends next actions, and captures contact details.",
-    workflow:
-      "Visitor asks a question, agent responds from approved content, then books or routes the next step.",
-    outcome: "Higher engagement and more useful website conversations.",
+    problem: "Visitors leave without answers.",
+    agentDoes: "Answers FAQs, guides next steps, and captures contact details.",
+    workflow: "Question → answer → booking or handoff.",
+    outcome: "More useful website conversations.",
   },
   {
     icon: Send,
     title: "Follow-up Automation",
-    problem: "Manual follow-up is inconsistent and easy to miss after a busy day.",
-    agentDoes:
-      "Sends reminders, summaries, next-step messages, and status updates based on the workflow.",
-    workflow:
-      "Agent completes intake, schedules the next touch, and sends a clear follow-up at the right time.",
-    outcome: "More consistent communication and fewer dropped opportunities.",
+    problem: "Follow-up gets missed.",
+    agentDoes: "Sends reminders, summaries, and next-step messages.",
+    workflow: "Intake → next touch → timely follow-up.",
+    outcome: "Fewer dropped opportunities.",
   },
 ];
 
@@ -124,9 +108,8 @@ export default function SolutionsPage() {
                 AI agents built around your business workflows.
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-                AiVantage designs automation around the moments where customers
-                need answers, teams need context, and work needs to move without
-                another manual handoff.
+                Automate the moments where customers need answers and teams
+                need clean handoffs.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <CtaButton href="/book-demo" size="lg">
@@ -148,7 +131,7 @@ export default function SolutionsPage() {
         <SectionHeading
           eyebrow="Solutions"
           title="AI automation for the work customers and teams repeat every day."
-          description="Each solution combines conversation design, approved knowledge, workflow routing, and measurable business outcomes."
+          description="Focused workflows for support, sales, calls, bookings, and operations."
         />
         <div className="mt-12 grid gap-5 lg:grid-cols-2">
           {solutionCards.map((solution, index) => {
@@ -166,7 +149,7 @@ export default function SolutionsPage() {
                   <div>
                     <h2 className="text-xl font-semibold text-white">{solution.title}</h2>
                     <p className="mt-2 text-sm leading-6 text-slate-400">
-                      Built as a practical agent workflow, not a generic script.
+                      Built as a practical workflow.
                     </p>
                   </div>
                 </div>
@@ -191,7 +174,7 @@ export default function SolutionsPage() {
                 align="left"
                 eyebrow="Industries we help"
                 title="Flexible AI automation for service-heavy teams."
-                description="AiVantage works best where customer questions, intake, bookings, follow-up, and internal routing create daily friction."
+                description="Useful where questions, intake, bookings, and follow-up pile up."
               />
             </Reveal>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -232,9 +215,7 @@ export default function SolutionsPage() {
               Tell us what you want to automate.
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-300">
-              Share the workflow, channel, and outcome you care about. We will
-              help map the first AI agent that could make it faster, cleaner,
-              and easier to measure.
+              Share the workflow. We’ll map the first useful agent.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <CtaButton href="/contact" size="lg">

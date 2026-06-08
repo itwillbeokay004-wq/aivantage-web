@@ -14,32 +14,32 @@ const steps = [
   {
     icon: Bot,
     title: "Build",
-    description: "Define the agent role, tone, guardrails, channels, and workflows.",
+    description: "Define role, tone, channels, and guardrails.",
   },
   {
     icon: GraduationCap,
     title: "Train",
-    description: "Ground responses in your knowledge base, policies, and customer context.",
+    description: "Ground answers in approved knowledge.",
   },
   {
     icon: Rocket,
     title: "Deploy",
-    description: "Launch on chat, voice, messaging, and connected business systems.",
+    description: "Launch on chat, voice, and workflows.",
   },
   {
     icon: BarChart3,
     title: "Monitor",
-    description: "Track quality, usage, outcomes, handoffs, and automation performance.",
+    description: "Track quality, usage, and handoffs.",
   },
   {
     icon: BrainCircuit,
     title: "Improve",
-    description: "Tune prompts, workflows, routing, and knowledge based on real conversations.",
+    description: "Tune from real conversations.",
   },
   {
     icon: Settings2,
     title: "Scale",
-    description: "Expand from one high-value workflow into a broader AI operations layer.",
+    description: "Expand into more workflows.",
   },
 ];
 
@@ -49,8 +49,8 @@ export function HomePlatformOverview() {
       <div className="container py-16">
         <SectionHeading
           eyebrow="Platform overview"
-          title="A practical path from first agent to managed AI operations."
-          description="Each layer is designed to make agents useful, measurable, and easier for your team to trust."
+          title="From first agent to AI operations."
+          description="Build, launch, measure, and improve."
         />
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {steps.map((step, index) => {

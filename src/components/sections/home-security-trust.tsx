@@ -7,26 +7,22 @@ const trustItems = [
   {
     icon: ShieldCheck,
     title: "Privacy-minded workflows",
-    description:
-      "Agents are designed around approved data sources, clear escalation rules, and careful information handling.",
+    description: "Approved sources and careful data handling.",
   },
   {
     icon: LockKeyhole,
     title: "Role-based access placeholder",
-    description:
-      "Plan different permissions for admins, operators, reviewers, and front-line users as the platform grows.",
+    description: "Permissions for admins and operators.",
   },
   {
     icon: ClipboardCheck,
     title: "Audit logs placeholder",
-    description:
-      "Prepare for traceable activity records across conversations, workflow actions, and handoff decisions.",
+    description: "Trace conversations and workflow actions.",
   },
   {
     icon: UsersRound,
     title: "Human handoff",
-    description:
-      "Move sensitive or complex cases to the right person with context, summaries, and recommended next steps.",
+    description: "Escalate with context and summaries.",
   },
 ];
 
@@ -36,8 +32,8 @@ export function HomeSecurityTrust() {
       <div className="container py-16">
         <SectionHeading
           eyebrow="Security and trust"
-          title="Built for controlled automation, not unattended guesswork."
-          description="AiVantage workflows are shaped around privacy, oversight, and clear human escalation paths."
+          title="Automation with control."
+          description="Privacy, oversight, and human handoff built in."
         />
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {trustItems.map((item, index) => {

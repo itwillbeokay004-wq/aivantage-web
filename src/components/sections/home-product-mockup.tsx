@@ -59,8 +59,8 @@ export function HomeProductMockup() {
               }
               className="max-w-[88%] rounded-lg border border-blue-100 bg-blue-50 p-3 text-sm leading-6 text-slate-700"
             >
-              Yes. I found two openings, captured the use case, and prepared a
-              calendar invite for review.
+              Yes — I found openings, captured the use case, and prepared the
+              next step.
             </motion.div>
           </div>
         </motion.div>

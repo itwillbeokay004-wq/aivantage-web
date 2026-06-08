@@ -34,13 +34,11 @@ export default function UseCasesPage() {
               Practical Use Cases
             </div>
             <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
-              AI agent examples for business workflows that need speed and
-              structure.
+              AI agent examples for practical workflows.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              Explore practical, business-friendly automations for website
-              intake, voice follow-up, support questions, property operations,
-              appointment booking, and internal knowledge.
+              Explore website intake, voice follow-up, support, property
+              operations, bookings, and internal knowledge.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <CtaButton href="/book-demo" size="lg">
@@ -63,7 +61,7 @@ export default function UseCasesPage() {
                     Workflow Map
                   </p>
                   <p className="mt-1 text-sm text-slate-400">
-                    From customer intent to measurable outcome.
+                    Intent to outcome.
                   </p>
                 </div>
                 <div className="grid size-11 place-items-center rounded-md bg-cyan-300/10 text-cyan-200">
@@ -83,7 +81,7 @@ export default function UseCasesPage() {
                     <div>
                       <p className="font-medium text-white">{signal}</p>
                       <p className="mt-1 text-sm text-slate-400">
-                        Designed before the agent is launched.
+                        Defined before launch.
                       </p>
                     </div>
                     <ArrowRight className="size-4 text-cyan-200" aria-hidden="true" />
@@ -98,7 +96,7 @@ export default function UseCasesPage() {
                     Filter by team need
                   </p>
                   <p className="mt-1 text-sm text-slate-400">
-                    Support, sales, operations, real estate, voice, or website.
+                    Support, sales, operations, voice, or website.
                   </p>
                 </div>
                 <div className="rounded-lg border border-white/10 bg-purple-400/10 p-4">
@@ -107,7 +105,7 @@ export default function UseCasesPage() {
                     Map next steps
                   </p>
                   <p className="mt-1 text-sm text-slate-400">
-                    Clarify trigger, systems, success metric, and escalation.
+                    Trigger, systems, metric, escalation.
                   </p>
                 </div>
               </div>
@@ -120,7 +118,7 @@ export default function UseCasesPage() {
         <SectionHeading
           eyebrow="Examples"
           title="Filter use cases by channel, team, or workflow."
-          description="Each example shows the trigger, what the AI agent does, the systems it may connect to, and the outcome your team can measure."
+          description="Scan triggers, agent actions, systems, and outcomes."
         />
         <div className="mt-12">
           <UseCasesFilterGrid />
@@ -138,9 +136,8 @@ export default function UseCasesPage() {
                 Have a workflow in mind? Let’s map it.
               </h2>
               <p className="mt-4 max-w-2xl leading-7 text-slate-300">
-                Bring us the repetitive questions, missed calls, slow handoffs,
-                or manual follow-ups you want to improve. We will help turn the
-                idea into a practical AI agent plan.
+                Bring the repetitive questions, missed calls, or slow handoffs.
+                We’ll turn them into a practical AI agent plan.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">

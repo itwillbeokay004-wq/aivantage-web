@@ -34,50 +34,42 @@ const capabilities = [
   {
     icon: Sparkles,
     title: "Text generation",
-    description:
-      "Draft helpful answers, follow-up messages, summaries, and guided responses using approved business context.",
+    description: "Draft answers, follow-ups, summaries, and guided responses.",
   },
   {
     icon: AudioLines,
     title: "Voice conversations",
-    description:
-      "Support call intake, spoken prompts, transcript capture, and voice-ready workflows for customer conversations.",
+    description: "Support call intake, transcripts, and voice-ready workflows.",
   },
   {
     icon: FileSearch,
     title: "Document understanding",
-    description:
-      "Find useful information inside policies, FAQs, manuals, listings, service guides, and internal docs.",
+    description: "Find answers in policies, FAQs, manuals, and docs.",
   },
   {
     icon: BrainCircuit,
     title: "Lead scoring",
-    description:
-      "Evaluate fit, urgency, intent, timeline, and missing details before routing prospects to sales.",
+    description: "Evaluate fit, urgency, timeline, and missing details.",
   },
   {
     icon: ListChecks,
     title: "Summaries",
-    description:
-      "Turn conversations, calls, support issues, and intake forms into clear handoff notes.",
+    description: "Turn calls, chats, and forms into handoff notes.",
   },
   {
     icon: Bot,
     title: "Workflow decisions",
-    description:
-      "Choose the next step based on confidence, policy, customer status, and business rules.",
+    description: "Choose next steps from rules, confidence, and context.",
   },
   {
     icon: Languages,
     title: "Multilingual support",
-    description:
-      "Design agent experiences for customers who need responses or routing across multiple languages.",
+    description: "Support routing and responses across languages.",
   },
   {
     icon: TableProperties,
     title: "Data extraction",
-    description:
-      "Pull structured fields from messages, documents, calls, forms, and support requests.",
+    description: "Pull structured fields from messages, docs, calls, and forms.",
   },
 ];
 
@@ -85,32 +77,27 @@ const safetyControls = [
   {
     icon: ShieldCheck,
     title: "Guardrails",
-    description:
-      "Define what agents should answer, when they should refuse, and when they should route to a person.",
+    description: "Define answers, refusals, and escalation rules.",
   },
   {
     icon: FileSearch,
     title: "Approved knowledge",
-    description:
-      "Ground responses in selected documents, FAQs, policies, and source material your team trusts.",
+    description: "Use documents, FAQs, and policies your team approves.",
   },
   {
     icon: ListChecks,
     title: "Fallback responses",
-    description:
-      "Use clear backup language when confidence is low, source material is missing, or a workflow needs review.",
+    description: "Use safe language when confidence is low.",
   },
   {
     icon: UserRoundCheck,
     title: "Human handoff",
-    description:
-      "Move sensitive, complex, or high-value conversations to people with context already summarized.",
+    description: "Escalate sensitive or high-value moments.",
   },
   {
     icon: TableProperties,
     title: "Audit logs placeholder",
-    description:
-      "Plan traceable records for conversations, decisions, handoffs, and workflow actions as systems mature.",
+    description: "Plan traceable records for decisions and handoffs.",
   },
 ];
 
@@ -118,27 +105,27 @@ const faqs = [
   {
     question: "Can AI answer questions from my documents?",
     answer:
-      "Yes. AiVantage can design agents that search approved documents, FAQs, policies, and knowledge base content before responding.",
+      "Yes. Agents can search approved documents, FAQs, policies, and knowledge base content before responding.",
   },
   {
     question: "Can it speak with customers?",
     answer:
-      "Yes, when voice capability is part of the workflow. AiVantage can help design voice intake, call summaries, and handoff paths using suitable voice model providers or telephony integrations.",
+      "Yes, when voice is in scope. We can design intake, summaries, and handoff paths.",
   },
   {
     question: "Can it connect to my CRM?",
     answer:
-      "Yes. Agents can be designed to create records, update fields, add notes, route leads, or trigger follow-up workflows through secure integrations.",
+      "Yes. Agents can create records, add notes, route leads, or trigger follow-ups.",
   },
   {
     question: "Can humans take over?",
     answer:
-      "Yes. Human handoff can be built into the workflow for sensitive requests, low-confidence responses, high-value leads, or policy exceptions.",
+      "Yes. Handoff can trigger for sensitive requests, low confidence, or high-value leads.",
   },
   {
     question: "How do you protect sensitive data?",
     answer:
-      "AiVantage scopes data access carefully, uses approved sources, designs fallback behavior, and can plan role-based controls and audit logging around the workflow requirements.",
+      "We scope access carefully, use approved sources, and plan controls around the workflow.",
   },
 ];
 
@@ -158,9 +145,8 @@ export default function AiModelsPage() {
                 Use the right AI model for the right job.
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-                AiVantage helps businesses match AI capabilities to each
-                workflow, whether the job involves chat, voice, documents,
-                scoring, extraction, summaries, or structured decisions.
+                Match model capabilities to the workflow: chat, voice,
+                documents, scoring, summaries, decisions, or extraction.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <CtaButton href="/book-demo" size="lg">
@@ -187,7 +173,7 @@ export default function AiModelsPage() {
         <SectionHeading
           eyebrow="Model capabilities"
           title="Different workflows need different kinds of intelligence."
-          description="AiVantage scopes the model capability around the job, risk level, speed requirement, data source, and business outcome."
+          description="Pick the capability around the job, risk, speed, source, and outcome."
         />
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {capabilities.map((capability, index) => {
@@ -217,7 +203,7 @@ export default function AiModelsPage() {
                 align="left"
                 eyebrow="Provider-neutral architecture"
                 title="Designed around your requirements, not a single model vendor."
-                description="AiVantage can design workflows to work with OpenAI or other model providers through secure API integrations, depending on the client's needs, data policies, latency goals, budget, and preferred deployment approach."
+                description="AiVantage can work with OpenAI or other providers through secure APIs, depending on client needs."
               />
             </Reveal>
             <Reveal delay={0.08} className="rounded-lg border border-white/10 bg-[#07101f] p-6">
@@ -226,17 +212,17 @@ export default function AiModelsPage() {
                   {
                     icon: Plug,
                     title: "Secure APIs",
-                    copy: "Connect selected providers through scoped credentials and controlled request paths.",
+                    copy: "Use scoped credentials and controlled request paths.",
                   },
                   {
                     icon: Globe2,
                     title: "Flexible routing",
-                    copy: "Route tasks by capability, cost, latency, confidence, and business risk.",
+                    copy: "Route by capability, cost, latency, confidence, and risk.",
                   },
                   {
                     icon: BrainCircuit,
                     title: "Workflow fit",
-                    copy: "Choose model capabilities based on what the agent needs to accomplish.",
+                    copy: "Choose capabilities by agent job.",
                   },
                 ].map((item) => {
                   const Icon = item.icon;
@@ -262,7 +248,7 @@ export default function AiModelsPage() {
         <SectionHeading
           eyebrow="Safety and control"
           title="Model power should come with clear operating boundaries."
-          description="AiVantage designs agents with practical controls that help businesses decide what AI can answer, what it should avoid, and when humans should step in."
+          description="Decide what AI can answer, avoid, and hand off."
         />
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
           {safetyControls.map((control, index) => {
@@ -287,7 +273,7 @@ export default function AiModelsPage() {
           <SectionHeading
             eyebrow="FAQ"
             title="Common questions about AI model workflows."
-            description="The best implementation depends on the workflow, data, channels, integrations, and controls your business needs."
+            description="Implementation depends on workflow, data, channels, integrations, and controls."
           />
           <div className="mx-auto mt-12 max-w-4xl space-y-3">
             {faqs.map((faq, index) => (
@@ -318,8 +304,8 @@ export default function AiModelsPage() {
               Need help choosing the right model approach?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-300">
-              Share the workflow you want to automate and AiVantage will help
-              scope the right model capabilities, controls, and integrations.
+              Share the workflow. We’ll scope the model capabilities, controls,
+              and integrations.
             </p>
             <div className="mt-8 flex justify-center">
               <CtaButton href="/book-demo" size="lg">

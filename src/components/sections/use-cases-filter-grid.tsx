@@ -44,11 +44,9 @@ const useCaseCards: readonly UseCaseCard[] = [
   {
     icon: MessageSquare,
     title: "Website lead capture agent",
-    description:
-      "Turns anonymous website visits into structured inquiries with context your team can act on.",
-    trigger: "A visitor asks a pricing, service, or availability question on the website.",
-    agentDoes:
-      "Answers initial questions, asks qualifying follow-ups, captures contact details, and routes the lead.",
+    description: "Turns website visits into structured inquiries.",
+    trigger: "Visitor asks about pricing, service, or availability.",
+    agentDoes: "Answers, qualifies, captures details, and routes the lead.",
     systems: ["Website chat", "CRM", "Email", "Calendar"],
     outcome: "More useful conversations from traffic you already have.",
     categories: ["Sales", "Website"],
@@ -56,11 +54,9 @@ const useCaseCards: readonly UseCaseCard[] = [
   {
     icon: Building2,
     title: "Property leasing assistant",
-    description:
-      "Helps leasing teams respond quickly to unit, tour, availability, and qualification questions.",
-    trigger: "A renter asks about an available property or wants to schedule a tour.",
-    agentDoes:
-      "Answers approved property questions, checks preferences, qualifies interest, and prepares a tour handoff.",
+    description: "Responds to unit, tour, and qualification questions.",
+    trigger: "Renter asks about a property or tour.",
+    agentDoes: "Answers, checks preferences, qualifies, and prepares handoff.",
     systems: ["Website", "CRM", "Calendar", "Property database"],
     outcome: "Faster leasing response and cleaner prospect intake.",
     categories: ["Real Estate", "Sales", "Website"],
@@ -68,11 +64,9 @@ const useCaseCards: readonly UseCaseCard[] = [
   {
     icon: Home,
     title: "Maintenance request triage",
-    description:
-      "Collects the details property teams need before a maintenance request reaches the right owner.",
-    trigger: "A resident reports an issue through chat, form, email, or call intake.",
-    agentDoes:
-      "Asks for location, urgency, photos or notes, access details, and routes the request by priority.",
+    description: "Collects maintenance details before routing.",
+    trigger: "Resident reports an issue.",
+    agentDoes: "Asks location, urgency, notes, access details, and priority.",
     systems: ["Resident portal", "Helpdesk", "Email", "Maintenance system"],
     outcome: "Less manual back-and-forth and better request routing.",
     categories: ["Operations", "Real Estate", "Support"],
@@ -80,11 +74,9 @@ const useCaseCards: readonly UseCaseCard[] = [
   {
     icon: CalendarCheck,
     title: "Appointment booking assistant",
-    description:
-      "Reduces scheduling friction by guiding customers from intent to confirmed appointment.",
-    trigger: "A customer asks to book a call, consultation, tour, or service visit.",
-    agentDoes:
-      "Collects preferences, confirms contact details, proposes available times, and sends reminders.",
+    description: "Moves customers from intent to booked appointment.",
+    trigger: "Customer asks to book a call, tour, or visit.",
+    agentDoes: "Collects preferences, proposes times, and sends reminders.",
     systems: ["Calendar", "CRM", "Email", "SMS"],
     outcome: "More booked appointments with fewer manual scheduling steps.",
     categories: ["Sales", "Operations", "Website"],
@@ -92,11 +84,9 @@ const useCaseCards: readonly UseCaseCard[] = [
   {
     icon: Headphones,
     title: "Customer support FAQ agent",
-    description:
-      "Handles repeat questions from approved knowledge while keeping escalation paths clear.",
-    trigger: "A customer asks a common product, service, billing, or policy question.",
-    agentDoes:
-      "Searches approved FAQs, responds with the best answer, and escalates when confidence is low.",
+    description: "Answers repeat questions from approved knowledge.",
+    trigger: "Customer asks a common question.",
+    agentDoes: "Searches FAQs, answers, and escalates when confidence is low.",
     systems: ["Knowledge base", "Helpdesk", "Website chat", "Email"],
     outcome: "Faster answers and fewer repetitive support tickets.",
     categories: ["Support", "Website"],
@@ -104,8 +94,7 @@ const useCaseCards: readonly UseCaseCard[] = [
   {
     icon: PhoneCall,
     title: "Missed-call follow-up agent",
-    description:
-      "Helps recover demand when customers call after hours or your team is busy.",
+    description: "Recovers demand after missed or after-hours calls.",
     trigger: "A missed call, voicemail, or after-hours call event is logged.",
     agentDoes:
       "Sends a follow-up message, collects intent, summarizes the request, and routes urgent cases.",
@@ -116,11 +105,9 @@ const useCaseCards: readonly UseCaseCard[] = [
   {
     icon: UserPlus,
     title: "Sales qualification agent",
-    description:
-      "Captures fit signals so sales teams know who to prioritize and what to say next.",
-    trigger: "A prospect submits a form, starts chat, replies to outreach, or calls in.",
-    agentDoes:
-      "Asks about needs, budget, timeline, decision process, and sends a scored summary.",
+    description: "Captures fit signals for better sales follow-up.",
+    trigger: "Prospect submits a form, chats, replies, or calls.",
+    agentDoes: "Asks needs, budget, timeline, and sends a scored summary.",
     systems: ["CRM", "Website forms", "Email", "Calendar"],
     outcome: "Cleaner pipeline data and faster follow-up for qualified prospects.",
     categories: ["Sales", "Website", "Voice"],
@@ -128,11 +115,9 @@ const useCaseCards: readonly UseCaseCard[] = [
   {
     icon: SearchCheck,
     title: "Internal team knowledge assistant",
-    description:
-      "Gives employees a faster way to find policies, owners, process steps, and internal answers.",
-    trigger: "A team member asks an internal process, HR, IT, or operations question.",
-    agentDoes:
-      "Searches approved internal content, answers with source-aware guidance, and routes requests when needed.",
+    description: "Helps employees find policies, owners, and process steps.",
+    trigger: "Team member asks an internal question.",
+    agentDoes: "Searches approved content and routes requests when needed.",
     systems: ["Internal docs", "Ticketing", "Slack placeholder", "Helpdesk"],
     outcome: "Less searching and fewer repeated internal requests.",
     categories: ["Operations", "Support"],

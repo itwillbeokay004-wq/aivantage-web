@@ -13,8 +13,8 @@ export function Footer() {
           <div className="max-w-lg">
             <Logo />
             <p className="mt-5 text-sm leading-7 text-slate-600">
-              AiVantage builds production-ready AI agents for teams that need
-              automation to feel useful, measurable, and trustworthy from day one.
+              Production-ready AI agents for support, sales, operations, and
+              customer engagement.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button asChild>

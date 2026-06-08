@@ -16,10 +16,9 @@ export function HomeHero() {
           <h1 className="text-balance text-4xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
             Launch AI agents for support, sales, and operations.
           </h1>
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
-            AiVantage designs and deploys custom AI agents that answer
-            questions, capture leads, book appointments, and automate everyday
-            workflows.
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+            Custom AI agents that answer questions, capture leads, book
+            appointments, and automate routine work.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <CtaButton href="/book-demo" size="lg">

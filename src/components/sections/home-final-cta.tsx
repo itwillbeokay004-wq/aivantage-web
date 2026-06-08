@@ -12,8 +12,7 @@ export function HomeFinalCta() {
             Ready to build your AI advantage?
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600">
-            Bring us the workflow you want to improve. We will help map the
-            first agent, channels, handoffs, and launch plan.
+            Bring one workflow. We’ll map the first agent and launch path.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <CtaButton href="/book-demo" size="lg">

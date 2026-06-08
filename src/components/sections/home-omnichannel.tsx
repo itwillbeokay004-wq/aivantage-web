@@ -7,26 +7,22 @@ const channels = [
   {
     icon: MessageSquare,
     title: "Web chat",
-    description:
-      "Guide visitors, answer questions, capture intent, and move qualified prospects to the next step.",
+    description: "Answer visitors and capture intent.",
   },
   {
     icon: PhoneCall,
     title: "Voice calls",
-    description:
-      "Handle intake, collect structured details, summarize calls, and route urgent requests.",
+    description: "Handle intake and summarize calls.",
   },
   {
     icon: Mail,
     title: "SMS/email follow-up",
-    description:
-      "Placeholder workflows for reminders, summaries, nurture messages, and post-call next steps.",
+    description: "Send reminders and next steps.",
   },
   {
     icon: Code2,
     title: "API integrations",
-    description:
-      "Connect agents to CRM, helpdesk, calendar, property, ecommerce, and internal operations systems.",
+    description: "Connect CRM, calendar, and helpdesk.",
   },
 ];
 
@@ -38,8 +34,8 @@ export function HomeOmnichannel() {
           <SectionHeading
             align="left"
             eyebrow="Omnichannel"
-            title="Meet customers where the conversation already happens."
-            description="AiVantage agents can support multiple entry points while keeping business context and follow-up workflows connected."
+            title="Support every first touch."
+            description="Chat, calls, follow-up, and APIs in one connected flow."
           />
         </Reveal>
         <div className="grid gap-4 sm:grid-cols-2">

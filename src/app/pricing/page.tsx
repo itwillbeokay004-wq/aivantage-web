@@ -43,8 +43,7 @@ const pricingTiers = [
   {
     name: "Growth",
     eyebrow: "Custom scope",
-    description:
-      "For growing teams that need automation across support and sales.",
+    description: "For teams automating support and sales.",
     icon: Layers3,
     cta: ctaLabels.bookDemo,
     href: "/book-demo",
@@ -60,8 +59,7 @@ const pricingTiers = [
   {
     name: "Enterprise",
     eyebrow: "Custom agreement",
-    description:
-      "For teams needing advanced security, scale, and custom integrations.",
+    description: "For advanced security, scale, and integrations.",
     icon: ShieldCheck,
     cta: "Contact Sales",
     href: "/contact",
@@ -88,32 +86,32 @@ const faqs = [
   {
     question: "How long does setup take?",
     answer:
-      "A focused first workflow can often be planned and launched as a pilot in weeks, depending on content readiness, integrations, review cycles, and channel complexity.",
+      "A focused pilot can often launch in weeks, depending on content, integrations, and review needs.",
   },
   {
     question: "Can AiVantage work with my current website?",
     answer:
-      "Yes. AiVantage can be scoped for existing websites using an embeddable assistant, form handoffs, analytics events, or custom integration work where needed.",
+      "Yes. We can scope an embeddable assistant, form handoffs, analytics events, or custom integrations.",
   },
   {
     question: "Do I need technical staff?",
     answer:
-      "No dedicated AI team is required. We guide discovery, design, setup, testing, and launch while coordinating with your website, CRM, or operations owners as needed.",
+      "No dedicated AI team is required. We guide discovery, setup, testing, and launch.",
   },
   {
     question: "Can it answer calls?",
     answer:
-      "Yes, voice agent workflows can be designed for intake, missed-call follow-up, appointment routing, FAQs, and structured summaries, with human escalation where appropriate.",
+      "Yes. Voice workflows can handle intake, missed-call follow-up, FAQs, and summaries.",
   },
   {
     question: "Can it integrate with my CRM?",
     answer:
-      "Yes. CRM integration can be included in the scope for lead capture, qualification notes, appointment updates, handoff routing, and reporting workflows.",
+      "Yes. CRM scope can include lead capture, notes, appointments, handoffs, and reporting.",
   },
   {
     question: "Is there ongoing support?",
     answer:
-      "Yes. Ongoing support can include monitoring, reporting, knowledge updates, workflow improvements, quality reviews, and integration refinements.",
+      "Yes. Support can include monitoring, reporting, updates, improvements, and quality reviews.",
   },
 ] as const;
 
@@ -130,12 +128,11 @@ export default function PricingPage() {
               Pricing
             </div>
             <h1 className="mt-6 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
-              Custom AI automation packages for the workflows that matter most.
+              Custom AI automation packages.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              AiVantage pricing is scoped after a consultation so your plan
-              reflects the channels, knowledge, integrations, governance, and
-              support your business actually needs.
+              Start with the workflow, channels, integrations, and support your
+              business needs.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <CtaButton
@@ -182,7 +179,7 @@ export default function PricingPage() {
         <SectionHeading
           eyebrow="Plans"
           title="Choose a starting point. Scope the exact build together."
-          description="Each tier uses custom pricing language because the right investment depends on what the agent needs to answer, connect to, and automate."
+          description="No fixed pricing yet. Every build is scoped around the actual workflow."
         />
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
           {pricingTiers.map((tier, index) => {
@@ -256,7 +253,7 @@ export default function PricingPage() {
           <SectionHeading
             eyebrow="FAQ"
             title="Common pricing and setup questions."
-            description="A consultation helps define the simplest useful launch path before any custom proposal is prepared."
+            description="A consultation defines the simplest useful launch path."
           />
           <div className="mt-12 grid gap-4 lg:grid-cols-2">
             {faqs.map((faq, index) => (
@@ -295,9 +292,8 @@ export default function PricingPage() {
                 Want pricing for your exact workflow?
               </h2>
               <p className="mt-4 max-w-2xl leading-7 text-slate-300">
-                Share your current channels, systems, and repetitive customer
-                moments. We will map the best first automation and recommend a
-                practical starting tier.
+                Share your channels and repetitive customer moments. We’ll map
+                the best first automation.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">

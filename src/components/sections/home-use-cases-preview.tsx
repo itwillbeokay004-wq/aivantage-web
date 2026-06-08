@@ -11,8 +11,8 @@ export function HomeUseCasesPreview() {
       <div className="container py-16">
         <SectionHeading
           eyebrow="Use cases"
-          title="Launch agents around workflows with clear business value."
-          description="Start with one practical use case, measure it, then expand automation where it earns trust."
+          title="Start with one high-value workflow."
+          description="Measure it, then expand what works."
         />
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {useCases.slice(0, 6).map((useCase, index) => (
@@ -24,7 +24,6 @@ export function HomeUseCasesPreview() {
               <p className="text-sm font-semibold text-cyan-200">{useCase.title}</p>
               <p className="mt-4 text-3xl font-semibold text-white">{useCase.metric}</p>
               <p className="mt-1 text-sm text-slate-400">{useCase.label}</p>
-              <p className="mt-4 text-sm leading-6 text-slate-400">{useCase.description}</p>
               <TrackedLink
                 href="/use-cases"
                 eventProperties={{ location: "home_use_cases_preview", label: useCase.title }}

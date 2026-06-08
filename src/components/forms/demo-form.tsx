@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarCheck, CheckCircle2, Loader2 } from "lucide-react";
 
+import { useLocale } from "@/components/locale-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,17 +15,30 @@ import { Textarea } from "@/components/ui/textarea";
 import { demoSchema, type DemoFormValues } from "@/lib/schemas";
 
 const teamSizes = ["1-10", "11-50", "51-250", "251-1,000", "1,000+"];
-const useCases = [
-  "Customer support",
-  "Sales qualification",
-  "Voice intake",
-  "Internal operations",
-  "Multiple workflows",
-];
-const timelines = ["This month", "Next 30-60 days", "This quarter", "Exploring options"];
+const useCases = {
+  es: [
+    "Soporte al cliente",
+    "Calificación de ventas",
+    "Intake de voz",
+    "Operaciones internas",
+    "Múltiples flujos",
+  ],
+  en: [
+    "Customer support",
+    "Sales qualification",
+    "Voice intake",
+    "Internal operations",
+    "Multiple workflows",
+  ],
+} as const;
+const timelines = {
+  es: ["Este mes", "Próximos 30-60 días", "Este trimestre", "Explorando opciones"],
+  en: ["This month", "Next 30-60 days", "This quarter", "Exploring options"],
+} as const;
 
 export function DemoForm() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const { locale } = useLocale();
   const {
     register,
     handleSubmit,
@@ -71,7 +85,9 @@ export function DemoForm() {
         className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
         aria-hidden="true"
       >
-        <Label htmlFor="demo-website">Website</Label>
+        <Label htmlFor="demo-website">
+          {locale === "es" ? "Sitio web" : "Website"}
+        </Label>
         <Input
           id="demo-website"
           tabIndex={-1}
@@ -80,7 +96,11 @@ export function DemoForm() {
         />
       </div>
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field id="demo-name" label="Name" error={errors.name?.message}>
+        <Field
+          id="demo-name"
+          label={locale === "es" ? "Nombre" : "Name"}
+          error={errors.name?.message}
+        >
           <Input
             id="demo-name"
             placeholder="Alex Morgan"
@@ -90,7 +110,11 @@ export function DemoForm() {
             {...register("name")}
           />
         </Field>
-        <Field id="demo-email" label="Business email" error={errors.email?.message}>
+        <Field
+          id="demo-email"
+          label={locale === "es" ? "Email de trabajo" : "Business email"}
+          error={errors.email?.message}
+        >
           <Input
             id="demo-email"
             type="email"
@@ -101,17 +125,25 @@ export function DemoForm() {
             {...register("email")}
           />
         </Field>
-        <Field id="demo-company" label="Company" error={errors.company?.message}>
+        <Field
+          id="demo-company"
+          label={locale === "es" ? "Empresa" : "Company"}
+          error={errors.company?.message}
+        >
           <Input
             id="demo-company"
-            placeholder="Company name"
+            placeholder={locale === "es" ? "Nombre de empresa" : "Company name"}
             autoComplete="organization"
             aria-invalid={Boolean(errors.company)}
             aria-describedby="demo-company-error"
             {...register("company")}
           />
         </Field>
-        <Field id="demo-team-size" label="Team size" error={errors.teamSize?.message}>
+        <Field
+          id="demo-team-size"
+          label={locale === "es" ? "Tamaño del equipo" : "Team size"}
+          error={errors.teamSize?.message}
+        >
           <Select
             id="demo-team-size"
             aria-invalid={Boolean(errors.teamSize)}
@@ -120,7 +152,7 @@ export function DemoForm() {
             defaultValue=""
           >
             <option value="" disabled>
-              Select team size
+              {locale === "es" ? "Selecciona tamaño" : "Select team size"}
             </option>
             {teamSizes.map((size) => (
               <option key={size} value={size}>
@@ -131,7 +163,7 @@ export function DemoForm() {
         </Field>
         <Field
           id="demo-use-case"
-          label="Primary use case"
+          label={locale === "es" ? "Caso de uso principal" : "Primary use case"}
           error={errors.useCase?.message}
         >
           <Select
@@ -142,16 +174,20 @@ export function DemoForm() {
             defaultValue=""
           >
             <option value="" disabled>
-              Select use case
+              {locale === "es" ? "Selecciona caso de uso" : "Select use case"}
             </option>
-            {useCases.map((useCase) => (
+            {useCases[locale].map((useCase) => (
               <option key={useCase} value={useCase}>
                 {useCase}
               </option>
             ))}
           </Select>
         </Field>
-        <Field id="demo-timeline" label="Timeline" error={errors.timeline?.message}>
+        <Field
+          id="demo-timeline"
+          label={locale === "es" ? "Calendario" : "Timeline"}
+          error={errors.timeline?.message}
+        >
           <Select
             id="demo-timeline"
             aria-invalid={Boolean(errors.timeline)}
@@ -160,9 +196,9 @@ export function DemoForm() {
             defaultValue=""
           >
             <option value="" disabled>
-              Select timeline
+              {locale === "es" ? "Selecciona calendario" : "Select timeline"}
             </option>
-            {timelines.map((timeline) => (
+            {timelines[locale].map((timeline) => (
               <option key={timeline} value={timeline}>
                 {timeline}
               </option>
@@ -173,12 +209,20 @@ export function DemoForm() {
       <div className="mt-5">
         <Field
           id="demo-message"
-          label="What would make this demo useful?"
+          label={
+            locale === "es"
+              ? "¿Qué haría útil esta demo?"
+              : "What would make this demo useful?"
+          }
           error={errors.message?.message}
         >
           <Textarea
             id="demo-message"
-            placeholder="Share the systems, channels, or workflows you want to discuss."
+            placeholder={
+              locale === "es"
+                ? "Comparte los sistemas, canales o flujos que quieres revisar."
+                : "Share the systems, channels, or workflows you want to discuss."
+            }
             aria-invalid={Boolean(errors.message)}
             aria-describedby="demo-message-error"
             {...register("message")}
@@ -190,11 +234,17 @@ export function DemoForm() {
           {status === "success" ? (
             <span className="inline-flex items-center gap-2 text-emerald-200">
               <CheckCircle2 className="size-4" aria-hidden="true" />
-              Demo request received. We will send next steps shortly.
+              {locale === "es"
+                ? "Solicitud recibida. Enviaremos próximos pasos pronto."
+                : "Demo request received. We will send next steps shortly."}
             </span>
           ) : null}
           {status === "error" ? (
-            <span className="text-rose-200">Something went wrong. Please try again.</span>
+            <span className="text-rose-200">
+              {locale === "es"
+                ? "Algo salió mal. Inténtalo de nuevo."
+                : "Something went wrong. Please try again."}
+            </span>
           ) : null}
         </p>
         <Button type="submit" disabled={isSubmitting}>
@@ -203,7 +253,7 @@ export function DemoForm() {
           ) : (
             <CalendarCheck className="size-4" aria-hidden="true" />
           )}
-          Request Demo
+          {locale === "es" ? "Solicitar demo" : "Request Demo"}
         </Button>
       </div>
     </form>

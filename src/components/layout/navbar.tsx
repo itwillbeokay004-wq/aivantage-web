@@ -6,20 +6,35 @@ import { ChevronDown } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 
 import { TrackedLink } from "@/components/analytics";
+import { useLocale } from "@/components/locale-provider";
 import { Logo } from "@/components/logo";
 import { MobileNav } from "@/components/layout/mobile-nav";
-import { navLinks, resourceNavLinks } from "@/data/site";
+import {
+  navLinksByLocale,
+  resourceNavLinksByLocale,
+} from "@/data/site";
+import { localizeHref, stripLocalePrefix } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const pathname = usePathname();
+  const { locale } = useLocale();
+  const navLinks = navLinksByLocale[locale];
+  const resourceNavLinks = resourceNavLinksByLocale[locale];
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const resourcesMenuId = useId();
   const platformLink = navLinks[0];
   const remainingNavLinks = navLinks.slice(1);
 
   const isResourceActive = resourceNavLinks.some(
-    (link) => pathname === link.href || pathname.startsWith(`${link.href}/`),
+    (link) => {
+      const normalizedPathname = stripLocalePrefix(pathname);
+
+      return (
+        normalizedPathname === link.href ||
+        normalizedPathname.startsWith(`${link.href}/`)
+      );
+    },
   );
 
   useEffect(() => {
@@ -53,6 +68,7 @@ export function Navbar() {
               href={platformLink.href}
               label={platformLink.label}
               pathname={pathname}
+              locale={locale}
             />
           ) : null}
           <div className="relative">
@@ -66,7 +82,7 @@ export function Navbar() {
               aria-controls={resourcesMenuId}
               onClick={() => setResourcesOpen((value) => !value)}
             >
-              Resources
+              {locale === "es" ? "Recursos" : "Resources"}
               <ChevronDown
                 className={cn(
                   "size-4 transition",
@@ -81,11 +97,11 @@ export function Navbar() {
                 className="absolute left-1/2 top-[calc(100%+0.75rem)] w-64 -translate-x-1/2 rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-950/10"
               >
                 {resourceNavLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-blue-50 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
+              <Link
+                key={link.href}
+                href={localizeHref(link.href, locale)}
+                className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-blue-50 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
                     {link.label}
                   </Link>
                 ))}
@@ -98,6 +114,7 @@ export function Navbar() {
               href={link.href}
               label={link.label}
               pathname={pathname}
+              locale={locale}
             />
           ))}
         </nav>
@@ -107,22 +124,35 @@ export function Navbar() {
             className="rounded-full px-4 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             eventProperties={{ location: "navbar_login_placeholder" }}
           >
-            Login
+            {locale === "es" ? "Entrar" : "Login"}
           </TrackedLink>
           <TrackedLink
             href="/contact"
             className="rounded-full px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             eventProperties={{ location: "navbar_signup" }}
           >
-            Sign up
+            {locale === "es" ? "Registrarse" : "Sign up"}
           </TrackedLink>
           <TrackedLink
             href="/book-demo"
             className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             eventProperties={{ location: "navbar" }}
           >
-            Book a demo
+            {locale === "es" ? "Reservar demo" : "Book a demo"}
           </TrackedLink>
+          <Link
+            href={
+              locale === "es"
+                ? localizeHref(stripLocalePrefix(pathname), "en")
+                : stripLocalePrefix(pathname)
+            }
+            className="rounded-full px-3 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500 transition hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            aria-label={
+              locale === "es" ? "View site in English" : "Ver sitio en español"
+            }
+          >
+            {locale === "es" ? "EN" : "ES"}
+          </Link>
         </div>
         <MobileNav />
       </div>
@@ -133,17 +163,21 @@ export function Navbar() {
 function NavPillLink({
   href,
   label,
+  locale,
   pathname,
 }: {
   href: string;
   label: string;
+  locale: "es" | "en";
   pathname: string;
 }) {
-  const isActive = pathname === href || pathname.startsWith(`${href}/`);
+  const normalizedPathname = stripLocalePrefix(pathname);
+  const isActive =
+    normalizedPathname === href || normalizedPathname.startsWith(`${href}/`);
 
   return (
     <Link
-      href={href}
+      href={localizeHref(href, locale)}
       className={cn(
         "rounded-full px-5 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         isActive && "bg-white text-slate-950 shadow-sm",

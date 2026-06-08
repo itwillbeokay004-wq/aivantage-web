@@ -1,9 +1,15 @@
+"use client";
+
 import { HomeProductMockup } from "@/components/sections/home-product-mockup";
+import { useLocale } from "@/components/locale-provider";
 import { CtaButton } from "@/components/ui/cta-button";
 import { Reveal } from "@/components/reveal";
-import { ctaLabels } from "@/data/site";
+import { ctaLabelsByLocale } from "@/data/site";
 
 export function HomeHero() {
+  const { locale } = useLocale();
+  const ctaLabels = ctaLabelsByLocale[locale];
+
   return (
     <section className="relative overflow-hidden border-b border-slate-200">
       <div className="absolute inset-0 hero-mesh" />
@@ -11,21 +17,26 @@ export function HomeHero() {
       <div className="container relative py-20 sm:py-24 lg:py-28">
         <Reveal className="mx-auto max-w-4xl text-center">
           <p className="mb-4 text-sm font-semibold text-blue-700">
-            AI automation for modern service teams
+            {locale === "es"
+              ? "Automatización con IA para equipos modernos"
+              : "AI automation for modern service teams"}
           </p>
           <h1 className="text-balance text-4xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
-            Launch AI agents for support, sales, and operations.
+            {locale === "es"
+              ? "Lanza agentes de IA para soporte, ventas y operaciones."
+              : "Launch AI agents for support, sales, and operations."}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-            Custom AI agents that answer questions, capture leads, book
-            appointments, and automate routine work.
+            {locale === "es"
+              ? "Agentes de IA personalizados que responden preguntas, capturan leads, reservan citas y automatizan trabajo repetitivo."
+              : "Custom AI agents that answer questions, capture leads, book appointments, and automate routine work."}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <CtaButton href="/book-demo" size="lg">
               {ctaLabels.bookDemo}
             </CtaButton>
             <CtaButton href="/use-cases" variant="secondary" size="lg" showIcon={false}>
-              See Use Cases
+              {locale === "es" ? "Ver casos de uso" : "See Use Cases"}
             </CtaButton>
           </div>
         </Reveal>

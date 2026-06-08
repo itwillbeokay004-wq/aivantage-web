@@ -8,36 +8,91 @@ import {
   Globe,
   UserRoundCheck,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const workflowNodes = [
-  {
-    icon: Globe,
-    title: "Website Visitor",
-    description: "Asks a question or submits intent.",
+import { useLocale } from "@/components/locale-provider";
+import type { Locale } from "@/lib/locale";
+
+const workflowContent = {
+  es: {
+    eyebrow: "Flujo del agente",
+    title: "Del primer contacto a la siguiente acción correcta.",
+    description:
+      "Flujo de ejemplo. Cada nodo se puede adaptar a los sistemas y reglas de traspaso de tu equipo.",
+    nodes: [
+      {
+        icon: Globe,
+        title: "Visitante web",
+        description: "Hace una pregunta o muestra intención.",
+      },
+      {
+        icon: Bot,
+        title: "Agente IA",
+        description: "Entiende la solicitud y elige el siguiente paso.",
+      },
+      {
+        icon: DatabaseZap,
+        title: "Base de conocimiento",
+        description: "Consulta respuestas, políticas y detalles aprobados.",
+      },
+      {
+        icon: Building2,
+        title: "CRM",
+        description: "Crea o actualiza el registro del cliente.",
+      },
+      {
+        icon: UserRoundCheck,
+        title: "Traspaso humano",
+        description: "Enruta casos especiales con un resumen útil.",
+      },
+    ],
   },
-  {
-    icon: Bot,
-    title: "AI Agent",
-    description: "Understands the request and chooses the next step.",
+  en: {
+    eyebrow: "Agent workflow",
+    title: "From first touch to the right next action.",
+    description:
+      "Example flow only. Every node can be customized for the systems and handoff rules your team uses.",
+    nodes: [
+      {
+        icon: Globe,
+        title: "Website Visitor",
+        description: "Asks a question or submits intent.",
+      },
+      {
+        icon: Bot,
+        title: "AI Agent",
+        description: "Understands the request and chooses the next step.",
+      },
+      {
+        icon: DatabaseZap,
+        title: "Knowledge Base",
+        description: "Checks approved answers, policies, and service details.",
+      },
+      {
+        icon: Building2,
+        title: "CRM",
+        description: "Creates or updates the customer record.",
+      },
+      {
+        icon: UserRoundCheck,
+        title: "Human Handoff",
+        description: "Routes edge cases with a useful summary.",
+      },
+    ],
   },
+} satisfies Record<
+  Locale,
   {
-    icon: DatabaseZap,
-    title: "Knowledge Base",
-    description: "Checks approved answers, policies, and service details.",
-  },
-  {
-    icon: Building2,
-    title: "CRM",
-    description: "Creates or updates the customer record.",
-  },
-  {
-    icon: UserRoundCheck,
-    title: "Human Handoff",
-    description: "Routes edge cases with a useful summary.",
-  },
-];
+    eyebrow: string;
+    title: string;
+    description: string;
+    nodes: readonly { icon: LucideIcon; title: string; description: string }[];
+  }
+>;
 
 export function AgentWorkflowVisual() {
+  const { locale } = useLocale();
+  const content = workflowContent[locale];
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -47,21 +102,20 @@ export function AgentWorkflowVisual() {
       <div className="relative">
         <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-sm font-semibold text-blue-700">Agent workflow</p>
+            <p className="text-sm font-semibold text-blue-700">{content.eyebrow}</p>
             <h3 className="mt-1 text-xl font-semibold text-slate-950">
-              From first touch to the right next action.
+              {content.title}
             </h3>
           </div>
           <p className="max-w-sm text-sm leading-6 text-slate-600">
-            Example flow only. Every node can be customized for the systems and
-            handoff rules your team uses.
+            {content.description}
           </p>
         </div>
 
         <div className="grid gap-4 lg:grid-cols-5 lg:items-stretch">
-          {workflowNodes.map((node, index) => {
+          {content.nodes.map((node, index) => {
             const Icon = node.icon;
-            const isLast = index === workflowNodes.length - 1;
+            const isLast = index === content.nodes.length - 1;
 
             return (
               <div key={node.title} className="relative">

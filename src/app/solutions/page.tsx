@@ -10,89 +10,288 @@ import {
   UserPlus,
   Workflow,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
 import { VoiceAgentCard } from "@/components/sections/voice-agent-card";
 import { CtaButton } from "@/components/ui/cta-button";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ctaLabels, industries } from "@/data/site";
+import { ctaLabelsByLocale } from "@/data/site";
+import type { Locale } from "@/lib/locale";
 import { pageMetadata } from "@/lib/seo";
+import { getRequestLocale } from "@/lib/server-locale";
 
-export const metadata = pageMetadata({
-  title: "Solutions",
-  description:
-    "Explore AiVantage AI automation solutions for customer support, lead qualification, appointment booking, real estate, operations, voice calls, chat, and follow-up.",
-  path: "/solutions",
-});
+export async function generateMetadata() {
+  const locale = await getRequestLocale();
 
-const solutionCards = [
-  {
-    icon: Headphones,
-    title: "Customer Support Automation",
-    problem: "Teams answer the same questions all day.",
-    agentDoes: "Answers FAQs, collects context, and escalates complex cases.",
-    workflow: "Question → approved answer → resolution or handoff.",
-    outcome: "Faster replies and fewer repetitive tickets.",
-  },
-  {
-    icon: UserPlus,
-    title: "Lead Qualification",
-    problem: "Inquiries lack context.",
-    agentDoes: "Asks fit, budget, timeline, and urgency questions.",
-    workflow: "Chat → fit signals → clean sales handoff.",
-    outcome: "Better leads and faster follow-up.",
-  },
-  {
-    icon: CalendarCheck,
-    title: "Appointment Booking",
-    problem: "Scheduling creates friction.",
-    agentDoes: "Checks times, confirms details, and sends reminders.",
-    workflow: "Request → options → confirmed appointment.",
-    outcome: "Less back-and-forth, more bookings.",
-  },
-  {
-    icon: Building2,
-    title: "Real Estate & Property Management Assistant",
-    problem: "Questions arrive across too many channels.",
-    agentDoes: "Answers listings, qualifies renters, and collects requests.",
-    workflow: "Inquiry → criteria → approved answer or tour handoff.",
-    outcome: "Faster leasing and cleaner intake.",
-  },
-  {
-    icon: Workflow,
-    title: "Internal Operations Assistant",
-    problem: "Teams lose time finding answers.",
-    agentDoes: "Finds policies, routes requests, and gathers missing details.",
-    workflow: "Question → knowledge lookup → routed task.",
-    outcome: "Faster internal support.",
-  },
-  {
-    icon: PhoneCall,
-    title: "Voice Call Assistant",
-    problem: "Calls get missed or rushed.",
-    agentDoes: "Captures intent, summarizes calls, and flags urgency.",
-    workflow: "Call → intake → structured handoff.",
-    outcome: "Better coverage and cleaner context.",
-  },
-  {
-    icon: MessageSquare,
-    title: "Website Chat Assistant",
-    problem: "Visitors leave without answers.",
-    agentDoes: "Answers FAQs, guides next steps, and captures contact details.",
-    workflow: "Question → answer → booking or handoff.",
-    outcome: "More useful website conversations.",
-  },
-  {
-    icon: Send,
-    title: "Follow-up Automation",
-    problem: "Follow-up gets missed.",
-    agentDoes: "Sends reminders, summaries, and next-step messages.",
-    workflow: "Intake → next touch → timely follow-up.",
-    outcome: "Fewer dropped opportunities.",
-  },
-];
+  return pageMetadata({
+    title: locale === "es" ? "Soluciones" : "Solutions",
+    description:
+      locale === "es"
+        ? "Explora soluciones de automatización con IA para soporte, leads, reservas, real estate, operaciones, llamadas, chat y seguimiento."
+        : "Explore AiVantage AI automation solutions for customer support, lead qualification, appointment booking, real estate, operations, voice calls, chat, and follow-up.",
+    path: "/solutions",
+    locale,
+  });
+}
 
-export default function SolutionsPage() {
+const solutionsContent = {
+  es: {
+    cardKicker: "Construido como flujo práctico.",
+    detailLabels: {
+      problem: "Problema",
+      agentDoes: "Qué hace el agente",
+      workflow: "Flujo de ejemplo",
+      outcome: "Resultado de negocio",
+    },
+    solutionCards: [
+      {
+        icon: Headphones,
+        title: "Automatización de soporte al cliente",
+        problem: "Los equipos responden las mismas preguntas todo el día.",
+        agentDoes: "Responde FAQs, recopila contexto y escala casos complejos.",
+        workflow: "Pregunta → respuesta aprobada → resolución o traspaso.",
+        outcome: "Respuestas más rápidas y menos tickets repetitivos.",
+      },
+      {
+        icon: UserPlus,
+        title: "Calificación de leads",
+        problem: "Las consultas llegan sin contexto suficiente.",
+        agentDoes: "Pregunta por encaje, presupuesto, plazo y urgencia.",
+        workflow: "Chat → señales de encaje → traspaso limpio a ventas.",
+        outcome: "Mejores leads y seguimiento más rápido.",
+      },
+      {
+        icon: CalendarCheck,
+        title: "Reserva de citas",
+        problem: "Agendar crea fricción y mensajes de ida y vuelta.",
+        agentDoes: "Revisa horarios, confirma datos y envía recordatorios.",
+        workflow: "Solicitud → opciones → cita confirmada.",
+        outcome: "Menos coordinación manual y más reservas.",
+      },
+      {
+        icon: Building2,
+        title: "Asistente de real estate y property management",
+        problem: "Las preguntas llegan por demasiados canales.",
+        agentDoes: "Responde sobre listados, califica renters y recopila solicitudes.",
+        workflow: "Consulta → criterios → respuesta aprobada o traspaso para tour.",
+        outcome: "Leasing más rápido e intake más ordenado.",
+      },
+      {
+        icon: Workflow,
+        title: "Asistente de operaciones internas",
+        problem: "Los equipos pierden tiempo buscando respuestas.",
+        agentDoes: "Encuentra políticas, enruta solicitudes y recopila datos faltantes.",
+        workflow: "Pregunta → búsqueda en conocimiento → tarea enrutada.",
+        outcome: "Soporte interno más rápido.",
+      },
+      {
+        icon: PhoneCall,
+        title: "Asistente de llamadas de voz",
+        problem: "Las llamadas se pierden o se atienden con prisa.",
+        agentDoes: "Captura intención, resume llamadas y marca urgencia.",
+        workflow: "Llamada → intake → traspaso estructurado.",
+        outcome: "Mejor cobertura y contexto más limpio.",
+      },
+      {
+        icon: MessageSquare,
+        title: "Asistente de chat web",
+        problem: "Los visitantes se van sin respuesta.",
+        agentDoes: "Responde FAQs, guía siguientes pasos y captura contacto.",
+        workflow: "Pregunta → respuesta → reserva o traspaso.",
+        outcome: "Conversaciones web más útiles.",
+      },
+      {
+        icon: Send,
+        title: "Automatización de seguimiento",
+        problem: "El seguimiento se olvida o llega tarde.",
+        agentDoes: "Envía recordatorios, resúmenes y próximos pasos.",
+        workflow: "Intake → siguiente toque → seguimiento a tiempo.",
+        outcome: "Menos oportunidades perdidas.",
+      },
+    ],
+    industries: [
+      {
+        icon: Building2,
+        name: "Real Estate",
+        description: "Califica compradores, renters y sellers.",
+      },
+      {
+        icon: Building2,
+        name: "Property Management",
+        description: "Gestiona residentes, leasing e intake de mantenimiento.",
+      },
+      {
+        icon: Workflow,
+        name: "Servicios locales",
+        description: "Reserva trabajos y captura detalles de servicio.",
+      },
+      {
+        icon: Headphones,
+        name: "Consultorios de salud",
+        description: "Apoya intake, agenda y FAQs no clínicas.",
+      },
+      {
+        icon: CheckCircle2,
+        name: "Oficinas legales",
+        description: "Filtra consultas y organiza intake inicial.",
+      },
+      {
+        icon: MessageSquare,
+        name: "E-commerce",
+        description: "Responde preguntas de producto, pedido y devolución.",
+      },
+      {
+        icon: UserPlus,
+        name: "Educación",
+        description: "Guía admisiones, soporte y agenda.",
+      },
+      {
+        icon: PhoneCall,
+        name: "Servicios para el hogar",
+        description: "Convierte llamadas y visitas en trabajos reservados.",
+      },
+    ],
+  },
+  en: {
+    cardKicker: "Built as a practical workflow.",
+    detailLabels: {
+      problem: "Problem",
+      agentDoes: "What the AI agent does",
+      workflow: "Example workflow",
+      outcome: "Business outcome",
+    },
+    solutionCards: [
+      {
+        icon: Headphones,
+        title: "Customer Support Automation",
+        problem: "Teams answer the same questions all day.",
+        agentDoes: "Answers FAQs, collects context, and escalates complex cases.",
+        workflow: "Question → approved answer → resolution or handoff.",
+        outcome: "Faster replies and fewer repetitive tickets.",
+      },
+      {
+        icon: UserPlus,
+        title: "Lead Qualification",
+        problem: "Inquiries lack context.",
+        agentDoes: "Asks fit, budget, timeline, and urgency questions.",
+        workflow: "Chat → fit signals → clean sales handoff.",
+        outcome: "Better leads and faster follow-up.",
+      },
+      {
+        icon: CalendarCheck,
+        title: "Appointment Booking",
+        problem: "Scheduling creates friction.",
+        agentDoes: "Checks times, confirms details, and sends reminders.",
+        workflow: "Request → options → confirmed appointment.",
+        outcome: "Less back-and-forth, more bookings.",
+      },
+      {
+        icon: Building2,
+        title: "Real Estate & Property Management Assistant",
+        problem: "Questions arrive across too many channels.",
+        agentDoes: "Answers listings, qualifies renters, and collects requests.",
+        workflow: "Inquiry → criteria → approved answer or tour handoff.",
+        outcome: "Faster leasing and cleaner intake.",
+      },
+      {
+        icon: Workflow,
+        title: "Internal Operations Assistant",
+        problem: "Teams lose time finding answers.",
+        agentDoes: "Finds policies, routes requests, and gathers missing details.",
+        workflow: "Question → knowledge lookup → routed task.",
+        outcome: "Faster internal support.",
+      },
+      {
+        icon: PhoneCall,
+        title: "Voice Call Assistant",
+        problem: "Calls get missed or rushed.",
+        agentDoes: "Captures intent, summarizes calls, and flags urgency.",
+        workflow: "Call → intake → structured handoff.",
+        outcome: "Better coverage and cleaner context.",
+      },
+      {
+        icon: MessageSquare,
+        title: "Website Chat Assistant",
+        problem: "Visitors leave without answers.",
+        agentDoes: "Answers FAQs, guides next steps, and captures contact details.",
+        workflow: "Question → answer → booking or handoff.",
+        outcome: "More useful website conversations.",
+      },
+      {
+        icon: Send,
+        title: "Follow-up Automation",
+        problem: "Follow-up gets missed.",
+        agentDoes: "Sends reminders, summaries, and next-step messages.",
+        workflow: "Intake → next touch → timely follow-up.",
+        outcome: "Fewer dropped opportunities.",
+      },
+    ],
+    industries: [
+      {
+        icon: Building2,
+        name: "Real Estate",
+        description: "Qualify buyers, renters, and sellers.",
+      },
+      {
+        icon: Building2,
+        name: "Property Management",
+        description: "Handle residents, leasing, and maintenance intake.",
+      },
+      {
+        icon: Workflow,
+        name: "Local Services",
+        description: "Book jobs and capture service details.",
+      },
+      {
+        icon: Headphones,
+        name: "Healthcare Offices",
+        description: "Support intake, scheduling, and non-clinical FAQs.",
+      },
+      {
+        icon: CheckCircle2,
+        name: "Legal Offices",
+        description: "Screen inquiries and organize intake.",
+      },
+      {
+        icon: MessageSquare,
+        name: "E-commerce",
+        description: "Answer product, order, and return questions.",
+      },
+      {
+        icon: UserPlus,
+        name: "Education",
+        description: "Guide admissions, support, and scheduling.",
+      },
+      {
+        icon: PhoneCall,
+        name: "Home Services",
+        description: "Turn calls and visits into booked jobs.",
+      },
+    ],
+  },
+} satisfies Record<
+  Locale,
+  {
+    cardKicker: string;
+    detailLabels: Record<"problem" | "agentDoes" | "workflow" | "outcome", string>;
+    solutionCards: readonly {
+      icon: LucideIcon;
+      title: string;
+      problem: string;
+      agentDoes: string;
+      workflow: string;
+      outcome: string;
+    }[];
+    industries: readonly { icon: LucideIcon; name: string; description: string }[];
+  }
+>;
+
+export default async function SolutionsPage() {
+  const locale = await getRequestLocale();
+  const ctaLabels = ctaLabelsByLocale[locale];
+  const content = solutionsContent[locale];
+
   return (
     <>
       <section className="relative overflow-hidden border-b border-white/10">
@@ -102,21 +301,26 @@ export default function SolutionsPage() {
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <Reveal>
               <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-200">
-                Business solutions
+                {locale === "es" ? "Soluciones de negocio" : "Business solutions"}
               </p>
               <h1 className="text-balance text-4xl font-semibold tracking-normal text-white sm:text-6xl">
-                AI agents built around your business workflows.
+                {locale === "es"
+                  ? "Agentes de IA diseñados alrededor de tus flujos de negocio."
+                  : "AI agents built around your business workflows."}
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-                Automate the moments where customers need answers and teams
-                need clean handoffs.
+                {locale === "es"
+                  ? "Automatiza los momentos donde los clientes necesitan respuestas y los equipos necesitan traspasos claros."
+                  : "Automate the moments where customers need answers and teams need clean handoffs."}
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <CtaButton href="/book-demo" size="lg">
                   {ctaLabels.bookDemo}
                 </CtaButton>
                 <CtaButton href="/contact" variant="secondary" size="lg" showIcon={false}>
-                  Tell us what you want to automate
+                  {locale === "es"
+                    ? "Cuéntanos qué quieres automatizar"
+                    : "Tell us what you want to automate"}
                 </CtaButton>
               </div>
             </Reveal>
@@ -129,12 +333,20 @@ export default function SolutionsPage() {
 
       <section className="container py-16">
         <SectionHeading
-          eyebrow="Solutions"
-          title="AI automation for the work customers and teams repeat every day."
-          description="Focused workflows for support, sales, calls, bookings, and operations."
+          eyebrow={locale === "es" ? "Soluciones" : "Solutions"}
+          title={
+            locale === "es"
+              ? "Automatización con IA para el trabajo que se repite cada día."
+              : "AI automation for the work customers and teams repeat every day."
+          }
+          description={
+            locale === "es"
+              ? "Flujos enfocados para soporte, ventas, llamadas, reservas y operaciones."
+              : "Focused workflows for support, sales, calls, bookings, and operations."
+          }
         />
         <div className="mt-12 grid gap-5 lg:grid-cols-2">
-          {solutionCards.map((solution, index) => {
+          {content.solutionCards.map((solution, index) => {
             const Icon = solution.icon;
             return (
               <Reveal
@@ -149,16 +361,22 @@ export default function SolutionsPage() {
                   <div>
                     <h2 className="text-xl font-semibold text-white">{solution.title}</h2>
                     <p className="mt-2 text-sm leading-6 text-slate-400">
-                      Built as a practical workflow.
+                      {content.cardKicker}
                     </p>
                   </div>
                 </div>
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <DetailBlock label="Problem" text={solution.problem} />
-                  <DetailBlock label="What the AI agent does" text={solution.agentDoes} />
-                  <DetailBlock label="Example workflow" text={solution.workflow} />
-                  <DetailBlock label="Business outcome" text={solution.outcome} />
+                  <DetailBlock label={content.detailLabels.problem} text={solution.problem} />
+                  <DetailBlock
+                    label={content.detailLabels.agentDoes}
+                    text={solution.agentDoes}
+                  />
+                  <DetailBlock
+                    label={content.detailLabels.workflow}
+                    text={solution.workflow}
+                  />
+                  <DetailBlock label={content.detailLabels.outcome} text={solution.outcome} />
                 </div>
               </Reveal>
             );
@@ -172,13 +390,21 @@ export default function SolutionsPage() {
             <Reveal>
               <SectionHeading
                 align="left"
-                eyebrow="Industries we help"
-                title="Flexible AI automation for service-heavy teams."
-                description="Useful where questions, intake, bookings, and follow-up pile up."
+                eyebrow={locale === "es" ? "Industrias" : "Industries we help"}
+                title={
+                  locale === "es"
+                    ? "Automatización flexible para equipos de servicio."
+                    : "Flexible AI automation for service-heavy teams."
+                }
+                description={
+                  locale === "es"
+                    ? "Útil donde se acumulan preguntas, intake, reservas y seguimiento."
+                    : "Useful where questions, intake, bookings, and follow-up pile up."
+                }
               />
             </Reveal>
             <div className="grid gap-3 sm:grid-cols-2">
-              {industries.map((industry, index) => {
+              {content.industries.map((industry, index) => {
                 const Icon = industry.icon;
                 return (
                   <Reveal
@@ -212,14 +438,18 @@ export default function SolutionsPage() {
               <Bot className="size-6" />
             </div>
             <h2 className="mt-5 text-balance text-3xl font-semibold tracking-normal text-white sm:text-4xl">
-              Tell us what you want to automate.
+              {locale === "es"
+                ? "Cuéntanos qué quieres automatizar."
+                : "Tell us what you want to automate."}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-300">
-              Share the workflow. We’ll map the first useful agent.
+              {locale === "es"
+                ? "Comparte el flujo. Mapearemos el primer agente útil."
+                : "Share the workflow. We’ll map the first useful agent."}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <CtaButton href="/contact" size="lg">
-                Start Free Consultation
+                {ctaLabels.startFreeConsultation}
               </CtaButton>
               <CtaButton href="/book-demo" variant="secondary" size="lg" showIcon={false}>
                 {ctaLabels.bookDemo}

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowRight, BookOpen, Clock, Library } from "lucide-react";
 
 import { CtaBand } from "@/components/cta-band";
@@ -7,33 +6,64 @@ import { Reveal } from "@/components/reveal";
 import { TrackedLink } from "@/components/analytics";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { resourceArticles } from "@/data/resources";
-import { ctaLabels } from "@/data/site";
+import { resourceArticlesByLocale } from "@/data/resources";
+import { ctaLabelsByLocale } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
+import { getRequestLocale } from "@/lib/server-locale";
 
-export const metadata = pageMetadata({
-  title: "Resources",
-  description:
-    "Practical AI automation articles for small businesses, website chatbots, AI voice agents, property management, FAQs, and human handoff design.",
-  path: "/resources",
-});
+export async function generateMetadata() {
+  const locale = await getRequestLocale();
 
-export default function ResourcesPage() {
+  return pageMetadata({
+    title: locale === "es" ? "Recursos" : "Resources",
+    description:
+      locale === "es"
+        ? "Artículos prácticos de automatización con IA para pequeñas empresas, chatbots web, agentes de voz, property management, FAQs y traspaso humano."
+        : "Practical AI automation articles for small businesses, website chatbots, AI voice agents, property management, FAQs, and human handoff design.",
+    path: "/resources",
+    locale,
+  });
+}
+
+export default async function ResourcesPage() {
+  const locale = await getRequestLocale();
+  const ctaLabels = ctaLabelsByLocale[locale];
+  const resourceArticles = resourceArticlesByLocale[locale];
+
   return (
     <>
       <PageHero
-        eyebrow="Resources"
-        title="Practical AI automation guides for real business workflows."
-        description="Explore starter articles on AI agents, website chatbots, voice automation, property management, knowledge bases, and human handoff design."
+        eyebrow={locale === "es" ? "Recursos" : "Resources"}
+        title={
+          locale === "es"
+            ? "Guías prácticas de automatización con IA para flujos reales."
+            : "Practical AI automation guides for real business workflows."
+        }
+        description={
+          locale === "es"
+            ? "Explora artículos sobre agentes de IA, chatbots web, voz, property management, bases de conocimiento y traspaso humano."
+            : "Explore starter articles on AI agents, website chatbots, voice automation, property management, knowledge bases, and human handoff design."
+        }
         primaryCta={{ href: "/book-demo", label: ctaLabels.bookDemo }}
-        secondaryCta={{ href: "/contact", label: "Contact Us" }}
+        secondaryCta={{
+          href: "/contact",
+          label: locale === "es" ? "Contactar" : "Contact Us",
+        }}
       />
 
       <section className="container py-16 sm:py-20">
         <SectionHeading
-          eyebrow="Starter Library"
-          title="Six practical reads to help you plan your first AI agent."
-          description="No CMS yet — these resources are powered by local static data and placeholder article pages that can evolve into a full content system later."
+          eyebrow={locale === "es" ? "Biblioteca inicial" : "Starter Library"}
+          title={
+            locale === "es"
+              ? "Seis lecturas prácticas para planear tu primer agente de IA."
+              : "Six practical reads to help you plan your first AI agent."
+          }
+          description={
+            locale === "es"
+              ? "Sin CMS por ahora: estos recursos usan datos estáticos locales y páginas placeholder."
+              : "No CMS yet — these resources are powered by local static data and placeholder article pages that can evolve into a full content system later."
+          }
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {resourceArticles.map((article, index) => (
@@ -62,16 +92,18 @@ export default function ResourcesPage() {
                 {article.excerpt}
               </p>
               <p className="mt-5 rounded-md border border-white/10 bg-[#050914]/80 px-3 py-2 text-xs text-slate-400">
-                Slug: /resources/{article.slug}
+                {locale === "es" ? "Ruta" : "Slug"}:{" "}
+                {locale === "es" ? "/resources/" : "/en/resources/"}
+                {article.slug}
               </p>
               <Button asChild variant="ghost" className="mt-5 justify-start px-0">
-                <Link href={`/resources/${article.slug}`}>
-                  Read placeholder article
+                <TrackedLink href={`/resources/${article.slug}`}>
+                  {locale === "es" ? "Leer artículo" : "Read placeholder article"}
                   <ArrowRight
                     className="size-4 transition group-hover:translate-x-0.5"
                     aria-hidden="true"
                   />
-                </Link>
+                </TrackedLink>
               </Button>
             </Reveal>
           ))}
@@ -86,11 +118,14 @@ export default function ResourcesPage() {
             </div>
             <div>
               <h2 className="text-2xl font-semibold text-white">
-                Want a guide on your exact workflow?
+                {locale === "es"
+                  ? "¿Quieres una guía sobre tu flujo exacto?"
+                  : "Want a guide on your exact workflow?"}
               </h2>
               <p className="mt-3 max-w-2xl leading-7 text-slate-400">
-                Share what you are trying to automate and AiVantage can help map
-                the first useful agent, handoff rules, and system connections.
+                {locale === "es"
+                  ? "Comparte lo que quieres automatizar y AiVantage puede mapear el primer agente útil, reglas de traspaso y conexiones."
+                  : "Share what you are trying to automate and AiVantage can help map the first useful agent, handoff rules, and system connections."}
               </p>
             </div>
             <Button asChild size="lg">
@@ -98,7 +133,7 @@ export default function ResourcesPage() {
                 href="/contact"
                 eventProperties={{ location: "resources_topic_cta" }}
               >
-                Request a Topic
+                {locale === "es" ? "Solicitar tema" : "Request a Topic"}
                 <ArrowRight className="size-4" aria-hidden="true" />
               </TrackedLink>
             </Button>

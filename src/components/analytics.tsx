@@ -6,6 +6,9 @@ import { forwardRef } from "react";
 import type { AnchorHTMLAttributes, MouseEvent, ReactNode } from "react";
 import type { LinkProps } from "next/link";
 
+import { useLocale } from "@/components/locale-provider";
+import { stripLocalePrefix } from "@/lib/locale";
+
 export const analyticsEvents = {
   bookDemoClick: "book_demo_click",
   contactClick: "contact_click",
@@ -110,15 +113,17 @@ export function trackCtaClick(
 }
 
 export function getCtaEventForHref(href: string): AnalyticsEventName | undefined {
-  if (href === "/book-demo" || href.startsWith("/book-demo?")) {
+  const normalizedHref = stripLocalePrefix(href);
+
+  if (normalizedHref === "/book-demo" || normalizedHref.startsWith("/book-demo?")) {
     return analyticsEvents.bookDemoClick;
   }
 
-  if (href === "/contact" || href.startsWith("/contact?")) {
+  if (normalizedHref === "/contact" || normalizedHref.startsWith("/contact?")) {
     return analyticsEvents.contactClick;
   }
 
-  if (href === "/use-cases" || href.startsWith("/use-cases?")) {
+  if (normalizedHref === "/use-cases" || normalizedHref.startsWith("/use-cases?")) {
     return analyticsEvents.useCaseClick;
   }
 
@@ -146,11 +151,13 @@ export const TrackedLink = forwardRef<HTMLAnchorElement, TrackedLinkProps>(
     ref,
   ) => {
     const hrefString = typeof href === "string" ? href : href.toString();
+    const { localizeHref } = useLocale();
+    const localizedHref = typeof href === "string" ? localizeHref(href) : href;
 
     return (
       <Link
         ref={ref}
-        href={href}
+        href={localizedHref}
         onClick={(event) => {
           trackCtaClick(eventName ?? getCtaEventForHref(hrefString), {
             href: hrefString,

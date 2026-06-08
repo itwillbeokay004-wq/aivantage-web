@@ -1,12 +1,17 @@
+"use client";
+
 import Link from "next/link";
 
+import { useLocale } from "@/components/locale-provider";
 import { cn } from "@/lib/utils";
 
 export function Logo({ className }: { className?: string }) {
+  const { localizeHref, locale } = useLocale();
+
   return (
     <Link
-      href="/"
-      aria-label="AiVantage home"
+      href={localizeHref("/")}
+      aria-label={locale === "es" ? "Inicio de AiVantage" : "AiVantage home"}
       className={cn("group inline-flex items-center gap-3", className)}
     >
       <span

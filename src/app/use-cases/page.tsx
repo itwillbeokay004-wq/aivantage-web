@@ -4,23 +4,41 @@ import { Reveal } from "@/components/reveal";
 import { UseCasesFilterGrid } from "@/components/sections/use-cases-filter-grid";
 import { CtaButton } from "@/components/ui/cta-button";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ctaLabels } from "@/data/site";
+import { ctaLabelsByLocale } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
+import { getRequestLocale } from "@/lib/server-locale";
 
-export const metadata = pageMetadata({
-  title: "Use Cases",
-  description:
-    "Explore practical AI agent use cases for support, sales, voice intake, scheduling, lead follow-up, and internal helpdesks.",
-  path: "/use-cases",
-});
+export async function generateMetadata() {
+  const locale = await getRequestLocale();
 
-export default function UseCasesPage() {
-  const workflowSignals = [
-    "Clear trigger",
-    "Approved answer source",
-    "System connection",
-    "Human fallback",
-  ];
+  return pageMetadata({
+    title: locale === "es" ? "Casos de uso" : "Use Cases",
+    description:
+      locale === "es"
+        ? "Explora casos prácticos de agentes de IA para soporte, ventas, intake de voz, reservas, seguimiento de leads y conocimiento interno."
+        : "Explore practical AI agent use cases for support, sales, voice intake, scheduling, lead follow-up, and internal helpdesks.",
+    path: "/use-cases",
+    locale,
+  });
+}
+
+export default async function UseCasesPage() {
+  const locale = await getRequestLocale();
+  const ctaLabels = ctaLabelsByLocale[locale];
+  const workflowSignals =
+    locale === "es"
+      ? [
+          "Disparador claro",
+          "Fuente aprobada",
+          "Conexión de sistema",
+          "Fallback humano",
+        ]
+      : [
+          "Clear trigger",
+          "Approved answer source",
+          "System connection",
+          "Human fallback",
+        ];
 
   return (
     <>
@@ -31,14 +49,17 @@ export default function UseCasesPage() {
           <Reveal>
             <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-100">
               <Sparkles className="size-3.5" aria-hidden="true" />
-              Practical Use Cases
+              {locale === "es" ? "Casos de uso prácticos" : "Practical Use Cases"}
             </div>
             <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
-              AI agent examples for practical workflows.
+              {locale === "es"
+                ? "Ejemplos de agentes de IA para flujos prácticos."
+                : "AI agent examples for practical workflows."}
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              Explore website intake, voice follow-up, support, property
-              operations, bookings, and internal knowledge.
+              {locale === "es"
+                ? "Explora intake web, seguimiento de voz, soporte, operaciones inmobiliarias, reservas y conocimiento interno."
+                : "Explore website intake, voice follow-up, support, property operations, bookings, and internal knowledge."}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <CtaButton href="/book-demo" size="lg">
@@ -58,10 +79,10 @@ export default function UseCasesPage() {
               <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-4">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
-                    Workflow Map
+                    {locale === "es" ? "Mapa de flujo" : "Workflow Map"}
                   </p>
                   <p className="mt-1 text-sm text-slate-400">
-                    Intent to outcome.
+                    {locale === "es" ? "De intención a resultado." : "Intent to outcome."}
                   </p>
                 </div>
                 <div className="grid size-11 place-items-center rounded-md bg-cyan-300/10 text-cyan-200">
@@ -81,7 +102,7 @@ export default function UseCasesPage() {
                     <div>
                       <p className="font-medium text-white">{signal}</p>
                       <p className="mt-1 text-sm text-slate-400">
-                        Defined before launch.
+                        {locale === "es" ? "Definido antes del lanzamiento." : "Defined before launch."}
                       </p>
                     </div>
                     <ArrowRight className="size-4 text-cyan-200" aria-hidden="true" />
@@ -93,19 +114,23 @@ export default function UseCasesPage() {
                 <div className="rounded-lg border border-white/10 bg-cyan-300/10 p-4">
                   <Filter className="size-5 text-cyan-200" aria-hidden="true" />
                   <p className="mt-3 text-sm font-semibold text-white">
-                    Filter by team need
+                    {locale === "es" ? "Filtra por necesidad" : "Filter by team need"}
                   </p>
                   <p className="mt-1 text-sm text-slate-400">
-                    Support, sales, operations, voice, or website.
+                    {locale === "es"
+                      ? "Soporte, ventas, operaciones, voz o web."
+                      : "Support, sales, operations, voice, or website."}
                   </p>
                 </div>
                 <div className="rounded-lg border border-white/10 bg-purple-400/10 p-4">
                   <Compass className="size-5 text-purple-200" aria-hidden="true" />
                   <p className="mt-3 text-sm font-semibold text-white">
-                    Map next steps
+                    {locale === "es" ? "Mapea próximos pasos" : "Map next steps"}
                   </p>
                   <p className="mt-1 text-sm text-slate-400">
-                    Trigger, systems, metric, escalation.
+                    {locale === "es"
+                      ? "Disparador, sistemas, métrica, escalación."
+                      : "Trigger, systems, metric, escalation."}
                   </p>
                 </div>
               </div>
@@ -116,9 +141,17 @@ export default function UseCasesPage() {
 
       <section className="container py-16">
         <SectionHeading
-          eyebrow="Examples"
-          title="Filter use cases by channel, team, or workflow."
-          description="Scan triggers, agent actions, systems, and outcomes."
+          eyebrow={locale === "es" ? "Ejemplos" : "Examples"}
+          title={
+            locale === "es"
+              ? "Filtra casos de uso por canal, equipo o flujo."
+              : "Filter use cases by channel, team, or workflow."
+          }
+          description={
+            locale === "es"
+              ? "Revisa disparadores, acciones del agente, sistemas y resultados."
+              : "Scan triggers, agent actions, systems, and outcomes."
+          }
         />
         <div className="mt-12">
           <UseCasesFilterGrid />
@@ -130,19 +163,22 @@ export default function UseCasesPage() {
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-100">
-                Workflow Strategy
+                {locale === "es" ? "Estrategia de flujo" : "Workflow Strategy"}
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
-                Have a workflow in mind? Let’s map it.
+                {locale === "es"
+                  ? "¿Tienes un flujo en mente? Vamos a mapearlo."
+                  : "Have a workflow in mind? Let’s map it."}
               </h2>
               <p className="mt-4 max-w-2xl leading-7 text-slate-300">
-                Bring the repetitive questions, missed calls, or slow handoffs.
-                We’ll turn them into a practical AI agent plan.
+                {locale === "es"
+                  ? "Trae preguntas repetitivas, llamadas perdidas o traspasos lentos. Los convertiremos en un plan práctico de agente IA."
+                  : "Bring the repetitive questions, missed calls, or slow handoffs. We’ll turn them into a practical AI agent plan."}
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
               <CtaButton href="/contact" size="lg">
-                Contact Us
+                {locale === "es" ? "Contactar" : "Contact Us"}
               </CtaButton>
               <CtaButton href="/book-demo" variant="secondary" size="lg">
                 {ctaLabels.bookDemo}

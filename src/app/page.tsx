@@ -8,13 +8,24 @@ import { HomeSecurityTrust } from "@/components/sections/home-security-trust";
 import { HomeTrustStrip } from "@/components/sections/home-trust-strip";
 import { HomeUseCasesPreview } from "@/components/sections/home-use-cases-preview";
 import { pageMetadata } from "@/lib/seo";
+import { getRequestLocale } from "@/lib/server-locale";
 
-export const metadata = pageMetadata({
-  title: "AI Agents for Support, Sales, and Operations",
-  description:
-    "AiVantage designs and deploys custom AI agents for website chat, voice calls, lead capture, appointment booking, support automation, and business workflows.",
-  path: "/",
-});
+export async function generateMetadata() {
+  const locale = await getRequestLocale();
+
+  return pageMetadata({
+    title:
+      locale === "es"
+        ? "Agentes de IA para soporte, ventas y operaciones"
+        : "AI agents for support, sales, and operations",
+    description:
+      locale === "es"
+        ? "AiVantage diseña y despliega agentes de IA personalizados para chat web, llamadas de voz, captura de leads, reservas, soporte y flujos de negocio."
+        : "AiVantage designs and deploys custom AI agents for website chat, voice calls, lead capture, booking, support, and business workflows.",
+    path: "/",
+    locale,
+  });
+}
 
 export default function HomePage() {
   return (

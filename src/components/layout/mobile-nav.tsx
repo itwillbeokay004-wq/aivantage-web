@@ -3,14 +3,24 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
+import { usePathname } from "next/navigation";
 
 import { TrackedLink } from "@/components/analytics";
+import { useLocale } from "@/components/locale-provider";
 import { Button } from "@/components/ui/button";
-import { navLinks, resourceNavLinks } from "@/data/site";
+import {
+  navLinksByLocale,
+  resourceNavLinksByLocale,
+} from "@/data/site";
+import { localizeHref, stripLocalePrefix } from "@/lib/locale";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const panelId = useId();
+  const pathname = usePathname();
+  const { locale } = useLocale();
+  const navLinks = navLinksByLocale[locale];
+  const resourceNavLinks = resourceNavLinksByLocale[locale];
 
   useEffect(() => {
     if (!isOpen) {
@@ -34,7 +44,15 @@ export function MobileNav() {
         type="button"
         className="grid size-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-950 shadow-sm"
         onClick={() => setIsOpen((value) => !value)}
-        aria-label={isOpen ? "Close navigation" : "Open navigation"}
+        aria-label={
+          isOpen
+            ? locale === "es"
+              ? "Cerrar navegación"
+              : "Close navigation"
+            : locale === "es"
+              ? "Abrir navegación"
+              : "Open navigation"
+        }
         aria-expanded={isOpen}
         aria-controls={panelId}
       >
@@ -53,23 +71,23 @@ export function MobileNav() {
             <nav className="flex flex-col gap-2" aria-label="Mobile navigation">
               {navLinks.map((link, index) => (
                 <div key={link.href} className="contents">
-                <Link
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="rounded-md px-3 py-3 text-sm font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  {link.label}
-                </Link>
+                  <Link
+                    href={localizeHref(link.href, locale)}
+                    onClick={() => setIsOpen(false)}
+                    className="rounded-md px-3 py-3 text-sm font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    {link.label}
+                  </Link>
                   {index === 0 ? (
                     <div className="rounded-xl border border-slate-200 bg-slate-50 p-2">
                       <p className="px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
-                        Resources
+                        {locale === "es" ? "Recursos" : "Resources"}
                       </p>
                       <div className="grid gap-1">
                         {resourceNavLinks.map((resourceLink) => (
                           <Link
                             key={resourceLink.href}
-                            href={resourceLink.href}
+                            href={localizeHref(resourceLink.href, locale)}
                             onClick={() => setIsOpen(false)}
                             className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-white hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                           >
@@ -82,14 +100,14 @@ export function MobileNav() {
                 </div>
               ))}
             </nav>
-            <div className="mt-2 grid gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 sm:grid-cols-3">
+            <div className="mt-2 grid gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 sm:grid-cols-4">
               <Button asChild variant="secondary">
                 <TrackedLink
                   href="/contact"
                   onClick={() => setIsOpen(false)}
                   eventProperties={{ location: "mobile_nav_login_placeholder" }}
                 >
-                  Login
+                  {locale === "es" ? "Entrar" : "Login"}
                 </TrackedLink>
               </Button>
               <Button asChild variant="secondary">
@@ -98,7 +116,7 @@ export function MobileNav() {
                   onClick={() => setIsOpen(false)}
                   eventProperties={{ location: "mobile_nav_signup" }}
                 >
-                  Sign up
+                  {locale === "es" ? "Registrarse" : "Sign up"}
                 </TrackedLink>
               </Button>
               <Button asChild>
@@ -107,8 +125,25 @@ export function MobileNav() {
                   onClick={() => setIsOpen(false)}
                   eventProperties={{ location: "mobile_nav" }}
                 >
-                  Book demo
+                  {locale === "es" ? "Reservar demo" : "Book demo"}
                 </TrackedLink>
+              </Button>
+              <Button asChild variant="secondary">
+                <Link
+                  href={
+                    locale === "es"
+                      ? localizeHref(stripLocalePrefix(pathname), "en")
+                      : stripLocalePrefix(pathname)
+                  }
+                  onClick={() => setIsOpen(false)}
+                  aria-label={
+                    locale === "es"
+                      ? "View site in English"
+                      : "Ver sitio en español"
+                  }
+                >
+                  {locale === "es" ? "English" : "Español"}
+                </Link>
               </Button>
             </div>
           </div>

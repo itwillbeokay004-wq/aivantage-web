@@ -17,8 +17,10 @@ import {
 import type { LucideIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { useLocale } from "@/components/locale-provider";
 import { cn } from "@/lib/utils";
 import { TrackedLink, analyticsEvents, trackCtaClick } from "@/components/analytics";
+import type { Locale } from "@/lib/locale";
 
 type QuickAction = {
   label: string;
@@ -43,41 +45,148 @@ type ChatApiResponse = {
 const MAX_CHAT_MESSAGE_LENGTH = 700;
 const aiChatEnabled = process.env.NEXT_PUBLIC_AI_CHAT_ENABLED === "true";
 
-const welcomeMessage =
-  "Hi, I’m the AiVantage assistant. I can help you explore AI agents, use cases, and demo options.";
-
-const genericFallbackResponse =
-  "I can help with AiVantage services, AI agents, automation use cases, pricing direction, and demo options. For detailed recommendations, booking a demo is the best next step.";
-
-const quickActions = [
-  {
-    label: "I need a website chatbot",
-    icon: MessageCircle,
-    response:
-      "A website chatbot can answer approved questions, capture lead details, route inquiries, and prepare clean handoffs for your team. A good first step is mapping your top visitor questions and desired conversion path.",
+const chatWidgetContent = {
+  es: {
+    title: "Asistente AiVantage",
+    welcomeMessage:
+      "Hola, soy el asistente de AiVantage. Puedo ayudarte a explorar agentes de IA, casos de uso y opciones para una demo.",
+    genericFallbackResponse:
+      "Puedo orientar sobre servicios de AiVantage, agentes de IA, automatización, precios y demos. Para una recomendación concreta, lo mejor es reservar una demo.",
+    modeLabel: {
+      ai: "Modo IA — generado en el servidor cuando está configurado.",
+      demo: "Asistente demo — todavía no es un agente de IA en vivo.",
+    },
+    quickActionsLabel: "Acciones rápidas",
+    closeAria: "Cerrar asistente de AiVantage",
+    continueToDemo: "Continuar a la demo",
+    typingAria: "El asistente está escribiendo",
+    inputLabel: "Pregunta al asistente de AiVantage",
+    inputAria: "Mensaje de chat",
+    disabledInput: "Elige una acción rápida para ver una respuesta",
+    placeholder: "Pregunta sobre agentes de IA, precios o demos",
+    sendAria: "Enviar mensaje",
+    aiFootnote:
+      "El modo IA usa una ruta segura del servidor. Los detalles sensibles deben esperar a la llamada demo.",
+    demoFootnote:
+      "Configura NEXT_PUBLIC_AI_CHAT_ENABLED=true y OPENAI_API_KEY para activar respuestas reales con IA.",
+    aiFallbackNotice: "El modo IA mostró una respuesta demo segura.",
+    aiUnavailableNotice:
+      "El modo IA no está disponible, así que se mostró una respuesta segura.",
+    triggerAria: "Abrir asistente de AiVantage",
+    triggerLabel: "Preguntar a AiVantage",
+    quickActions: [
+      {
+        label: "Necesito un chatbot web",
+        icon: MessageCircle,
+        response:
+          "Un chatbot web puede responder preguntas aprobadas, capturar datos de leads, enrutar consultas y preparar traspasos claros para tu equipo. El primer paso es mapear las preguntas frecuentes y el camino de conversión.",
+      },
+      {
+        label: "Quiero un asistente telefónico con IA",
+        icon: Mic2,
+        response:
+          "Un asistente telefónico con IA puede ayudar con recepción de llamadas, seguimiento de llamadas perdidas, FAQs, reservas y resúmenes. Empezaríamos definiendo tipos de llamada, reglas de escalado y límites de seguridad.",
+      },
+      {
+        label: "Necesito calificar leads",
+        icon: UserRoundCheck,
+        response:
+          "Un agente de calificación puede preguntar por necesidad, plazo, presupuesto, ubicación y encaje, y enviar un resumen estructurado a tu CRM o email para priorizar mejor.",
+      },
+      {
+        label: "Reservar demo",
+        icon: CalendarCheck,
+        response:
+          "Perfecto — la página de demo recopila tus objetivos, plazo y datos del equipo para que AiVantage prepare un siguiente paso útil.",
+        href: "/book-demo",
+      },
+    ],
   },
-  {
-    label: "I want an AI phone assistant",
-    icon: Mic2,
-    response:
-      "An AI phone assistant can help with call intake, missed-call follow-up, FAQs, appointment routing, and summaries. We would start by defining call types, escalation rules, and what the assistant should never handle alone.",
+  en: {
+    title: "AiVantage assistant",
+    welcomeMessage:
+      "Hi, I’m the AiVantage assistant. I can help you explore AI agents, use cases, and demo options.",
+    genericFallbackResponse:
+      "I can help with AiVantage services, AI agents, automation use cases, pricing direction, and demo options. For detailed recommendations, booking a demo is the best next step.",
+    modeLabel: {
+      ai: "AI assistant mode — generated server-side when configured.",
+      demo: "Demo assistant — not a live AI agent yet.",
+    },
+    quickActionsLabel: "Quick actions",
+    closeAria: "Close AiVantage assistant",
+    continueToDemo: "Continue to demo",
+    typingAria: "Assistant is typing",
+    inputLabel: "Ask the AiVantage assistant",
+    inputAria: "Chat message",
+    disabledInput: "Choose a quick action to preview a response",
+    placeholder: "Ask about AI agents, pricing, or demo options",
+    sendAria: "Send chat message",
+    aiFootnote:
+      "AI mode uses a secure server route. Sensitive details should wait for the demo call.",
+    demoFootnote:
+      "Set NEXT_PUBLIC_AI_CHAT_ENABLED=true and OPENAI_API_KEY to enable real AI responses.",
+    aiFallbackNotice: "AI mode fell back to a safe demo response.",
+    aiUnavailableNotice:
+      "AI mode is unavailable, so a safe fallback response was shown.",
+    triggerAria: "Open AiVantage assistant",
+    triggerLabel: "Ask AiVantage",
+    quickActions: [
+      {
+        label: "I need a website chatbot",
+        icon: MessageCircle,
+        response:
+          "A website chatbot can answer approved questions, capture lead details, route inquiries, and prepare clean handoffs for your team. A good first step is mapping your top visitor questions and desired conversion path.",
+      },
+      {
+        label: "I want an AI phone assistant",
+        icon: Mic2,
+        response:
+          "An AI phone assistant can help with call intake, missed-call follow-up, FAQs, appointment routing, and summaries. We would start by defining call types, escalation rules, and what the assistant should never handle alone.",
+      },
+      {
+        label: "I need lead qualification",
+        icon: UserRoundCheck,
+        response:
+          "A lead qualification agent can ask about needs, timeline, budget, location, and fit, then send a structured summary to your CRM or inbox so your team knows who to prioritize.",
+      },
+      {
+        label: "Book a demo",
+        icon: CalendarCheck,
+        response:
+          "Perfect — the demo page will collect your workflow goals, timeline, and team details so AiVantage can prepare a useful next step.",
+        href: "/book-demo",
+      },
+    ],
   },
+} satisfies Record<
+  Locale,
   {
-    label: "I need lead qualification",
-    icon: UserRoundCheck,
-    response:
-      "A lead qualification agent can ask about needs, timeline, budget, location, and fit, then send a structured summary to your CRM or inbox so your team knows who to prioritize.",
-  },
-  {
-    label: "Book a demo",
-    icon: CalendarCheck,
-    response:
-      "Perfect — the demo page will collect your workflow goals, timeline, and team details so AiVantage can prepare a useful next step.",
-    href: "/book-demo",
-  },
-] satisfies readonly QuickAction[];
+    title: string;
+    welcomeMessage: string;
+    genericFallbackResponse: string;
+    modeLabel: Record<"ai" | "demo", string>;
+    quickActionsLabel: string;
+    closeAria: string;
+    continueToDemo: string;
+    typingAria: string;
+    inputLabel: string;
+    inputAria: string;
+    disabledInput: string;
+    placeholder: string;
+    sendAria: string;
+    aiFootnote: string;
+    demoFootnote: string;
+    aiFallbackNotice: string;
+    aiUnavailableNotice: string;
+    triggerAria: string;
+    triggerLabel: string;
+    quickActions: readonly QuickAction[];
+  }
+>;
 
 export function ChatWidget() {
+  const { locale } = useLocale();
+  const content = chatWidgetContent[locale];
   const [isOpen, setIsOpen] = useState(false);
   const [activePrompt, setActivePrompt] = useState<string | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -140,7 +249,7 @@ export function ChatWidget() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    await submitPrompt(inputValue, genericFallbackResponse);
+    await submitPrompt(inputValue, content.genericFallbackResponse);
   }
 
   async function submitPrompt(prompt: string, fallbackResponse: string, href?: string) {
@@ -204,7 +313,7 @@ export function ChatWidget() {
       ]);
 
       if (data.mode === "fallback") {
-        setStatusMessage("AI mode fell back to a safe demo response.");
+        setStatusMessage(content.aiFallbackNotice);
       }
     } catch {
       setMessages((currentMessages) => [
@@ -215,15 +324,15 @@ export function ChatWidget() {
           content: fallbackResponse,
         },
       ]);
-      setStatusMessage("AI mode is unavailable, so a safe fallback response was shown.");
+      setStatusMessage(content.aiUnavailableNotice);
     } finally {
       setIsSending(false);
     }
   }
 
   const modeLabel = aiChatEnabled
-    ? "AI assistant mode — generated server-side when configured."
-    : "Demo assistant — not a live AI agent yet.";
+    ? content.modeLabel.ai
+    : content.modeLabel.demo;
 
   return (
     <div className="fixed bottom-4 right-4 z-50 sm:bottom-6 sm:right-6">
@@ -249,7 +358,7 @@ export function ChatWidget() {
                   </div>
                   <div>
                     <p id={panelTitleId} className="font-semibold text-slate-950">
-                      AiVantage assistant
+                      {content.title}
                     </p>
                     <p
                       id={panelDescriptionId}
@@ -264,7 +373,7 @@ export function ChatWidget() {
                   type="button"
                   onClick={closeWidget}
                   className="grid size-10 shrink-0 place-items-center rounded-md border border-slate-200 bg-white text-slate-500 transition hover:border-blue-200 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  aria-label="Close AiVantage assistant"
+                  aria-label={content.closeAria}
                 >
                   <X className="size-4" aria-hidden="true" />
                 </button>
@@ -277,16 +386,16 @@ export function ChatWidget() {
                   <Sparkles className="size-4" aria-hidden="true" />
                 </div>
                 <div className="rounded-xl border border-blue-100 bg-blue-50 p-3 text-sm leading-6 text-slate-700">
-                  {welcomeMessage}
+                  {content.welcomeMessage}
                 </div>
               </div>
 
               <div className="mt-5">
                 <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                  Quick actions
+                  {content.quickActionsLabel}
                 </p>
                 <div className="grid gap-2">
-                  {quickActions.map((action) => {
+                  {content.quickActions.map((action) => {
                     const Icon = action.icon;
                     const isActive = activePrompt === action.label;
 
@@ -353,7 +462,7 @@ export function ChatWidget() {
                               }}
                               onClick={closeWidget}
                             >
-                              Continue to demo
+                              {content.continueToDemo}
                             </TrackedLink>
                           </Button>
                         ) : null}
@@ -370,7 +479,7 @@ export function ChatWidget() {
                     <div className="rounded-xl border border-blue-100 bg-blue-50 px-4 py-3">
                       <div
                         className="flex h-6 items-center gap-1.5"
-                        aria-label="Assistant is typing"
+                        aria-label={content.typingAria}
                       >
                         {[0, 1, 2].map((dot) => (
                           <motion.span
@@ -408,27 +517,27 @@ export function ChatWidget() {
                 className="flex items-center gap-3 rounded-md border border-slate-200 bg-white p-3"
               >
                 <label htmlFor="site-chat-message" className="sr-only">
-                  Ask the AiVantage assistant
+                  {content.inputLabel}
                 </label>
                 <input
                   id="site-chat-message"
-                  aria-label="Chat message"
+                  aria-label={content.inputAria}
                   disabled={!aiChatEnabled || isSending}
                   maxLength={MAX_CHAT_MESSAGE_LENGTH}
                   value={
                     aiChatEnabled
                       ? inputValue
-                      : "Choose a quick action to preview a response"
+                      : content.disabledInput
                   }
                   onChange={(event) => setInputValue(event.target.value)}
-                  placeholder="Ask about AI agents, pricing, or demo options"
+                  placeholder={content.placeholder}
                   className="min-w-0 flex-1 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400 disabled:text-slate-400"
                 />
                 <button
                   type="submit"
                   disabled={!aiChatEnabled || isSending || !inputValue.trim()}
                   className="grid size-10 place-items-center rounded-md bg-primary text-primary-foreground transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-70"
-                  aria-label="Send chat message"
+                  aria-label={content.sendAria}
                 >
                   {isSending ? (
                     <Loader2 className="size-4 animate-spin" aria-hidden="true" />
@@ -439,8 +548,8 @@ export function ChatWidget() {
               </form>
               <p className="mt-2 text-xs text-slate-400">
                 {aiChatEnabled
-                  ? "AI mode uses a secure server route. Sensitive details should wait for the demo call."
-                  : "Set NEXT_PUBLIC_AI_CHAT_ENABLED=true and OPENAI_API_KEY to enable real AI responses."}
+                  ? content.aiFootnote
+                  : content.demoFootnote}
               </p>
             </div>
           </motion.section>
@@ -455,11 +564,11 @@ export function ChatWidget() {
           "ml-auto flex min-h-14 items-center gap-3 rounded-full border border-blue-700 bg-blue-600 px-5 py-3 font-semibold text-white shadow-2xl shadow-blue-950/20 transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           isOpen ? "hidden" : "flex",
         )}
-        aria-label="Open AiVantage assistant"
+        aria-label={content.triggerAria}
         aria-expanded={isOpen}
       >
         <MessageCircle className="size-5" aria-hidden="true" />
-        <span className="hidden sm:inline">Ask AiVantage</span>
+        <span className="hidden sm:inline">{content.triggerLabel}</span>
       </button>
     </div>
   );

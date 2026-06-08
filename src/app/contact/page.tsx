@@ -6,39 +6,60 @@ import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { siteConfig } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
+import { getRequestLocale } from "@/lib/server-locale";
 
-export const metadata = pageMetadata({
-  title: "Contact",
-  description:
-    "Contact AiVantage to discuss AI automation, AI agents, voice workflows, and custom business automation.",
-  path: "/contact",
-});
+export async function generateMetadata() {
+  const locale = await getRequestLocale();
 
-const contactCards = [
-  {
-    icon: Mail,
-    title: "Email",
-    description: siteConfig.email,
-  },
-  {
-    icon: MessageSquare,
-    title: "Response time",
-    description: "Within one business day",
-  },
-  {
-    icon: MapPin,
-    title: "Serving",
-    description: "Remote-first teams across the US and Europe",
-  },
-];
+  return pageMetadata({
+    title: locale === "es" ? "Contacto" : "Contact",
+    description:
+      locale === "es"
+        ? "Contacta con AiVantage para hablar de automatización con IA, agentes de IA, voz y flujos personalizados."
+        : "Contact AiVantage to discuss AI automation, AI agents, voice workflows, and custom business automation.",
+    path: "/contact",
+    locale,
+  });
+}
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const locale = await getRequestLocale();
+  const contactCards = [
+    {
+      icon: Mail,
+      title: "Email",
+      description: siteConfig.email,
+    },
+    {
+      icon: MessageSquare,
+      title: locale === "es" ? "Tiempo de respuesta" : "Response time",
+      description:
+        locale === "es" ? "En un día hábil" : "Within one business day",
+    },
+    {
+      icon: MapPin,
+      title: locale === "es" ? "Cobertura" : "Serving",
+      description:
+        locale === "es"
+          ? "Equipos remote-first en Estados Unidos y Europa"
+          : "Remote-first teams across the US and Europe",
+    },
+  ];
+
   return (
     <>
       <PageHero
-        eyebrow="Contact"
-        title="Talk with AiVantage about your first AI agent."
-        description="Share the workflow you want to improve and we will help identify the fastest path to a useful, controlled launch."
+        eyebrow={locale === "es" ? "Contacto" : "Contact"}
+        title={
+          locale === "es"
+            ? "Habla con AiVantage sobre tu primer agente de IA."
+            : "Talk with AiVantage about your first AI agent."
+        }
+        description={
+          locale === "es"
+            ? "Comparte el flujo que quieres mejorar y te ayudaremos a identificar el camino más rápido hacia un lanzamiento útil y controlado."
+            : "Share the workflow you want to improve and we will help identify the fastest path to a useful, controlled launch."
+        }
       />
 
       <section className="container py-16">
@@ -46,9 +67,17 @@ export default function ContactPage() {
           <div>
             <SectionHeading
               align="left"
-              eyebrow="Start here"
-              title="A short note is enough."
-              description="Tell us about your team, systems, customer volume, and where manual work is slowing you down."
+              eyebrow={locale === "es" ? "Empieza aquí" : "Start here"}
+              title={
+                locale === "es"
+                  ? "Una nota breve es suficiente."
+                  : "A short note is enough."
+              }
+              description={
+                locale === "es"
+                  ? "Cuéntanos sobre tu equipo, sistemas, volumen de clientes y dónde el trabajo manual te frena."
+                  : "Tell us about your team, systems, customer volume, and where manual work is slowing you down."
+              }
             />
             <div className="mt-8 grid gap-3">
               {contactCards.map((card) => {

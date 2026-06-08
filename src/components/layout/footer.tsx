@@ -1,11 +1,18 @@
+"use client";
+
 import Link from "next/link";
 
 import { TrackedLink } from "@/components/analytics";
+import { useLocale } from "@/components/locale-provider";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
-import { footerGroups, siteConfig } from "@/data/site";
+import { footerGroupsByLocale, siteConfig } from "@/data/site";
+import { localizeHref } from "@/lib/locale";
 
 export function Footer() {
+  const { locale } = useLocale();
+  const footerGroups = footerGroupsByLocale[locale];
+
   return (
     <footer className="border-t border-slate-200 bg-white">
       <div className="container py-14">
@@ -13,18 +20,19 @@ export function Footer() {
           <div className="max-w-lg">
             <Logo />
             <p className="mt-5 text-sm leading-7 text-slate-600">
-              Production-ready AI agents for support, sales, operations, and
-              customer engagement.
+              {locale === "es"
+                ? "Agentes de IA listos para producción para soporte, ventas, operaciones y experiencia del cliente."
+                : "Production-ready AI agents for support, sales, operations, and customer engagement."}
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button asChild>
                 <TrackedLink href="/book-demo" eventProperties={{ location: "footer" }}>
-                  Book a Demo
+                  {locale === "es" ? "Reservar demo" : "Book a Demo"}
                 </TrackedLink>
               </Button>
               <Button asChild variant="secondary">
                 <TrackedLink href="/contact" eventProperties={{ location: "footer" }}>
-                  Start Free Consultation
+                  {locale === "es" ? "Consulta gratuita" : "Start Free Consultation"}
                 </TrackedLink>
               </Button>
             </div>
@@ -37,7 +45,7 @@ export function Footer() {
                   {group.links.map((link) => (
                     <li key={link.href}>
                       <Link
-                        href={link.href}
+                        href={localizeHref(link.href, locale)}
                         className="text-sm text-slate-600 transition hover:text-blue-700"
                       >
                         {link.label}
@@ -50,7 +58,11 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-12 flex flex-col gap-3 border-t border-slate-200 pt-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-          <p>Copyright {new Date().getFullYear()} AiVantage. All rights reserved.</p>
+          <p>
+            {locale === "es"
+              ? `Copyright ${new Date().getFullYear()} AiVantage. Todos los derechos reservados.`
+              : `Copyright ${new Date().getFullYear()} AiVantage. All rights reserved.`}
+          </p>
           <a href={`mailto:${siteConfig.email}`} className="hover:text-blue-700">
             {siteConfig.email}
           </a>

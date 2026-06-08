@@ -3,22 +3,75 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { CheckCircle2, Mic2, PhoneCall, UserRound } from "lucide-react";
 
-const transcriptSnippets = [
-  {
-    speaker: "Caller",
-    text: "Hi, I need to schedule a tour for a two-bedroom unit.",
+import { useLocale } from "@/components/locale-provider";
+import type { Locale } from "@/lib/locale";
+
+const voiceCardContent = {
+  es: {
+    eyebrow: "Llamada entrante",
+    title: "Recepción con agente de voz",
+    badge: "Llamada de ejemplo",
+    caller: "Llamante desconocido",
+    elapsed: "00:42 transcurridos",
+    outcomeTitle: "Resultado resuelto",
+    outcome:
+      "Lead calificado, preferencia de tour capturada, nota CRM redactada y traspaso preparado para el equipo de leasing.",
+    transcriptSnippets: [
+      {
+        speaker: "Llamante",
+        text: "Hola, necesito agendar un tour para una unidad de dos habitaciones.",
+      },
+      {
+        speaker: "Agente IA",
+        text: "Puedo ayudarte con eso. ¿Qué día te funciona mejor y cuándo esperas mudarte?",
+      },
+      {
+        speaker: "Llamante",
+        text: "Este fin de semana si es posible. La mudanza sería el próximo mes.",
+      },
+    ],
   },
-  {
-    speaker: "AI Agent",
-    text: "I can help with that. What day works best and how soon are you hoping to move?",
+  en: {
+    eyebrow: "Incoming call",
+    title: "Voice Agent Intake",
+    badge: "Example call",
+    caller: "Unknown caller",
+    elapsed: "00:42 elapsed",
+    outcomeTitle: "Resolved outcome",
+    outcome:
+      "Lead qualified, tour preference captured, CRM note drafted, and handoff prepared for the leasing team.",
+    transcriptSnippets: [
+      {
+        speaker: "Caller",
+        text: "Hi, I need to schedule a tour for a two-bedroom unit.",
+      },
+      {
+        speaker: "AI Agent",
+        text: "I can help with that. What day works best and how soon are you hoping to move?",
+      },
+      {
+        speaker: "Caller",
+        text: "This weekend if possible. Move-in would be next month.",
+      },
+    ],
   },
+} satisfies Record<
+  Locale,
   {
-    speaker: "Caller",
-    text: "This weekend if possible. Move-in would be next month.",
-  },
-];
+    eyebrow: string;
+    title: string;
+    badge: string;
+    caller: string;
+    elapsed: string;
+    outcomeTitle: string;
+    outcome: string;
+    transcriptSnippets: readonly { speaker: string; text: string }[];
+  }
+>;
 
 export function VoiceAgentCard() {
+  const { locale } = useLocale();
+  const content = voiceCardContent[locale];
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -31,12 +84,12 @@ export function VoiceAgentCard() {
               <PhoneCall className="size-6" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-purple-100">Incoming call</p>
-              <h3 className="text-xl font-semibold text-white">Voice Agent Intake</h3>
+              <p className="text-sm font-semibold text-purple-100">{content.eyebrow}</p>
+              <h3 className="text-xl font-semibold text-white">{content.title}</h3>
             </div>
           </div>
           <span className="w-fit rounded-md border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs font-semibold text-emerald-200">
-            Example call
+            {content.badge}
           </span>
         </div>
 
@@ -44,8 +97,8 @@ export function VoiceAgentCard() {
           <div className="flex items-center gap-3">
             <UserRound className="size-5 text-cyan-200" />
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-medium text-white">Unknown caller</p>
-              <p className="text-xs text-slate-400">00:42 elapsed</p>
+              <p className="truncate text-sm font-medium text-white">{content.caller}</p>
+              <p className="text-xs text-slate-400">{content.elapsed}</p>
             </div>
             <Mic2 className="size-5 text-purple-200" />
           </div>
@@ -70,7 +123,7 @@ export function VoiceAgentCard() {
         </div>
 
         <div className="mt-4 space-y-3">
-          {transcriptSnippets.map((snippet, index) => (
+          {content.transcriptSnippets.map((snippet, index) => (
             <motion.div
               key={`${snippet.speaker}-${snippet.text}`}
               initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
@@ -94,10 +147,9 @@ export function VoiceAgentCard() {
           <div className="flex items-start gap-3">
             <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-emerald-300" />
             <div>
-              <p className="font-semibold text-white">Resolved outcome</p>
+              <p className="font-semibold text-white">{content.outcomeTitle}</p>
               <p className="mt-2 text-sm leading-6 text-slate-300">
-                Lead qualified, tour preference captured, CRM note drafted, and
-                handoff prepared for the leasing team.
+                {content.outcome}
               </p>
             </div>
           </div>

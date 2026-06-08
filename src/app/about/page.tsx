@@ -11,6 +11,7 @@ import {
   Sparkles,
   Workflow,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 import { TrackedLink } from "@/components/analytics";
 import { CtaBand } from "@/components/cta-band";
@@ -19,85 +20,198 @@ import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { siteConfig } from "@/data/site";
+import type { Locale } from "@/lib/locale";
 import { pageMetadata } from "@/lib/seo";
+import { getRequestLocale } from "@/lib/server-locale";
 
-export const metadata = pageMetadata({
-  title: "About AiVantage",
-  description:
-    "Learn how AiVantage helps businesses design, deploy, and improve practical AI agents for support, sales, operations, and customer engagement.",
-  path: "/about",
-});
+export async function generateMetadata() {
+  const locale = await getRequestLocale();
 
-const principles = [
-  {
-    icon: ClipboardList,
-    title: "Workflow before wow-factor",
-    description: "Start with the process before choosing tools.",
-  },
-  {
-    icon: LockKeyhole,
-    title: "Control is part of quality",
-    description: "Use approved knowledge, fallbacks, handoffs, and boundaries.",
-  },
-  {
-    icon: BarChart3,
-    title: "Launch, measure, improve",
-    description: "Track outcomes and refine from real conversations.",
-  },
-];
+  return pageMetadata({
+    title: locale === "es" ? "Sobre AiVantage" : "About AiVantage",
+    description:
+      locale === "es"
+        ? "Conoce cómo AiVantage ayuda a diseñar, desplegar y mejorar agentes de IA prácticos para soporte, ventas, operaciones y experiencia del cliente."
+        : "Learn how AiVantage helps businesses design, deploy, and improve practical AI agents for support, sales, operations, and customer engagement.",
+    path: "/about",
+    locale,
+  });
+}
 
-const partnerSteps = [
-  {
-    title: "Map",
-    description: "Find where customers wait and teams repeat work.",
+const aboutContent = {
+  es: {
+    principles: [
+      {
+        icon: ClipboardList,
+        title: "Flujo antes que espectáculo",
+        description: "Empezamos con el proceso antes de elegir herramientas.",
+      },
+      {
+        icon: LockKeyhole,
+        title: "Control como parte de calidad",
+        description: "Usamos conocimiento aprobado, fallbacks, traspasos y límites.",
+      },
+      {
+        icon: BarChart3,
+        title: "Lanzar, medir, mejorar",
+        description: "Medimos resultados y refinamos con conversaciones reales.",
+      },
+    ],
+    partnerSteps: [
+      {
+        title: "Mapear",
+        description: "Encontrar dónde esperan clientes y dónde se repite trabajo.",
+      },
+      {
+        title: "Diseñar",
+        description: "Dar forma al agente, fuentes, reglas, integraciones y métricas.",
+      },
+      {
+        title: "Lanzar",
+        description: "Desplegar, probar comportamiento y preparar al equipo.",
+      },
+      {
+        title: "Optimizar",
+        description: "Ajustar respuestas, enrutamiento y el siguiente flujo.",
+      },
+    ],
+    focusAreas: [
+      "Agentes de chat web que califican demanda",
+      "Asistentes de voz para llamadas perdidas e intake",
+      "Agentes de conocimiento basados en contenido aprobado",
+      "Automatización de citas y seguimiento",
+      "Traspasos humanos con resúmenes",
+      "Analítica que muestra qué resolvieron los agentes",
+    ],
+    trustPoints: [
+      {
+        icon: Bot,
+        value: "Custom",
+        label: "agentes alrededor de tu flujo",
+      },
+      {
+        icon: Workflow,
+        value: "Multi-step",
+        label: "automatización más allá de respuestas simples",
+      },
+      {
+        icon: Handshake,
+        value: "Humano listo",
+        label: "traspasos para momentos importantes",
+      },
+      {
+        icon: Radar,
+        value: "Medido",
+        label: "ciclos de rendimiento y mejora",
+      },
+    ],
+    visual: {
+      eyebrow: "Centro de mando de agentes",
+      title: "Mapa de flujo del negocio",
+      layers: ["Intención", "Conocimiento", "Acción"],
+      layerCopy: "La capa {number} revisa el camino antes de continuar.",
+      outcomeTitle: "Resultado de ejemplo",
+      outcome:
+        "El agente califica intención, reserva el siguiente paso y envía un resumen.",
+    },
   },
-  {
-    title: "Design",
-    description: "Shape the agent, sources, rules, integrations, and metrics.",
+  en: {
+    principles: [
+      {
+        icon: ClipboardList,
+        title: "Workflow before wow-factor",
+        description: "Start with the process before choosing tools.",
+      },
+      {
+        icon: LockKeyhole,
+        title: "Control is part of quality",
+        description: "Use approved knowledge, fallbacks, handoffs, and boundaries.",
+      },
+      {
+        icon: BarChart3,
+        title: "Launch, measure, improve",
+        description: "Track outcomes and refine from real conversations.",
+      },
+    ],
+    partnerSteps: [
+      {
+        title: "Map",
+        description: "Find where customers wait and teams repeat work.",
+      },
+      {
+        title: "Design",
+        description: "Shape the agent, sources, rules, integrations, and metrics.",
+      },
+      {
+        title: "Launch",
+        description: "Deploy, test behavior, and prepare your team.",
+      },
+      {
+        title: "Optimize",
+        description: "Tune answers, routing, and the next workflow.",
+      },
+    ],
+    focusAreas: [
+      "Website chat agents that qualify demand",
+      "Voice assistants for missed calls and intake",
+      "Knowledge agents grounded in approved content",
+      "Appointment and follow-up automation",
+      "Human handoff workflows with summaries",
+      "Analytics that show what agents handled",
+    ],
+    trustPoints: [
+      {
+        icon: Bot,
+        value: "Custom",
+        label: "agents around your workflow",
+      },
+      {
+        icon: Workflow,
+        value: "Multi-step",
+        label: "automation beyond simple replies",
+      },
+      {
+        icon: Handshake,
+        value: "Human-ready",
+        label: "handoff paths for important moments",
+      },
+      {
+        icon: Radar,
+        value: "Measured",
+        label: "performance and improvement loops",
+      },
+    ],
+    visual: {
+      eyebrow: "Agent command center",
+      title: "Business workflow map",
+      layers: ["Intent", "Knowledge", "Action"],
+      layerCopy: "Layer {number} checks the path before automation continues.",
+      outcomeTitle: "Example outcome",
+      outcome:
+        "The agent qualifies intent, books the next step, and sends a summary.",
+    },
   },
+} satisfies Record<
+  Locale,
   {
-    title: "Launch",
-    description: "Deploy, test behavior, and prepare your team.",
-  },
-  {
-    title: "Optimize",
-    description: "Tune answers, routing, and the next workflow.",
-  },
-];
+    principles: readonly { icon: LucideIcon; title: string; description: string }[];
+    partnerSteps: readonly { title: string; description: string }[];
+    focusAreas: readonly string[];
+    trustPoints: readonly { icon: LucideIcon; value: string; label: string }[];
+    visual: {
+      eyebrow: string;
+      title: string;
+      layers: readonly string[];
+      layerCopy: string;
+      outcomeTitle: string;
+      outcome: string;
+    };
+  }
+>;
 
-const focusAreas = [
-  "Website chat agents that qualify demand",
-  "Voice assistants for missed calls and intake",
-  "Knowledge agents grounded in approved content",
-  "Appointment and follow-up automation",
-  "Human handoff workflows with summaries",
-  "Analytics that show what agents handled",
-];
+function AboutSystemVisual({ locale }: { locale: Locale }) {
+  const visual = aboutContent[locale].visual;
 
-const trustPoints = [
-  {
-    icon: Bot,
-    value: "Custom",
-    label: "agents around your workflow",
-  },
-  {
-    icon: Workflow,
-    value: "Multi-step",
-    label: "automation beyond simple replies",
-  },
-  {
-    icon: Handshake,
-    value: "Human-ready",
-    label: "handoff paths for important moments",
-  },
-  {
-    icon: Radar,
-    value: "Measured",
-    label: "performance and improvement loops",
-  },
-];
-
-function AboutSystemVisual() {
   return (
     <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#07101f] p-5 shadow-glow">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_36%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.14),transparent_34%)]" />
@@ -105,10 +219,10 @@ function AboutSystemVisual() {
         <div className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.04] p-4">
           <div>
             <p className="text-xs uppercase tracking-[0.18em] text-cyan-200">
-              Agent command center
+              {visual.eyebrow}
             </p>
             <h2 className="mt-2 text-xl font-semibold text-white">
-              Business workflow map
+              {visual.title}
             </h2>
           </div>
           <div className="grid size-12 place-items-center rounded-full bg-cyan-300/10">
@@ -117,7 +231,7 @@ function AboutSystemVisual() {
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">
-          {["Intent", "Knowledge", "Action"].map((item, index) => (
+          {visual.layers.map((item, index) => (
             <div
               key={item}
               className="rounded-lg border border-white/10 bg-black/20 p-4"
@@ -125,7 +239,7 @@ function AboutSystemVisual() {
               <div className="mb-4 h-1.5 rounded-full bg-gradient-to-r from-cyan-300 to-purple-300" />
               <p className="text-sm font-semibold text-white">{item}</p>
               <p className="mt-2 text-xs leading-5 text-slate-400">
-                Layer {index + 1} checks the path before automation continues.
+                {visual.layerCopy.replace("{number}", `${index + 1}`)}
               </p>
             </div>
           ))}
@@ -136,10 +250,10 @@ function AboutSystemVisual() {
             <MessageSquareText className="mt-1 size-5 shrink-0 text-cyan-200" />
             <div>
               <p className="text-sm font-semibold text-white">
-                Example outcome
+                {visual.outcomeTitle}
               </p>
               <p className="mt-1 text-sm leading-6 text-slate-300">
-                The agent qualifies intent, books the next step, and sends a summary.
+                {visual.outcome}
               </p>
             </div>
           </div>
@@ -149,15 +263,32 @@ function AboutSystemVisual() {
   );
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const locale = await getRequestLocale();
+  const content = aboutContent[locale];
+
   return (
     <>
       <PageHero
-        eyebrow="About AiVantage"
-        title="AI automation built for useful work, not theater."
-        description={`${siteConfig.name} turns repeatable conversations and tasks into managed AI agent workflows.`}
-        primaryCta={{ href: "/book-demo", label: "Book a Demo" }}
-        secondaryCta={{ href: "/use-cases", label: "See Use Cases" }}
+        eyebrow={locale === "es" ? "Sobre AiVantage" : "About AiVantage"}
+        title={
+          locale === "es"
+            ? "Automatización con IA para trabajo útil, no teatro."
+            : "AI automation built for useful work, not theater."
+        }
+        description={
+          locale === "es"
+            ? `${siteConfig.name} convierte conversaciones y tareas repetibles en flujos gestionados con agentes de IA.`
+            : `${siteConfig.name} turns repeatable conversations and tasks into managed AI agent workflows.`
+        }
+        primaryCta={{
+          href: "/book-demo",
+          label: locale === "es" ? "Reservar demo" : "Book a Demo",
+        }}
+        secondaryCta={{
+          href: "/use-cases",
+          label: locale === "es" ? "Ver casos de uso" : "See Use Cases",
+        }}
       />
 
       <section className="container py-16">
@@ -165,9 +296,17 @@ export default function AboutPage() {
           <Reveal>
             <SectionHeading
               align="left"
-              eyebrow="Our point of view"
-              title="The best AI agents are designed around the way your business already moves."
-              description="Faster responses, cleaner handoffs, fewer repeat questions, and measurable lift."
+              eyebrow={locale === "es" ? "Nuestro enfoque" : "Our point of view"}
+              title={
+                locale === "es"
+                  ? "Los mejores agentes se diseñan alrededor de cómo ya se mueve tu negocio."
+                  : "The best AI agents are designed around the way your business already moves."
+              }
+              description={
+                locale === "es"
+                  ? "Respuestas más rápidas, traspasos limpios, menos preguntas repetidas y mejora medible."
+                  : "Faster responses, cleaner handoffs, fewer repeat questions, and measurable lift."
+              }
             />
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg">
@@ -175,7 +314,7 @@ export default function AboutPage() {
                   href="/contact"
                   eventProperties={{ location: "about_point_of_view" }}
                 >
-                  Start Free Consultation
+                  {locale === "es" ? "Consulta gratuita" : "Start Free Consultation"}
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </TrackedLink>
               </Button>
@@ -184,13 +323,13 @@ export default function AboutPage() {
                   href="/platform"
                   eventProperties={{ location: "about_point_of_view" }}
                 >
-                  Explore Platform
+                  {locale === "es" ? "Explorar plataforma" : "Explore Platform"}
                 </TrackedLink>
               </Button>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <AboutSystemVisual />
+            <AboutSystemVisual locale={locale} />
           </Reveal>
         </div>
       </section>
@@ -198,12 +337,20 @@ export default function AboutPage() {
       <section className="border-y border-white/10 bg-white/[0.025]">
         <div className="container py-16">
           <SectionHeading
-            eyebrow="How we think"
-            title="Principles that keep AI automation grounded."
-            description="Useful, measurable, and controlled enough for real workflows."
+            eyebrow={locale === "es" ? "Cómo pensamos" : "How we think"}
+            title={
+              locale === "es"
+                ? "Principios para mantener la IA aterrizada."
+                : "Principles that keep AI automation grounded."
+            }
+            description={
+              locale === "es"
+                ? "Útil, medible y controlada para flujos reales."
+                : "Useful, measurable, and controlled enough for real workflows."
+            }
           />
           <div className="mt-12 grid gap-4 md:grid-cols-3">
-            {principles.map((principle, index) => {
+            {content.principles.map((principle, index) => {
               const Icon = principle.icon;
               return (
                 <Reveal
@@ -230,13 +377,21 @@ export default function AboutPage() {
           <Reveal>
             <SectionHeading
               align="left"
-              eyebrow="Working together"
-              title="A practical path from idea to production agent."
-              description="Bring the context. We shape the workflow and launch path."
+              eyebrow={locale === "es" ? "Trabajando juntos" : "Working together"}
+              title={
+                locale === "es"
+                  ? "Un camino práctico de idea a agente en producción."
+                  : "A practical path from idea to production agent."
+              }
+              description={
+                locale === "es"
+                  ? "Trae el contexto. Damos forma al flujo y camino de lanzamiento."
+                  : "Bring the context. We shape the workflow and launch path."
+              }
             />
           </Reveal>
           <div className="space-y-3">
-            {partnerSteps.map((step, index) => (
+            {content.partnerSteps.map((step, index) => (
               <Reveal
                 key={step.title}
                 delay={index * 0.04}
@@ -263,13 +418,21 @@ export default function AboutPage() {
             <Reveal>
               <SectionHeading
                 align="left"
-                eyebrow="Where we help"
-                title="Focused on the workflows that create immediate business leverage."
-                description="Start with one real bottleneck, then expand what works."
+                eyebrow={locale === "es" ? "Dónde ayudamos" : "Where we help"}
+                title={
+                  locale === "es"
+                    ? "Enfocados en flujos que crean impacto inmediato."
+                    : "Focused on the workflows that create immediate business leverage."
+                }
+                description={
+                  locale === "es"
+                    ? "Empieza con un cuello de botella real y expande lo que funciona."
+                    : "Start with one real bottleneck, then expand what works."
+                }
               />
             </Reveal>
             <div className="grid gap-3 sm:grid-cols-2">
-              {focusAreas.map((area, index) => (
+              {content.focusAreas.map((area, index) => (
                 <Reveal
                   key={area}
                   delay={index * 0.03}
@@ -286,7 +449,7 @@ export default function AboutPage() {
 
       <section className="container py-16">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {trustPoints.map((point, index) => {
+          {content.trustPoints.map((point, index) => {
             const Icon = point.icon;
             return (
               <Reveal
@@ -304,8 +467,16 @@ export default function AboutPage() {
       </section>
 
       <CtaBand
-        title="Let’s build the first agent your business can actually use."
-        description="Book a demo and we’ll map one high-value workflow."
+        title={
+          locale === "es"
+            ? "Construyamos el primer agente que tu negocio realmente usará."
+            : "Let’s build the first agent your business can actually use."
+        }
+        description={
+          locale === "es"
+            ? "Reserva una demo y mapearemos un flujo de alto valor."
+            : "Book a demo and we’ll map one high-value workflow."
+        }
       />
     </>
   );

@@ -10,15 +10,29 @@ import {
   Workflow,
 } from "lucide-react";
 
-const workflowNodes = ["Lead", "Score", "Book", "Follow up"];
-const analytics = [
-  { label: "Answered", value: "1,248" },
-  { label: "Booked", value: "186" },
-  { label: "Handoffs", value: "42" },
-];
+import { useLocale } from "@/components/locale-provider";
+
+const workflowNodes = {
+  es: ["Lead", "Calificar", "Reservar", "Seguimiento"],
+  en: ["Lead", "Score", "Book", "Follow up"],
+} as const;
+
+const analytics = {
+  es: [
+    { label: "Respondidas", value: "1,248" },
+    { label: "Reservadas", value: "186" },
+    { label: "Traspasos", value: "42" },
+  ],
+  en: [
+    { label: "Answered", value: "1,248" },
+    { label: "Booked", value: "186" },
+    { label: "Handoffs", value: "42" },
+  ],
+} as const;
 
 export function HomeProductMockup() {
   const shouldReduceMotion = useReducedMotion();
+  const { locale } = useLocale();
 
   return (
     <div className="relative mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-panel sm:p-5">
@@ -37,17 +51,23 @@ export function HomeProductMockup() {
                 <Bot className="size-5" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-slate-950">Chat agent</p>
-                <p className="text-xs text-slate-500">Website concierge</p>
+                <p className="text-sm font-semibold text-slate-950">
+                  {locale === "es" ? "Agente de chat" : "Chat agent"}
+                </p>
+                <p className="text-xs text-slate-500">
+                  {locale === "es" ? "Concierge web" : "Website concierge"}
+                </p>
               </div>
             </div>
             <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
-              Live
+              {locale === "es" ? "Activo" : "Live"}
             </span>
           </div>
           <div className="mt-5 space-y-3">
             <div className="ml-auto max-w-[82%] rounded-lg bg-slate-100 p-3 text-sm leading-6 text-slate-700">
-              Can you help me book a consultation for next week?
+              {locale === "es"
+                ? "¿Puedes ayudarme a reservar una consulta para la próxima semana?"
+                : "Can you help me book a consultation for next week?"}
             </div>
             <motion.div
               initial={shouldReduceMotion ? false : { opacity: 0.5 }}
@@ -59,8 +79,9 @@ export function HomeProductMockup() {
               }
               className="max-w-[88%] rounded-lg border border-blue-100 bg-blue-50 p-3 text-sm leading-6 text-slate-700"
             >
-              Yes — I found openings, captured the use case, and prepared the
-              next step.
+              {locale === "es"
+                ? "Sí — encontré horarios, capturé el caso de uso y preparé el siguiente paso."
+                : "Yes — I found openings, captured the use case, and prepared the next step."}
             </motion.div>
           </div>
         </motion.div>
@@ -76,14 +97,20 @@ export function HomeProductMockup() {
               <Mic2 className="size-5" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-slate-950">Voice agent</p>
-              <p className="text-xs text-slate-500">Call intake and routing</p>
+              <p className="text-sm font-semibold text-slate-950">
+                {locale === "es" ? "Agente de voz" : "Voice agent"}
+              </p>
+              <p className="text-xs text-slate-500">
+                {locale === "es" ? "Intake y enrutamiento" : "Call intake and routing"}
+              </p>
             </div>
           </div>
           <div className="mt-5 flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-3">
             <PhoneCall className="size-5 text-blue-700" />
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-medium text-slate-950">Inbound call</p>
+              <p className="truncate text-sm font-medium text-slate-950">
+                {locale === "es" ? "Llamada entrante" : "Inbound call"}
+              </p>
               <div className="mt-2 flex h-2 gap-1">
                 {[42, 70, 54, 90, 62, 78, 48].map((height, index) => (
                   <motion.span
@@ -114,10 +141,10 @@ export function HomeProductMockup() {
         >
           <div className="mb-4 flex items-center gap-3 text-sm font-semibold text-slate-950">
             <Workflow className="size-5 text-blue-700" />
-            Workflow nodes
+            {locale === "es" ? "Nodos de flujo" : "Workflow nodes"}
           </div>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {workflowNodes.map((node, index) => (
+            {workflowNodes[locale].map((node, index) => (
               <motion.div
                 key={node}
                 initial={shouldReduceMotion ? false : { opacity: 0.5, scale: 0.96 }}
@@ -144,10 +171,10 @@ export function HomeProductMockup() {
         >
           <div className="mb-4 flex items-center gap-3 text-sm font-semibold text-slate-950">
             <BarChart3 className="size-5 text-blue-700" />
-            Analytics cards
+            {locale === "es" ? "Tarjetas de analítica" : "Analytics cards"}
           </div>
           <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-            {analytics.map((item) => (
+            {analytics[locale].map((item) => (
               <div key={item.label} className="rounded-lg border border-slate-200 bg-slate-50 p-3">
                 <p className="text-xs text-slate-500">{item.label}</p>
                 <p className="mt-1 text-2xl font-semibold text-slate-950">{item.value}</p>

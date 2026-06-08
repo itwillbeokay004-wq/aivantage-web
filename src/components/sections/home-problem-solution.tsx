@@ -1,37 +1,70 @@
+"use client";
+
 import { AlertCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 
+import { useLocale } from "@/components/locale-provider";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-const problemSolutions = [
-  {
-    problem: "Missed leads",
-    solution: "Qualify and route prospects instantly.",
-  },
-  {
-    problem: "Repetitive questions",
-    solution: "Answer from approved knowledge.",
-  },
-  {
-    problem: "Slow response times",
-    solution: "Respond across channels after hours.",
-  },
-  {
-    problem: "Manual follow-ups",
-    solution: "Trigger summaries and next steps.",
-  },
-];
+const problemSolutions = {
+  es: [
+    {
+      problem: "Leads perdidos",
+      solution: "Califica y dirige prospectos al instante.",
+    },
+    {
+      problem: "Preguntas repetidas",
+      solution: "Responde desde conocimiento aprobado.",
+    },
+    {
+      problem: "Respuestas lentas",
+      solution: "Atiende canales incluso fuera de horario.",
+    },
+    {
+      problem: "Seguimiento manual",
+      solution: "Activa resúmenes y próximos pasos.",
+    },
+  ],
+  en: [
+    {
+      problem: "Missed leads",
+      solution: "Qualify and route prospects instantly.",
+    },
+    {
+      problem: "Repetitive questions",
+      solution: "Answer from approved knowledge.",
+    },
+    {
+      problem: "Slow response times",
+      solution: "Respond across channels after hours.",
+    },
+    {
+      problem: "Manual follow-ups",
+      solution: "Trigger summaries and next steps.",
+    },
+  ],
+} as const;
 
 export function HomeProblemSolution() {
+  const { locale } = useLocale();
+
   return (
     <section className="container py-16">
       <SectionHeading
-        eyebrow="Problem and solution"
-        title="Fix the bottlenecks customers feel first."
-        description="Start where speed, consistency, and handoffs matter."
+        eyebrow={locale === "es" ? "Problema y solución" : "Problem and solution"}
+        title={
+          locale === "es"
+            ? "Corrige primero los cuellos de botella que sienten tus clientes."
+            : "Fix the bottlenecks customers feel first."
+        }
+        description={
+          locale === "es"
+            ? "Empieza donde importan la velocidad, la consistencia y los traspasos."
+            : "Start where speed, consistency, and handoffs matter."
+        }
       />
       <div className="mt-12 grid gap-4 md:grid-cols-2">
-        {problemSolutions.map((item, index) => (
+        {problemSolutions[locale].map((item, index) => (
           <Reveal
             key={item.problem}
             delay={index * 0.05}
@@ -48,7 +81,7 @@ export function HomeProblemSolution() {
               <div>
                 <div className="flex items-center gap-2 text-sm font-semibold text-emerald-200">
                   <CheckCircle2 className="size-4" />
-                  AiVantage solution
+                  {locale === "es" ? "Solución AiVantage" : "AiVantage solution"}
                 </div>
                 <p className="mt-3 text-sm leading-6 text-slate-300">{item.solution}</p>
               </div>

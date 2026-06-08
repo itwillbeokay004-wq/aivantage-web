@@ -1,3 +1,5 @@
+"use client";
+
 import {
   BarChart3,
   Bot,
@@ -7,53 +9,98 @@ import {
   Settings2,
 } from "lucide-react";
 
+import { useLocale } from "@/components/locale-provider";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-const steps = [
-  {
-    icon: Bot,
-    title: "Build",
-    description: "Define role, tone, channels, and guardrails.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Train",
-    description: "Ground answers in approved knowledge.",
-  },
-  {
-    icon: Rocket,
-    title: "Deploy",
-    description: "Launch on chat, voice, and workflows.",
-  },
-  {
-    icon: BarChart3,
-    title: "Monitor",
-    description: "Track quality, usage, and handoffs.",
-  },
-  {
-    icon: BrainCircuit,
-    title: "Improve",
-    description: "Tune from real conversations.",
-  },
-  {
-    icon: Settings2,
-    title: "Scale",
-    description: "Expand into more workflows.",
-  },
-];
+const steps = {
+  es: [
+    {
+      icon: Bot,
+      title: "Construye",
+      description: "Define rol, tono, canales y límites.",
+    },
+    {
+      icon: GraduationCap,
+      title: "Entrena",
+      description: "Conecta respuestas a conocimiento aprobado.",
+    },
+    {
+      icon: Rocket,
+      title: "Despliega",
+      description: "Lanza en chat, voz y flujos de trabajo.",
+    },
+    {
+      icon: BarChart3,
+      title: "Monitorea",
+      description: "Mide calidad, uso y traspasos.",
+    },
+    {
+      icon: BrainCircuit,
+      title: "Mejora",
+      description: "Ajusta desde conversaciones reales.",
+    },
+    {
+      icon: Settings2,
+      title: "Escala",
+      description: "Expande a más flujos de trabajo.",
+    },
+  ],
+  en: [
+    {
+      icon: Bot,
+      title: "Build",
+      description: "Define role, tone, channels, and guardrails.",
+    },
+    {
+      icon: GraduationCap,
+      title: "Train",
+      description: "Ground answers in approved knowledge.",
+    },
+    {
+      icon: Rocket,
+      title: "Deploy",
+      description: "Launch on chat, voice, and workflows.",
+    },
+    {
+      icon: BarChart3,
+      title: "Monitor",
+      description: "Track quality, usage, and handoffs.",
+    },
+    {
+      icon: BrainCircuit,
+      title: "Improve",
+      description: "Tune from real conversations.",
+    },
+    {
+      icon: Settings2,
+      title: "Scale",
+      description: "Expand into more workflows.",
+    },
+  ],
+} as const;
 
 export function HomePlatformOverview() {
+  const { locale } = useLocale();
+
   return (
     <section className="border-y border-white/10 bg-white/[0.025]">
       <div className="container py-16">
         <SectionHeading
-          eyebrow="Platform overview"
-          title="From first agent to AI operations."
-          description="Build, launch, measure, and improve."
+          eyebrow={locale === "es" ? "Resumen de plataforma" : "Platform overview"}
+          title={
+            locale === "es"
+              ? "Del primer agente a operaciones con IA."
+              : "From first agent to AI operations."
+          }
+          description={
+            locale === "es"
+              ? "Construye, lanza, mide y mejora."
+              : "Build, launch, measure, and improve."
+          }
         />
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {steps.map((step, index) => {
+          {steps[locale].map((step, index) => {
             const Icon = step.icon;
             return (
               <Reveal

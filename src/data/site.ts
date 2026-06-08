@@ -30,6 +30,8 @@ import {
   Zap,
 } from "lucide-react";
 
+import type { Locale } from "@/lib/locale";
+
 const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, "");
 const siteUrl = configuredSiteUrl || "https://aivantage.es";
 
@@ -102,16 +104,35 @@ export const siteConfig = {
   domain: "aivantage.es",
   url: siteUrl,
   email: "hello@aivantage.es",
-  tagline: "Your AI advantage, built for real business.",
+  tagline: "Tu ventaja con IA, construida para negocios reales.",
   description:
-    "AiVantage helps businesses design, deploy, and manage AI agents for support, sales, operations, and customer engagement.",
+    "AiVantage ayuda a las empresas a diseñar, desplegar y gestionar agentes de IA para soporte, ventas, operaciones y experiencia del cliente.",
 } satisfies SiteConfig;
+
+export const siteConfigByLocale = {
+  es: siteConfig,
+  en: {
+    ...siteConfig,
+    tagline: "Your AI advantage, built for real business.",
+    description:
+      "AiVantage helps businesses design, deploy, and manage AI agents for support, sales, operations, and customer engagement.",
+  },
+} satisfies Record<Locale, SiteConfig>;
 
 export const navLinks = [
   { href: "/platform", label: "Platform" },
   { href: "/solutions", label: "Customers" },
   { href: "/pricing", label: "Pricing" },
 ] satisfies readonly NavItem[];
+
+export const navLinksByLocale = {
+  es: [
+    { href: "/platform", label: "Plataforma" },
+    { href: "/solutions", label: "Clientes" },
+    { href: "/pricing", label: "Precios" },
+  ],
+  en: navLinks,
+} satisfies Record<Locale, readonly NavItem[]>;
 
 export const resourceNavLinks = [
   { href: "/resources", label: "Resources" },
@@ -121,10 +142,29 @@ export const resourceNavLinks = [
   { href: "/contact", label: "Contact" },
 ] satisfies readonly NavItem[];
 
+export const resourceNavLinksByLocale = {
+  es: [
+    { href: "/resources", label: "Recursos" },
+    { href: "/use-cases", label: "Casos de uso" },
+    { href: "/ai-models", label: "Modelos de IA" },
+    { href: "/about", label: "Sobre nosotros" },
+    { href: "/contact", label: "Contacto" },
+  ],
+  en: resourceNavLinks,
+} satisfies Record<Locale, readonly NavItem[]>;
+
 export const ctaLabels = {
   bookDemo: "Book a Demo",
   startFreeConsultation: "Start Free Consultation",
 } satisfies CtaLabels;
+
+export const ctaLabelsByLocale = {
+  es: {
+    bookDemo: "Reservar demo",
+    startFreeConsultation: "Consulta gratuita",
+  },
+  en: ctaLabels,
+} satisfies Record<Locale, CtaLabels>;
 
 export const platformFeatures = [
   {
@@ -334,6 +374,38 @@ export const footerGroups = [
     ],
   },
 ] satisfies readonly FooterGroup[];
+
+export const footerGroupsByLocale = {
+  es: [
+    {
+      title: "Producto",
+      links: [
+        { href: "/platform", label: "Plataforma" },
+        { href: "/ai-models", label: "Modelos de IA" },
+        { href: "/use-cases", label: "Casos de uso" },
+        { href: "/pricing", label: "Precios" },
+      ],
+    },
+    {
+      title: "Empresa",
+      links: [
+        { href: "/about", label: "Sobre nosotros" },
+        { href: "/solutions", label: "Soluciones" },
+        { href: "/resources", label: "Recursos" },
+        { href: "/contact", label: "Contacto" },
+        { href: "/book-demo", label: "Reservar demo" },
+      ],
+    },
+    {
+      title: "Legal",
+      links: [
+        { href: "/privacy", label: "Política de privacidad" },
+        { href: "/terms", label: "Términos del servicio" },
+      ],
+    },
+  ],
+  en: footerGroups,
+} satisfies Record<Locale, readonly FooterGroup[]>;
 
 export const operatingLayers = [
   "Capture intent from chat, phone, form, and email",

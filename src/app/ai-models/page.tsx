@@ -13,6 +13,7 @@ import {
   TableProperties,
   UserRoundCheck,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 import { ChatDemo } from "@/components/sections/chat-demo";
 import { Reveal } from "@/components/reveal";
@@ -20,116 +21,276 @@ import { TrackedLink } from "@/components/analytics";
 import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/ui/cta-button";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ctaLabels } from "@/data/site";
+import { ctaLabelsByLocale } from "@/data/site";
+import type { Locale } from "@/lib/locale";
 import { pageMetadata } from "@/lib/seo";
+import { getRequestLocale } from "@/lib/server-locale";
 
-export const metadata = pageMetadata({
-  title: "AI Models",
-  description:
-    "Learn how AiVantage helps businesses choose and integrate AI model capabilities for text, voice, documents, scoring, summaries, decisions, multilingual support, and extraction.",
-  path: "/ai-models",
-});
+export async function generateMetadata() {
+  const locale = await getRequestLocale();
 
-const capabilities = [
-  {
-    icon: Sparkles,
-    title: "Text generation",
-    description: "Draft answers, follow-ups, summaries, and guided responses.",
-  },
-  {
-    icon: AudioLines,
-    title: "Voice conversations",
-    description: "Support call intake, transcripts, and voice-ready workflows.",
-  },
-  {
-    icon: FileSearch,
-    title: "Document understanding",
-    description: "Find answers in policies, FAQs, manuals, and docs.",
-  },
-  {
-    icon: BrainCircuit,
-    title: "Lead scoring",
-    description: "Evaluate fit, urgency, timeline, and missing details.",
-  },
-  {
-    icon: ListChecks,
-    title: "Summaries",
-    description: "Turn calls, chats, and forms into handoff notes.",
-  },
-  {
-    icon: Bot,
-    title: "Workflow decisions",
-    description: "Choose next steps from rules, confidence, and context.",
-  },
-  {
-    icon: Languages,
-    title: "Multilingual support",
-    description: "Support routing and responses across languages.",
-  },
-  {
-    icon: TableProperties,
-    title: "Data extraction",
-    description: "Pull structured fields from messages, docs, calls, and forms.",
-  },
-];
+  return pageMetadata({
+    title: locale === "es" ? "Modelos de IA" : "AI Models",
+    description:
+      locale === "es"
+        ? "Aprende cómo AiVantage ayuda a elegir e integrar capacidades de modelos de IA para texto, voz, documentos, scoring, resúmenes, decisiones y extracción."
+        : "Learn how AiVantage helps businesses choose and integrate AI model capabilities for text, voice, documents, scoring, summaries, decisions, multilingual support, and extraction.",
+    path: "/ai-models",
+    locale,
+  });
+}
 
-const safetyControls = [
-  {
-    icon: ShieldCheck,
-    title: "Guardrails",
-    description: "Define answers, refusals, and escalation rules.",
+const aiModelsContent = {
+  es: {
+    capabilities: [
+      {
+        icon: Sparkles,
+        title: "Generación de texto",
+        description: "Redacta respuestas, seguimientos, resúmenes y guías.",
+      },
+      {
+        icon: AudioLines,
+        title: "Conversaciones de voz",
+        description: "Apoya intake de llamadas, transcripciones y flujos de voz.",
+      },
+      {
+        icon: FileSearch,
+        title: "Comprensión de documentos",
+        description: "Encuentra respuestas en políticas, FAQs, manuales y docs.",
+      },
+      {
+        icon: BrainCircuit,
+        title: "Puntuación de leads",
+        description: "Evalúa encaje, urgencia, plazo y datos faltantes.",
+      },
+      {
+        icon: ListChecks,
+        title: "Resúmenes",
+        description: "Convierte llamadas, chats y formularios en notas de traspaso.",
+      },
+      {
+        icon: Bot,
+        title: "Decisiones de flujo",
+        description: "Elige próximos pasos por reglas, confianza y contexto.",
+      },
+      {
+        icon: Languages,
+        title: "Soporte multilingüe",
+        description: "Apoya enrutamiento y respuestas en varios idiomas.",
+      },
+      {
+        icon: TableProperties,
+        title: "Extracción de datos",
+        description: "Extrae campos estructurados de mensajes, docs y llamadas.",
+      },
+    ],
+    providerCards: [
+      {
+        icon: Plug,
+        title: "APIs seguras",
+        copy: "Usa credenciales con alcance limitado y rutas controladas.",
+      },
+      {
+        icon: Globe2,
+        title: "Enrutamiento flexible",
+        copy: "Enruta por capacidad, coste, latencia, confianza y riesgo.",
+      },
+      {
+        icon: BrainCircuit,
+        title: "Encaje con el flujo",
+        copy: "Elige capacidades según el trabajo del agente.",
+      },
+    ],
+    providerNote:
+      "Los proveedores se tratan como opciones de implementación. Esta página no afirma alianzas oficiales ni endorsements.",
+    safetyControls: [
+      {
+        icon: ShieldCheck,
+        title: "Guardrails",
+        description: "Define respuestas, rechazos y reglas de escalado.",
+      },
+      {
+        icon: FileSearch,
+        title: "Conocimiento aprobado",
+        description: "Usa documentos, FAQs y políticas aprobadas por tu equipo.",
+      },
+      {
+        icon: ListChecks,
+        title: "Respuestas fallback",
+        description: "Usa lenguaje seguro cuando la confianza sea baja.",
+      },
+      {
+        icon: UserRoundCheck,
+        title: "Traspaso humano",
+        description: "Escala momentos sensibles o de alto valor.",
+      },
+      {
+        icon: TableProperties,
+        title: "Logs de auditoría placeholder",
+        description: "Planifica registros trazables de decisiones y traspasos.",
+      },
+    ],
+    faqs: [
+      {
+        question: "¿La IA puede responder desde mis documentos?",
+        answer:
+          "Sí. Los agentes pueden consultar documentos aprobados, FAQs, políticas y contenido de conocimiento antes de responder.",
+      },
+      {
+        question: "¿Puede hablar con clientes?",
+        answer:
+          "Sí, cuando voz está dentro del alcance. Podemos diseñar intake, resúmenes y traspasos.",
+      },
+      {
+        question: "¿Puede conectarse a mi CRM?",
+        answer:
+          "Sí. Los agentes pueden crear registros, añadir notas, enrutar leads o activar seguimientos.",
+      },
+      {
+        question: "¿Puede tomar el control una persona?",
+        answer:
+          "Sí. El traspaso puede activarse por solicitudes sensibles, baja confianza o leads valiosos.",
+      },
+      {
+        question: "¿Cómo protegen datos sensibles?",
+        answer:
+          "Limitamos el acceso, usamos fuentes aprobadas y planificamos controles alrededor del flujo.",
+      },
+    ],
   },
-  {
-    icon: FileSearch,
-    title: "Approved knowledge",
-    description: "Use documents, FAQs, and policies your team approves.",
+  en: {
+    capabilities: [
+      {
+        icon: Sparkles,
+        title: "Text generation",
+        description: "Draft answers, follow-ups, summaries, and guided responses.",
+      },
+      {
+        icon: AudioLines,
+        title: "Voice conversations",
+        description: "Support call intake, transcripts, and voice-ready workflows.",
+      },
+      {
+        icon: FileSearch,
+        title: "Document understanding",
+        description: "Find answers in policies, FAQs, manuals, and docs.",
+      },
+      {
+        icon: BrainCircuit,
+        title: "Lead scoring",
+        description: "Evaluate fit, urgency, timeline, and missing details.",
+      },
+      {
+        icon: ListChecks,
+        title: "Summaries",
+        description: "Turn calls, chats, and forms into handoff notes.",
+      },
+      {
+        icon: Bot,
+        title: "Workflow decisions",
+        description: "Choose next steps from rules, confidence, and context.",
+      },
+      {
+        icon: Languages,
+        title: "Multilingual support",
+        description: "Support routing and responses across languages.",
+      },
+      {
+        icon: TableProperties,
+        title: "Data extraction",
+        description: "Pull structured fields from messages, docs, calls, and forms.",
+      },
+    ],
+    providerCards: [
+      {
+        icon: Plug,
+        title: "Secure APIs",
+        copy: "Use scoped credentials and controlled request paths.",
+      },
+      {
+        icon: Globe2,
+        title: "Flexible routing",
+        copy: "Route by capability, cost, latency, confidence, and risk.",
+      },
+      {
+        icon: BrainCircuit,
+        title: "Workflow fit",
+        copy: "Choose capabilities by agent job.",
+      },
+    ],
+    providerNote:
+      "Provider names are discussed only as implementation options. This page does not claim any official partnership or endorsement.",
+    safetyControls: [
+      {
+        icon: ShieldCheck,
+        title: "Guardrails",
+        description: "Define answers, refusals, and escalation rules.",
+      },
+      {
+        icon: FileSearch,
+        title: "Approved knowledge",
+        description: "Use documents, FAQs, and policies your team approves.",
+      },
+      {
+        icon: ListChecks,
+        title: "Fallback responses",
+        description: "Use safe language when confidence is low.",
+      },
+      {
+        icon: UserRoundCheck,
+        title: "Human handoff",
+        description: "Escalate sensitive or high-value moments.",
+      },
+      {
+        icon: TableProperties,
+        title: "Audit logs placeholder",
+        description: "Plan traceable records for decisions and handoffs.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can AI answer questions from my documents?",
+        answer:
+          "Yes. Agents can search approved documents, FAQs, policies, and knowledge base content before responding.",
+      },
+      {
+        question: "Can it speak with customers?",
+        answer:
+          "Yes, when voice is in scope. We can design intake, summaries, and handoff paths.",
+      },
+      {
+        question: "Can it connect to my CRM?",
+        answer:
+          "Yes. Agents can create records, add notes, route leads, or trigger follow-ups.",
+      },
+      {
+        question: "Can humans take over?",
+        answer:
+          "Yes. Handoff can trigger for sensitive requests, low confidence, or high-value leads.",
+      },
+      {
+        question: "How do you protect sensitive data?",
+        answer:
+          "We scope access carefully, use approved sources, and plan controls around the workflow.",
+      },
+    ],
   },
+} satisfies Record<
+  Locale,
   {
-    icon: ListChecks,
-    title: "Fallback responses",
-    description: "Use safe language when confidence is low.",
-  },
-  {
-    icon: UserRoundCheck,
-    title: "Human handoff",
-    description: "Escalate sensitive or high-value moments.",
-  },
-  {
-    icon: TableProperties,
-    title: "Audit logs placeholder",
-    description: "Plan traceable records for decisions and handoffs.",
-  },
-];
+    capabilities: readonly { icon: LucideIcon; title: string; description: string }[];
+    providerCards: readonly { icon: LucideIcon; title: string; copy: string }[];
+    providerNote: string;
+    safetyControls: readonly { icon: LucideIcon; title: string; description: string }[];
+    faqs: readonly { question: string; answer: string }[];
+  }
+>;
 
-const faqs = [
-  {
-    question: "Can AI answer questions from my documents?",
-    answer:
-      "Yes. Agents can search approved documents, FAQs, policies, and knowledge base content before responding.",
-  },
-  {
-    question: "Can it speak with customers?",
-    answer:
-      "Yes, when voice is in scope. We can design intake, summaries, and handoff paths.",
-  },
-  {
-    question: "Can it connect to my CRM?",
-    answer:
-      "Yes. Agents can create records, add notes, route leads, or trigger follow-ups.",
-  },
-  {
-    question: "Can humans take over?",
-    answer:
-      "Yes. Handoff can trigger for sensitive requests, low confidence, or high-value leads.",
-  },
-  {
-    question: "How do you protect sensitive data?",
-    answer:
-      "We scope access carefully, use approved sources, and plan controls around the workflow.",
-  },
-];
+export default async function AiModelsPage() {
+  const locale = await getRequestLocale();
+  const ctaLabels = ctaLabelsByLocale[locale];
+  const content = aiModelsContent[locale];
 
-export default function AiModelsPage() {
   return (
     <>
       <section className="relative overflow-hidden border-b border-white/10">
@@ -139,14 +300,17 @@ export default function AiModelsPage() {
           <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
             <Reveal>
               <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-200">
-                AI model strategy
+                {locale === "es" ? "Estrategia de modelos IA" : "AI model strategy"}
               </p>
               <h1 className="text-balance text-4xl font-semibold tracking-normal text-white sm:text-6xl">
-                Use the right AI model for the right job.
+                {locale === "es"
+                  ? "Usa el modelo de IA adecuado para cada trabajo."
+                  : "Use the right AI model for the right job."}
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-                Match model capabilities to the workflow: chat, voice,
-                documents, scoring, summaries, decisions, or extraction.
+                {locale === "es"
+                  ? "Alinea capacidades de modelo con el flujo: chat, voz, documentos, scoring, resúmenes, decisiones o extracción."
+                  : "Match model capabilities to the workflow: chat, voice, documents, scoring, summaries, decisions, or extraction."}
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <CtaButton href="/book-demo" size="lg">
@@ -157,7 +321,7 @@ export default function AiModelsPage() {
                     href="/contact"
                     eventProperties={{ location: "ai_models_hero" }}
                   >
-                    Discuss model needs
+                    {locale === "es" ? "Hablar de modelos" : "Discuss model needs"}
                   </TrackedLink>
                 </Button>
               </div>
@@ -171,12 +335,20 @@ export default function AiModelsPage() {
 
       <section className="container py-16">
         <SectionHeading
-          eyebrow="Model capabilities"
-          title="Different workflows need different kinds of intelligence."
-          description="Pick the capability around the job, risk, speed, source, and outcome."
+          eyebrow={locale === "es" ? "Capacidades" : "Model capabilities"}
+          title={
+            locale === "es"
+              ? "Diferentes flujos necesitan diferentes tipos de inteligencia."
+              : "Different workflows need different kinds of intelligence."
+          }
+          description={
+            locale === "es"
+              ? "Elige capacidades según trabajo, riesgo, velocidad, fuente y resultado."
+              : "Pick the capability around the job, risk, speed, source, and outcome."
+          }
         />
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {capabilities.map((capability, index) => {
+          {content.capabilities.map((capability, index) => {
             const Icon = capability.icon;
             return (
               <Reveal
@@ -201,30 +373,26 @@ export default function AiModelsPage() {
             <Reveal>
               <SectionHeading
                 align="left"
-                eyebrow="Provider-neutral architecture"
-                title="Designed around your requirements, not a single model vendor."
-                description="AiVantage can work with OpenAI or other providers through secure APIs, depending on client needs."
+                eyebrow={
+                  locale === "es"
+                    ? "Arquitectura neutral"
+                    : "Provider-neutral architecture"
+                }
+                title={
+                  locale === "es"
+                    ? "Diseñado alrededor de tus requisitos, no de un único proveedor."
+                    : "Designed around your requirements, not a single model vendor."
+                }
+                description={
+                  locale === "es"
+                    ? "AiVantage puede trabajar con OpenAI u otros proveedores mediante APIs seguras, según necesidades del cliente."
+                    : "AiVantage can work with OpenAI or other providers through secure APIs, depending on client needs."
+                }
               />
             </Reveal>
             <Reveal delay={0.08} className="rounded-lg border border-white/10 bg-[#07101f] p-6">
               <div className="grid gap-4 sm:grid-cols-3">
-                {[
-                  {
-                    icon: Plug,
-                    title: "Secure APIs",
-                    copy: "Use scoped credentials and controlled request paths.",
-                  },
-                  {
-                    icon: Globe2,
-                    title: "Flexible routing",
-                    copy: "Route by capability, cost, latency, confidence, and risk.",
-                  },
-                  {
-                    icon: BrainCircuit,
-                    title: "Workflow fit",
-                    copy: "Choose capabilities by agent job.",
-                  },
-                ].map((item) => {
+                {content.providerCards.map((item) => {
                   const Icon = item.icon;
                   return (
                     <div key={item.title} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
@@ -236,8 +404,7 @@ export default function AiModelsPage() {
                 })}
               </div>
               <p className="mt-5 text-sm leading-6 text-slate-400">
-                Provider names are discussed only as implementation options. This
-                page does not claim any official partnership or endorsement.
+                {content.providerNote}
               </p>
             </Reveal>
           </div>
@@ -246,12 +413,20 @@ export default function AiModelsPage() {
 
       <section className="container py-16">
         <SectionHeading
-          eyebrow="Safety and control"
-          title="Model power should come with clear operating boundaries."
-          description="Decide what AI can answer, avoid, and hand off."
+          eyebrow={locale === "es" ? "Seguridad y control" : "Safety and control"}
+          title={
+            locale === "es"
+              ? "La potencia del modelo necesita límites operativos claros."
+              : "Model power should come with clear operating boundaries."
+          }
+          description={
+            locale === "es"
+              ? "Decide qué puede responder la IA, qué debe evitar y cuándo traspasar."
+              : "Decide what AI can answer, avoid, and hand off."
+          }
         />
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-          {safetyControls.map((control, index) => {
+          {content.safetyControls.map((control, index) => {
             const Icon = control.icon;
             return (
               <Reveal
@@ -272,11 +447,19 @@ export default function AiModelsPage() {
         <div className="container py-16">
           <SectionHeading
             eyebrow="FAQ"
-            title="Common questions about AI model workflows."
-            description="Implementation depends on workflow, data, channels, integrations, and controls."
+            title={
+              locale === "es"
+                ? "Preguntas comunes sobre modelos de IA."
+                : "Common questions about AI model workflows."
+            }
+            description={
+              locale === "es"
+                ? "La implementación depende de flujo, datos, canales, integraciones y controles."
+                : "Implementation depends on workflow, data, channels, integrations, and controls."
+            }
           />
           <div className="mx-auto mt-12 max-w-4xl space-y-3">
-            {faqs.map((faq, index) => (
+            {content.faqs.map((faq, index) => (
               <Reveal
                 key={faq.question}
                 delay={index * 0.04}
@@ -301,11 +484,14 @@ export default function AiModelsPage() {
           <div className="absolute inset-0 signal-grid opacity-25" />
           <div className="relative mx-auto max-w-3xl">
             <h2 className="text-balance text-3xl font-semibold tracking-normal text-white sm:text-4xl">
-              Need help choosing the right model approach?
+              {locale === "es"
+                ? "¿Necesitas ayuda eligiendo el enfoque de modelo?"
+                : "Need help choosing the right model approach?"}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-300">
-              Share the workflow. We’ll scope the model capabilities, controls,
-              and integrations.
+              {locale === "es"
+                ? "Comparte el flujo. Definiremos capacidades, controles e integraciones."
+                : "Share the workflow. We’ll scope the model capabilities, controls, and integrations."}
             </p>
             <div className="mt-8 flex justify-center">
               <CtaButton href="/book-demo" size="lg">

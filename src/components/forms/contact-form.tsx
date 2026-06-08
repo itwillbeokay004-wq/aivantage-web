@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 
+import { useLocale } from "@/components/locale-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,16 +14,26 @@ import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { contactSchema, type ContactFormValues } from "@/lib/schemas";
 
-const interests = [
-  "Support automation",
-  "Sales automation",
-  "Voice agents",
-  "Internal workflows",
-  "AI strategy",
-];
+const interests = {
+  es: [
+    "Automatización de soporte",
+    "Automatización de ventas",
+    "Agentes de voz",
+    "Flujos internos",
+    "Estrategia de IA",
+  ],
+  en: [
+    "Support automation",
+    "Sales automation",
+    "Voice agents",
+    "Internal workflows",
+    "AI strategy",
+  ],
+} as const;
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const { locale } = useLocale();
   const {
     register,
     handleSubmit,
@@ -67,7 +78,9 @@ export function ContactForm() {
         className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
         aria-hidden="true"
       >
-        <Label htmlFor="contact-website">Website</Label>
+        <Label htmlFor="contact-website">
+          {locale === "es" ? "Sitio web" : "Website"}
+        </Label>
         <Input
           id="contact-website"
           tabIndex={-1}
@@ -76,7 +89,11 @@ export function ContactForm() {
         />
       </div>
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field id="contact-name" label="Name" error={errors.name?.message}>
+        <Field
+          id="contact-name"
+          label={locale === "es" ? "Nombre" : "Name"}
+          error={errors.name?.message}
+        >
           <Input
             id="contact-name"
             placeholder="Jordan Lee"
@@ -86,7 +103,11 @@ export function ContactForm() {
             {...register("name")}
           />
         </Field>
-        <Field id="contact-email" label="Business email" error={errors.email?.message}>
+        <Field
+          id="contact-email"
+          label={locale === "es" ? "Email de trabajo" : "Business email"}
+          error={errors.email?.message}
+        >
           <Input
             id="contact-email"
             type="email"
@@ -97,7 +118,11 @@ export function ContactForm() {
             {...register("email")}
           />
         </Field>
-        <Field id="contact-company" label="Company" error={errors.company?.message}>
+        <Field
+          id="contact-company"
+          label={locale === "es" ? "Empresa" : "Company"}
+          error={errors.company?.message}
+        >
           <Input
             id="contact-company"
             placeholder="Northstar Group"
@@ -107,7 +132,11 @@ export function ContactForm() {
             {...register("company")}
           />
         </Field>
-        <Field id="contact-interest" label="Interest" error={errors.interest?.message}>
+        <Field
+          id="contact-interest"
+          label={locale === "es" ? "Interés" : "Interest"}
+          error={errors.interest?.message}
+        >
           <Select
             id="contact-interest"
             aria-invalid={Boolean(errors.interest)}
@@ -116,9 +145,9 @@ export function ContactForm() {
             defaultValue=""
           >
             <option value="" disabled>
-              Select an area
+              {locale === "es" ? "Selecciona un área" : "Select an area"}
             </option>
-            {interests.map((interest) => (
+            {interests[locale].map((interest) => (
               <option key={interest} value={interest}>
                 {interest}
               </option>
@@ -129,12 +158,20 @@ export function ContactForm() {
       <div className="mt-5">
         <Field
           id="contact-message"
-          label="What should we help with?"
+          label={
+            locale === "es"
+              ? "¿En qué deberíamos ayudar?"
+              : "What should we help with?"
+          }
           error={errors.message?.message}
         >
           <Textarea
             id="contact-message"
-            placeholder="Tell us about the process, conversation, or workflow you want to automate."
+            placeholder={
+              locale === "es"
+                ? "Cuéntanos sobre el proceso, conversación o flujo que quieres automatizar."
+                : "Tell us about the process, conversation, or workflow you want to automate."
+            }
             aria-invalid={Boolean(errors.message)}
             aria-describedby="contact-message-error"
             {...register("message")}
@@ -146,11 +183,17 @@ export function ContactForm() {
           {status === "success" ? (
             <span className="inline-flex items-center gap-2 text-emerald-200">
               <CheckCircle2 className="size-4" aria-hidden="true" />
-              Thanks. We will respond within one business day.
+              {locale === "es"
+                ? "Gracias. Responderemos en un día hábil."
+                : "Thanks. We will respond within one business day."}
             </span>
           ) : null}
           {status === "error" ? (
-            <span className="text-rose-200">Something went wrong. Please try again.</span>
+            <span className="text-rose-200">
+              {locale === "es"
+                ? "Algo salió mal. Inténtalo de nuevo."
+                : "Something went wrong. Please try again."}
+            </span>
           ) : null}
         </p>
         <Button type="submit" disabled={isSubmitting}>
@@ -159,7 +202,7 @@ export function ContactForm() {
           ) : (
             <Send className="size-4" aria-hidden="true" />
           )}
-          Send Message
+          {locale === "es" ? "Enviar mensaje" : "Send Message"}
         </Button>
       </div>
     </form>

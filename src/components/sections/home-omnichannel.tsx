@@ -20,7 +20,7 @@ const channels = {
     },
     {
       icon: Mail,
-      title: "Seguimiento SMS/email",
+      title: "Seguimiento por SMS/email",
       description: "Envía recordatorios y próximos pasos.",
     },
     {

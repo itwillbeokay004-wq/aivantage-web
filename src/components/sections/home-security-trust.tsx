@@ -10,17 +10,17 @@ const trustItems = {
   es: [
     {
       icon: ShieldCheck,
-      title: "Flujos con privacidad",
+      title: "Procesos orientados a la privacidad",
       description: "Fuentes aprobadas y manejo cuidadoso de datos.",
     },
     {
       icon: LockKeyhole,
-      title: "Acceso por roles",
+      title: "Permisos por rol",
       description: "Permisos para administradores y operadores.",
     },
     {
       icon: ClipboardCheck,
-      title: "Registros de auditoría",
+      title: "Registros de actividad",
       description: "Trazabilidad de conversaciones y acciones.",
     },
     {

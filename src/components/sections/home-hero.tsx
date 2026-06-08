@@ -23,12 +23,12 @@ export function HomeHero() {
           </p>
           <h1 className="text-balance text-4xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
             {locale === "es"
-              ? "Lanza agentes de IA para atención al cliente, ventas y operaciones."
+              ? "Lanza agentes de IA para atención, ventas y operaciones."
               : "Launch AI agents for support, sales, and operations."}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
             {locale === "es"
-              ? "Agentes de IA personalizados que responden preguntas, captan clientes potenciales, reservan citas y automatizan tareas repetitivas."
+              ? "AiVantage diseña e implementa agentes de IA que responden preguntas, captan clientes potenciales, reservan citas y automatizan tareas repetitivas en tu negocio."
               : "Custom AI agents that answer questions, capture leads, book appointments, and automate routine work."}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">

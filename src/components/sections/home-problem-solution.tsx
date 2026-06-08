@@ -9,19 +9,19 @@ import { SectionHeading } from "@/components/ui/section-heading";
 const problemSolutions = {
   es: [
     {
-      problem: "Clientes potenciales perdidos",
+      problem: "Clientes potenciales sin respuesta",
       solution: "Califica y dirige prospectos al instante.",
     },
     {
-      problem: "Preguntas repetidas",
+      problem: "Preguntas repetitivas",
       solution: "Responde desde conocimiento aprobado.",
     },
     {
-      problem: "Respuestas lentas",
+      problem: "Tiempos de respuesta lentos",
       solution: "Atiende canales incluso fuera de horario.",
     },
     {
-      problem: "Seguimiento manual",
+      problem: "Seguimientos manuales",
       solution: "Activa resúmenes y próximos pasos.",
     },
   ],

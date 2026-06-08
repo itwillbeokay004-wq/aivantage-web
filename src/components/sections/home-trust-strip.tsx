@@ -5,10 +5,10 @@ import { Reveal } from "@/components/reveal";
 
 const trustItems = {
   es: [
-    "Para equipos en crecimiento",
+    "Creado para empresas en crecimiento",
     "Automatización con IA",
     "Experiencia del cliente",
-    "Operaciones",
+    "Operaciones más eficientes",
   ],
   en: [
     "Built for growing teams",

@@ -17,7 +17,7 @@ const steps = {
   es: [
     {
       icon: Bot,
-      title: "Construye",
+      title: "Diseña",
       description: "Define rol, tono, canales y límites.",
     },
     {
@@ -27,12 +27,12 @@ const steps = {
     },
     {
       icon: Rocket,
-      title: "Despliega",
+      title: "Implementa",
       description: "Lanza en chat, voz y procesos conectados.",
     },
     {
       icon: BarChart3,
-      title: "Monitorea",
+      title: "Supervisa",
       description: "Mide calidad, uso y derivaciones.",
     },
     {

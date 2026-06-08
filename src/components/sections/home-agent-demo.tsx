@@ -66,7 +66,7 @@ export function HomeAgentDemo() {
       <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
         <SectionHeading
           align="left"
-          eyebrow={locale === "es" ? "Demo de agente IA" : "AI agent demo"}
+          eyebrow={locale === "es" ? "Demostración" : "AI agent demo"}
           title={
             locale === "es"
               ? "Haz clic en una pregunta para ver cómo responde un agente."
@@ -85,11 +85,11 @@ export function HomeAgentDemo() {
                 <Bot className="size-5" />
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-white">AiVantage Demo Agent</h2>
+                <h2 className="text-lg font-semibold text-white">
+                  {locale === "es" ? "Agente de IA" : "AiVantage Demo Agent"}
+                </h2>
                 <p className="text-sm text-slate-400">
-                  {locale === "es"
-                    ? "Vista previa de respuesta"
-                    : "Prepared response preview"}
+                  {locale === "es" ? "Solo demostración" : "Prepared response preview"}
                 </p>
               </div>
             </div>
@@ -122,7 +122,7 @@ export function HomeAgentDemo() {
             className="mt-6 rounded-lg border border-cyan-300/20 bg-cyan-300/[0.07] p-4"
           >
             <p className="text-sm font-semibold text-cyan-100">
-              {locale === "es" ? "Respuesta de ejemplo" : "Sample response"}
+              {locale === "es" ? "Selecciona una pregunta" : "Sample response"}
             </p>
             <p className="mt-3 leading-7 text-slate-100">{active.response}</p>
           </motion.div>
@@ -152,6 +152,11 @@ export function HomeAgentDemo() {
               <Send className="size-4" />
             </button>
           </div>
+          <p className="mt-3 text-xs text-slate-500">
+            {locale === "es"
+              ? "Solo demostración — todavía no es un agente en vivo."
+              : "Demo only — not a live AI agent yet."}
+          </p>
         </div>
       </div>
     </section>

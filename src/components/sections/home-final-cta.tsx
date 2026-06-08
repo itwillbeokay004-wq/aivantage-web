@@ -16,7 +16,7 @@ export function HomeFinalCta() {
         <div className="relative mx-auto max-w-3xl">
           <h2 className="text-balance text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
             {locale === "es"
-              ? "¿Listo para construir tu ventaja con IA?"
+              ? "¿Listo para crear tu ventaja con IA?"
               : "Ready to build your AI advantage?"}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600">

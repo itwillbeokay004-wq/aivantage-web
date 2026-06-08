@@ -8,7 +8,7 @@ import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { LocaleProvider } from "@/components/locale-provider";
 import { siteConfig, siteConfigByLocale } from "@/data/site";
-import { defaultLocale, isLocale, type Locale } from "@/lib/locale";
+import { defaultLocale, isLocale, localizeHref, type Locale } from "@/lib/locale";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -132,7 +132,7 @@ export default async function RootLayout({
           "@type": "Country",
           name: "United States",
         },
-        url: `${siteConfig.url}/solutions`,
+        url: `${siteConfig.url}${localizeHref("/solutions", locale)}`,
       },
     ],
   };

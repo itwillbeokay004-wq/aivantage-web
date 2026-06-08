@@ -13,7 +13,7 @@ import {
   navLinksByLocale,
   resourceNavLinksByLocale,
 } from "@/data/site";
-import { localizeHref, stripLocalePrefix } from "@/lib/locale";
+import { localizeHref, toInternalPath } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -28,7 +28,7 @@ export function Navbar() {
 
   const isResourceActive = resourceNavLinks.some(
     (link) => {
-      const normalizedPathname = stripLocalePrefix(pathname);
+      const normalizedPathname = toInternalPath(pathname);
 
       return (
         normalizedPathname === link.href ||
@@ -143,8 +143,8 @@ export function Navbar() {
           <Link
             href={
               locale === "es"
-                ? localizeHref(stripLocalePrefix(pathname), "en")
-                : stripLocalePrefix(pathname)
+                ? localizeHref(pathname, "en")
+                : localizeHref(pathname, "es")
             }
             className="rounded-full px-3 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500 transition hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-label={
@@ -171,7 +171,7 @@ function NavPillLink({
   locale: "es" | "en";
   pathname: string;
 }) {
-  const normalizedPathname = stripLocalePrefix(pathname);
+  const normalizedPathname = toInternalPath(pathname);
   const isActive =
     normalizedPathname === href || normalizedPathname.startsWith(`${href}/`);
 

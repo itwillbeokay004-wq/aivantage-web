@@ -138,7 +138,6 @@ export const resourceNavLinks = [
   { href: "/resources", label: "Resources" },
   { href: "/use-cases", label: "Use Cases" },
   { href: "/ai-models", label: "AI Models" },
-  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] satisfies readonly NavItem[];
 
@@ -147,7 +146,6 @@ export const resourceNavLinksByLocale = {
     { href: "/resources", label: "Recursos" },
     { href: "/use-cases", label: "Casos de uso" },
     { href: "/ai-models", label: "Modelos de IA" },
-    { href: "/about", label: "Sobre nosotros" },
     { href: "/contact", label: "Contacto" },
   ],
   en: resourceNavLinks,
@@ -359,7 +357,6 @@ export const footerGroups = [
   {
     title: "Company",
     links: [
-      { href: "/about", label: "About" },
       { href: "/solutions", label: "Solutions" },
       { href: "/resources", label: "Resources" },
       { href: "/contact", label: "Contact" },
@@ -389,7 +386,6 @@ export const footerGroupsByLocale = {
     {
       title: "Empresa",
       links: [
-        { href: "/about", label: "Sobre nosotros" },
         { href: "/solutions", label: "Soluciones" },
         { href: "/resources", label: "Recursos" },
         { href: "/contact", label: "Contacto" },

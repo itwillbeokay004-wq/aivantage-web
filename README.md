@@ -54,17 +54,33 @@ npm run start
 
 ## Pages
 
+Spanish is the default language at root routes:
+
 - `/`
-- `/platform`
-- `/solutions`
-- `/ai-models`
-- `/use-cases`
-- `/pricing`
-- `/resources`
-- `/contact`
-- `/book-demo`
-- `/privacy`
-- `/terms`
+- `/plataforma`
+- `/soluciones`
+- `/modelos-ia`
+- `/casos-de-uso`
+- `/precios`
+- `/recursos`
+- `/contacto`
+- `/reservar-demo`
+- `/privacidad`
+- `/terminos`
+
+English routes live under `/en`:
+
+- `/en`
+- `/en/platform`
+- `/en/solutions`
+- `/en/ai-models`
+- `/en/use-cases`
+- `/en/pricing`
+- `/en/resources`
+- `/en/contact`
+- `/en/book-demo`
+- `/en/privacy`
+- `/en/terms`
 
 ## Forms and Email
 

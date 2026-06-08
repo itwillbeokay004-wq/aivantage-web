@@ -23,6 +23,8 @@ export function pageMetadata({
   locale?: Locale;
 }): Metadata {
   const url = absoluteUrl(localizeHref(path, locale));
+  const spanishUrl = absoluteUrl(localizeHref(path, "es"));
+  const englishUrl = absoluteUrl(localizeHref(path, "en"));
 
   return {
     title,
@@ -31,9 +33,9 @@ export function pageMetadata({
     alternates: {
       canonical: url,
       languages: {
-        es: absoluteUrl(path),
-        en: absoluteUrl(localizeHref(path, "en")),
-        "x-default": absoluteUrl(path),
+        es: spanishUrl,
+        en: englishUrl,
+        "x-default": spanishUrl,
       },
     },
     openGraph: {

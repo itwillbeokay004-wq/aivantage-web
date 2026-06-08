@@ -12,7 +12,7 @@ import {
   navLinksByLocale,
   resourceNavLinksByLocale,
 } from "@/data/site";
-import { localizeHref, stripLocalePrefix } from "@/lib/locale";
+import { localizeHref } from "@/lib/locale";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -132,8 +132,8 @@ export function MobileNav() {
                 <Link
                   href={
                     locale === "es"
-                      ? localizeHref(stripLocalePrefix(pathname), "en")
-                      : stripLocalePrefix(pathname)
+                      ? localizeHref(pathname, "en")
+                      : localizeHref(pathname, "es")
                   }
                   onClick={() => setIsOpen(false)}
                   aria-label={

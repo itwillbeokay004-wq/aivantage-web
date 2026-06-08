@@ -93,7 +93,7 @@ export default async function ResourcesPage() {
               </p>
               <p className="mt-5 rounded-md border border-white/10 bg-[#050914]/80 px-3 py-2 text-xs text-slate-400">
                 {locale === "es" ? "Ruta" : "Slug"}:{" "}
-                {locale === "es" ? "/resources/" : "/en/resources/"}
+                {locale === "es" ? "/recursos/" : "/en/resources/"}
                 {article.slug}
               </p>
               <Button asChild variant="ghost" className="mt-5 justify-start px-0">

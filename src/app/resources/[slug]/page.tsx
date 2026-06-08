@@ -37,6 +37,8 @@ export async function generateMetadata({
 
   const path = `/resources/${article.slug}`;
   const url = `${siteConfig.url}${localizeHref(path, locale)}`;
+  const spanishUrl = `${siteConfig.url}${localizeHref(path, "es")}`;
+  const englishUrl = `${siteConfig.url}${localizeHref(path, "en")}`;
 
   return {
     metadataBase: new URL(siteConfig.url),
@@ -45,9 +47,9 @@ export async function generateMetadata({
     alternates: {
       canonical: url,
       languages: {
-        es: `${siteConfig.url}${path}`,
-        en: `${siteConfig.url}${localizeHref(path, "en")}`,
-        "x-default": `${siteConfig.url}${path}`,
+        es: spanishUrl,
+        en: englishUrl,
+        "x-default": spanishUrl,
       },
     },
     openGraph: {

@@ -7,7 +7,7 @@ import type { AnchorHTMLAttributes, MouseEvent, ReactNode } from "react";
 import type { LinkProps } from "next/link";
 
 import { useLocale } from "@/components/locale-provider";
-import { stripLocalePrefix } from "@/lib/locale";
+import { toInternalPath } from "@/lib/locale";
 
 export const analyticsEvents = {
   bookDemoClick: "book_demo_click",
@@ -113,7 +113,8 @@ export function trackCtaClick(
 }
 
 export function getCtaEventForHref(href: string): AnalyticsEventName | undefined {
-  const normalizedHref = stripLocalePrefix(href);
+  const [pathname, suffix = ""] = href.split(/(?=[?#])/, 2);
+  const normalizedHref = `${toInternalPath(pathname || "/")}${suffix}`;
 
   if (normalizedHref === "/book-demo" || normalizedHref.startsWith("/book-demo?")) {
     return analyticsEvents.bookDemoClick;

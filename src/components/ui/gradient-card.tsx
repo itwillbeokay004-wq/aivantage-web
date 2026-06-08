@@ -9,7 +9,7 @@ export function GradientCard({
   return (
     <div
       className={cn(
-        "gradient-border relative overflow-hidden rounded-lg p-5 shadow-panel",
+        "gradient-border relative overflow-hidden rounded-xl p-5 shadow-panel",
         "before:pointer-events-none before:absolute before:inset-0 before:rounded-lg",
         className,
       )}

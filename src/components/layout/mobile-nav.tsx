@@ -32,7 +32,7 @@ export function MobileNav() {
     <div className="lg:hidden">
       <button
         type="button"
-        className="grid size-10 place-items-center rounded-md border border-white/10 bg-white/[0.06] text-white"
+        className="grid size-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-950 shadow-sm"
         onClick={() => setIsOpen((value) => !value)}
         aria-label={isOpen ? "Close navigation" : "Open navigation"}
         aria-expanded={isOpen}
@@ -47,7 +47,7 @@ export function MobileNav() {
       {isOpen ? (
         <div
           id={panelId}
-          className="absolute inset-x-0 top-16 border-t border-white/10 bg-[#050914]"
+          className="absolute inset-x-0 top-16 border-t border-slate-200 bg-white shadow-xl"
         >
           <div className="container flex flex-col gap-2 py-4">
             <nav className="flex flex-col gap-2" aria-label="Mobile navigation">
@@ -56,7 +56,7 @@ export function MobileNav() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="rounded-md px-3 py-3 text-sm font-medium text-slate-200 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="rounded-md px-3 py-3 text-sm font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   {link.label}
                 </Link>

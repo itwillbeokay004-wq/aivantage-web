@@ -18,18 +18,18 @@ export function PageHero({
   secondaryCta?: { href: string; label: string };
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-white/10">
+    <section className="relative overflow-hidden border-b border-slate-200">
       <div className="absolute inset-0 hero-mesh" />
       <div className="absolute inset-0 signal-grid opacity-30" />
       <div className="container relative py-16 sm:py-20 lg:py-24">
         <Reveal className="max-w-4xl">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-200">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-blue-700">
             {eyebrow}
           </p>
-          <h1 className="text-balance text-4xl font-semibold tracking-normal text-white sm:text-6xl">
+          <h1 className="text-balance text-4xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
             {title}
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
             {description}
           </p>
           {(primaryCta || secondaryCta) ? (

@@ -239,21 +239,21 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 18, scale: 0.96 }}
             transition={{ duration: shouldReduceMotion ? 0 : 0.2, ease: "easeOut" }}
-            className="mb-4 flex max-h-[calc(100vh-7rem)] w-[calc(100vw-2rem)] max-w-[420px] flex-col overflow-hidden rounded-2xl border border-cyan-300/20 bg-[#050914]/95 shadow-2xl shadow-cyan-950/40 backdrop-blur-xl"
+            className="mb-4 flex max-h-[calc(100vh-7rem)] w-[calc(100vw-2rem)] max-w-[420px] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-2xl shadow-slate-950/10 backdrop-blur-xl"
           >
-            <div className="border-b border-white/10 bg-white/[0.04] p-4">
+            <div className="border-b border-slate-200 bg-slate-50 p-4">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex gap-3">
-                  <div className="grid size-11 shrink-0 place-items-center rounded-md bg-cyan-300/10 text-cyan-200">
+                  <div className="grid size-11 shrink-0 place-items-center rounded-md bg-blue-50 text-blue-700">
                     <Bot className="size-5" aria-hidden="true" />
                   </div>
                   <div>
-                    <p id={panelTitleId} className="font-semibold text-white">
+                    <p id={panelTitleId} className="font-semibold text-slate-950">
                       AiVantage assistant
                     </p>
                     <p
                       id={panelDescriptionId}
-                      className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100"
+                      className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-blue-700"
                     >
                       {modeLabel}
                     </p>
@@ -263,7 +263,7 @@ export function ChatWidget() {
                   ref={closeButtonRef}
                   type="button"
                   onClick={closeWidget}
-                  className="grid size-10 shrink-0 place-items-center rounded-md border border-white/10 bg-white/[0.04] text-slate-300 transition hover:border-cyan-300/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="grid size-10 shrink-0 place-items-center rounded-md border border-slate-200 bg-white text-slate-500 transition hover:border-blue-200 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   aria-label="Close AiVantage assistant"
                 >
                   <X className="size-4" aria-hidden="true" />
@@ -273,10 +273,10 @@ export function ChatWidget() {
 
             <div className="min-h-0 flex-1 overflow-y-auto p-4">
               <div className="flex gap-3">
-                <div className="grid size-8 shrink-0 place-items-center rounded-md bg-cyan-300/10 text-cyan-200">
+                <div className="grid size-8 shrink-0 place-items-center rounded-md bg-blue-50 text-blue-700">
                   <Sparkles className="size-4" aria-hidden="true" />
                 </div>
-                <div className="rounded-xl border border-cyan-300/20 bg-cyan-300/[0.07] p-3 text-sm leading-6 text-cyan-50">
+                <div className="rounded-xl border border-blue-100 bg-blue-50 p-3 text-sm leading-6 text-slate-700">
                   {welcomeMessage}
                 </div>
               </div>
@@ -299,13 +299,13 @@ export function ChatWidget() {
                         className={cn(
                           "flex items-center gap-3 rounded-md border p-3 text-left text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-60",
                           isActive
-                            ? "border-cyan-300/50 bg-cyan-300/10 text-white"
-                            : "border-white/10 bg-white/[0.04] text-slate-300 hover:border-white/20 hover:text-white",
+                            ? "border-blue-200 bg-blue-50 text-blue-700"
+                            : "border-slate-200 bg-white text-slate-700 hover:border-blue-200 hover:text-blue-700",
                         )}
                         aria-pressed={isActive}
                       >
                         <Icon
-                          className="size-4 shrink-0 text-cyan-200"
+                          className="size-4 shrink-0 text-blue-700"
                           aria-hidden="true"
                         />
                         <span>{action.label}</span>
@@ -330,7 +330,7 @@ export function ChatWidget() {
                       )}
                     >
                       {message.role === "assistant" ? (
-                        <div className="grid size-8 shrink-0 place-items-center rounded-md bg-cyan-300/10 text-cyan-200">
+                        <div className="grid size-8 shrink-0 place-items-center rounded-md bg-blue-50 text-blue-700">
                           <Bot className="size-4" aria-hidden="true" />
                         </div>
                       ) : null}
@@ -338,8 +338,8 @@ export function ChatWidget() {
                         className={cn(
                           "max-w-[88%] rounded-xl p-3 text-sm leading-6",
                           message.role === "user"
-                            ? "bg-white/10 text-slate-100"
-                            : "border border-cyan-300/20 bg-cyan-300/[0.07] text-cyan-50",
+                            ? "bg-blue-600 text-white"
+                            : "border border-blue-100 bg-blue-50 text-slate-700",
                         )}
                       >
                         <p>{message.content}</p>
@@ -364,10 +364,10 @@ export function ChatWidget() {
 
                 {isSending ? (
                   <div className="flex gap-3">
-                    <div className="grid size-8 shrink-0 place-items-center rounded-md bg-cyan-300/10 text-cyan-200">
+                    <div className="grid size-8 shrink-0 place-items-center rounded-md bg-blue-50 text-blue-700">
                       <Bot className="size-4" aria-hidden="true" />
                     </div>
-                    <div className="rounded-xl border border-cyan-300/20 bg-cyan-300/[0.07] px-4 py-3">
+                    <div className="rounded-xl border border-blue-100 bg-blue-50 px-4 py-3">
                       <div
                         className="flex h-6 items-center gap-1.5"
                         aria-label="Assistant is typing"
@@ -375,7 +375,7 @@ export function ChatWidget() {
                         {[0, 1, 2].map((dot) => (
                           <motion.span
                             key={dot}
-                            className="size-2 rounded-full bg-cyan-200"
+                            className="size-2 rounded-full bg-blue-600"
                             animate={
                               shouldReduceMotion
                                 ? { opacity: 1, y: 0 }
@@ -397,15 +397,15 @@ export function ChatWidget() {
               </div>
             </div>
 
-            <div className="border-t border-white/10 p-4">
+            <div className="border-t border-slate-200 p-4">
               {statusMessage ? (
-                <p className="mb-3 text-xs text-amber-100" aria-live="polite">
+                <p className="mb-3 text-xs text-amber-700" aria-live="polite">
                   {statusMessage}
                 </p>
               ) : null}
               <form
                 onSubmit={(event) => void handleSubmit(event)}
-                className="flex items-center gap-3 rounded-md border border-white/10 bg-[#07101f] p-3"
+                className="flex items-center gap-3 rounded-md border border-slate-200 bg-white p-3"
               >
                 <label htmlFor="site-chat-message" className="sr-only">
                   Ask the AiVantage assistant
@@ -422,12 +422,12 @@ export function ChatWidget() {
                   }
                   onChange={(event) => setInputValue(event.target.value)}
                   placeholder="Ask about AI agents, pricing, or demo options"
-                  className="min-w-0 flex-1 bg-transparent text-sm text-slate-300 outline-none placeholder:text-slate-400 disabled:text-slate-400"
+                  className="min-w-0 flex-1 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400 disabled:text-slate-400"
                 />
                 <button
                   type="submit"
                   disabled={!aiChatEnabled || isSending || !inputValue.trim()}
-                  className="grid size-10 place-items-center rounded-md bg-primary text-primary-foreground transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-70"
+                  className="grid size-10 place-items-center rounded-md bg-primary text-primary-foreground transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-70"
                   aria-label="Send chat message"
                 >
                   {isSending ? (
@@ -452,7 +452,7 @@ export function ChatWidget() {
         type="button"
         onClick={openWidget}
         className={cn(
-          "ml-auto flex min-h-14 items-center gap-3 rounded-full border border-cyan-300/30 bg-cyan-300 px-5 py-3 font-semibold text-slate-950 shadow-2xl shadow-cyan-950/40 transition hover:bg-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          "ml-auto flex min-h-14 items-center gap-3 rounded-full border border-blue-700 bg-blue-600 px-5 py-3 font-semibold text-white shadow-2xl shadow-blue-950/20 transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           isOpen ? "hidden" : "flex",
         )}
         aria-label="Open AiVantage assistant"

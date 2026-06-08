@@ -46,8 +46,8 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        glow: "0 0 42px rgba(45, 212, 253, 0.16)",
-        panel: "0 24px 80px rgba(0, 0, 0, 0.28)",
+        glow: "0 18px 48px rgba(37, 99, 235, 0.13)",
+        panel: "0 24px 70px rgba(15, 23, 42, 0.1)",
       },
       keyframes: {
         "accordion-down": {

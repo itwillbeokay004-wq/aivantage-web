@@ -11,6 +11,7 @@ const routes = [
   "/use-cases",
   "/pricing",
   "/resources",
+  "/about",
   "/contact",
   "/book-demo",
   "/privacy",

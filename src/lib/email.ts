@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 
 import { siteConfig } from "@/data/site";
+import type { Locale } from "@/lib/i18n";
 import type { ContactFormValues, DemoFormValues } from "@/lib/schemas";
 
 type EmailField = {
@@ -9,6 +10,7 @@ type EmailField = {
 };
 
 type LeadEmailOptions = {
+  locale: Locale;
   subject: string;
   confirmationSubject: string;
   intro: string;
@@ -39,42 +41,72 @@ export function hasHoneypotValue(value: string | undefined) {
 }
 
 export async function sendContactRequestEmail(data: ContactFormValues) {
+  const copy = emailCopy[data.locale];
+
   await sendLeadEmail({
-    subject: `New AiVantage contact request from ${data.name}`,
-    confirmationSubject: "We received your AiVantage message",
-    intro: "A new contact form request was submitted on aivantage.es.",
+    locale: data.locale,
+    subject:
+      data.locale === "es"
+        ? `Nueva solicitud de contacto de ${data.name}`
+        : `New AiVantage contact request from ${data.name}`,
+    confirmationSubject:
+      data.locale === "es"
+        ? "Hemos recibido tu mensaje para AiVantage"
+        : "We received your AiVantage message",
+    intro:
+      data.locale === "es"
+        ? "Se ha recibido una nueva solicitud de contacto en aivantage.es."
+        : "A new contact form request was submitted on aivantage.es.",
     confirmationIntro:
-      "Thanks for contacting AiVantage. We received your message and will review it shortly.",
+      data.locale === "es"
+        ? "Gracias por contactar con AiVantage. Hemos recibido tu mensaje y lo revisaremos pronto."
+        : "Thanks for contacting AiVantage. We received your message and will review it shortly.",
     userEmail: data.email,
     userName: data.name,
-    fields: [
-      { label: "Name", value: data.name },
-      { label: "Email", value: data.email },
-      { label: "Company", value: data.company },
-      { label: "Interest", value: data.interest },
-      { label: "Message", value: data.message },
-    ],
+    fields: compactFields([
+      { label: copy.name, value: data.name },
+      { label: copy.email, value: data.email },
+      { label: copy.phone, value: data.phone },
+      { label: copy.company, value: data.company },
+      { label: copy.message, value: data.message },
+    ]),
   });
 }
 
 export async function sendDemoRequestEmail(data: DemoFormValues) {
+  const copy = emailCopy[data.locale];
+
   await sendLeadEmail({
-    subject: `New AiVantage demo request from ${data.name}`,
-    confirmationSubject: "We received your AiVantage demo request",
-    intro: "A new demo request was submitted on aivantage.es.",
+    locale: data.locale,
+    subject:
+      data.locale === "es"
+        ? `Nueva solicitud de demo de ${data.name}`
+        : `New AiVantage demo request from ${data.name}`,
+    confirmationSubject:
+      data.locale === "es"
+        ? "Hemos recibido tu solicitud de demo de AiVantage"
+        : "We received your AiVantage demo request",
+    intro:
+      data.locale === "es"
+        ? "Se ha recibido una nueva solicitud de demo en aivantage.es."
+        : "A new demo request was submitted on aivantage.es.",
     confirmationIntro:
-      "Thanks for requesting an AiVantage demo. We received your request and will send next steps shortly.",
+      data.locale === "es"
+        ? "Gracias por solicitar una demo de AiVantage. Hemos recibido tu solicitud y te contactaremos para coordinar los siguientes pasos."
+        : "Thanks for requesting an AiVantage demo. We received your request and will send next steps shortly.",
     userEmail: data.email,
     userName: data.name,
-    fields: [
-      { label: "Name", value: data.name },
-      { label: "Email", value: data.email },
-      { label: "Company", value: data.company },
-      { label: "Team size", value: data.teamSize },
-      { label: "Primary use case", value: data.useCase },
-      { label: "Timeline", value: data.timeline },
-      { label: "Message", value: data.message },
-    ],
+    fields: compactFields([
+      { label: copy.name, value: data.name },
+      { label: copy.email, value: data.email },
+      { label: copy.phone, value: data.phone },
+      { label: copy.company, value: data.company },
+      { label: copy.businessWebsite, value: data.businessWebsite },
+      { label: copy.industry, value: data.industry },
+      { label: copy.automationGoal, value: data.automationGoal },
+      { label: copy.preferredContactMethod, value: data.preferredContactMethod },
+      { label: copy.preferredDateTime, value: data.preferredDateTime },
+    ]),
   });
 }
 
@@ -148,25 +180,29 @@ async function sendEmail(
 }
 
 function buildLeadText(options: LeadEmailOptions) {
+  const sourceLabel = options.locale === "es" ? "Fuente" : "Source";
+
   return [
     options.intro,
     "",
     ...options.fields.map((field) => `${field.label}: ${field.value}`),
     "",
-    `Source: ${siteConfig.domain}`,
+    `${sourceLabel}: ${siteConfig.domain}`,
   ].join("\n");
 }
 
 function buildConfirmationText(options: LeadEmailOptions) {
+  const copy = confirmationCopy[options.locale];
+
   return [
-    `Hi ${options.userName},`,
+    `${copy.greeting} ${options.userName},`,
     "",
     options.confirmationIntro,
     "",
-    "Here is what we received:",
+    copy.received,
     "",
     ...options.fields
-      .filter((field) => field.label !== "Email")
+      .filter((field) => field.label !== emailCopy[options.locale].email)
       .map((field) => `${field.label}: ${field.value}`),
     "",
     "AiVantage",
@@ -175,19 +211,25 @@ function buildConfirmationText(options: LeadEmailOptions) {
 }
 
 function buildLeadHtml(options: LeadEmailOptions) {
+  const sourceLabel = options.locale === "es" ? "Fuente" : "Source";
+
   return emailShell(`
     <p>${escapeHtml(options.intro)}</p>
     ${fieldsTable(options.fields)}
-    <p style="color:#64748b;font-size:13px;">Source: ${escapeHtml(siteConfig.domain)}</p>
+    <p style="color:#64748b;font-size:13px;">${sourceLabel}: ${escapeHtml(siteConfig.domain)}</p>
   `);
 }
 
 function buildConfirmationHtml(options: LeadEmailOptions) {
+  const copy = confirmationCopy[options.locale];
+
   return emailShell(`
-    <p>Hi ${escapeHtml(options.userName)},</p>
+    <p>${copy.greeting} ${escapeHtml(options.userName)},</p>
     <p>${escapeHtml(options.confirmationIntro)}</p>
-    <p>Here is what we received:</p>
-    ${fieldsTable(options.fields.filter((field) => field.label !== "Email"))}
+    <p>${copy.received}</p>
+    ${fieldsTable(
+      options.fields.filter((field) => field.label !== emailCopy[options.locale].email),
+    )}
     <p style="margin-top:24px;">AiVantage<br />${escapeHtml(siteConfig.domain)}</p>
   `);
 }
@@ -237,4 +279,46 @@ function escapeHtml(value: string) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+}
+
+const emailCopy = {
+  es: {
+    name: "Nombre",
+    email: "Email",
+    phone: "Teléfono",
+    company: "Empresa",
+    message: "Mensaje",
+    businessWebsite: "Sitio web",
+    industry: "Industria",
+    automationGoal: "Qué quiere automatizar",
+    preferredContactMethod: "Método de contacto preferido",
+    preferredDateTime: "Fecha/hora preferida",
+  },
+  en: {
+    name: "Name",
+    email: "Email",
+    phone: "Phone",
+    company: "Company",
+    message: "Message",
+    businessWebsite: "Website",
+    industry: "Industry",
+    automationGoal: "What they want to automate",
+    preferredContactMethod: "Preferred contact method",
+    preferredDateTime: "Preferred date/time",
+  },
+} as const satisfies Record<Locale, Record<string, string>>;
+
+const confirmationCopy = {
+  es: {
+    greeting: "Hola",
+    received: "Esto es lo que hemos recibido:",
+  },
+  en: {
+    greeting: "Hi",
+    received: "Here is what we received:",
+  },
+} as const satisfies Record<Locale, { greeting: string; received: string }>;
+
+function compactFields(fields: readonly { label: string; value: string }[]) {
+  return fields.filter((field) => field.value.trim().length > 0);
 }

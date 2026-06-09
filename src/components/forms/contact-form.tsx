@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,42 +10,77 @@ import { useLocale } from "@/components/locale-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { contactSchema, type ContactFormValues } from "@/lib/schemas";
+import { createContactSchema, type ContactFormValues } from "@/lib/schemas";
 
-const interests = {
-  es: [
-    "Automatización de atención al cliente",
-    "Automatización de ventas",
-    "Agentes de voz",
-    "Flujos internos",
-    "Estrategia de IA",
-  ],
-  en: [
-    "Support automation",
-    "Sales automation",
-    "Voice agents",
-    "Internal workflows",
-    "AI strategy",
-  ],
+const formCopy = {
+  es: {
+    labels: {
+      name: "Nombre",
+      email: "Email",
+      phone: "Teléfono, opcional",
+      company: "Empresa, opcional",
+      message: "Mensaje",
+      honeypot: "Sitio web",
+    },
+    placeholders: {
+      name: "Laura García",
+      email: "laura@empresa.com",
+      phone: "+34 600 000 000",
+      company: "Nombre de empresa",
+      message: "Cuéntanos qué proceso, conversación o tarea quieres automatizar.",
+    },
+    fallbackSuccess:
+      "Gracias. Hemos recibido tu mensaje y nos pondremos en contacto contigo pronto.",
+    fallbackError: "Algo salió mal. Inténtalo de nuevo.",
+    submit: "Enviar mensaje",
+  },
+  en: {
+    labels: {
+      name: "Name",
+      email: "Business email",
+      phone: "Phone, optional",
+      company: "Company, optional",
+      message: "What should we help with?",
+      honeypot: "Website",
+    },
+    placeholders: {
+      name: "Jordan Lee",
+      email: "jordan@company.com",
+      phone: "+1 555 000 0000",
+      company: "Northstar Group",
+      message: "Tell us about the process, conversation, or workflow you want to automate.",
+    },
+    fallbackSuccess: "Thanks. We will respond within one business day.",
+    fallbackError: "Something went wrong. Please try again.",
+    submit: "Send Message",
+  },
 } as const;
+
+type ApiResponse = {
+  message?: string;
+  error?: string;
+};
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [statusMessage, setStatusMessage] = useState("");
   const { locale } = useLocale();
+  const copy = formCopy[locale];
+  const schema = useMemo(() => createContactSchema(locale), [locale]);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormValues>({
-    resolver: zodResolver(contactSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
+      locale,
       name: "",
       email: "",
+      phone: "",
       company: "",
-      interest: "",
       message: "",
       website: "",
     },
@@ -53,22 +88,27 @@ export function ContactForm() {
 
   async function onSubmit(values: ContactFormValues) {
     setStatus("idle");
+    setStatusMessage("");
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, locale }),
       });
+      const payload = (await response.json().catch(() => null)) as ApiResponse | null;
 
       if (!response.ok) {
         setStatus("error");
+        setStatusMessage(payload?.error ?? copy.fallbackError);
         return;
       }
 
       setStatus("success");
+      setStatusMessage(payload?.message ?? copy.fallbackSuccess);
       reset();
     } catch {
       setStatus("error");
+      setStatusMessage(copy.fallbackError);
     }
   }
 
@@ -78,9 +118,7 @@ export function ContactForm() {
         className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
         aria-hidden="true"
       >
-        <Label htmlFor="contact-website">
-          {locale === "es" ? "Sitio web" : "Website"}
-        </Label>
+        <Label htmlFor="contact-website">{copy.labels.honeypot}</Label>
         <Input
           id="contact-website"
           tabIndex={-1}
@@ -91,12 +129,12 @@ export function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <Field
           id="contact-name"
-          label={locale === "es" ? "Nombre" : "Name"}
+          label={copy.labels.name}
           error={errors.name?.message}
         >
           <Input
             id="contact-name"
-            placeholder="Jordan Lee"
+            placeholder={copy.placeholders.name}
             autoComplete="name"
             aria-invalid={Boolean(errors.name)}
             aria-describedby="contact-name-error"
@@ -105,13 +143,13 @@ export function ContactForm() {
         </Field>
         <Field
           id="contact-email"
-          label={locale === "es" ? "Email de trabajo" : "Business email"}
+          label={copy.labels.email}
           error={errors.email?.message}
         >
           <Input
             id="contact-email"
             type="email"
-            placeholder="jordan@company.com"
+            placeholder={copy.placeholders.email}
             autoComplete="email"
             aria-invalid={Boolean(errors.email)}
             aria-describedby="contact-email-error"
@@ -119,59 +157,44 @@ export function ContactForm() {
           />
         </Field>
         <Field
+          id="contact-phone"
+          label={copy.labels.phone}
+          error={errors.phone?.message}
+        >
+          <Input
+            id="contact-phone"
+            type="tel"
+            placeholder={copy.placeholders.phone}
+            autoComplete="tel"
+            aria-invalid={Boolean(errors.phone)}
+            aria-describedby="contact-phone-error"
+            {...register("phone")}
+          />
+        </Field>
+        <Field
           id="contact-company"
-          label={locale === "es" ? "Empresa" : "Company"}
+          label={copy.labels.company}
           error={errors.company?.message}
         >
           <Input
             id="contact-company"
-            placeholder="Northstar Group"
+            placeholder={copy.placeholders.company}
             autoComplete="organization"
             aria-invalid={Boolean(errors.company)}
             aria-describedby="contact-company-error"
             {...register("company")}
           />
         </Field>
-        <Field
-          id="contact-interest"
-          label={locale === "es" ? "Interés" : "Interest"}
-          error={errors.interest?.message}
-        >
-          <Select
-            id="contact-interest"
-            aria-invalid={Boolean(errors.interest)}
-            aria-describedby="contact-interest-error"
-            {...register("interest")}
-            defaultValue=""
-          >
-            <option value="" disabled>
-              {locale === "es" ? "Selecciona un área" : "Select an area"}
-            </option>
-            {interests[locale].map((interest) => (
-              <option key={interest} value={interest}>
-                {interest}
-              </option>
-            ))}
-          </Select>
-        </Field>
       </div>
       <div className="mt-5">
         <Field
           id="contact-message"
-          label={
-            locale === "es"
-              ? "¿En qué deberíamos ayudar?"
-              : "What should we help with?"
-          }
+          label={copy.labels.message}
           error={errors.message?.message}
         >
           <Textarea
             id="contact-message"
-            placeholder={
-              locale === "es"
-                ? "Cuéntanos qué proceso, conversación o tarea quieres automatizar."
-                : "Tell us about the process, conversation, or workflow you want to automate."
-            }
+            placeholder={copy.placeholders.message}
             aria-invalid={Boolean(errors.message)}
             aria-describedby="contact-message-error"
             {...register("message")}
@@ -183,17 +206,11 @@ export function ContactForm() {
           {status === "success" ? (
             <span className="inline-flex items-center gap-2 text-emerald-200">
               <CheckCircle2 className="size-4" aria-hidden="true" />
-              {locale === "es"
-                ? "Gracias. Responderemos en un día hábil."
-                : "Thanks. We will respond within one business day."}
+              {statusMessage || copy.fallbackSuccess}
             </span>
           ) : null}
           {status === "error" ? (
-            <span className="text-rose-200">
-              {locale === "es"
-                ? "Algo salió mal. Inténtalo de nuevo."
-                : "Something went wrong. Please try again."}
-            </span>
+            <span className="text-rose-200">{statusMessage || copy.fallbackError}</span>
           ) : null}
         </p>
         <Button type="submit" disabled={isSubmitting}>
@@ -202,7 +219,7 @@ export function ContactForm() {
           ) : (
             <Send className="size-4" aria-hidden="true" />
           )}
-          {locale === "es" ? "Enviar mensaje" : "Send Message"}
+          {copy.submit}
         </Button>
       </div>
     </form>

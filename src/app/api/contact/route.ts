@@ -6,16 +6,36 @@ import {
   hasHoneypotValue,
   sendContactRequestEmail,
 } from "@/lib/email";
-import { contactSchema } from "@/lib/schemas";
+import { defaultLocale, isLocale, type Locale } from "@/lib/i18n";
+import { createContactSchema } from "@/lib/schemas";
+
+const responseCopy = {
+  es: {
+    invalid: "Revisa los campos e inténtalo de nuevo.",
+    received: "Gracias. Hemos recibido tu mensaje y nos pondremos en contacto contigo pronto.",
+    notConfigured: "El servicio de email no está configurado.",
+    delivery: "No se ha podido enviar el email ahora mismo. Inténtalo de nuevo más tarde.",
+    unexpected: "Ha ocurrido un error inesperado. Inténtalo de nuevo más tarde.",
+  },
+  en: {
+    invalid: "Invalid contact request.",
+    received: "Thanks. We will respond within one business day.",
+    notConfigured: "Email service is not configured.",
+    delivery: "Email could not be sent right now. Please try again later.",
+    unexpected: "Unexpected email error. Please try again later.",
+  },
+} as const;
 
 export async function POST(request: Request) {
   // TODO: Add IP/user-agent based rate limiting before production launch.
   const body: unknown = await request.json().catch(() => null);
-  const result = contactSchema.safeParse(body);
+  const locale = getBodyLocale(body);
+  const copy = responseCopy[locale];
+  const result = createContactSchema(locale).safeParse(body);
 
   if (!result.success) {
     return NextResponse.json(
-      { error: "Invalid contact request", issues: result.error.flatten().fieldErrors },
+      { error: copy.invalid, issues: result.error.flatten().fieldErrors },
       { status: 400 },
     );
   }
@@ -23,7 +43,7 @@ export async function POST(request: Request) {
   if (hasHoneypotValue(result.data.website)) {
     return NextResponse.json({
       ok: true,
-      message: "Contact request received.",
+      message: copy.received,
     });
   }
 
@@ -31,30 +51,44 @@ export async function POST(request: Request) {
     await sendContactRequestEmail(result.data);
   } catch (error) {
     if (error instanceof EmailConfigurationError) {
-      console.error("Contact email configuration error:", error.message);
-      return NextResponse.json(
-        { error: "Email service is not configured." },
-        { status: 500 },
-      );
+      logEmailError("Contact email configuration error", error);
+      return NextResponse.json({ error: copy.notConfigured }, { status: 500 });
     }
 
     if (error instanceof EmailDeliveryError) {
-      console.error("Contact email delivery error:", error.message);
-      return NextResponse.json(
-        { error: "Email could not be sent right now. Please try again later." },
-        { status: 502 },
-      );
+      logEmailError("Contact email delivery error", error);
+      return NextResponse.json({ error: copy.delivery }, { status: 502 });
     }
 
-    console.error("Unexpected contact email error:", error);
-    return NextResponse.json(
-      { error: "Unexpected email error. Please try again later." },
-      { status: 500 },
-    );
+    logEmailError("Unexpected contact email error", error);
+    return NextResponse.json({ error: copy.unexpected }, { status: 500 });
   }
 
   return NextResponse.json({
     ok: true,
-    message: "Contact request sent. Please check your inbox for confirmation.",
+    message: copy.received,
   });
+}
+
+function getBodyLocale(body: unknown): Locale {
+  if (body && typeof body === "object" && "locale" in body) {
+    const locale = body.locale;
+
+    if (typeof locale === "string" && isLocale(locale)) {
+      return locale;
+    }
+  }
+
+  return defaultLocale;
+}
+
+function logEmailError(context: string, error: unknown) {
+  const message = error instanceof Error ? error.message : "Unknown error";
+
+  if (process.env.NODE_ENV === "production") {
+    console.error(`${context}: ${message}`);
+    return;
+  }
+
+  console.error(`${context}:`, error);
 }

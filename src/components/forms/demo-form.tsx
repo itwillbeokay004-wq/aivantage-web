@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,70 +12,156 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { demoSchema, type DemoFormValues } from "@/lib/schemas";
+import { createDemoSchema, type DemoFormValues } from "@/lib/schemas";
 
-const teamSizes = ["1-10", "11-50", "51-250", "251-1,000", "1,000+"];
-const useCases = {
+const industries = {
   es: [
-    "Atención al cliente",
-    "Cualificación para ventas",
-    "Recepción de llamadas",
-    "Operaciones internas",
-    "Múltiples procesos",
+    "Inmobiliarias",
+    "Gestión de propiedades",
+    "Servicios locales",
+    "Clínicas y consultas",
+    "Despachos legales",
+    "E-commerce",
+    "Educación",
+    "Servicios para el hogar",
+    "Otra",
   ],
   en: [
-    "Customer support",
-    "Sales qualification",
-    "Voice intake",
-    "Internal operations",
-    "Multiple workflows",
+    "Real Estate",
+    "Property Management",
+    "Local Services",
+    "Healthcare Offices",
+    "Legal Offices",
+    "E-commerce",
+    "Education",
+    "Home Services",
+    "Other",
   ],
 } as const;
-const timelines = {
-  es: ["Este mes", "Próximos 30-60 días", "Este trimestre", "Explorando opciones"],
-  en: ["This month", "Next 30-60 days", "This quarter", "Exploring options"],
+
+const preferredContactMethods = {
+  es: ["Email", "Teléfono", "WhatsApp", "Videollamada"],
+  en: ["Email", "Phone", "WhatsApp", "Video call"],
 } as const;
+
+const formCopy = {
+  es: {
+    labels: {
+      name: "Nombre",
+      email: "Email",
+      phone: "Teléfono",
+      company: "Empresa",
+      businessWebsite: "Sitio web",
+      industry: "Industria",
+      automationGoal: "¿Qué quieres automatizar?",
+      preferredContactMethod: "Método de contacto preferido",
+      preferredDateTime: "Fecha/hora preferida, opcional",
+      honeypot: "No rellenes este campo",
+    },
+    placeholders: {
+      name: "Laura García",
+      email: "laura@empresa.com",
+      phone: "+34 600 000 000",
+      company: "Nombre de empresa",
+      businessWebsite: "https://tuempresa.com",
+      industry: "Selecciona industria",
+      automationGoal:
+        "Por ejemplo: responder preguntas frecuentes, cualificar clientes potenciales o gestionar llamadas perdidas.",
+      preferredContactMethod: "Selecciona método",
+      preferredDateTime: "Por ejemplo: martes por la mañana",
+    },
+    fallbackSuccess:
+      "Gracias. Hemos recibido tu solicitud de demo. Te contactaremos para coordinar los siguientes pasos.",
+    fallbackError: "Algo salió mal. Inténtalo de nuevo.",
+    submit: "Solicitar demo",
+  },
+  en: {
+    labels: {
+      name: "Name",
+      email: "Business email",
+      phone: "Phone",
+      company: "Company",
+      businessWebsite: "Website",
+      industry: "Industry",
+      automationGoal: "What do you want to automate?",
+      preferredContactMethod: "Preferred contact method",
+      preferredDateTime: "Preferred date/time, optional",
+      honeypot: "Do not fill out this field",
+    },
+    placeholders: {
+      name: "Alex Morgan",
+      email: "alex@company.com",
+      phone: "+1 555 000 0000",
+      company: "Company name",
+      businessWebsite: "https://company.com",
+      industry: "Select industry",
+      automationGoal:
+        "For example: answer FAQs, qualify sales opportunities, or handle missed calls.",
+      preferredContactMethod: "Select method",
+      preferredDateTime: "For example: Tuesday morning",
+    },
+    fallbackSuccess: "Demo request received. We will send next steps shortly.",
+    fallbackError: "Something went wrong. Please try again.",
+    submit: "Request Demo",
+  },
+} as const;
+
+type ApiResponse = {
+  message?: string;
+  error?: string;
+};
 
 export function DemoForm() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [statusMessage, setStatusMessage] = useState("");
   const { locale } = useLocale();
+  const copy = formCopy[locale];
+  const schema = useMemo(() => createDemoSchema(locale), [locale]);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
   } = useForm<DemoFormValues>({
-    resolver: zodResolver(demoSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
+      locale,
       name: "",
       email: "",
+      phone: "",
       company: "",
-      teamSize: "",
-      useCase: "",
-      timeline: "",
-      message: "",
+      businessWebsite: "",
+      industry: "",
+      automationGoal: "",
+      preferredContactMethod: "",
+      preferredDateTime: "",
       website: "",
     },
   });
 
   async function onSubmit(values: DemoFormValues) {
     setStatus("idle");
+    setStatusMessage("");
     try {
       const response = await fetch("/api/book-demo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, locale }),
       });
+      const payload = (await response.json().catch(() => null)) as ApiResponse | null;
 
       if (!response.ok) {
         setStatus("error");
+        setStatusMessage(payload?.error ?? copy.fallbackError);
         return;
       }
 
       setStatus("success");
+      setStatusMessage(payload?.message ?? copy.fallbackSuccess);
       reset();
     } catch {
       setStatus("error");
+      setStatusMessage(copy.fallbackError);
     }
   }
 
@@ -85,9 +171,7 @@ export function DemoForm() {
         className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
         aria-hidden="true"
       >
-        <Label htmlFor="demo-website">
-          {locale === "es" ? "Sitio web" : "Website"}
-        </Label>
+        <Label htmlFor="demo-website">{copy.labels.honeypot}</Label>
         <Input
           id="demo-website"
           tabIndex={-1}
@@ -98,12 +182,12 @@ export function DemoForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <Field
           id="demo-name"
-          label={locale === "es" ? "Nombre" : "Name"}
+          label={copy.labels.name}
           error={errors.name?.message}
         >
           <Input
             id="demo-name"
-            placeholder="Alex Morgan"
+            placeholder={copy.placeholders.name}
             autoComplete="name"
             aria-invalid={Boolean(errors.name)}
             aria-describedby="demo-name-error"
@@ -112,13 +196,13 @@ export function DemoForm() {
         </Field>
         <Field
           id="demo-email"
-          label={locale === "es" ? "Email de trabajo" : "Business email"}
+          label={copy.labels.email}
           error={errors.email?.message}
         >
           <Input
             id="demo-email"
             type="email"
-            placeholder="alex@company.com"
+            placeholder={copy.placeholders.email}
             autoComplete="email"
             aria-invalid={Boolean(errors.email)}
             aria-describedby="demo-email-error"
@@ -126,13 +210,28 @@ export function DemoForm() {
           />
         </Field>
         <Field
+          id="demo-phone"
+          label={copy.labels.phone}
+          error={errors.phone?.message}
+        >
+          <Input
+            id="demo-phone"
+            type="tel"
+            placeholder={copy.placeholders.phone}
+            autoComplete="tel"
+            aria-invalid={Boolean(errors.phone)}
+            aria-describedby="demo-phone-error"
+            {...register("phone")}
+          />
+        </Field>
+        <Field
           id="demo-company"
-          label={locale === "es" ? "Empresa" : "Company"}
+          label={copy.labels.company}
           error={errors.company?.message}
         >
           <Input
             id="demo-company"
-            placeholder={locale === "es" ? "Nombre de empresa" : "Company name"}
+            placeholder={copy.placeholders.company}
             autoComplete="organization"
             aria-invalid={Boolean(errors.company)}
             aria-describedby="demo-company-error"
@@ -140,92 +239,90 @@ export function DemoForm() {
           />
         </Field>
         <Field
-          id="demo-team-size"
-          label={locale === "es" ? "Tamaño del equipo" : "Team size"}
-          error={errors.teamSize?.message}
+          id="demo-business-website"
+          label={copy.labels.businessWebsite}
+          error={errors.businessWebsite?.message}
+        >
+          <Input
+            id="demo-business-website"
+            type="url"
+            placeholder={copy.placeholders.businessWebsite}
+            autoComplete="url"
+            aria-invalid={Boolean(errors.businessWebsite)}
+            aria-describedby="demo-business-website-error"
+            {...register("businessWebsite")}
+          />
+        </Field>
+        <Field
+          id="demo-industry"
+          label={copy.labels.industry}
+          error={errors.industry?.message}
         >
           <Select
-            id="demo-team-size"
-            aria-invalid={Boolean(errors.teamSize)}
-            aria-describedby="demo-team-size-error"
-            {...register("teamSize")}
+            id="demo-industry"
+            aria-invalid={Boolean(errors.industry)}
+            aria-describedby="demo-industry-error"
+            {...register("industry")}
             defaultValue=""
           >
             <option value="" disabled>
-              {locale === "es" ? "Selecciona tamaño" : "Select team size"}
+              {copy.placeholders.industry}
             </option>
-            {teamSizes.map((size) => (
-              <option key={size} value={size}>
-                {size}
+            {industries[locale].map((industry) => (
+              <option key={industry} value={industry}>
+                {industry}
               </option>
             ))}
           </Select>
         </Field>
         <Field
-          id="demo-use-case"
-          label={locale === "es" ? "Caso de uso principal" : "Primary use case"}
-          error={errors.useCase?.message}
+          id="demo-preferred-contact-method"
+          label={copy.labels.preferredContactMethod}
+          error={errors.preferredContactMethod?.message}
         >
           <Select
-            id="demo-use-case"
-            aria-invalid={Boolean(errors.useCase)}
-            aria-describedby="demo-use-case-error"
-            {...register("useCase")}
+            id="demo-preferred-contact-method"
+            aria-invalid={Boolean(errors.preferredContactMethod)}
+            aria-describedby="demo-preferred-contact-method-error"
+            {...register("preferredContactMethod")}
             defaultValue=""
           >
             <option value="" disabled>
-              {locale === "es" ? "Selecciona caso de uso" : "Select use case"}
+              {copy.placeholders.preferredContactMethod}
             </option>
-            {useCases[locale].map((useCase) => (
-              <option key={useCase} value={useCase}>
-                {useCase}
+            {preferredContactMethods[locale].map((method) => (
+              <option key={method} value={method}>
+                {method}
               </option>
             ))}
           </Select>
         </Field>
         <Field
-          id="demo-timeline"
-          label={locale === "es" ? "Calendario" : "Timeline"}
-          error={errors.timeline?.message}
+          id="demo-preferred-date-time"
+          label={copy.labels.preferredDateTime}
+          error={errors.preferredDateTime?.message}
         >
-          <Select
-            id="demo-timeline"
-            aria-invalid={Boolean(errors.timeline)}
-            aria-describedby="demo-timeline-error"
-            {...register("timeline")}
-            defaultValue=""
-          >
-            <option value="" disabled>
-              {locale === "es" ? "Selecciona calendario" : "Select timeline"}
-            </option>
-            {timelines[locale].map((timeline) => (
-              <option key={timeline} value={timeline}>
-                {timeline}
-              </option>
-            ))}
-          </Select>
+          <Input
+            id="demo-preferred-date-time"
+            placeholder={copy.placeholders.preferredDateTime}
+            aria-invalid={Boolean(errors.preferredDateTime)}
+            aria-describedby="demo-preferred-date-time-error"
+            {...register("preferredDateTime")}
+          />
         </Field>
       </div>
       <div className="mt-5">
         <Field
-          id="demo-message"
-          label={
-            locale === "es"
-              ? "¿Qué haría útil esta demo?"
-              : "What would make this demo useful?"
-          }
-          error={errors.message?.message}
+          id="demo-automation-goal"
+          label={copy.labels.automationGoal}
+          error={errors.automationGoal?.message}
         >
           <Textarea
-            id="demo-message"
-            placeholder={
-              locale === "es"
-                ? "Comparte los sistemas, canales o procesos que quieres revisar."
-                : "Share the systems, channels, or workflows you want to discuss."
-            }
-            aria-invalid={Boolean(errors.message)}
-            aria-describedby="demo-message-error"
-            {...register("message")}
+            id="demo-automation-goal"
+            placeholder={copy.placeholders.automationGoal}
+            aria-invalid={Boolean(errors.automationGoal)}
+            aria-describedby="demo-automation-goal-error"
+            {...register("automationGoal")}
           />
         </Field>
       </div>
@@ -234,17 +331,11 @@ export function DemoForm() {
           {status === "success" ? (
             <span className="inline-flex items-center gap-2 text-emerald-200">
               <CheckCircle2 className="size-4" aria-hidden="true" />
-              {locale === "es"
-                ? "Solicitud recibida. Enviaremos próximos pasos pronto."
-                : "Demo request received. We will send next steps shortly."}
+              {statusMessage || copy.fallbackSuccess}
             </span>
           ) : null}
           {status === "error" ? (
-            <span className="text-rose-200">
-              {locale === "es"
-                ? "Algo salió mal. Inténtalo de nuevo."
-                : "Something went wrong. Please try again."}
-            </span>
+            <span className="text-rose-200">{statusMessage || copy.fallbackError}</span>
           ) : null}
         </p>
         <Button type="submit" disabled={isSubmitting}>
@@ -253,7 +344,7 @@ export function DemoForm() {
           ) : (
             <CalendarCheck className="size-4" aria-hidden="true" />
           )}
-          {locale === "es" ? "Solicitar demo" : "Request Demo"}
+          {copy.submit}
         </Button>
       </div>
     </form>

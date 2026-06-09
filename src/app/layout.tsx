@@ -3,7 +3,6 @@ import { headers } from "next/headers";
 import type { ReactNode } from "react";
 
 import { Analytics } from "@/components/analytics";
-import { ChatWidget } from "@/components/chat-widget";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { LocaleProvider } from "@/components/locale-provider";
@@ -141,7 +140,7 @@ export default async function RootLayout({
                 : "International Spanish- and English-speaking markets",
           },
         ],
-        url: `${siteConfig.url}${localizeHref("/solutions", locale)}`,
+        url: `${siteConfig.url}${localizeHref("/", locale)}`,
       },
     ],
   };
@@ -157,7 +156,6 @@ export default async function RootLayout({
           <Navbar />
           <main>{children}</main>
           <Footer />
-          <ChatWidget />
           <Analytics />
         </LocaleProvider>
       </body>

@@ -8,32 +8,32 @@ import { TrackedLink } from "@/components/analytics";
 import { useLocale } from "@/components/locale-provider";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { Button } from "@/components/ui/button";
-import {
-  navLinksByLocale,
-  resourceNavLinksByLocale,
-} from "@/data/site";
 import { localizeHref } from "@/lib/i18n";
+
+const navItems = {
+  es: [
+    { href: "/", label: "Inicio" },
+    { href: "/contact", label: "Contacto" },
+  ],
+  en: [
+    { href: "/", label: "Home" },
+    { href: "/contact", label: "Contact" },
+  ],
+} as const;
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const panelId = useId();
   const { locale } = useLocale();
-  const navLinks = navLinksByLocale[locale];
-  const resourceNavLinks = resourceNavLinksByLocale[locale];
 
   useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
+    if (!isOpen) return;
 
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setIsOpen(false);
-      }
+      if (event.key === "Escape") setIsOpen(false);
     }
 
     window.addEventListener("keydown", handleKeyDown);
-
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
@@ -41,7 +41,7 @@ export function MobileNav() {
     <div className="mobile-nav-shell">
       <button
         type="button"
-        className="grid size-10 place-items-center rounded-full border border-white/10 bg-white/[0.08] text-white shadow-sm"
+        className="grid size-10 place-items-center rounded-full border border-white/10 bg-white/[0.08] text-white shadow-sm transition hover:bg-white/[0.12] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         onClick={() => setIsOpen((value) => !value)}
         aria-label={
           isOpen
@@ -55,11 +55,7 @@ export function MobileNav() {
         aria-expanded={isOpen}
         aria-controls={panelId}
       >
-        {isOpen ? (
-          <X className="size-5" aria-hidden="true" />
-        ) : (
-          <Menu className="size-5" aria-hidden="true" />
-        )}
+        {isOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
       </button>
       {isOpen ? (
         <div
@@ -67,63 +63,30 @@ export function MobileNav() {
           data-mobile-nav-panel
           className="absolute inset-x-0 top-20 z-[60] max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-white/10 bg-[#020617] shadow-xl shadow-black/40"
         >
-          <div className="container flex flex-col gap-2 py-5">
-            <nav className="flex flex-col gap-2" aria-label="Mobile navigation">
-              {navLinks.map((link, index) => (
-                <div key={link.href} className="contents">
-                  <Link
-                    href={localizeHref(link.href, locale)}
-                    onClick={() => setIsOpen(false)}
-                    className="rounded-md px-3 py-3 text-sm font-medium text-slate-300 hover:bg-cyan-300/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    {link.label}
-                  </Link>
-                  {index === 0 ? (
-                    <div className="rounded-xl border border-white/10 bg-white/5 p-2">
-                      <p className="px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
-                        {locale === "es" ? "Recursos" : "Resources"}
-                      </p>
-                      <div className="grid gap-1">
-                        {resourceNavLinks.map((resourceLink) => (
-                          <Link
-                            key={resourceLink.href}
-                            href={localizeHref(resourceLink.href, locale)}
-                            onClick={() => setIsOpen(false)}
-                            className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-300 hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                          >
-                            {resourceLink.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ) : null}
-                </div>
+          <div className="container flex flex-col gap-3 py-5">
+            <nav className="grid gap-2" aria-label={locale === "es" ? "Navegación móvil" : "Mobile navigation"}>
+              {navItems[locale].map((link) => (
+                <Link
+                  key={link.href}
+                  href={localizeHref(link.href, locale)}
+                  onClick={() => setIsOpen(false)}
+                  className="rounded-xl px-3 py-3 text-sm font-medium text-slate-300 transition hover:bg-cyan-300/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  {link.label}
+                </Link>
               ))}
             </nav>
-            <div className="mt-2 grid gap-2 rounded-2xl border border-white/10 bg-white/5 p-2 sm:grid-cols-2">
-              <Button asChild variant="secondary">
-                <TrackedLink
-                  href="/contact"
-                  onClick={() => setIsOpen(false)}
-                  eventProperties={{ location: "mobile_nav_contact" }}
-                >
-                  {locale === "es" ? "Contactar" : "Contact"}
-                </TrackedLink>
-              </Button>
+            <div className="grid gap-2 rounded-2xl border border-white/10 bg-white/5 p-2">
               <Button asChild>
                 <TrackedLink
                   href="/book-demo"
                   onClick={() => setIsOpen(false)}
                   eventProperties={{ location: "mobile_nav" }}
                 >
-                  {locale === "es" ? "Reservar una demo" : "Book demo"}
+                  {locale === "es" ? "Reservar demo" : "Book Demo"}
                 </TrackedLink>
               </Button>
-              <LanguageSwitcher
-                className="sm:col-span-2"
-                onNavigate={() => setIsOpen(false)}
-                variant="mobile"
-              />
+              <LanguageSwitcher onNavigate={() => setIsOpen(false)} variant="mobile" />
             </div>
           </div>
         </div>

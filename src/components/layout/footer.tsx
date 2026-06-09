@@ -6,64 +6,72 @@ import { TrackedLink } from "@/components/analytics";
 import { useLocale } from "@/components/locale-provider";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
-import { footerGroupsByLocale, siteConfig } from "@/data/site";
+import { siteConfig } from "@/data/site";
 import { localizeHref } from "@/lib/i18n";
+
+const footerLinks = {
+  es: [
+    { href: "/", label: "Inicio" },
+    { href: "/contact", label: "Contacto" },
+    { href: "/book-demo", label: "Reservar demo" },
+    { href: "/privacy", label: "Privacidad" },
+    { href: "/terms", label: "Términos" },
+  ],
+  en: [
+    { href: "/", label: "Home" },
+    { href: "/contact", label: "Contact" },
+    { href: "/book-demo", label: "Book Demo" },
+    { href: "/privacy", label: "Privacy" },
+    { href: "/terms", label: "Terms" },
+  ],
+} as const;
 
 export function Footer() {
   const { locale } = useLocale();
-  const footerGroups = footerGroupsByLocale[locale];
 
   return (
     <footer className="border-t border-white/10 bg-[#020617]">
-      <div className="container py-14">
-        <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr]">
-          <div className="max-w-lg">
+      <div className="container py-12">
+        <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-start">
+          <div className="max-w-xl">
             <Logo />
             <p className="mt-5 text-sm leading-7 text-slate-300">
               {locale === "es"
-                ? "Agentes de IA listos para producción para atención al cliente, ventas, operaciones y comunicación con clientes."
-                : "Production-ready AI agents for support, sales, operations, and customer engagement."}
+                ? "AiVantage ayuda a empresas a crear agentes de IA para comunicación con clientes, captación, citas, llamadas y operaciones."
+                : "AiVantage helps businesses create AI agents for customer communication, lead capture, appointments, calls, and operations."}
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button asChild>
                 <TrackedLink href="/book-demo" eventProperties={{ location: "footer" }}>
-                  {locale === "es" ? "Reservar una demo" : "Book a Demo"}
+                  {locale === "es" ? "Reservar demo" : "Book Demo"}
                 </TrackedLink>
               </Button>
               <Button asChild variant="secondary">
                 <TrackedLink href="/contact" eventProperties={{ location: "footer" }}>
-                  {locale === "es" ? "Solicitar consulta" : "Start Free Consultation"}
+                  {locale === "es" ? "Contacto" : "Contact"}
                 </TrackedLink>
               </Button>
             </div>
           </div>
-          <div className="grid gap-8 sm:grid-cols-3">
-            {footerGroups.map((group) => (
-              <div key={group.title}>
-                <h3 className="text-sm font-semibold text-white">{group.title}</h3>
-                <ul className="mt-4 space-y-3">
-                  {group.links.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={localizeHref(link.href, locale)}
-                        className="text-sm text-slate-400 transition hover:text-cyan-200"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <nav className="flex flex-wrap gap-x-5 gap-y-3 lg:max-w-sm lg:justify-end" aria-label={locale === "es" ? "Enlaces del pie" : "Footer links"}>
+            {footerLinks[locale].map((link) => (
+              <Link
+                key={link.href}
+                href={localizeHref(link.href, locale)}
+                className="text-sm text-slate-400 transition hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                {link.label}
+              </Link>
             ))}
-          </div>
+          </nav>
         </div>
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
           <p>
             {locale === "es"
               ? `© ${new Date().getFullYear()} AiVantage. Todos los derechos reservados.`
               : `Copyright ${new Date().getFullYear()} AiVantage. All rights reserved.`}
           </p>
-          <a href={`mailto:${siteConfig.email}`} className="hover:text-cyan-200">
+          <a href={`mailto:${siteConfig.email}`} className="hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             {siteConfig.email}
           </a>
         </div>

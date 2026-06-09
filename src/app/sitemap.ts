@@ -1,17 +1,10 @@
 import type { MetadataRoute } from "next";
 
-import { resourceArticles } from "@/data/resources";
 import type { Locale } from "@/lib/i18n";
 import { localizedSeoUrls } from "@/lib/seo";
 
 const routes = [
   "/",
-  "/platform",
-  "/solutions",
-  "/ai-models",
-  "/use-cases",
-  "/pricing",
-  "/resources",
   "/contact",
   "/book-demo",
   "/privacy",
@@ -34,18 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ];
   });
 
-  const resourceRoutes = resourceArticles.flatMap((article) => [
-    sitemapEntry(`/resources/${article.slug}`, "es", {
-      changeFrequency: "monthly",
-      priority: 0.55,
-    }),
-    sitemapEntry(`/resources/${article.slug}`, "en", {
-      changeFrequency: "monthly",
-      priority: 0.5,
-    }),
-  ]);
-
-  return [...staticRoutes, ...resourceRoutes];
+  return staticRoutes;
 }
 
 function sitemapEntry(

@@ -1,13 +1,11 @@
 "use client";
 
-import { CalendarCheck, MessageSquareText, PhoneCall, Sparkles, Target } from "lucide-react";
+import { CalendarCheck, MessageSquareText, PhoneCall, Target } from "lucide-react";
 
 import { AiBuilder } from "@/components/builder/ai-builder";
 import { UseCaseCard } from "@/components/builder/use-case-card";
-import { TrackedLink } from "@/components/analytics";
 import { useLocale } from "@/components/locale-provider";
 import { CtaButton } from "@/components/ui/cta-button";
-import { ctaLabelsByLocale } from "@/data/site";
 
 const pageCopy = {
   es: {
@@ -16,8 +14,6 @@ const pageCopy = {
       title: "Crea tu próximo agente de IA en minutos.",
       description:
         "Describe lo que quieres automatizar y AiVantage te muestra una idea clara de agente, proceso y próximos pasos.",
-      primary: "Probar el generador",
-      secondary: "Reservar una demo",
     },
     useCases: {
       eyebrow: "Casos de uso principales",
@@ -69,8 +65,6 @@ const pageCopy = {
       title: "Build your next AI agent in minutes.",
       description:
         "Describe what you want to automate and AiVantage will show you a clear agent concept, workflow, and next steps.",
-      primary: "Try the builder",
-      secondary: "Book a demo",
     },
     useCases: {
       eyebrow: "Core use cases",
@@ -115,53 +109,35 @@ const pageCopy = {
 export function HomeBuilderPage() {
   const { locale } = useLocale();
   const copy = pageCopy[locale];
-  const ctaLabels = ctaLabelsByLocale[locale];
 
   return (
     <>
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 hero-mesh" />
-        <div className="absolute inset-0 signal-grid opacity-20" />
-        <div className="container relative flex flex-col items-center justify-center py-8 text-center sm:py-10">
-          <div className="mx-auto max-w-4xl">
+        <div className="absolute inset-0 signal-grid opacity-15" />
+        <div className="container relative flex flex-col items-center justify-center py-7 text-center sm:py-9">
+          <div className="mx-auto max-w-3xl">
             <p className="inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
               {copy.hero.eyebrow}
             </p>
-            <h1 className="mt-5 text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl">
               {copy.hero.title}
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
+            <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-slate-300">
               {copy.hero.description}
             </p>
-            <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <TrackedLink
-                href="#ai-builder"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                eventProperties={{ location: "hero_builder" }}
-              >
-                {copy.hero.primary}
-                <Sparkles className="size-4" aria-hidden="true" />
-              </TrackedLink>
-              <CtaButton href="/book-demo" variant="secondary" size="lg" showIcon={false}>
-                {copy.hero.secondary}
-              </CtaButton>
-            </div>
           </div>
         </div>
-        <AiBuilder className="relative -mt-4 pb-12 pt-0 sm:-mt-6 sm:pb-16 sm:pt-0" />
+        <AiBuilder className="relative -mt-1 pb-12 pt-0 sm:-mt-2 sm:pb-16 sm:pt-0" />
       </section>
 
-      <section className="container py-14 sm:py-20">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-200">
-            {copy.useCases.eyebrow}
-          </p>
+      <section className="container py-12 sm:py-16">
+        <div className="mx-auto max-w-2xl text-center">
           <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
             {copy.useCases.title}
           </h2>
-          <p className="mt-4 text-base leading-7 text-slate-300">{copy.useCases.description}</p>
         </div>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {copy.useCases.cards.map((card) => (
             <UseCaseCard key={card.title} {...card} />
           ))}
@@ -169,16 +145,13 @@ export function HomeBuilderPage() {
       </section>
 
       <section className="border-y border-white/10 bg-white/[0.025]">
-        <div className="container py-14 sm:py-20">
+        <div className="container py-12 sm:py-16">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-200">
-              {copy.how.eyebrow}
-            </p>
             <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
               {copy.how.title}
             </h2>
           </div>
-          <div className="mt-10 grid gap-3 md:grid-cols-4">
+          <div className="mt-8 grid gap-3 md:grid-cols-4">
             {copy.how.steps.map((step, index) => (
               <div
                 key={step}
@@ -194,7 +167,7 @@ export function HomeBuilderPage() {
         </div>
       </section>
 
-      <section className="container py-16">
+      <section className="container py-12 sm:py-16">
         <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#07101f] p-8 text-center shadow-panel sm:p-10">
           <div className="absolute inset-0 hero-mesh opacity-65" />
           <div className="absolute inset-0 signal-grid opacity-20" />
@@ -206,7 +179,7 @@ export function HomeBuilderPage() {
               {copy.cta.description}
             </p>
             <div className="mt-8 flex justify-center">
-              <CtaButton href="/book-demo" size="lg" analyticsLabel={ctaLabels.bookDemo}>
+              <CtaButton href="/book-demo" size="lg">
                 {copy.cta.button}
               </CtaButton>
             </div>

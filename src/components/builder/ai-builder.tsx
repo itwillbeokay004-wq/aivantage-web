@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
-import { Bot, CalendarDays, CheckCircle2, RotateCcw, Sparkles } from "lucide-react";
+import { Bot, CalendarDays, RotateCcw, Sparkles } from "lucide-react";
 
 import { useLocale } from "@/components/locale-provider";
 import { Button } from "@/components/ui/button";
@@ -23,8 +23,6 @@ type Recommendation = {
 const content = {
   es: {
     title: "¿Qué quieres crear con IA?",
-    eyebrow: "Generador AiVantage",
-    description: "Escribe una idea y recibe una propuesta clara de agente, canales y próximos pasos.",
     placeholder:
       "Ejemplo: Quiero un asistente que responda llamadas y capte clientes potenciales…",
     button: "Generar idea",
@@ -44,7 +42,6 @@ const content = {
     ],
     demoCta: "Reservar una demo",
     tryAgain: "Probar otra idea",
-    demoNote: "Respuesta de demostración basada en palabras clave. No usa IA real todavía.",
     recommendations: {
       website: {
         type: "website",
@@ -101,8 +98,6 @@ const content = {
   },
   en: {
     title: "What do you want to build with AI?",
-    eyebrow: "AiVantage Builder",
-    description: "Type an idea and get a clear agent concept, channels, and next steps.",
     placeholder: "Example: I want an assistant that answers calls and captures leads…",
     button: "Generate idea",
     emptyError: "Briefly describe what you want to automate.",
@@ -121,7 +116,6 @@ const content = {
     ],
     demoCta: "Book a demo",
     tryAgain: "Try another idea",
-    demoNote: "Demo response based on keywords. It does not use real AI yet.",
     recommendations: {
       website: {
         type: "website",
@@ -232,26 +226,16 @@ export function AiBuilder({ className }: { className?: string }) {
 
   return (
     <div id="ai-builder" className={cn("container relative py-8 sm:py-12", className)}>
-      <div className="mx-auto max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.055] p-3 shadow-panel backdrop-blur">
-        <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#050b16] p-5 sm:p-8 lg:p-10">
-          <div className="absolute inset-0 hero-mesh opacity-55" />
-          <div className="absolute inset-0 signal-grid opacity-20" />
-          <div className="relative grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-            <div>
-              <p className="inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
-                {copy.eyebrow}
-              </p>
-              <h2 className="mt-5 text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                {copy.title}
-              </h2>
-              <p className="mt-4 max-w-xl text-sm leading-6 text-slate-300 sm:text-base">
-                {copy.description}
-              </p>
-              <p className="mt-5 text-xs text-slate-500">{copy.demoNote}</p>
-            </div>
-
+      <div className="mx-auto max-w-4xl rounded-[2rem] border border-white/10 bg-white/[0.055] p-2 shadow-panel backdrop-blur">
+        <div className="relative overflow-hidden rounded-[1.55rem] border border-white/10 bg-[#050b16] p-4 sm:p-6 lg:p-8">
+          <div className="absolute inset-0 hero-mesh opacity-45" />
+          <div className="absolute inset-0 signal-grid opacity-10" />
+          <div className="relative mx-auto max-w-3xl text-center">
+            <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              {copy.title}
+            </h2>
             <form
-              className="rounded-2xl border border-white/10 bg-slate-950/55 p-4 shadow-sm shadow-black/20"
+              className="mt-6 rounded-2xl border border-white/10 bg-slate-950/60 p-3 text-left shadow-sm shadow-black/20 sm:p-4"
               onSubmit={(event) => {
                 event.preventDefault();
                 generate(value);
@@ -265,15 +249,15 @@ export function AiBuilder({ className }: { className?: string }) {
                 value={value}
                 onChange={(event) => setValue(event.target.value)}
                 placeholder={copy.placeholder}
-                className="min-h-32 resize-none border-white/10 bg-white/[0.04] text-base leading-7"
+                className="min-h-28 resize-none border-white/10 bg-white/[0.04] text-base leading-7"
               />
               {error ? (
                 <p className="mt-3 text-sm text-rose-200" role="alert">
                   {error}
                 </p>
               ) : null}
-              <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-col gap-3">
+                <div className="flex flex-wrap justify-center gap-2">
                   {copy.chips.map((chip) => (
                     <button
                       key={chip}
@@ -288,7 +272,7 @@ export function AiBuilder({ className }: { className?: string }) {
                     </button>
                   ))}
                 </div>
-                <Button type="submit" className="shrink-0">
+                <Button type="submit" size="lg" className="w-full sm:mx-auto sm:w-auto">
                   {copy.button}
                   <Sparkles className="size-4" aria-hidden="true" />
                 </Button>
@@ -306,35 +290,29 @@ export function AiBuilder({ className }: { className?: string }) {
           >
             <div className="overflow-hidden">
               {recommendation ? (
-                <div className="rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.06] p-5 shadow-lg shadow-cyan-950/20 sm:p-6">
-                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                    <div className="flex items-start gap-4">
-                      <div className="grid size-12 shrink-0 place-items-center rounded-2xl border border-cyan-200/20 bg-cyan-300/10 text-cyan-100">
-                        <ResultIcon className="size-5" aria-hidden="true" />
-                      </div>
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
-                          {copy.labels.agent}
-                        </p>
-                        <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white">
-                          {recommendation.agentName}
-                        </h3>
-                      </div>
+                <div className="rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.055] p-5 text-left shadow-lg shadow-cyan-950/20 sm:p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="grid size-11 shrink-0 place-items-center rounded-2xl border border-cyan-200/20 bg-cyan-300/10 text-cyan-100">
+                      <ResultIcon className="size-5" aria-hidden="true" />
                     </div>
-                    <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs font-semibold text-emerald-100">
-                      <CheckCircle2 className="size-4" aria-hidden="true" />
-                      {locale === "es" ? "Idea generada" : "Idea generated"}
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
+                        {copy.labels.agent}
+                      </p>
+                      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white">
+                        {recommendation.agentName}
+                      </h3>
                     </div>
                   </div>
 
-                  <div className="mt-6 grid gap-4 md:grid-cols-2">
-                    <ResultBlock label={copy.labels.does} value={recommendation.whatItDoes} />
-                    <ResultBlock label={copy.labels.channels} value={recommendation.channels} />
-                    <ResultBlock className="md:col-span-2" label={copy.labels.workflow} value={recommendation.workflow} />
-                    <ResultBlock className="md:col-span-2" label={copy.labels.nextStep} value={recommendation.nextStep} />
+                  <div className="mt-6 divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/[0.04]">
+                    <ResultRow label={copy.labels.does} value={recommendation.whatItDoes} />
+                    <ResultRow label={copy.labels.workflow} value={recommendation.workflow} />
+                    <ResultRow label={copy.labels.channels} value={recommendation.channels} />
+                    <ResultRow label={copy.labels.nextStep} value={recommendation.nextStep} />
                   </div>
 
-                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
                     <CtaButton href="/book-demo" size="lg">
                       {copy.demoCta}
                     </CtaButton>
@@ -353,11 +331,11 @@ export function AiBuilder({ className }: { className?: string }) {
   );
 }
 
-function ResultBlock({ label, value, className }: { label: string; value: string; className?: string }) {
+function ResultRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className={cn("rounded-2xl border border-white/10 bg-white/[0.055] p-4", className)}>
+    <div className="grid gap-2 p-4 sm:grid-cols-[10rem_1fr] sm:gap-4">
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">{label}</p>
-      <p className="mt-3 text-sm leading-6 text-slate-100">{value}</p>
+      <p className="text-sm leading-6 text-slate-100">{value}</p>
     </div>
   );
 }

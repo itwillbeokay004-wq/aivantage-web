@@ -92,7 +92,7 @@ export async function sendDemoRequestEmail(data: DemoFormValues) {
         : "A new demo request was submitted on aivantage.es.",
     confirmationIntro:
       data.locale === "es"
-        ? "Gracias por solicitar una demo de AiVantage. Hemos recibido tu solicitud y te contactaremos para coordinar los siguientes pasos."
+        ? "Gracias por solicitar una demo de AiVantage. Hemos recibido tu solicitud y nos pondremos en contacto contigo para coordinar los siguientes pasos."
         : "Thanks for requesting an AiVantage demo. We received your request and will send next steps shortly.",
     userEmail: data.email,
     userName: data.name,
@@ -292,7 +292,7 @@ const emailCopy = {
     industry: "Industria",
     automationGoal: "Qué quiere automatizar",
     preferredContactMethod: "Método de contacto preferido",
-    preferredDateTime: "Fecha/hora preferida",
+    preferredDateTime: "Fecha y hora preferidas",
   },
   en: {
     name: "Name",

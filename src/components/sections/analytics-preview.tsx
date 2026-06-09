@@ -9,8 +9,8 @@ import type { Locale } from "@/lib/i18n";
 const analyticsContent = {
   es: {
     eyebrow: "Vista de analítica",
-    title: "Dashboard de ejemplo para medir rendimiento de agentes.",
-    note: "Números placeholder mostrados como ejemplos.",
+    title: "Panel de ejemplo para medir el rendimiento de los agentes.",
+    note: "Cifras de ejemplo, no datos reales.",
     exampleLabel: "Ejemplo",
     metrics: [
       {
@@ -23,7 +23,7 @@ const analyticsContent = {
         icon: UserPlus,
         label: "Clientes potenciales captados",
         value: "186",
-        detail: "Contactos calificados de ejemplo",
+        detail: "Contactos cualificados de ejemplo",
       },
       {
         icon: Clock3,

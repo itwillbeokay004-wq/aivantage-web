@@ -55,7 +55,7 @@ export function HomeProductMockup() {
                   {locale === "es" ? "Agente de chat" : "Chat agent"}
                 </p>
                 <p className="text-xs text-slate-500">
-                  {locale === "es" ? "Concierge web" : "Website concierge"}
+                  {locale === "es" ? "Asistente web" : "Website concierge"}
                 </p>
               </div>
             </div>
@@ -101,7 +101,7 @@ export function HomeProductMockup() {
                 {locale === "es" ? "Agente de voz" : "Voice agent"}
               </p>
               <p className="text-xs text-slate-500">
-                {locale === "es" ? "Recepción y enrutamiento" : "Call intake and routing"}
+                {locale === "es" ? "Recepción y derivación" : "Call intake and routing"}
               </p>
             </div>
           </div>

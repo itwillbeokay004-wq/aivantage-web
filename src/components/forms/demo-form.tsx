@@ -55,7 +55,7 @@ const formCopy = {
       industry: "Industria",
       automationGoal: "¿Qué quieres automatizar?",
       preferredContactMethod: "Método de contacto preferido",
-      preferredDateTime: "Fecha/hora preferida, opcional",
+      preferredDateTime: "Fecha y hora preferidas, opcional",
       honeypot: "No rellenes este campo",
     },
     placeholders: {
@@ -71,7 +71,7 @@ const formCopy = {
       preferredDateTime: "Por ejemplo: martes por la mañana",
     },
     fallbackSuccess:
-      "Gracias. Hemos recibido tu solicitud de demo. Te contactaremos para coordinar los siguientes pasos.",
+      "Gracias. Hemos recibido tu solicitud de demo. Nos pondremos en contacto contigo para coordinar los siguientes pasos.",
     fallbackError: "Algo salió mal. Inténtalo de nuevo.",
     submit: "Solicitar demo",
   },

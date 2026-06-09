@@ -13,7 +13,7 @@ const responseCopy = {
   es: {
     invalid: "Revisa los campos e inténtalo de nuevo.",
     received:
-      "Gracias. Hemos recibido tu solicitud de demo. Te contactaremos para coordinar los siguientes pasos.",
+      "Gracias. Hemos recibido tu solicitud de demo. Nos pondremos en contacto contigo para coordinar los siguientes pasos.",
     notConfigured: "El servicio de email no está configurado.",
     delivery: "No se ha podido enviar el email ahora mismo. Inténtalo de nuevo más tarde.",
     unexpected: "Ha ocurrido un error inesperado. Inténtalo de nuevo más tarde.",

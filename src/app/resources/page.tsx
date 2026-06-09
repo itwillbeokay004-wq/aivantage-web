@@ -18,7 +18,7 @@ export async function generateMetadata() {
     title: locale === "es" ? "Recursos" : "Resources",
     description:
       locale === "es"
-        ? "Artículos prácticos de automatización con IA para pequeñas empresas, chatbots web, agentes de voz, gestión de propiedades, preguntas frecuentes y derivación a un humano."
+        ? "Artículos prácticos sobre automatización con IA para empresas, chatbots web, agentes de voz, gestión de propiedades, preguntas frecuentes y derivación a una persona."
         : "Practical AI automation articles for small businesses, website chatbots, AI voice agents, property management, FAQs, and human handoff design.",
     path: "/resources",
     locale,
@@ -41,7 +41,7 @@ export default async function ResourcesPage() {
         }
         description={
           locale === "es"
-            ? "Explora artículos sobre agentes de IA, chatbots web, voz, gestión de propiedades, bases de conocimiento y derivación a un humano."
+            ? "Explora artículos sobre agentes de IA, chatbots web, voz, gestión de propiedades, bases de conocimiento y derivación a una persona."
             : "Explore starter articles on AI agents, website chatbots, voice automation, property management, knowledge bases, and human handoff design."
         }
         primaryCta={{ href: "/book-demo", label: ctaLabels.bookDemo }}
@@ -61,7 +61,7 @@ export default async function ResourcesPage() {
           }
           description={
             locale === "es"
-              ? "Sin CMS por ahora: estos recursos usan datos estáticos locales y páginas de contenido inicial."
+              ? "Sin CMS por ahora: estos recursos usan datos locales y páginas iniciales de contenido."
               : "No CMS yet — these resources are powered by local static data and placeholder article pages that can evolve into a full content system later."
           }
         />
@@ -124,7 +124,7 @@ export default async function ResourcesPage() {
               </h2>
               <p className="mt-3 max-w-2xl leading-7 text-slate-400">
                 {locale === "es"
-                  ? "Comparte lo que quieres automatizar y AiVantage puede mapear el primer agente útil, reglas de derivación y conexiones."
+                  ? "Comparte lo que quieres automatizar y AiVantage puede mapear un primer agente útil, sus reglas de derivación y las conexiones necesarias."
                   : "Share what you are trying to automate and AiVantage can help map the first useful agent, handoff rules, and system connections."}
               </p>
             </div>

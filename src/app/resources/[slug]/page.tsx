@@ -72,14 +72,14 @@ export default async function ResourceArticlePage({
   const copy = {
     es: {
       back: "Volver a recursos",
-      placeholder: "Artículo placeholder con datos estáticos locales.",
-      noteTitle: "Nota placeholder",
+      placeholder: "Artículo de muestra con datos locales.",
+      noteTitle: "Nota de contenido",
       note:
-        "Esta página está preparada para un artículo más largo, contenido MDX o una migración futura a CMS. Por ahora ofrece una URL indexable y una lectura consistente para cada recurso inicial.",
+        "Esta página está preparada para un artículo más largo, contenido MDX o una futura migración a CMS. Por ahora ofrece una URL indexable y una lectura consistente para cada recurso inicial.",
       takeaways: "Ideas clave",
       sidebarTitle: "¿Quieres aplicarlo a tu negocio?",
       sidebar:
-        "AiVantage puede mapear un primer agente de IA práctico alrededor de tus canales, conocimiento y reglas de derivación.",
+        "AiVantage puede mapear un primer agente de IA práctico a partir de tus canales, conocimiento y reglas de derivación.",
       cta: "Reservar demo",
     },
     en: {

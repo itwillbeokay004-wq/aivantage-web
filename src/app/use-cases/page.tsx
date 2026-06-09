@@ -28,10 +28,10 @@ export default async function UseCasesPage() {
   const workflowSignals =
     locale === "es"
       ? [
-          "Disparador claro",
+          "Punto de entrada claro",
           "Fuente aprobada",
           "Conexión de sistema",
-          "Fallback humano",
+          "Derivación a una persona",
         ]
       : [
           "Clear trigger",
@@ -125,11 +125,11 @@ export default async function UseCasesPage() {
                 <div className="rounded-lg border border-white/10 bg-purple-400/10 p-4">
                   <Compass className="size-5 text-purple-200" aria-hidden="true" />
                   <p className="mt-3 text-sm font-semibold text-white">
-                    {locale === "es" ? "Mapea próximos pasos" : "Map next steps"}
+                    {locale === "es" ? "Define próximos pasos" : "Map next steps"}
                   </p>
                   <p className="mt-1 text-sm text-slate-400">
                     {locale === "es"
-                      ? "Disparador, sistemas, métrica, escalación."
+                      ? "Entrada, sistemas, métrica y derivación."
                       : "Trigger, systems, metric, escalation."}
                   </p>
                 </div>
@@ -149,7 +149,7 @@ export default async function UseCasesPage() {
           }
           description={
             locale === "es"
-              ? "Revisa disparadores, acciones del agente, sistemas y resultados."
+              ? "Revisa puntos de entrada, acciones del agente, sistemas y resultados."
               : "Scan triggers, agent actions, systems, and outcomes."
           }
         />
@@ -163,7 +163,7 @@ export default async function UseCasesPage() {
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-100">
-                {locale === "es" ? "Estrategia de proceso" : "Workflow Strategy"}
+                {locale === "es" ? "Estrategia del proceso" : "Workflow Strategy"}
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
                 {locale === "es"
@@ -172,7 +172,7 @@ export default async function UseCasesPage() {
               </h2>
               <p className="mt-4 max-w-2xl leading-7 text-slate-300">
                 {locale === "es"
-                  ? "Trae preguntas repetitivas, llamadas perdidas o derivaciones lentas. Las convertiremos en un plan práctico de agente de IA."
+                  ? "Cuéntanos qué preguntas se repiten, qué llamadas se pierden o qué derivaciones tardan demasiado. Lo convertiremos en un plan práctico de agente de IA."
                   : "Bring the repetitive questions, missed calls, or slow handoffs. We’ll turn them into a practical AI agent plan."}
               </p>
             </div>

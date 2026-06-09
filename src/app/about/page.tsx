@@ -72,11 +72,11 @@ const aboutContent = {
       },
       {
         title: "Optimizar",
-        description: "Ajustar respuestas, enrutamiento y el siguiente proceso.",
+        description: "Ajustar respuestas, derivaciones y el siguiente proceso.",
       },
     ],
     focusAreas: [
-      "Agentes de chat web que califican demanda",
+      "Agentes de chat web que cualifican demanda",
       "Asistentes de voz para llamadas perdidas y recepción",
       "Agentes de conocimiento basados en contenido aprobado",
       "Automatización de citas y seguimiento",
@@ -112,7 +112,7 @@ const aboutContent = {
       layerCopy: "La capa {number} revisa el camino antes de continuar.",
       outcomeTitle: "Resultado de ejemplo",
       outcome:
-        "El agente califica intención, reserva el siguiente paso y envía un resumen.",
+        "El agente cualifica intención, reserva el siguiente paso y envía un resumen.",
     },
   },
   en: {

@@ -77,28 +77,28 @@ const useCaseCards = {
     {
       icon: Building2,
       title: "Asistente para alquileres",
-      description: "Responde preguntas sobre unidades, tours y requisitos.",
-      trigger: "Un renter pregunta por una propiedad o tour.",
+      description: "Responde preguntas sobre inmuebles, visitas y requisitos.",
+      trigger: "Una persona interesada pregunta por una propiedad o una visita.",
       agentDoes: "Responde, revisa preferencias, cualifica y prepara la derivación.",
-      systems: ["Website", "CRM", "Calendario", "Base de propiedades"],
+      systems: ["Web", "CRM", "Calendario", "Base de propiedades"],
       outcome: "Respuesta más rápida y mejor recepción de clientes potenciales.",
       categories: ["Real Estate", "Sales", "Website"],
     },
     {
       icon: Home,
       title: "Triaje de mantenimiento",
-      description: "Recopila detalles antes de enrutar solicitudes.",
+      description: "Recopila detalles antes de asignar solicitudes.",
       trigger: "Un residente reporta un problema.",
       agentDoes: "Pide ubicación, urgencia, notas, acceso y prioridad.",
-      systems: ["Portal residente", "Helpdesk", "Email", "Sistema mantenimiento"],
-      outcome: "Menos ida y vuelta y mejor enrutamiento.",
+      systems: ["Portal de residentes", "Helpdesk", "Email", "Sistema de mantenimiento"],
+      outcome: "Menos ida y vuelta y mejor asignación.",
       categories: ["Operations", "Real Estate", "Support"],
     },
     {
       icon: CalendarCheck,
       title: "Asistente de reservas",
       description: "Convierte intención en cita confirmada.",
-      trigger: "Un cliente pide reservar llamada, tour o visita.",
+      trigger: "Un cliente pide reservar una llamada o una visita.",
       agentDoes: "Recopila preferencias, propone horarios y envía recordatorios.",
       systems: ["Calendario", "CRM", "Email", "SMS"],
       outcome: "Más citas con menos pasos manuales.",
@@ -118,16 +118,16 @@ const useCaseCards = {
       icon: PhoneCall,
       title: "Agente de seguimiento de llamadas perdidas",
       description: "Recupera demanda tras llamadas perdidas o fuera de horario.",
-      trigger: "Se registra una llamada perdida, voicemail o fuera de horario.",
-      agentDoes: "Envía seguimiento, recopila intención, resume y enruta urgencias.",
+      trigger: "Se registra una llamada perdida, un buzón de voz o una llamada fuera de horario.",
+      agentDoes: "Envía seguimiento, recoge intención, resume y deriva urgencias.",
       systems: ["Telefonía", "SMS", "CRM", "Email"],
       outcome: "Menos oportunidades perdidas y mejor seguimiento.",
       categories: ["Voice", "Sales", "Support"],
     },
     {
       icon: UserPlus,
-      title: "Agente de calificación comercial",
-      description: "Captura señales de fit para mejor seguimiento.",
+      title: "Agente de cualificación comercial",
+      description: "Recoge señales de encaje para priorizar mejor el seguimiento.",
       trigger: "Un prospecto envía formulario, chatea, responde o llama.",
       agentDoes: "Pregunta necesidad, presupuesto, plazo y envía resumen puntuado.",
       systems: ["CRM", "Formularios web", "Email", "Calendario"],
@@ -137,10 +137,10 @@ const useCaseCards = {
     {
       icon: SearchCheck,
       title: "Asistente interno de conocimiento",
-      description: "Ayuda a encontrar políticas, owners y pasos de proceso.",
+      description: "Ayuda a encontrar políticas, responsables y pasos del proceso.",
       trigger: "Un equipo hace una pregunta interna.",
-      agentDoes: "Busca contenido aprobado y enruta solicitudes cuando toca.",
-      systems: ["Docs internos", "Ticketing", "Slack placeholder", "Helpdesk"],
+      agentDoes: "Busca contenido aprobado y deriva solicitudes cuando corresponde.",
+      systems: ["Documentación interna", "Tickets", "Slack (ejemplo)", "Helpdesk"],
       outcome: "Menos búsqueda y menos solicitudes repetidas.",
       categories: ["Operations", "Support"],
     },
@@ -304,7 +304,7 @@ export function UseCasesFilterGrid() {
 
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 <UseCaseDetail
-                  label={locale === "es" ? "Disparador" : "Trigger"}
+                  label={locale === "es" ? "Punto de entrada" : "Trigger"}
                   text={useCase.trigger}
                 />
                 <UseCaseDetail

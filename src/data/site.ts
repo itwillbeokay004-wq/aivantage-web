@@ -188,7 +188,7 @@ export const ctaLabels = {
 export const ctaLabelsByLocale = {
   es: {
     bookDemo: "Reservar una demo",
-    startFreeConsultation: "Solicitar una consulta",
+    startFreeConsultation: "Solicitar consulta",
     seeUseCases: "Ver casos de uso",
     contactUs: "Contactar",
     letsTalk: "Hablemos",
@@ -201,7 +201,7 @@ export const platformFeaturesByLocale = {
     {
       icon: Bot,
       title: "Constructor de agentes de IA",
-      description: "Diseña agentes con objetivos, tono, reglas y criterios claros de derivación.",
+      description: "Diseña agentes con objetivos, tono, reglas y criterios claros para pasar casos al equipo.",
     },
     {
       icon: BookOpen,
@@ -231,7 +231,7 @@ export const platformFeaturesByLocale = {
     {
       icon: Cable,
       title: "Integraciones",
-      description: "Conecta CRM, calendarios, email, helpdesk y APIs internas.",
+      description: "Conecta CRM, calendarios, email, herramientas de atención y APIs internas.",
     },
     {
       icon: LockKeyhole,
@@ -315,7 +315,7 @@ export const useCasesByLocale = {
       title: "Asistente interno de operaciones",
       metric: "3,4x",
       label: "respuestas más rápidas",
-      description: "Encuentra políticas, recopila datos y enruta solicitudes internas.",
+      description: "Encuentra políticas, recopila datos y deriva solicitudes internas.",
     },
     {
       title: "Agente de preguntas frecuentes",

@@ -20,14 +20,14 @@ export const resourceArticlesByLocale = {
       excerpt:
         "Una guía clara sobre qué hace un agente de IA, en qué se diferencia de un chatbot básico y cómo empezar con un proceso útil.",
       body: [
-        "Un agente de IA es un asistente de software diseñado para entender una solicitud, usar contexto aprobado del negocio y completar una tarea útil. Para una pequeña empresa, esa tarea puede ser responder una pregunta frecuente, captar un cliente potencial, reservar una cita o enrutar una solicitud.",
-        "Los agentes más prácticos empiezan con responsabilidades concretas. En vez de automatizar todo el negocio, se enfocan en procesos repetibles con disparadores claros, respuestas conocidas y una derivación segura cuando una persona debe tomar el control.",
-        "Un buen primer agente combina conocimiento confiable, un camino de acción simple y visibilidad del resultado. Eso mantiene el proyecto cerca del valor diario, no de la experimentación abstracta con IA.",
+        "Un agente de IA es un asistente de software diseñado para entender una solicitud, usar información aprobada del negocio y completar una tarea útil. Para una empresa, esa tarea puede ser responder una pregunta frecuente, captar un cliente potencial, reservar una cita o dirigir una solicitud al equipo adecuado.",
+        "Los agentes más prácticos empiezan con responsabilidades concretas. En vez de intentar automatizar todo el negocio, se centran en procesos repetibles con puntos de entrada claros, respuestas conocidas y una derivación segura cuando una persona debe tomar el control.",
+        "Un buen primer agente combina conocimiento fiable, una ruta de acción sencilla y visibilidad del resultado. Así el proyecto se mantiene cerca del valor real del día a día, no de la experimentación abstracta con IA.",
       ],
       takeaways: [
         "Empieza con procesos repetibles de cliente u operaciones.",
         "Usa conocimiento aprobado del negocio.",
-        "Define cuándo el agente debe escalar a una persona.",
+        "Define cuándo el agente debe derivar la conversación a una persona.",
       ],
     },
     {
@@ -36,16 +36,16 @@ export const resourceArticlesByLocale = {
       readingTime: "6 min",
       slug: "como-un-chatbot-web-puede-captar-mas-clientes-potenciales",
       excerpt:
-        "Cómo un asistente web convierte visitas anónimas en conversaciones útiles, consultas calificadas y seguimiento más limpio.",
+        "Cómo un asistente web convierte visitas anónimas en conversaciones útiles, consultas cualificadas y seguimiento más limpio.",
       body: [
         "La mayoría de visitantes se van sin completar un formulario. Un chatbot bien diseñado les da una forma más fácil de preguntar, comparar opciones y compartir lo que necesitan mientras la intención sigue activa.",
-        "La captación de clientes potenciales funciona mejor cuando el asistente equilibra respuestas útiles con calificación inteligente. Debe pedir solo los datos que ayudan a actuar: contacto, necesidad, plazo, ubicación, presupuesto o preferencias de cita.",
+        "La captación de clientes potenciales funciona mejor cuando el asistente equilibra respuestas útiles con una cualificación inteligente. Debe pedir solo los datos que ayudan a actuar: contacto, necesidad, plazo, ubicación, presupuesto o preferencias de cita.",
         "El objetivo no es encerrar al visitante en automatización. Es crear una mejor primera conversación y pasar contexto estructurado a ventas, atención al cliente u operaciones.",
       ],
       takeaways: [
         "Responde antes de pedir datos de contacto.",
         "Captura contexto estructurado para seguimiento.",
-        "Enruta conversaciones de alta intención rápidamente.",
+        "Dirige rápidamente las conversaciones de alta intención.",
       ],
     },
     {
@@ -54,16 +54,16 @@ export const resourceArticlesByLocale = {
       readingTime: "5 min",
       slug: "agentes-de-voz-con-ia-para-llamadas-perdidas",
       excerpt:
-        "Por qué las llamadas perdidas son un punto de partida práctico para automatización de voz en negocios de servicio.",
+        "Por qué las llamadas perdidas son un punto de partida práctico para automatizar la voz en empresas de servicios.",
       body: [
         "Las llamadas perdidas suelen ser ingresos perdidos, especialmente para equipos que dependen de citas, consultas, visitas o solicitudes urgentes. Los procesos de voz con IA ayudan a captar intención cuando el equipo está ocupado o fuera de horario.",
         "Un asistente para llamadas perdidas puede responder con seguimiento, recopilar el motivo, identificar urgencia y resumir la solicitud para una persona. En algunos casos también puede sugerir próximos pasos o ayudar a agendar una devolución.",
-        "Los despliegues de voz más seguros tienen alcance claro. Recopilan información, responden preguntas aprobadas y derivan cualquier caso sensible, complejo o de alto valor.",
+        "Las implementaciones de voz más seguras tienen un alcance claro. Recopilan información, responden preguntas aprobadas y derivan cualquier caso sensible, complejo o de alto valor.",
       ],
       takeaways: [
         "Usa voz con IA para recuperar demanda tras llamadas perdidas.",
-        "Captura urgencia e intención antes de enrutar.",
-        "Mantén casos sensibles en derivación a un humano.",
+        "Recoge urgencia e intención antes de derivar la solicitud.",
+        "Deriva los casos sensibles a una persona del equipo.",
       ],
     },
     {
@@ -75,7 +75,7 @@ export const resourceArticlesByLocale = {
         "Formas prácticas de usar agentes de IA para alquileres, mantenimiento, preguntas frecuentes de residentes y seguimiento.",
       body: [
         "Los equipos de gestión de propiedades reciben preguntas repetidas sobre alquileres, mantenimiento, comunicación con residentes y operaciones. Los agentes de IA reducen ida y vuelta recopilando el contexto correcto desde el inicio.",
-        "Para alquileres, un asistente puede responder preguntas aprobadas sobre disponibilidad, criterios, amenidades, tours y próximos pasos. Para mantenimiento, puede recopilar ubicación, urgencia, notas y detalles de acceso.",
+        "Para alquileres, un asistente puede responder preguntas aprobadas sobre disponibilidad, criterios, servicios del inmueble, visitas y próximos pasos. Para mantenimiento, puede recopilar ubicación, urgencia, notas y detalles de acceso.",
         "La clave es mantener la información actualizada y definir rutas de derivación. Estos procesos suelen tener políticas, tiempos y excepciones, así que el agente debe saber cuándo detenerse y pedir revisión humana.",
       ],
       takeaways: [
@@ -94,7 +94,7 @@ export const resourceArticlesByLocale = {
       body: [
         "Los asistentes de IA son tan útiles como el conocimiento en el que pueden apoyarse. Antes de lanzar, conviene reunir las preguntas frecuentes y separar respuestas aprobadas de información vieja o informal.",
         "Una buena preparación empieza con estructura: agrupar por tema, escribir respuestas directas, incluir excepciones y definir quién mantiene cada respuesta actualizada.",
-        "También ayuda definir qué no debe responder el asistente. Mensajes de reserva claros y reglas de derivación protegen la confianza cuando la pregunta queda fuera del conocimiento aprobado.",
+        "También ayuda definir qué no debe responder el asistente. Respuestas alternativas claras y reglas de derivación protegen la confianza cuando la pregunta queda fuera del conocimiento aprobado.",
       ],
       takeaways: [
         "Agrupa preguntas frecuentes por tema y proceso.",
@@ -110,8 +110,8 @@ export const resourceArticlesByLocale = {
       excerpt:
         "Cómo diseñar reglas de derivación para preguntas sensibles, baja confianza, casos complejos y oportunidades valiosas.",
       body: [
-        "La derivación a un humano no es un fallo de automatización. Es uno de los controles que hace que los agentes de IA sean útiles en negocios reales.",
-        "Disparadores comunes incluyen baja confianza, conocimiento faltante, datos sensibles, temas legales o médicos, quejas urgentes, riesgo de cancelación u oportunidades de alto valor.",
+        "La derivación a una persona no es un fallo de automatización. Es uno de los controles que hace que los agentes de IA sean útiles en negocios reales.",
+        "Los motivos más habituales incluyen baja confianza, falta de información, datos sensibles, temas legales o médicos, quejas urgentes, riesgo de cancelación u oportunidades de alto valor.",
         "Una buena derivación incluye contexto. El agente debe resumir la solicitud, lo que ya preguntó, detalles relevantes y una siguiente acción recomendada para que la persona no empiece desde cero.",
       ],
       takeaways: [

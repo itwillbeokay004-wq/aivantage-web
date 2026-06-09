@@ -46,7 +46,7 @@ const pricingTiers = {
         "Asistente IA para web",
         "Base de conocimiento básica",
         "Captación de clientes potenciales",
-        "Reporte mensual",
+        "Informe mensual",
       ],
     },
     {
@@ -139,7 +139,7 @@ const pricingPrinciples = {
   es: [
     "Sin precio fijo antes del descubrimiento",
     "Alcance basado en canales, sistemas y complejidad operativa",
-    "Construido para lanzar algo útil, no shelfware",
+    "Pensado para lanzar algo útil, no una herramienta que nadie usa",
     "Acompañamiento continuo disponible después del despliegue",
   ],
   en: [
@@ -165,7 +165,7 @@ const faqs = {
     {
       question: "¿Necesito equipo técnico?",
       answer:
-        "No necesitas un equipo de IA dedicado. Guiamos descubrimiento, setup, pruebas y lanzamiento.",
+        "No necesitas un equipo de IA dedicado. Guiamos el descubrimiento, la configuración, las pruebas y el lanzamiento.",
     },
     {
       question: "¿Puede responder llamadas?",

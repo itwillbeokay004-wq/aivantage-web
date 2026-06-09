@@ -51,7 +51,7 @@ const chatWidgetContent = {
     welcomeMessage:
       "Hola, soy el asistente de AiVantage. Puedo ayudarte a explorar agentes de IA, casos de uso y opciones para reservar una demo.",
     genericFallbackResponse:
-      "Puedo orientar sobre servicios de AiVantage, agentes de IA, automatización, precios y demos. Para una recomendación concreta, lo mejor es reservar una demo.",
+      "Puedo orientarte sobre servicios de AiVantage, agentes de IA, automatización, precios y opciones de demo. Para una recomendación concreta, lo mejor es reservar una demo.",
     modeLabel: {
       ai: "Modo IA — generado en el servidor cuando está configurado.",
       demo: "Demostración — todavía no es un agente de IA en vivo.",
@@ -66,10 +66,10 @@ const chatWidgetContent = {
     placeholder: "Pregunta sobre agentes de IA, precios o demos",
     sendAria: "Enviar mensaje",
     aiFootnote:
-      "El modo IA usa una ruta segura del servidor. Los detalles sensibles deben esperar a la llamada demo.",
+      "El modo IA utiliza una ruta segura en el servidor. Es mejor tratar los detalles sensibles en la llamada de demo.",
     demoFootnote:
       "Configura NEXT_PUBLIC_AI_CHAT_ENABLED=true y OPENAI_API_KEY para activar respuestas reales con IA.",
-    aiFallbackNotice: "El modo IA mostró una respuesta demo segura.",
+    aiFallbackNotice: "El modo IA ha mostrado una respuesta segura de demostración.",
     aiUnavailableNotice:
       "El modo IA no está disponible, así que se mostró una respuesta segura.",
     triggerAria: "Abrir asistente de AiVantage",

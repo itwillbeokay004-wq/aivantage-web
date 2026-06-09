@@ -33,7 +33,7 @@ export async function generateMetadata() {
     title: locale === "es" ? "Modelos de IA" : "AI Models",
     description:
       locale === "es"
-        ? "Aprende cómo AiVantage ayuda a elegir e integrar capacidades de modelos de IA para texto, voz, documentos, evaluación, resúmenes, decisiones y extracción."
+        ? "Descubre cómo AiVantage ayuda a elegir e integrar capacidades de modelos de IA para texto, voz, documentos, cualificación, resúmenes, decisiones y extracción."
         : "Learn how AiVantage helps businesses choose and integrate AI model capabilities for text, voice, documents, scoring, summaries, decisions, multilingual support, and extraction.",
     path: "/ai-models",
     locale,
@@ -76,12 +76,12 @@ const aiModelsContent = {
       {
         icon: Languages,
         title: "Soporte multilingüe",
-        description: "Apoya enrutamiento y respuestas en varios idiomas.",
+        description: "Apoya la derivación y las respuestas en varios idiomas.",
       },
       {
         icon: TableProperties,
         title: "Extracción de datos",
-        description: "Extrae campos estructurados de mensajes, docs y llamadas.",
+        description: "Extrae campos estructurados de mensajes, documentos y llamadas.",
       },
     ],
     providerCards: [
@@ -92,8 +92,8 @@ const aiModelsContent = {
       },
       {
         icon: Globe2,
-        title: "Enrutamiento flexible",
-        copy: "Enruta por capacidad, coste, latencia, confianza y riesgo.",
+        title: "Asignación flexible",
+        copy: "Dirige cada tarea según capacidad, coste, latencia, confianza y riesgo.",
       },
       {
         icon: BrainCircuit,
@@ -116,12 +116,12 @@ const aiModelsContent = {
       },
       {
         icon: ListChecks,
-        title: "Respuestas de fallback",
+        title: "Respuestas alternativas",
         description: "Usa lenguaje seguro cuando la confianza sea baja.",
       },
       {
         icon: UserRoundCheck,
-        title: "Derivación a un humano",
+        title: "Derivación a una persona",
         description: "Deriva momentos sensibles o de alto valor.",
       },
       {
@@ -139,7 +139,7 @@ const aiModelsContent = {
       {
         question: "¿Puede hablar con clientes?",
         answer:
-          "Sí, cuando voz está dentro del alcance. Podemos diseñar recepción de llamadas, resúmenes y derivaciones.",
+          "Sí, cuando la voz forma parte del alcance. Podemos diseñar recepción de llamadas, resúmenes y derivaciones.",
       },
       {
         question: "¿Puede conectarse a mi CRM?",

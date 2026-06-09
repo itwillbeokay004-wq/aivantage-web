@@ -22,7 +22,7 @@ const samples = {
     {
       question: "¿Puedes responder preguntas frecuentes?",
       response:
-        "Puedo usar conocimiento aprobado para responder preguntas comunes y escalar lo que necesite revisión humana.",
+        "Puedo usar conocimiento aprobado para responder preguntas comunes y derivar lo que necesite revisión humana.",
     },
     {
       question: "¿Puedes gestionar llamadas?",
@@ -131,7 +131,7 @@ export function HomeAgentDemo() {
             <input
               aria-label={
                 locale === "es"
-                  ? "Campo de demo de ejemplo"
+                  ? "Campo de demostración de ejemplo"
                   : "Demo input placeholder"
               }
               disabled
@@ -145,7 +145,7 @@ export function HomeAgentDemo() {
               className="grid size-10 place-items-center rounded-md bg-primary text-primary-foreground opacity-80"
               aria-label={
                 locale === "es"
-                  ? "Botón de envío de demo"
+                  ? "Botón de envío de demostración"
                   : "Demo send button placeholder"
               }
             >

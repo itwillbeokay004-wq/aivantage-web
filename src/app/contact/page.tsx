@@ -34,7 +34,7 @@ export default async function ContactPage() {
       icon: MessageSquare,
       title: locale === "es" ? "Tiempo de respuesta" : "Response time",
       description:
-        locale === "es" ? "En un día hábil" : "Within one business day",
+        locale === "es" ? "En un día laborable" : "Within one business day",
     },
     {
       icon: MapPin,
@@ -57,7 +57,7 @@ export default async function ContactPage() {
         }
         description={
           locale === "es"
-            ? "Comparte el proceso que quieres mejorar y te ayudaremos a identificar el camino más rápido hacia un lanzamiento útil y controlado."
+            ? "Comparte el proceso que quieres mejorar y te ayudaremos a identificar la forma más rápida de lanzar algo útil y controlado."
             : "Share the workflow you want to improve and we will help identify the fastest path to a useful, controlled launch."
         }
       />

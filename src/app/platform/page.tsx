@@ -141,10 +141,10 @@ const platformContent = {
       { icon: Workflow, label: "Zapier" },
       { icon: Plug, label: "API personalizada" },
     ],
-    integrationNote: "Integración placeholder",
+    integrationNote: "Integración de ejemplo",
     improvementList: [
       "Revisar lo que los agentes resolvieron correctamente",
-      "Identificar huecos de conocimiento y prompts confusos",
+      "Identificar huecos de conocimiento e instrucciones confusas",
       "Ajustar reglas de derivación para casos sensibles o valiosos",
       "Expandir al siguiente proceso cuando los resultados sean claros",
     ],
@@ -289,7 +289,7 @@ export default async function PlatformPage() {
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
                 {locale === "es"
-                  ? "Lanza agentes en chat, voz, procesos y analítica con un camino práctico desde la idea hasta producción."
+                  ? "Lanza agentes para chat, voz, procesos y analítica con un camino práctico desde la idea hasta producción."
                   : "Launch agents across chat, voice, workflows, and analytics — with a practical path from idea to production."}
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -395,7 +395,7 @@ export default async function PlatformPage() {
           }
           description={
             locale === "es"
-              ? "Los agentes pueden responder, recopilar, enrutar, agendar y reportar."
+              ? "Los agentes pueden responder, recopilar, derivar, agendar e informar."
               : "Agents can answer, collect, route, schedule, and report."
           }
         />

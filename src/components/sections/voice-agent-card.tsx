@@ -19,11 +19,11 @@ const voiceCardContent = {
     transcriptSnippets: [
       {
         speaker: "Llamante",
-        text: "Hola, necesito agendar un tour para una unidad de dos habitaciones.",
+        text: "Hola, quiero reservar una visita para un piso de dos habitaciones.",
       },
       {
         speaker: "Agente IA",
-        text: "Puedo ayudarte con eso. ¿Qué día te funciona mejor y cuándo esperas mudarte?",
+        text: "Puedo ayudarte con eso. ¿Qué día te viene mejor y cuándo te gustaría mudarte?",
       },
       {
         speaker: "Llamante",

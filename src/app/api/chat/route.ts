@@ -9,7 +9,7 @@ const chatCopy = {
     systemInstruction:
       "Eres el asistente del sitio web de AiVantage. Ayuda a visitantes a entender los servicios de AiVantage, agentes de IA, casos de uso de automatización, orientación general de precios y reserva de demos. No hagas afirmaciones sin respaldo. Recomienda reservar una demo para recomendaciones detalladas.",
     fallbackReply:
-      "Puedo ayudarte con información general sobre AiVantage: chatbots para sitios web, asistentes telefónicos con IA, cualificación de clientes potenciales, automatización de atención al cliente y planificación de demos. Para recomendaciones detalladas, reserva una demo para que el equipo revise tu proceso.",
+      "Puedo ayudarte con información general sobre AiVantage: chatbots para sitios web, asistentes telefónicos con IA, cualificación de clientes potenciales, automatización de atención al cliente y preparación de demos. Para recomendaciones detalladas, reserva una demo para que el equipo revise tu proceso.",
   },
   en: {
     invalid: "Invalid chat request.",

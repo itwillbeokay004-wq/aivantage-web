@@ -44,12 +44,12 @@ export default async function BookDemoPage() {
         eyebrow={locale === "es" ? "Reservar una demo" : "Book a Demo"}
         title={
           locale === "es"
-            ? "Mira cómo un agente AiVantage podría funcionar en tu negocio."
+            ? "Descubre cómo podría funcionar un agente AiVantage en tu negocio."
             : "See how an AiVantage agent could work in your business."
         }
         description={
           locale === "es"
-            ? "Solicita una sesión de trabajo con AiVantage. Nos enfocaremos en tu proceso, no en una demo genérica."
+            ? "Solicita una sesión de trabajo con AiVantage. Nos centraremos en tu proceso, no en una demo genérica."
             : "Request a working session with AiVantage. We will focus on your workflow, not a generic product tour."
         }
       />

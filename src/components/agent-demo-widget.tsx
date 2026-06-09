@@ -13,7 +13,7 @@ import type { Locale } from "@/lib/i18n";
 const widgetContent = {
   es: {
     eyebrow: "Demo de agente",
-    title: "Agente demo AiVantage",
+    title: "Agente de demostración AiVantage",
     status: "Demo",
     demoLabel: "Demostración — todavía no es un agente de IA en vivo.",
     transcriptLabel: "transcripción",
@@ -37,8 +37,8 @@ const widgetContent = {
         icon: Mic2,
         user: "Necesito automatizar clientes potenciales entrantes.",
         agent:
-          "Capturé los requisitos, marqué la urgencia como alta y encontré dos horarios de demo esta semana.",
-        action: "Horario de demo propuesto",
+          "He recogido los requisitos, marcado la urgencia como alta y encontrado dos horarios disponibles para esta semana.",
+        action: "Horario de demo sugerido",
         score: "92%",
       },
       {

@@ -11,11 +11,11 @@ const chatDemoContent = {
   es: {
     title: "Agente de chat AiVantage",
     subtitle: "Respuestas interactivas de ejemplo",
-    badge: "Solo demo",
-    promptsLabel: "Prompts de ejemplo",
+    badge: "Solo demostración",
+    promptsLabel: "Preguntas de ejemplo",
     typingAria: "Escribiendo",
-    inputAria: "Entrada de demo de chat",
-    sendAria: "Enviar prompt demo",
+    inputAria: "Entrada de demostración del chat",
+    sendAria: "Enviar ejemplo",
     samplePrompts: [
       {
         prompt: "¿Puedes cualificar a este cliente potencial?",
@@ -28,9 +28,9 @@ const chatDemoContent = {
           "Sí. Puedo recoger horarios preferidos, confirmar datos de contacto, reservar un espacio disponible y activar recordatorios.",
       },
       {
-        prompt: "¿Puedes responder una pregunta de property management?",
+        prompt: "¿Puedes responder una pregunta sobre gestión de propiedades?",
         response:
-          "Sí. Puedo responder preguntas aprobadas sobre renta, mantenimiento, criterios de alquiler, amenidades y horarios.",
+          "Sí. Puedo responder preguntas aprobadas sobre alquiler, mantenimiento, criterios de arrendamiento, servicios del inmueble y horarios.",
       },
       {
         prompt: "¿Puedes resumir una consulta de atención al cliente?",

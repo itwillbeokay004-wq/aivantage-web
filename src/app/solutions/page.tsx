@@ -81,8 +81,8 @@ const solutionsContent = {
         icon: Workflow,
         title: "Asistente interno de operaciones",
         problem: "Los equipos pierden tiempo buscando respuestas.",
-        agentDoes: "Encuentra políticas, enruta solicitudes y recopila datos faltantes.",
-        workflow: "Pregunta → búsqueda en conocimiento → tarea enrutada.",
+        agentDoes: "Encuentra políticas, deriva solicitudes y recopila datos faltantes.",
+        workflow: "Pregunta → búsqueda en conocimiento → tarea asignada.",
         outcome: "Ayuda interna más rápida.",
       },
       {

@@ -43,7 +43,7 @@ const workflowContent = {
       {
         icon: UserRoundCheck,
         title: "Derivación a un humano",
-        description: "Enruta casos especiales con un resumen útil.",
+        description: "Deriva casos especiales con un resumen útil.",
       },
     ],
   },

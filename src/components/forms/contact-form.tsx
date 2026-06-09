@@ -51,7 +51,7 @@ const formCopy = {
       company: "Northstar Group",
       message: "Tell us about the process, conversation, or workflow you want to automate.",
     },
-    fallbackSuccess: "Thanks. We will respond within one business day.",
+    fallbackSuccess: "Thanks. We received your message and will contact you soon.",
     fallbackError: "Something went wrong. Please try again.",
     submit: "Send Message",
   },
@@ -115,7 +115,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="glass-panel relative rounded-2xl p-6 sm:p-7"
+      className="premium-form-panel relative rounded-[1.7rem] p-5 sm:p-7"
     >
       <div
         className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
@@ -207,16 +207,18 @@ export function ContactForm() {
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="min-h-5 text-sm text-slate-400" aria-live="polite">
           {status === "success" ? (
-            <span className="inline-flex items-center gap-2 text-emerald-200">
+            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1.5 text-emerald-100">
               <CheckCircle2 className="size-4" aria-hidden="true" />
               {statusMessage || copy.fallbackSuccess}
             </span>
           ) : null}
           {status === "error" ? (
-            <span className="text-rose-200">{statusMessage || copy.fallbackError}</span>
+            <span className="inline-flex rounded-full border border-rose-300/20 bg-rose-400/10 px-3 py-1.5 text-rose-100">
+              {statusMessage || copy.fallbackError}
+            </span>
           ) : null}
         </p>
-        <Button type="submit" disabled={isSubmitting}>
+        <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto">
           {isSubmitting ? (
             <Loader2 className="size-4 animate-spin" aria-hidden="true" />
           ) : (
@@ -242,9 +244,11 @@ function Field({
 }) {
   return (
     <div className="space-y-2">
-      <Label htmlFor={id}>{label}</Label>
+      <Label htmlFor={id} className="text-[0.82rem] font-semibold text-slate-200">
+        {label}
+      </Label>
       {children}
-      <p id={`${id}-error`} className="min-h-5 text-xs text-rose-200">
+      <p id={`${id}-error`} className="min-h-5 text-xs font-medium text-rose-200">
         {error ?? ""}
       </p>
     </div>

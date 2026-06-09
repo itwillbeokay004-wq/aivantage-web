@@ -5,17 +5,17 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "bg-blue-600 text-white shadow-glow hover:bg-blue-500",
+          "bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-400 text-white shadow-[0_18px_46px_rgba(37,99,235,0.28)] hover:-translate-y-0.5 hover:brightness-110",
         secondary:
-          "border border-white/10 bg-white/[0.08] text-slate-100 shadow-sm hover:border-cyan-300/40 hover:bg-white/[0.12]",
+          "border border-white/10 bg-white/[0.08] text-slate-100 shadow-sm shadow-black/20 hover:-translate-y-0.5 hover:border-cyan-300/40 hover:bg-white/[0.12]",
         ghost: "text-slate-300 hover:bg-white/[0.08] hover:text-white",
         outline:
-          "border border-cyan-300/30 bg-cyan-300/5 text-cyan-100 hover:bg-cyan-300/10",
+          "border border-cyan-300/30 bg-cyan-300/5 text-cyan-100 hover:-translate-y-0.5 hover:bg-cyan-300/10",
       },
       size: {
         default: "h-11",

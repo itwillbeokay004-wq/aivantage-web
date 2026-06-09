@@ -3,8 +3,8 @@
 import Link from "next/link";
 
 import { TrackedLink } from "@/components/analytics";
+import { Logo } from "@/components/brand/logo";
 import { useLocale } from "@/components/locale-provider";
-import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/data/site";
 import { localizeHref } from "@/lib/i18n";
@@ -30,9 +30,11 @@ export function Footer() {
   const { locale } = useLocale();
 
   return (
-    <footer className="border-t border-white/10 bg-[#020617]">
+    <footer className="relative overflow-hidden border-t border-white/10 bg-[#020617]">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/35 to-transparent" />
+      <div className="absolute bottom-0 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-cyan-300/5 blur-3xl" />
       <div className="container py-12">
-        <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-start">
+        <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-start">
           <div className="max-w-xl">
             <Logo />
             <p className="mt-5 text-sm leading-7 text-slate-300">

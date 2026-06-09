@@ -47,8 +47,8 @@ export async function sendContactRequestEmail(data: ContactFormValues) {
     locale: data.locale,
     subject:
       data.locale === "es"
-        ? `Nueva solicitud de contacto de ${data.name}`
-        : `New AiVantage contact request from ${data.name}`,
+        ? "Nuevo mensaje desde AiVantage"
+        : "New message from AiVantage",
     confirmationSubject:
       data.locale === "es"
         ? "Hemos recibido tu mensaje para AiVantage"
@@ -80,12 +80,12 @@ export async function sendDemoRequestEmail(data: DemoFormValues) {
     locale: data.locale,
     subject:
       data.locale === "es"
-        ? `Nueva solicitud de demo de ${data.name}`
-        : `New AiVantage demo request from ${data.name}`,
+        ? "Nueva solicitud de demo — AiVantage"
+        : "New demo request — AiVantage",
     confirmationSubject:
       data.locale === "es"
-        ? "Hemos recibido tu solicitud de demo de AiVantage"
-        : "We received your AiVantage demo request",
+        ? "Hemos recibido tu solicitud de demo"
+        : "We received your demo request",
     intro:
       data.locale === "es"
         ? "Se ha recibido una nueva solicitud de demo en aivantage.es."
@@ -106,6 +106,8 @@ export async function sendDemoRequestEmail(data: DemoFormValues) {
       { label: copy.automationGoal, value: data.automationGoal },
       { label: copy.preferredContactMethod, value: data.preferredContactMethod },
       { label: copy.preferredDateTime, value: data.preferredDateTime },
+      { label: copy.sourceIdea, value: data.sourceIdea },
+      { label: copy.generatedAgentName, value: data.generatedAgentName },
     ]),
   });
 }
@@ -293,6 +295,8 @@ const emailCopy = {
     automationGoal: "Qué quiere automatizar",
     preferredContactMethod: "Método de contacto preferido",
     preferredDateTime: "Fecha y hora preferidas",
+    sourceIdea: "Idea generada",
+    generatedAgentName: "Agente generado",
   },
   en: {
     name: "Name",
@@ -305,6 +309,8 @@ const emailCopy = {
     automationGoal: "What they want to automate",
     preferredContactMethod: "Preferred contact method",
     preferredDateTime: "Preferred date/time",
+    sourceIdea: "Generated idea",
+    generatedAgentName: "Generated agent",
   },
 } as const satisfies Record<Locale, Record<string, string>>;
 

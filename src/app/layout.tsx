@@ -41,9 +41,15 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    icon: [
+      { url: "/icon", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
     shortcut: ["/favicon.svg"],
-    apple: [{ url: "/apple-touch-icon.svg", type: "image/svg+xml" }],
+    apple: [
+      { url: "/apple-icon", type: "image/png" },
+      { url: "/apple-touch-icon.svg", type: "image/svg+xml" },
+    ],
   },
   manifest: "/manifest.webmanifest",
   openGraph: {
@@ -95,7 +101,7 @@ export default async function RootLayout({
         email: localizedSiteConfig.email,
         description: localizedSiteConfig.description,
         slogan: localizedSiteConfig.tagline,
-        logo: `${siteConfig.url}/favicon.svg`,
+        logo: `${siteConfig.url}/icon`,
         sameAs: [],
       },
       {

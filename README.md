@@ -12,6 +12,7 @@ Premium SaaS marketing website for AiVantage at `aivantage.es`.
 - lucide-react icons
 - React Hook Form and Zod
 - Resend email integration for contact and demo requests
+- OpenAI-powered AI builder with safe fallback mode
 
 ## Getting Started
 
@@ -42,6 +43,8 @@ or both public analytics environment variables are configured:
 NEXT_PUBLIC_GA_ID=
 NEXT_PUBLIC_POSTHOG_KEY=
 ```
+
+The full environment template lives in `.env.example`.
 
 ## Scripts
 
@@ -99,8 +102,8 @@ production:
 
 ```bash
 RESEND_API_KEY=
-CONTACT_TO_EMAIL=ai@aivantage.es
-CONTACT_FROM_EMAIL=ai@aivantage.es
+CONTACT_TO_EMAIL=
+CONTACT_FROM_EMAIL=
 ```
 
 Keep `RESEND_API_KEY` server-only. Do not prefix it with `NEXT_PUBLIC_`, do not
@@ -109,26 +112,37 @@ render it in client components, and do not commit real keys to source control.
 Before production launch, add rate limiting to the API routes. Placeholder
 comments are included in both handlers for future hardening.
 
-## Optional AI Chat Mode
+## AI Builder
 
-The site-wide chat widget runs in hardcoded demo mode by default. To enable real
-AI responses, configure both the server-only OpenAI key and the public feature
-flag:
+The homepage AI builder calls `POST /api/generate-agent`. It validates input,
+uses the OpenAI Responses API server-side when configured, and falls back to a
+localized keyword recommendation engine when the OpenAI key is missing or an API
+call fails.
 
 ```bash
 OPENAI_API_KEY=
-OPENAI_CHAT_MODEL=gpt-4o-mini
-NEXT_PUBLIC_AI_CHAT_ENABLED=true
+OPENAI_MODEL=gpt-5.5
 ```
 
 Keep `OPENAI_API_KEY` server-only. Do not prefix it with `NEXT_PUBLIC_`, do not
 render it in client components, and do not commit real keys to source control.
 
-When enabled, the browser calls `POST /api/chat`, and the server route calls
-OpenAI. If the key is missing, the OpenAI request fails, or validation rejects a
-message, the widget falls back to safe AiVantage guidance. Message length is
-limited, and the API route includes TODO comments for future abuse prevention
-such as rate limiting, bot detection, and monitoring.
+Generated recommendations can be handed to the demo form through query params so
+the visitor does not need to retype their idea.
+
+## Optional Lead Storage
+
+Form submissions can optionally be stored in Supabase. This is off by default.
+To enable it, run `supabase/lead_requests.sql` in Supabase and configure:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+```
+
+Keep `SUPABASE_SERVICE_ROLE_KEY` server-only. If Supabase is not configured, the
+forms still work through Resend when email is configured.
 
 ## Analytics
 
@@ -158,10 +172,12 @@ The project is ready for Vercel:
 1. Push the repository to GitHub.
 2. Import it in Vercel.
 3. Set the production domain to `aivantage.es`.
-4. Add `NEXT_PUBLIC_SITE_URL`, `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, and `CONTACT_FROM_EMAIL`.
+4. Add the required environment variables from `.env.example`.
 5. Verify the sending domain or sender address in Resend before going live.
-6. Optionally add `OPENAI_API_KEY` and set `NEXT_PUBLIC_AI_CHAT_ENABLED=true`.
+6. Optionally add Supabase credentials if you want database lead storage.
 7. Optionally add `NEXT_PUBLIC_GA_ID` or `NEXT_PUBLIC_POSTHOG_KEY` to enable analytics.
+
+See `OWNER_SETUP.md` for a non-technical launch checklist.
 
 ## Design Note
 

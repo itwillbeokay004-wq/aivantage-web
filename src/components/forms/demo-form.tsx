@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -51,8 +51,8 @@ const formCopy = {
       email: "Email",
       phone: "Teléfono",
       company: "Empresa",
-      businessWebsite: "Sitio web",
-      industry: "Industria",
+      businessWebsite: "Sitio web, opcional",
+      industry: "Industria, opcional",
       automationGoal: "¿Qué quieres automatizar?",
       preferredContactMethod: "Método de contacto preferido",
       preferredDateTime: "Fecha y hora preferidas, opcional",
@@ -71,9 +71,10 @@ const formCopy = {
       preferredDateTime: "Por ejemplo: martes por la mañana",
     },
     fallbackSuccess:
-      "Gracias. Hemos recibido tu solicitud de demo. Nos pondremos en contacto contigo para coordinar los siguientes pasos.",
+      "Gracias. Hemos recibido tu solicitud de demo. Te contactaremos para coordinar los siguientes pasos.",
     fallbackError: "Algo salió mal. Inténtalo de nuevo.",
     submit: "Solicitar demo",
+    generatedIdea: "Idea generada",
   },
   en: {
     labels: {
@@ -81,8 +82,8 @@ const formCopy = {
       email: "Business email",
       phone: "Phone",
       company: "Company",
-      businessWebsite: "Website",
-      industry: "Industry",
+      businessWebsite: "Website, optional",
+      industry: "Industry, optional",
       automationGoal: "What do you want to automate?",
       preferredContactMethod: "Preferred contact method",
       preferredDateTime: "Preferred date/time, optional",
@@ -100,9 +101,11 @@ const formCopy = {
       preferredContactMethod: "Select method",
       preferredDateTime: "For example: Tuesday morning",
     },
-    fallbackSuccess: "Demo request received. We will send next steps shortly.",
+    fallbackSuccess:
+      "Thanks. We received your demo request and will contact you to coordinate next steps.",
     fallbackError: "Something went wrong. Please try again.",
     submit: "Request Demo",
+    generatedIdea: "Generated idea",
   },
 } as const;
 
@@ -114,6 +117,10 @@ type ApiResponse = {
 export function DemoForm() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState("");
+  const [generatedContext, setGeneratedContext] = useState<{
+    idea: string;
+    agentName: string;
+  } | null>(null);
   const { locale } = useLocale();
   const copy = formCopy[locale];
   const schema = useMemo(() => createDemoSchema(locale), [locale]);
@@ -121,6 +128,7 @@ export function DemoForm() {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<DemoFormValues>({
     resolver: zodResolver(schema),
@@ -135,9 +143,29 @@ export function DemoForm() {
       automationGoal: "",
       preferredContactMethod: "",
       preferredDateTime: "",
+      sourceIdea: "",
+      generatedAgentName: "",
       website: "",
     },
   });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const sourceIdea = params.get("idea")?.trim() ?? "";
+    const generatedAgentName = params.get("agent")?.trim() ?? "";
+
+    if (!sourceIdea && !generatedAgentName) {
+      return;
+    }
+
+    setGeneratedContext({ idea: sourceIdea, agentName: generatedAgentName });
+    setValue("sourceIdea", sourceIdea);
+    setValue("generatedAgentName", generatedAgentName);
+
+    if (sourceIdea) {
+      setValue("automationGoal", sourceIdea, { shouldValidate: true });
+    }
+  }, [setValue]);
 
   async function onSubmit(values: DemoFormValues) {
     setStatus("idle");
@@ -168,7 +196,7 @@ export function DemoForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="glass-panel relative rounded-2xl p-6 sm:p-7"
+      className="premium-form-panel relative rounded-[1.7rem] p-5 sm:p-7"
     >
       <div
         className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
@@ -182,6 +210,26 @@ export function DemoForm() {
           {...register("website")}
         />
       </div>
+      <input type="hidden" {...register("sourceIdea")} />
+      <input type="hidden" {...register("generatedAgentName")} />
+      {generatedContext ? (
+        <div className="relative mb-6 overflow-hidden rounded-[1.35rem] border border-cyan-300/20 bg-cyan-300/[0.07] p-4 shadow-[0_18px_50px_rgba(8,47,73,0.2)]">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/60 to-transparent" />
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100">
+            {copy.generatedIdea}
+          </p>
+          {generatedContext.agentName ? (
+            <p className="mt-2 text-base font-semibold text-white">
+              {generatedContext.agentName}
+            </p>
+          ) : null}
+          {generatedContext.idea ? (
+            <p className="mt-2 text-sm leading-6 text-slate-300">
+              {generatedContext.idea}
+            </p>
+          ) : null}
+        </div>
+      ) : null}
       <div className="grid gap-5 sm:grid-cols-2">
         <Field
           id="demo-name"
@@ -332,16 +380,18 @@ export function DemoForm() {
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="min-h-5 text-sm text-slate-400" aria-live="polite">
           {status === "success" ? (
-            <span className="inline-flex items-center gap-2 text-emerald-200">
+            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1.5 text-emerald-100">
               <CheckCircle2 className="size-4" aria-hidden="true" />
               {statusMessage || copy.fallbackSuccess}
             </span>
           ) : null}
           {status === "error" ? (
-            <span className="text-rose-200">{statusMessage || copy.fallbackError}</span>
+            <span className="inline-flex rounded-full border border-rose-300/20 bg-rose-400/10 px-3 py-1.5 text-rose-100">
+              {statusMessage || copy.fallbackError}
+            </span>
           ) : null}
         </p>
-        <Button type="submit" disabled={isSubmitting}>
+        <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto">
           {isSubmitting ? (
             <Loader2 className="size-4 animate-spin" aria-hidden="true" />
           ) : (
@@ -367,9 +417,11 @@ function Field({
 }) {
   return (
     <div className="space-y-2">
-      <Label htmlFor={id}>{label}</Label>
+      <Label htmlFor={id} className="text-[0.82rem] font-semibold text-slate-200">
+        {label}
+      </Label>
       {children}
-      <p id={`${id}-error`} className="min-h-5 text-xs text-rose-200">
+      <p id={`${id}-error`} className="min-h-5 text-xs font-medium text-rose-200">
         {error ?? ""}
       </p>
     </div>

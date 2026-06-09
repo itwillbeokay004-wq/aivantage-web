@@ -118,11 +118,13 @@ export function createDemoSchema(locale: Locale = defaultLocale) {
     email: emailField(locale),
     phone: requiredPhoneField(locale),
     company: requiredText(locale, 100),
-    businessWebsite: requiredText(locale, 160),
-    industry: requiredText(locale, 100),
+    businessWebsite: optionalText(locale, 160),
+    industry: optionalText(locale, 100),
     automationGoal: messageField(locale),
     preferredContactMethod: requiredText(locale, 40),
     preferredDateTime: optionalText(locale, 120),
+    sourceIdea: optionalText(locale, 900),
+    generatedAgentName: optionalText(locale, 120),
     website: honeypot,
   });
 }

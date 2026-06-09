@@ -1,13 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="AiVantage app icon">
   <defs>
-    <radialGradient id="aivantage-apple-glow" cx="35%" cy="20%" r="75%">
-      <stop offset="0" stop-color="#22d3ee"/>
-      <stop offset="0.5" stop-color="#2563eb"/>
-      <stop offset="1" stop-color="#111827"/>
+    <radialGradient id="bg" cx="30%" cy="20%" r="76%">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.88"/>
+      <stop offset="0.45" stop-color="#2563eb" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#020617"/>
     </radialGradient>
+    <linearGradient id="mark" x1="42" y1="36" x2="138" y2="140" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67e8f9"/>
+      <stop offset="0.5" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#c4b5fd"/>
+    </linearGradient>
   </defs>
-  <rect width="180" height="180" rx="42" fill="#050914"/>
-  <circle cx="126" cy="48" r="20" fill="#a855f7" opacity="0.45"/>
-  <path d="M45 128 80.6 48h17.8L135 128h-22.5l-6.2-15.9H72.8L66.5 128H45Zm34.7-34h19.8l-9.9-25.5L79.7 94Z" fill="url(#aivantage-apple-glow)"/>
-  <circle cx="130" cy="49" r="8" fill="#67e8f9"/>
+  <rect width="180" height="180" rx="42" fill="url(#bg)"/>
+  <circle cx="130" cy="48" r="15" fill="#67e8f9"/>
+  <path d="M39 132 79 46h22l40 86h-27l-7.4-18.1H73.5L66.1 132H39Zm42.9-39h16.6L90.2 73 81.9 93Z" fill="url(#mark)"/>
+  <path d="M63 128c20.5 12.2 44 11.6 68.4-1.4" fill="none" stroke="#67e8f9" stroke-width="6" stroke-linecap="round" opacity="0.72"/>
 </svg>

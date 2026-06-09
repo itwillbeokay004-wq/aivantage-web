@@ -27,22 +27,28 @@ production deployment:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://aivantage.es
+OPENAI_API_KEY=
+OPENAI_MODEL=gpt-5.5
 RESEND_API_KEY=
 CONTACT_TO_EMAIL=
 CONTACT_FROM_EMAIL=
-OPENAI_API_KEY=
-NEXT_PUBLIC_AI_CHAT_ENABLED=false
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+NEXT_PUBLIC_GA_ID=
+NEXT_PUBLIC_POSTHOG_KEY=
 ```
 
 Notes:
 
+- `OPENAI_API_KEY` powers the homepage AI builder. If it is blank, the builder
+  still works with fallback recommendations.
+- `OPENAI_MODEL` defaults to `gpt-5.5` for the AI builder.
 - `RESEND_API_KEY` is required for sending contact and demo emails.
 - `CONTACT_TO_EMAIL` is the inbox that receives form submissions.
 - `CONTACT_FROM_EMAIL` is the verified sender address used by Resend.
-- `OPENAI_API_KEY` is optional and should only be added if real AI chat mode is
-  enabled later.
-- Keep `NEXT_PUBLIC_AI_CHAT_ENABLED=false` initially so the site-wide chat widget
-  stays in safe demo mode at launch.
+- Supabase variables are optional and only needed if you want database lead
+  storage.
 - Never prefix server-only secrets like `RESEND_API_KEY` or `OPENAI_API_KEY`
   with `NEXT_PUBLIC_`.
 
@@ -111,4 +117,3 @@ After DNS is connected and the Vercel deployment is live, verify:
 - SSL certificate is active and the browser shows a secure connection.
 - Domain redirects work correctly between apex and `www`, according to the chosen
   canonical domain.
-

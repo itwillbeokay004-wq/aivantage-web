@@ -49,12 +49,12 @@ const chatWidgetContent = {
   es: {
     title: "Asistente AiVantage",
     welcomeMessage:
-      "Hola, soy el asistente de AiVantage. Puedo ayudarte a explorar agentes de IA, casos de uso y opciones para una demo.",
+      "Hola, soy el asistente de AiVantage. Puedo ayudarte a explorar agentes de IA, casos de uso y opciones para reservar una demo.",
     genericFallbackResponse:
       "Puedo orientar sobre servicios de AiVantage, agentes de IA, automatización, precios y demos. Para una recomendación concreta, lo mejor es reservar una demo.",
     modeLabel: {
       ai: "Modo IA — generado en el servidor cuando está configurado.",
-      demo: "Asistente demo — todavía no es un agente de IA en vivo.",
+      demo: "Demostración — todavía no es un agente de IA en vivo.",
     },
     quickActionsLabel: "Acciones rápidas",
     closeAria: "Cerrar asistente de AiVantage",
@@ -76,28 +76,28 @@ const chatWidgetContent = {
     triggerLabel: "Preguntar a AiVantage",
     quickActions: [
       {
-        label: "Necesito un chatbot web",
+        label: "Necesito un chatbot para mi web",
         icon: MessageCircle,
         response:
-          "Un chatbot web puede responder preguntas aprobadas, captar datos de clientes potenciales, enrutar consultas y preparar derivaciones claras para tu equipo. El primer paso es mapear las preguntas frecuentes y el camino de conversión.",
+          "Podemos crear un asistente para tu sitio web que responda preguntas frecuentes, capte clientes potenciales y derive conversaciones importantes a tu equipo.",
       },
       {
         label: "Quiero un asistente telefónico con IA",
         icon: Mic2,
         response:
-          "Un asistente telefónico con IA puede ayudar con recepción de llamadas, seguimiento de llamadas perdidas, preguntas frecuentes, reservas y resúmenes. Empezaríamos definiendo tipos de llamada, reglas de derivación y límites de seguridad.",
+          "Un asistente telefónico con IA puede ayudar a responder llamadas, recopilar información básica, resumir conversaciones y reducir oportunidades perdidas.",
       },
       {
         label: "Necesito cualificar clientes potenciales",
         icon: UserRoundCheck,
         response:
-          "Un agente de cualificación puede preguntar por necesidad, plazo, presupuesto, ubicación y encaje, y enviar un resumen estructurado a tu CRM o email para priorizar mejor.",
+          "Podemos diseñar un agente que haga preguntas clave, identifique la intención del cliente y envíe la información organizada a tu equipo o CRM.",
       },
       {
-        label: "Reservar demo",
+        label: "Reservar una demo",
         icon: CalendarCheck,
         response:
-          "Perfecto — la página de demo recopila tus objetivos, plazo y datos del equipo para que AiVantage prepare un siguiente paso útil.",
+          "Perfecto. Puedes reservar una demo y contarnos qué proceso quieres automatizar.",
         href: "/book-demo",
       },
     ],
@@ -293,6 +293,7 @@ export function ChatWidget() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          locale,
           message: trimmedPrompt,
           history: previousMessages,
         }),

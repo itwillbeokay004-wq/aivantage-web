@@ -12,9 +12,10 @@ import type { Locale } from "@/lib/i18n";
 
 const widgetContent = {
   es: {
-    eyebrow: "Espacio de agentes en vivo",
-    title: "Agente AiVantage 03",
-    status: "Online",
+    eyebrow: "Demo de agente",
+    title: "Agente demo AiVantage",
+    status: "Demo",
+    demoLabel: "Demostración — todavía no es un agente de IA en vivo.",
     transcriptLabel: "transcripción",
     confidenceLabel: "confianza",
     responseLabel: "Respuesta AiVantage",
@@ -53,9 +54,10 @@ const widgetContent = {
     ],
   },
   en: {
-    eyebrow: "Live agent workspace",
-    title: "AiVantage Agent 03",
-    status: "Online",
+    eyebrow: "Agent demo",
+    title: "AiVantage Demo Agent",
+    status: "Demo",
+    demoLabel: "Demo — not a live AI agent yet.",
     transcriptLabel: "transcript",
     confidenceLabel: "confidence",
     responseLabel: "AiVantage response",
@@ -83,7 +85,7 @@ const widgetContent = {
       },
       {
         label: "Ops",
-        channel: "Proceso",
+        channel: "Workflow",
         icon: Workflow,
         user: "Route this onboarding task to the right owner.",
         agent:
@@ -99,6 +101,7 @@ const widgetContent = {
     eyebrow: string;
     title: string;
     status: string;
+    demoLabel: string;
     transcriptLabel: string;
     confidenceLabel: string;
     responseLabel: string;
@@ -227,6 +230,7 @@ export function AgentDemoWidget({ compact = false }: { compact?: boolean }) {
           <Send className="size-4" aria-hidden="true" />
         </Button>
       </div>
+      <p className="mt-4 text-xs leading-5 text-slate-500">{content.demoLabel}</p>
     </div>
   );
 }

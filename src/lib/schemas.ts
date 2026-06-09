@@ -86,6 +86,19 @@ const chatContent = z
   .min(1, "Enter a message.")
   .max(700, "Message must be 700 characters or fewer.");
 
+function chatContentField(locale: Locale) {
+  return z
+    .string()
+    .trim()
+    .min(1, locale === "es" ? "Introduce un mensaje." : "Enter a message.")
+    .max(
+      700,
+      locale === "es"
+        ? "El mensaje debe tener 700 caracteres o menos."
+        : "Message must be 700 characters or fewer.",
+    );
+}
+
 export function createContactSchema(locale: Locale = defaultLocale) {
   return z.object({
     locale: localeSchema.default(locale),
@@ -122,12 +135,17 @@ export const chatMessageSchema = z.object({
   content: chatContent,
 });
 
-export const chatRequestSchema = z.object({
-  message: chatContent,
-  history: z.array(chatMessageSchema).max(8).optional().default([]),
-});
+export function createChatRequestSchema(locale: Locale = defaultLocale) {
+  return z.object({
+    locale: localeSchema.default(locale),
+    message: chatContentField(locale),
+    history: z.array(chatMessageSchema).max(8).optional().default([]),
+  });
+}
+
+export const chatRequestSchema = createChatRequestSchema(defaultLocale);
 
 export type ContactFormValues = z.infer<ReturnType<typeof createContactSchema>>;
 export type DemoFormValues = z.infer<ReturnType<typeof createDemoSchema>>;
 export type ChatMessageValues = z.infer<typeof chatMessageSchema>;
-export type ChatRequestValues = z.infer<typeof chatRequestSchema>;
+export type ChatRequestValues = z.infer<ReturnType<typeof createChatRequestSchema>>;

@@ -154,7 +154,7 @@ export function HomeAgentDemo() {
           </div>
           <p className="mt-3 text-xs text-slate-500">
             {locale === "es"
-              ? "Solo demostración — todavía no es un agente en vivo."
+              ? "Demostración — todavía no es un agente de IA en vivo."
               : "Demo only — not a live AI agent yet."}
           </p>
         </div>

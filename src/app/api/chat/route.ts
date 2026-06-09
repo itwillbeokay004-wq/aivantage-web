@@ -1,12 +1,24 @@
 import { NextResponse } from "next/server";
 
-import { chatRequestSchema } from "@/lib/schemas";
+import { defaultLocale, isLocale, type Locale } from "@/lib/i18n";
+import { createChatRequestSchema } from "@/lib/schemas";
 
-const SYSTEM_INSTRUCTION =
-  "You are the AiVantage website assistant. Help visitors understand AiVantage services, AI agents, automation use cases, pricing direction, and demo booking. Do not make unsupported claims. Encourage booking a demo for detailed recommendations.";
-
-const FALLBACK_REPLY =
-  "I can help with general AiVantage guidance: website chatbots, AI phone assistants, lead qualification, support automation, and demo planning. For detailed recommendations, please book a demo so the team can review your workflow.";
+const chatCopy = {
+  es: {
+    invalid: "Solicitud de chat no válida.",
+    systemInstruction:
+      "Eres el asistente del sitio web de AiVantage. Ayuda a visitantes a entender los servicios de AiVantage, agentes de IA, casos de uso de automatización, orientación general de precios y reserva de demos. No hagas afirmaciones sin respaldo. Recomienda reservar una demo para recomendaciones detalladas.",
+    fallbackReply:
+      "Puedo ayudarte con información general sobre AiVantage: chatbots para sitios web, asistentes telefónicos con IA, cualificación de clientes potenciales, automatización de atención al cliente y planificación de demos. Para recomendaciones detalladas, reserva una demo para que el equipo revise tu proceso.",
+  },
+  en: {
+    invalid: "Invalid chat request.",
+    systemInstruction:
+      "You are the AiVantage website assistant. Help visitors understand AiVantage services, AI agents, automation use cases, pricing direction, and demo booking. Do not make unsupported claims. Encourage booking a demo for detailed recommendations.",
+    fallbackReply:
+      "I can help with general AiVantage guidance: website chatbots, AI phone assistants, lead qualification, support automation, and demo planning. For detailed recommendations, please book a demo so the team can review your workflow.",
+  },
+} as const;
 
 type OpenAIChatResponse = {
   choices?: Array<{
@@ -23,22 +35,24 @@ export async function POST(request: Request) {
   // TODO: Add IP/session rate limits, bot detection, and per-origin throttling before production launch.
   // TODO: Add monitoring for repeated abuse patterns and unusually long conversations.
   const body: unknown = await request.json().catch(() => null);
-  const result = chatRequestSchema.safeParse(body);
+  const bodyLocale = getBodyLocale(body);
+  const result = createChatRequestSchema(bodyLocale).safeParse(body);
 
   if (!result.success) {
     return NextResponse.json(
-      { error: "Invalid chat request", issues: result.error.flatten().fieldErrors },
+      { error: chatCopy[bodyLocale].invalid, issues: result.error.flatten().fieldErrors },
       { status: 400 },
     );
   }
 
+  const copy = chatCopy[result.data.locale];
   const apiKey = process.env.OPENAI_API_KEY;
 
   if (!apiKey) {
     return NextResponse.json({
       ok: true,
       mode: "fallback",
-      reply: FALLBACK_REPLY,
+      reply: copy.fallbackReply,
     });
   }
 
@@ -54,7 +68,7 @@ export async function POST(request: Request) {
         temperature: 0.4,
         max_tokens: 220,
         messages: [
-          { role: "system", content: SYSTEM_INSTRUCTION },
+          { role: "system", content: copy.systemInstruction },
           ...result.data.history.map((message) => ({
             role: message.role,
             content: message.content,
@@ -77,7 +91,7 @@ export async function POST(request: Request) {
       return NextResponse.json({
         ok: true,
         mode: "fallback",
-        reply: FALLBACK_REPLY,
+        reply: copy.fallbackReply,
       });
     }
 
@@ -88,7 +102,7 @@ export async function POST(request: Request) {
       return NextResponse.json({
         ok: true,
         mode: "fallback",
-        reply: FALLBACK_REPLY,
+        reply: copy.fallbackReply,
       });
     }
 
@@ -103,7 +117,19 @@ export async function POST(request: Request) {
     return NextResponse.json({
       ok: true,
       mode: "fallback",
-      reply: FALLBACK_REPLY,
+      reply: copy.fallbackReply,
     });
   }
+}
+
+function getBodyLocale(body: unknown): Locale {
+  if (body && typeof body === "object" && "locale" in body) {
+    const locale = body.locale;
+
+    if (typeof locale === "string" && isLocale(locale)) {
+      return locale;
+    }
+  }
+
+  return defaultLocale;
 }

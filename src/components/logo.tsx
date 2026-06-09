@@ -15,13 +15,13 @@ export function Logo({ className }: { className?: string }) {
       className={cn("group inline-flex items-center gap-3", className)}
     >
       <span
-        className="relative grid size-9 place-items-center rounded-lg border border-blue-200 bg-blue-50 shadow-glow"
+        className="relative grid size-9 place-items-center rounded-lg border border-cyan-300/30 bg-cyan-300/10 shadow-glow"
         aria-hidden="true"
       >
-        <span className="absolute inset-1 rounded-md border border-sky-200" />
-        <span className="h-4 w-4 rounded bg-gradient-to-br from-blue-700 via-sky-500 to-indigo-500 transition group-hover:scale-110" />
+        <span className="absolute inset-1 rounded-md border border-sky-300/30" />
+        <span className="h-4 w-4 rounded bg-gradient-to-br from-blue-400 via-cyan-300 to-violet-400 transition group-hover:scale-110" />
       </span>
-      <span className="text-base font-semibold tracking-tight text-slate-950">AiVantage</span>
+      <span className="text-base font-semibold tracking-tight text-white">AiVantage</span>
     </Link>
   );
 }

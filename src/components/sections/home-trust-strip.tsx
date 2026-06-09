@@ -23,7 +23,7 @@ export function HomeTrustStrip() {
 
   return (
     <section
-      className="border-b border-slate-200 bg-white"
+      className="border-b border-white/10 bg-white/[0.025]"
       aria-label={locale === "es" ? "Temas de confianza" : "Trust themes"}
     >
       <div className="container py-8">
@@ -31,7 +31,7 @@ export function HomeTrustStrip() {
           {trustItems[locale].map((item) => (
             <div
               key={item}
-              className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-4 text-center text-sm font-medium text-slate-600"
+              className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-4 text-center text-sm font-medium text-slate-300"
             >
               {item}
             </div>

@@ -70,7 +70,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#ffffff",
+  themeColor: "#020617",
 };
 
 export default async function RootLayout({
@@ -128,10 +128,19 @@ export default async function RootLayout({
         provider: {
           "@id": organizationId,
         },
-        areaServed: {
-          "@type": "Country",
-          name: "United States",
-        },
+        areaServed: [
+          {
+            "@type": "Country",
+            name: "Spain",
+          },
+          {
+            "@type": "Place",
+            name:
+              locale === "es"
+                ? "Mercados internacionales de habla hispana e inglesa"
+                : "International Spanish- and English-speaking markets",
+          },
+        ],
         url: `${siteConfig.url}${localizeHref("/solutions", locale)}`,
       },
     ],

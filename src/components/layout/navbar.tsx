@@ -57,11 +57,11 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#020617]/80 backdrop-blur-xl">
       <div className="container flex h-20 items-center justify-between gap-4">
         <Logo />
         <nav
-          className="desktop-nav-shell items-center gap-1 rounded-full border border-slate-200/80 bg-slate-100/80 p-1 shadow-sm"
+          className="desktop-nav-shell items-center gap-1 rounded-full border border-white/10 bg-white/[0.08] p-1 shadow-sm shadow-black/20"
           aria-label="Main navigation"
         >
           {platformLink ? (
@@ -76,8 +76,8 @@ export function Navbar() {
             <button
               type="button"
               className={cn(
-                "inline-flex items-center gap-1 rounded-full px-5 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                isResourceActive && "bg-white text-slate-950 shadow-sm",
+                "inline-flex items-center gap-1 rounded-full px-5 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                isResourceActive && "bg-white/[0.12] text-white shadow-sm",
               )}
               aria-expanded={resourcesOpen}
               aria-controls={resourcesMenuId}
@@ -95,13 +95,13 @@ export function Navbar() {
             {resourcesOpen ? (
               <div
                 id={resourcesMenuId}
-                className="absolute left-1/2 top-[calc(100%+0.75rem)] w-64 -translate-x-1/2 rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-950/10"
+                className="absolute left-1/2 top-[calc(100%+0.75rem)] w-64 -translate-x-1/2 rounded-2xl border border-white/10 bg-[#07101f] p-2 shadow-2xl shadow-black/40"
               >
                 {resourceNavLinks.map((link) => (
               <Link
                 key={link.href}
                 href={localizeHref(link.href, locale)}
-                className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-blue-50 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-300 transition hover:bg-cyan-300/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                     {link.label}
                   </Link>
@@ -119,24 +119,24 @@ export function Navbar() {
             />
           ))}
         </nav>
-        <div className="desktop-nav-shell items-center gap-1 rounded-full border border-slate-200/80 bg-slate-100/80 p-1 shadow-sm">
+        <div className="desktop-nav-shell items-center gap-1 rounded-full border border-white/10 bg-white/[0.08] p-1 shadow-sm shadow-black/20">
           <TrackedLink
             href="/contact"
-            className="rounded-full px-4 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="rounded-full px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             eventProperties={{ location: "navbar_login_placeholder" }}
           >
             {locale === "es" ? "Entrar" : "Login"}
           </TrackedLink>
           <TrackedLink
             href="/contact"
-            className="rounded-full px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="rounded-full px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             eventProperties={{ location: "navbar_signup" }}
           >
             {locale === "es" ? "Registrarse" : "Sign up"}
           </TrackedLink>
           <TrackedLink
             href="/book-demo"
-            className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             eventProperties={{ location: "navbar" }}
           >
             {locale === "es" ? "Reservar una demo" : "Book a demo"}
@@ -168,8 +168,8 @@ function NavPillLink({
     <Link
       href={localizeHref(href, locale)}
       className={cn(
-        "rounded-full px-5 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-        isActive && "bg-white text-slate-950 shadow-sm",
+        "rounded-full px-5 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        isActive && "bg-white/[0.12] text-white shadow-sm",
       )}
     >
       {label}

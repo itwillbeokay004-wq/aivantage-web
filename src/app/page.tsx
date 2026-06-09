@@ -3,6 +3,7 @@ import { HomeFinalCta } from "@/components/sections/home-final-cta";
 import { HomeHero } from "@/components/sections/home-hero";
 import { HomeOmnichannel } from "@/components/sections/home-omnichannel";
 import { HomePlatformOverview } from "@/components/sections/home-platform-overview";
+import { HomeProblemSolution } from "@/components/sections/home-problem-solution";
 import { HomeSecurityTrust } from "@/components/sections/home-security-trust";
 import { HomeTrustStrip } from "@/components/sections/home-trust-strip";
 import { HomeUseCasesPreview } from "@/components/sections/home-use-cases-preview";
@@ -31,6 +32,7 @@ export default function HomePage() {
     <>
       <HomeHero />
       <HomeTrustStrip />
+      <HomeProblemSolution />
       <HomePlatformOverview />
       <HomeOmnichannel />
       <HomeUseCasesPreview />

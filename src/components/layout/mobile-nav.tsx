@@ -41,7 +41,7 @@ export function MobileNav() {
     <div className="mobile-nav-shell">
       <button
         type="button"
-        className="grid size-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-950 shadow-sm"
+        className="grid size-10 place-items-center rounded-full border border-white/10 bg-white/[0.08] text-white shadow-sm"
         onClick={() => setIsOpen((value) => !value)}
         aria-label={
           isOpen
@@ -64,7 +64,7 @@ export function MobileNav() {
       {isOpen ? (
         <div
           id={panelId}
-          className="absolute inset-x-0 top-16 border-t border-slate-200 bg-white shadow-xl"
+          className="absolute inset-x-0 top-16 border-t border-white/10 bg-[#020617]/95 shadow-xl shadow-black/40 backdrop-blur-xl"
         >
           <div className="container flex flex-col gap-2 py-4">
             <nav className="flex flex-col gap-2" aria-label="Mobile navigation">
@@ -73,12 +73,12 @@ export function MobileNav() {
                   <Link
                     href={localizeHref(link.href, locale)}
                     onClick={() => setIsOpen(false)}
-                    className="rounded-md px-3 py-3 text-sm font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="rounded-md px-3 py-3 text-sm font-medium text-slate-300 hover:bg-cyan-300/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {link.label}
                   </Link>
                   {index === 0 ? (
-                    <div className="rounded-xl border border-slate-200 bg-slate-50 p-2">
+                    <div className="rounded-xl border border-white/10 bg-white/5 p-2">
                       <p className="px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
                         {locale === "es" ? "Recursos" : "Resources"}
                       </p>
@@ -88,7 +88,7 @@ export function MobileNav() {
                             key={resourceLink.href}
                             href={localizeHref(resourceLink.href, locale)}
                             onClick={() => setIsOpen(false)}
-                            className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-white hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-300 hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                           >
                             {resourceLink.label}
                           </Link>
@@ -99,7 +99,7 @@ export function MobileNav() {
                 </div>
               ))}
             </nav>
-            <div className="mt-2 grid gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 sm:grid-cols-3">
+            <div className="mt-2 grid gap-2 rounded-2xl border border-white/10 bg-white/5 p-2 sm:grid-cols-3">
               <Button asChild variant="secondary">
                 <TrackedLink
                   href="/contact"

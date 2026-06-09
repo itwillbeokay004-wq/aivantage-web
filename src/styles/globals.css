@@ -3,21 +3,21 @@
 @tailwind utilities;
 
 :root {
-  --background: 210 40% 98%;
-  --foreground: 222 47% 11%;
-  --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
-  --primary: 218 92% 48%;
+  --background: 222 63% 5%;
+  --foreground: 210 40% 98%;
+  --card: 222 47% 9%;
+  --card-foreground: 210 40% 98%;
+  --primary: 217 91% 60%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 214 32% 91%;
-  --secondary-foreground: 222 47% 11%;
-  --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 42%;
-  --accent: 226 84% 61%;
+  --secondary: 217 33% 18%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217 33% 14%;
+  --muted-foreground: 215 20% 65%;
+  --accent: 188 95% 54%;
   --accent-foreground: 0 0% 100%;
-  --border: 214 32% 88%;
-  --input: 214 32% 88%;
-  --ring: 218 92% 48%;
+  --border: 217 33% 19%;
+  --input: 217 33% 19%;
+  --ring: 188 95% 54%;
   --radius: 0.75rem;
 }
 
@@ -32,9 +32,10 @@ html {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 34rem),
-    radial-gradient(circle at 85% 12%, rgba(14, 165, 233, 0.1), transparent 28rem),
-    linear-gradient(180deg, #ffffff 0%, #f8fafc 42%, #eef4ff 100%);
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.28), transparent 34rem),
+    radial-gradient(circle at 85% 12%, rgba(168, 85, 247, 0.14), transparent 30rem),
+    radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.1), transparent 38rem),
+    linear-gradient(180deg, #020617 0%, #050914 44%, #07111f 100%);
   color: hsl(var(--foreground));
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -48,8 +49,8 @@ body::before {
   z-index: -1;
   content: "";
   background-image:
-    linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(148, 163, 184, 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.075) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: linear-gradient(to bottom, black 0%, transparent 72%);
 }
@@ -60,8 +61,8 @@ body::before {
 }
 
 ::selection {
-  background: rgba(37, 99, 235, 0.16);
-  color: #0f172a;
+  background: rgba(34, 211, 238, 0.24);
+  color: #f8fafc;
 }
 
 .text-balance {
@@ -69,7 +70,7 @@ body::before {
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #1d4ed8, #0284c7, #4f46e5);
+  background: linear-gradient(90deg, #93c5fd, #22d3ee, #c4b5fd);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -79,35 +80,38 @@ body::before {
   position: relative;
   border: 1px solid transparent;
   background:
-    linear-gradient(#ffffff, #ffffff) padding-box,
-    linear-gradient(135deg, rgba(37, 99, 235, 0.34), rgba(14, 165, 233, 0.28))
+    linear-gradient(#07101f, #07101f) padding-box,
+    linear-gradient(135deg, rgba(59, 130, 246, 0.58), rgba(34, 211, 238, 0.34), rgba(168, 85, 247, 0.28))
       border-box;
 }
 
 .soft-gradient-surface {
   background:
-    linear-gradient(135deg, rgba(37, 99, 235, 0.08), transparent 42%),
-    linear-gradient(225deg, rgba(14, 165, 233, 0.08), transparent 42%),
-    rgba(255, 255, 255, 0.92);
+    linear-gradient(135deg, rgba(37, 99, 235, 0.18), transparent 42%),
+    linear-gradient(225deg, rgba(14, 165, 233, 0.12), transparent 42%),
+    rgba(15, 23, 42, 0.72);
 }
 
 .glass-panel {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.92));
-  border: 1px solid rgba(148, 163, 184, 0.22);
-  box-shadow: 0 22px 70px rgba(15, 23, 42, 0.1);
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(2, 6, 23, 0.72)),
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 22rem);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
 }
 
 .hero-mesh {
   background:
-    radial-gradient(circle at 18% 12%, rgba(37, 99, 235, 0.16), transparent 32rem),
-    radial-gradient(circle at 80% 8%, rgba(14, 165, 233, 0.12), transparent 30rem),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(241, 245, 249, 0.94));
+    radial-gradient(circle at 18% 12%, rgba(37, 99, 235, 0.32), transparent 32rem),
+    radial-gradient(circle at 80% 8%, rgba(14, 165, 233, 0.18), transparent 30rem),
+    radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.13), transparent 36rem),
+    linear-gradient(180deg, rgba(2, 6, 23, 0.98), rgba(5, 9, 20, 0.94));
 }
 
 .signal-grid {
   background-image:
-    linear-gradient(rgba(37, 99, 235, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
+    linear-gradient(rgba(148, 163, 184, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.09) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -129,79 +133,12 @@ body::before {
   }
 }
 
-.text-white,
-.text-slate-50,
-.text-slate-100,
-.text-slate-200 {
-  color: #0f172a !important;
-}
-
-.bg-blue-600.text-white,
-.bg-primary.text-primary-foreground {
-  color: #ffffff !important;
-}
-
-.text-slate-300 {
-  color: #334155 !important;
-}
-
-.text-slate-400 {
-  color: #64748b !important;
-}
-
-.text-cyan-50,
-.text-cyan-100,
-.text-cyan-200,
-.text-purple-200 {
-  color: #1d4ed8 !important;
-}
-
-.border-white\/10,
-.border-white\/20 {
-  border-color: rgba(203, 213, 225, 0.82) !important;
-}
-
-.border-cyan-300\/20,
-.border-cyan-300\/30,
-.border-cyan-300\/40,
-.border-cyan-300\/50 {
-  border-color: rgba(37, 99, 235, 0.22) !important;
-}
-
-.bg-\[\#030712\],
-.bg-\[\#050914\],
-.bg-\[\#07101f\],
-.bg-\[\#050914\]\/70,
-.bg-\[\#050914\]\/80,
-.bg-\[\#050914\]\/90,
-.bg-\[\#050914\]\/95,
-.bg-\[\#07101f\]\/80 {
-  background-color: rgba(255, 255, 255, 0.96) !important;
-}
-
-.bg-white\/5,
-.bg-white\/10,
-.bg-white\/\[0\.025\],
-.bg-white\/\[0\.035\],
-.bg-white\/\[0\.04\],
-.bg-white\/\[0\.055\],
-.bg-white\/\[0\.06\] {
-  background-color: rgba(255, 255, 255, 0.88) !important;
-}
-
-.bg-cyan-300\/5,
-.bg-cyan-300\/10,
-.bg-cyan-300\/\[0\.07\],
-.bg-purple-300\/10 {
-  background-color: rgba(219, 234, 254, 0.72) !important;
-}
-
 .shadow-glow {
-  box-shadow: 0 18px 48px rgba(37, 99, 235, 0.13) !important;
+  box-shadow: 0 18px 52px rgba(37, 99, 235, 0.28);
 }
 
 .shadow-panel {
-  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 26px 90px rgba(0, 0, 0, 0.36);
 }
 
 @media (prefers-reduced-motion: reduce) {

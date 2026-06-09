@@ -26,14 +26,14 @@ export function CtaBand({
       : "Book a working session and we will map the first agent your business should launch.";
 
   return (
-    <section className="border-y border-slate-200 bg-white">
+    <section className="border-y border-white/10 bg-white/[0.025]">
       <div className="container py-16">
         <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
-            <h2 className="text-balance text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+            <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
               {title ?? fallbackTitle}
             </h2>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
+            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">
               {description ?? fallbackDescription}
             </p>
           </div>

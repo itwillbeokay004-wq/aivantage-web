@@ -32,7 +32,7 @@ export function LanguageSwitcher({
       className={cn(
         "flex items-center gap-1",
         variant === "mobile" &&
-          "rounded-2xl border border-slate-200 bg-white p-1",
+          "rounded-2xl border border-white/10 bg-white/[0.08] p-1",
         className,
       )}
       role="group"
@@ -60,12 +60,12 @@ export function LanguageSwitcher({
                 ? "px-4 py-2.5"
                 : "flex-1 px-4 py-3 text-center",
               isActive
-                ? "bg-white text-slate-950 shadow-sm"
-                : "text-slate-600 hover:bg-white hover:text-slate-950",
+                ? "bg-white/[0.12] text-white shadow-sm"
+                : "text-slate-300 hover:bg-white/10 hover:text-white",
               variant === "mobile" &&
                 (isActive
                   ? "bg-blue-600 text-white shadow-sm"
-                  : "hover:bg-blue-50 hover:text-blue-700"),
+                  : "hover:bg-cyan-300/10 hover:text-white"),
             )}
           >
             {option.label}

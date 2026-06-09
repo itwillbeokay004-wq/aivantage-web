@@ -120,6 +120,20 @@ function findRouteKeyFromPathname(pathname: string): RouteKey | undefined {
   return routeKeysByLocalizedPath[pathname] ?? routeKeysByInternalPath[pathname];
 }
 
+export function getRouteKeyFromPathname(pathname: string | null | undefined): RouteKey | undefined {
+  if (!pathname) {
+    return undefined;
+  }
+
+  const normalizedPathname = splitPathSuffix(pathname).pathname;
+
+  if (normalizedPathname.startsWith("/recursos/") || normalizedPathname.startsWith("/en/resources/")) {
+    return "resources";
+  }
+
+  return findRouteKeyFromPathname(normalizedPathname);
+}
+
 export function toInternalPath(pathname: string): string {
   const routeKey = findRouteKeyFromPathname(pathname);
 

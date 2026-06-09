@@ -26,45 +26,45 @@ const privacyContent = {
     lastUpdated: "Última actualización: 6 de junio de 2026",
     reviewLabel: "Revisión legal requerida",
     legalTemplateNote:
-      "Esta página es una plantilla general y debe ser revisada por un profesional legal cualificado antes de usarse en producción.",
+      "Esta página es una plantilla general y debe ser revisada por un profesional legal cualificado antes de su uso en producción.",
     sections: [
       {
-        title: "Información recopilada a través de formularios",
+        title: "Información recopilada mediante formularios",
         body: [
-          "Cuando envías un formulario de contacto, solicitud de demo u otro formulario similar, AiVantage puede recopilar datos como nombre, email profesional, empresa, tamaño de equipo, área de interés, plazo y notas sobre el proceso que quieres discutir.",
+          "Cuando envías un formulario de contacto, una solicitud de demo u otro formulario similar, AiVantage puede recopilar datos como nombre, email, teléfono, empresa, sitio web, industria y notas sobre el proceso que quieres discutir.",
           "Evita enviar información personal, financiera, médica, legal o confidencial a través de formularios web salvo que AiVantage lo solicite mediante un proceso seguro apropiado.",
         ],
       },
       {
-        title: "Cómo usamos la información",
+        title: "Cómo se utiliza la información",
         body: [
           "AiVantage puede usar la información enviada para responder consultas, entender necesidades, preparar demos, definir oportunidades de automatización con IA, mejorar contenido y mantener registros básicos del negocio.",
           "También podemos usar información agregada o no identificable para entender qué servicios, páginas o recursos son más útiles para visitantes.",
         ],
       },
       {
-        title: "Email y seguimiento de contacto",
+        title: "Contacto por email o teléfono",
         body: [
-          "Si contactas con AiVantage, solicitas una demo o pides información, podemos usar tu email u otros datos de contacto para responder, agendar una conversación, enviar próximos pasos o hacer seguimiento.",
+          "Si contactas con AiVantage, solicitas una demo o pides información, podemos usar tu email, teléfono u otros datos de contacto para responder, agendar una conversación, enviar próximos pasos o hacer seguimiento.",
           "Puedes pedir que AiVantage deje de enviar mensajes no esenciales contactando el email indicado abajo.",
         ],
       },
       {
-        title: "Cookies y analítica placeholder",
+        title: "Cookies y analítica como placeholder",
         body: [
           "Este sitio puede usar cookies, herramientas de analítica o tecnologías similares para entender rendimiento, visitas, fuentes de tráfico e interacciones.",
           "Las herramientas específicas de analítica y cookies deben listarse aquí antes del lanzamiento, junto con cualquier consentimiento u opción de exclusión requerida.",
         ],
       },
       {
-        title: "Servicios externos placeholder",
+        title: "Servicios de terceros como placeholder",
         body: [
           "AiVantage puede usar proveedores externos para hosting, formularios, envío de email, analítica, agenda, CRM e infraestructura de servicios de IA.",
           "Antes de producción, esta sección debe identificar los proveedores reales y describir cómo procesan información por cuenta de AiVantage.",
         ],
       },
       {
-        title: "Retención de datos placeholder",
+        title: "Conservación de datos como placeholder",
         body: [
           "AiVantage puede conservar datos de contacto, registros de consultas y comunicaciones de proyecto durante el tiempo razonablemente necesario para responder solicitudes, operar el negocio, cumplir obligaciones legales, resolver disputas y mantener registros.",
           "Una versión de producción debe definir periodos o criterios de retención según requisitos reales del negocio, legales y operativos.",
@@ -77,7 +77,7 @@ const privacyContent = {
         ],
       },
       {
-        title: "Email de contacto placeholder",
+        title: "Email de contacto como placeholder",
         body: [
           `Las preguntas sobre esta plantilla de privacidad o solicitudes relacionadas pueden enviarse a ${siteConfig.email}. Sustituye este contacto antes de producción si hace falta.`,
         ],

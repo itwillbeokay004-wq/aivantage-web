@@ -26,7 +26,7 @@ const termsContent = {
     lastUpdated: "Última actualización: 6 de junio de 2026",
     reviewLabel: "Revisión legal requerida",
     legalTemplateNote:
-      "Esta página es una plantilla general y debe ser revisada por un profesional legal cualificado antes de usarse en producción.",
+      "Esta página es una plantilla general y debe ser revisada por un profesional legal cualificado antes de su uso en producción.",
     sections: [
       {
         title: "Uso del sitio web",
@@ -36,14 +36,14 @@ const termsContent = {
         ],
       },
       {
-        title: "Solicitudes de demo y contacto",
+        title: "Solicitudes de contacto y demo",
         body: [
           "Enviar un formulario, solicitud de demo o mensaje de chat no crea una relación de cliente, acuerdo de servicio, alianza ni obligación de AiVantage de prestar servicios.",
           "Cualquier alcance, precio, plazo, plan de implementación o compromiso de acompañamiento debe acordarse en un contrato escrito separado entre AiVantage y el cliente.",
         ],
       },
       {
-        title: "Sin garantías",
+        title: "Ausencia de garantías",
         body: [
           "El contenido del sitio se ofrece con fines informativos generales. AiVantage no garantiza que cualquier proceso, agente, integración o resultado descrito esté disponible, sea adecuado, esté libre de errores o produzca un resultado específico para cada negocio.",
           "Los sistemas de IA pueden cometer errores y deben diseñarse con revisión, monitoreo y derivaciones a personas apropiadas.",
@@ -57,21 +57,21 @@ const termsContent = {
         ],
       },
       {
-        title: "Limitación de responsabilidad placeholder",
+        title: "Limitación de responsabilidad como placeholder",
         body: [
           "Hasta el máximo permitido por la ley aplicable, AiVantage no debería ser responsable por daños indirectos, incidentales, especiales, consecuentes o punitivos derivados del uso del sitio o confianza en su contenido.",
           "Un profesional legal cualificado debe revisar y adaptar esta sección a las jurisdicciones y servicios aplicables.",
         ],
       },
       {
-        title: "Ley aplicable placeholder",
+        title: "Ley aplicable como placeholder",
         body: [
           "Estos términos deben identificar la ley aplicable y jurisdicción correspondiente a AiVantage antes de producción.",
           "Sustituye este placeholder por lenguaje específico de jurisdicción tras revisión legal.",
         ],
       },
       {
-        title: "Email de contacto placeholder",
+        title: "Email de contacto como placeholder",
         body: [
           `Las preguntas sobre estos términos pueden enviarse a ${siteConfig.email}. Sustituye este contacto antes de producción si hace falta.`,
         ],

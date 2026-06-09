@@ -40,9 +40,9 @@ const solutionsContent = {
     cardKicker: "Construido como proceso práctico.",
     detailLabels: {
       problem: "Problema",
-      agentDoes: "Qué hace el agente",
-      workflow: "Proceso de ejemplo",
-      outcome: "Resultado de negocio",
+      agentDoes: "Qué hace el agente de IA",
+      workflow: "Ejemplo de proceso",
+      outcome: "Resultado para el negocio",
     },
     solutionCards: [
       {
@@ -79,7 +79,7 @@ const solutionsContent = {
       },
       {
         icon: Workflow,
-        title: "Asistente de operaciones internas",
+        title: "Asistente interno de operaciones",
         problem: "Los equipos pierden tiempo buscando respuestas.",
         agentDoes: "Encuentra políticas, enruta solicitudes y recopila datos faltantes.",
         workflow: "Pregunta → búsqueda en conocimiento → tarea enrutada.",
@@ -87,7 +87,7 @@ const solutionsContent = {
       },
       {
         icon: PhoneCall,
-        title: "Asistente de llamadas de voz",
+        title: "Asistente de llamadas",
         problem: "Las llamadas se pierden o se atienden con prisa.",
         agentDoes: "Captura intención, resume llamadas y marca urgencia.",
         workflow: "Llamada → recepción → derivación estructurada.",
@@ -305,7 +305,7 @@ export default async function SolutionsPage() {
               </p>
               <h1 className="text-balance text-4xl font-semibold tracking-normal text-white sm:text-6xl">
                 {locale === "es"
-                  ? "Agentes de IA diseñados alrededor de tus procesos de negocio."
+                  ? "Agentes de IA diseñados alrededor de los procesos de tu negocio."
                   : "AI agents built around your business workflows."}
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">

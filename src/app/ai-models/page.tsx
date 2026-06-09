@@ -60,12 +60,12 @@ const aiModelsContent = {
       },
       {
         icon: BrainCircuit,
-        title: "Evaluación de clientes potenciales",
+        title: "Cualificación de clientes potenciales",
         description: "Evalúa encaje, urgencia, plazo y datos faltantes.",
       },
       {
         icon: ListChecks,
-        title: "Resúmenes",
+        title: "Resúmenes automáticos",
         description: "Convierte llamadas, chats y formularios en notas de derivación.",
       },
       {
@@ -75,7 +75,7 @@ const aiModelsContent = {
       },
       {
         icon: Languages,
-        title: "Atención multilingüe",
+        title: "Soporte multilingüe",
         description: "Apoya enrutamiento y respuestas en varios idiomas.",
       },
       {
@@ -106,7 +106,7 @@ const aiModelsContent = {
     safetyControls: [
       {
         icon: ShieldCheck,
-        title: "Límites operativos",
+        title: "Reglas y límites de uso",
         description: "Define respuestas, rechazos y reglas de derivación.",
       },
       {
@@ -116,7 +116,7 @@ const aiModelsContent = {
       },
       {
         icon: ListChecks,
-        title: "Respuestas de reserva",
+        title: "Respuestas de fallback",
         description: "Usa lenguaje seguro cuando la confianza sea baja.",
       },
       {
@@ -126,7 +126,7 @@ const aiModelsContent = {
       },
       {
         icon: TableProperties,
-        title: "Registros de auditoría",
+        title: "Registros de actividad",
         description: "Planifica registros trazables de decisiones y derivaciones.",
       },
     ],
@@ -304,7 +304,7 @@ export default async function AiModelsPage() {
               </p>
               <h1 className="text-balance text-4xl font-semibold tracking-normal text-white sm:text-6xl">
                 {locale === "es"
-                  ? "Usa el modelo de IA adecuado para cada trabajo."
+                  ? "Usa el modelo de IA adecuado para cada tarea."
                   : "Use the right AI model for the right job."}
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">

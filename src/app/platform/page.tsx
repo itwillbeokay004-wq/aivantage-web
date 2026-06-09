@@ -79,30 +79,30 @@ const platformContent = {
     ],
     howItWorks: [
       {
-        title: "Descubrir",
+        title: "Descubrimos",
         description: "Elegir primero el proceso que vale la pena automatizar.",
       },
       {
-        title: "Diseñar",
+        title: "Diseñamos",
         description: "Definir el agente, fuentes, reglas y métricas.",
       },
       {
-        title: "Entrenar",
+        title: "Entrenamos",
         description: "Conectar conocimiento y probar casos límite.",
       },
       {
-        title: "Desplegar",
+        title: "Implementamos",
         description: "Lanzar en chat, voz, formularios y procesos conectados.",
       },
       {
-        title: "Optimizar",
+        title: "Optimizamos",
         description: "Ajustar rendimiento y ampliar lo que funciona.",
       },
     ],
     deepDives: [
       {
         icon: Workflow,
-        title: "Crear conversaciones personalizadas",
+        title: "Diseñar conversaciones personalizadas",
         description: "Guía atención al cliente, cualificación, agenda y recepción.",
       },
       {
@@ -122,13 +122,13 @@ const platformContent = {
       },
       {
         icon: UserRoundCheck,
-        title: "Derivar a personas del equipo",
+        title: "Derivar conversaciones a personas del equipo",
         description: "Deriva cuando el valor, el riesgo o la confianza lo requieran.",
       },
       {
         icon: BarChart3,
-        title: "Medir rendimiento",
-        description: "Ve qué funcionó, qué escaló y qué necesita ajuste.",
+        title: "Medir rendimiento y oportunidades de mejora",
+        description: "Ve qué funcionó, qué se derivó y qué necesita ajuste.",
       },
     ],
     integrations: [
@@ -284,7 +284,7 @@ export default async function PlatformPage() {
               </p>
               <h1 className="text-balance text-4xl font-semibold tracking-normal text-white sm:text-6xl">
                 {locale === "es"
-                  ? "Una plataforma para diseñar, desplegar y mejorar agentes de IA."
+                  ? "Una plataforma para diseñar, implementar y mejorar agentes de IA."
                   : "One platform to design, deploy, and improve AI agents."}
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">

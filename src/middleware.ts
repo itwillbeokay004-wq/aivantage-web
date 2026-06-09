@@ -1,9 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 import {
-  defaultLocale,
   isLocale,
-  localizeHref,
   localizedRoutes,
   resolvePublicPathname,
   type Locale,
@@ -18,9 +16,8 @@ const routeRedirects = new Map<string, string>([
     .filter(([internalPath]) => internalPath !== "/")
     .map(([internalPath, localizedPath]) => [
       internalPath,
-      localizedPath[defaultLocale],
+      localizedPath.en,
     ] as const),
-  ["/resources", "/recursos"],
 ]);
 
 function redirectTo(request: NextRequest, pathname: string) {
@@ -46,7 +43,7 @@ export function middleware(request: NextRequest) {
   }
 
   if (pathname.startsWith("/resources/")) {
-    return redirectTo(request, localizeHref(pathname, defaultLocale));
+    return redirectTo(request, pathname.replace(/^\/resources/, "/en/resources"));
   }
 
   if (pathname === "/about" || pathname.startsWith("/about/")) {

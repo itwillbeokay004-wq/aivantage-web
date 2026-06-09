@@ -42,7 +42,7 @@ const widgetContent = {
         score: "92%",
       },
       {
-        label: "Ops",
+        label: "Operaciones",
         channel: "Proceso",
         icon: Workflow,
         user: "Asigna esta tarea de onboarding al responsable correcto.",

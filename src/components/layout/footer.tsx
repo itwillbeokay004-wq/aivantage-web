@@ -60,7 +60,7 @@ export function Footer() {
         <div className="mt-12 flex flex-col gap-3 border-t border-slate-200 pt-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
           <p>
             {locale === "es"
-              ? `Copyright ${new Date().getFullYear()} AiVantage. Todos los derechos reservados.`
+              ? `© ${new Date().getFullYear()} AiVantage. Todos los derechos reservados.`
               : `Copyright ${new Date().getFullYear()} AiVantage. All rights reserved.`}
           </p>
           <a href={`mailto:${siteConfig.email}`} className="hover:text-blue-700">

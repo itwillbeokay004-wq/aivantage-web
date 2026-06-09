@@ -1,10 +1,12 @@
 "use client";
 
-import { createContext, useContext, useMemo } from "react";
+import { usePathname } from "next/navigation";
+import { createContext, useContext, useEffect, useMemo } from "react";
 import type { ReactNode } from "react";
 
 import {
   defaultLocale,
+  getLocaleFromPathname,
   localizeHref as localizeHrefForLocale,
   type Locale,
 } from "@/lib/i18n";
@@ -26,12 +28,19 @@ export function LocaleProvider({
   children: ReactNode;
   locale: Locale;
 }) {
+  const pathname = usePathname();
+  const activeLocale = pathname ? getLocaleFromPathname(pathname) : locale;
+
+  useEffect(() => {
+    document.documentElement.lang = activeLocale;
+  }, [activeLocale]);
+
   const value = useMemo(
     () => ({
-      locale,
-      localizeHref: (href: string) => localizeHrefForLocale(href, locale),
+      locale: activeLocale,
+      localizeHref: (href: string) => localizeHrefForLocale(href, activeLocale),
     }),
-    [locale],
+    [activeLocale],
   );
 
   return (

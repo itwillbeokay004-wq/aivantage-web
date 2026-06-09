@@ -131,7 +131,7 @@ const useCaseCards = {
       trigger: "Un prospecto envía formulario, chatea, responde o llama.",
       agentDoes: "Pregunta necesidad, presupuesto, plazo y envía resumen puntuado.",
       systems: ["CRM", "Formularios web", "Email", "Calendario"],
-      outcome: "Pipeline más limpio y seguimiento más rápido.",
+      outcome: "Proceso comercial más ordenado y seguimiento más rápido.",
       categories: ["Sales", "Website", "Voice"],
     },
     {

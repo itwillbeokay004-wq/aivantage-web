@@ -124,14 +124,14 @@ export const siteConfigByLocale = {
 
 export const navLinks = [
   { href: "/platform", label: "Platform" },
-  { href: "/solutions", label: "Solutions" },
+  { href: "/use-cases", label: "Customers" },
   { href: "/pricing", label: "Pricing" },
 ] satisfies readonly NavItem[];
 
 export const navLinksByLocale = {
   es: [
     { href: "/platform", label: "Plataforma" },
-    { href: "/solutions", label: "Soluciones" },
+    { href: "/use-cases", label: "Clientes" },
     { href: "/pricing", label: "Precios" },
   ],
   en: navLinks,
@@ -139,7 +139,7 @@ export const navLinksByLocale = {
 
 export const resourceNavLinks = [
   { href: "/resources", label: "Resources" },
-  { href: "/use-cases", label: "Use Cases" },
+  { href: "/solutions", label: "Solutions" },
   { href: "/ai-models", label: "AI Models" },
   { href: "/contact", label: "Contact" },
 ] satisfies readonly NavItem[];
@@ -147,7 +147,7 @@ export const resourceNavLinks = [
 export const resourceNavLinksByLocale = {
   es: [
     { href: "/resources", label: "Recursos" },
-    { href: "/use-cases", label: "Casos de uso" },
+    { href: "/solutions", label: "Soluciones" },
     { href: "/ai-models", label: "Modelos de IA" },
     { href: "/contact", label: "Contacto" },
   ],

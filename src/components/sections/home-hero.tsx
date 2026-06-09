@@ -28,8 +28,8 @@ export function HomeHero() {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
             {locale === "es"
-              ? "AiVantage diseña e implementa agentes de IA que responden preguntas, captan clientes potenciales, reservan citas y automatizan tareas repetitivas en tu negocio."
-              : "Custom AI agents that answer questions, capture leads, book appointments, and automate routine work."}
+              ? "Agentes de IA que responden, cualifican, reservan y automatizan procesos sin añadir trabajo al equipo."
+              : "AI agents that answer, qualify, book, and automate without adding work for your team."}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <CtaButton href="/book-demo" size="lg">

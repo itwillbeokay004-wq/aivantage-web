@@ -69,13 +69,13 @@ export function HomeAgentDemo() {
           eyebrow={locale === "es" ? "Demostración" : "AI agent demo"}
           title={
             locale === "es"
-              ? "Haz clic en una pregunta para ver cómo responde un agente."
-              : "Click a sample question to preview how an agent responds."
+              ? "Prueba respuestas típicas."
+              : "Preview common responses."
           }
           description={
             locale === "es"
-              ? "Demo interactiva con respuestas preparadas. Todavía no llama a una API."
-              : "This is an interactive-looking demo built with React state. It uses prepared sample responses and does not call an API yet."
+              ? "Demo preparada, sin llamada a una API."
+              : "Prepared demo, no API call yet."
           }
         />
         <div className="glass-panel rounded-lg p-5 sm:p-6">

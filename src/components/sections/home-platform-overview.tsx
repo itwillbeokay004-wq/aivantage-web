@@ -85,7 +85,7 @@ export function HomePlatformOverview() {
 
   return (
     <section className="border-y border-white/10 bg-white/[0.025]">
-      <div className="container py-16">
+      <div className="container py-16 sm:py-20">
         <SectionHeading
           eyebrow={locale === "es" ? "Resumen de plataforma" : "Platform overview"}
           title={
@@ -106,9 +106,9 @@ export function HomePlatformOverview() {
               <Reveal
                 key={step.title}
                 delay={index * 0.05}
-                className="rounded-lg border border-white/10 bg-[#07101f] p-6"
+                className="h-full rounded-2xl border border-white/10 bg-gradient-to-br from-[#0b1426] to-[#050b16] p-6 shadow-sm shadow-black/25 transition hover:-translate-y-0.5 hover:border-cyan-300/25 hover:shadow-lg hover:shadow-cyan-950/20"
               >
-                <div className="grid size-11 place-items-center rounded-md bg-cyan-300/10 text-cyan-200">
+                <div className="grid size-11 place-items-center rounded-xl border border-cyan-200/15 bg-cyan-300/10 text-cyan-200">
                   <Icon className="size-5" />
                 </div>
                 <h3 className="mt-5 text-xl font-semibold text-white">{step.title}</h3>

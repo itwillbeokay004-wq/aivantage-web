@@ -98,11 +98,11 @@ export function Navbar() {
                 className="absolute left-1/2 top-[calc(100%+0.75rem)] w-64 -translate-x-1/2 rounded-2xl border border-white/10 bg-[#07101f] p-2 shadow-2xl shadow-black/40"
               >
                 {resourceNavLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={localizeHref(link.href, locale)}
-                className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-300 transition hover:bg-cyan-300/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
+                  <Link
+                    key={link.href}
+                    href={localizeHref(link.href, locale)}
+                    className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-300 transition hover:bg-cyan-300/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
                     {link.label}
                   </Link>
                 ))}
@@ -123,16 +123,9 @@ export function Navbar() {
           <TrackedLink
             href="/contact"
             className="rounded-full px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            eventProperties={{ location: "navbar_login_placeholder" }}
+            eventProperties={{ location: "navbar_contact" }}
           >
-            {locale === "es" ? "Entrar" : "Login"}
-          </TrackedLink>
-          <TrackedLink
-            href="/contact"
-            className="rounded-full px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            eventProperties={{ location: "navbar_signup" }}
-          >
-            {locale === "es" ? "Registrarse" : "Sign up"}
+            {locale === "es" ? "Contactar" : "Contact"}
           </TrackedLink>
           <TrackedLink
             href="/book-demo"

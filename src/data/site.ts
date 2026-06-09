@@ -124,14 +124,14 @@ export const siteConfigByLocale = {
 
 export const navLinks = [
   { href: "/platform", label: "Platform" },
-  { href: "/use-cases", label: "Customers" },
+  { href: "/use-cases", label: "Use cases" },
   { href: "/pricing", label: "Pricing" },
 ] satisfies readonly NavItem[];
 
 export const navLinksByLocale = {
   es: [
     { href: "/platform", label: "Plataforma" },
-    { href: "/use-cases", label: "Clientes" },
+    { href: "/use-cases", label: "Casos de uso" },
     { href: "/pricing", label: "Precios" },
   ],
   en: navLinks,
@@ -201,7 +201,7 @@ export const platformFeaturesByLocale = {
     {
       icon: Bot,
       title: "Constructor de agentes de IA",
-      description: "Diseña agentes con objetivos, tono, reglas y criterios claros para pasar casos al equipo.",
+      description: "Define objetivos, tono, límites y criterios de derivación para cada agente.",
     },
     {
       icon: BookOpen,
@@ -211,12 +211,12 @@ export const platformFeaturesByLocale = {
     {
       icon: Mic2,
       title: "Agentes para chat y voz",
-      description: "Atiende conversaciones web, llamadas e interacciones internas desde una misma lógica.",
+      description: "Atiende chat web, llamadas e interacciones internas con una lógica coherente.",
     },
     {
       icon: Workflow,
       title: "Automatización de procesos",
-      description: "Crea tareas, agenda citas y activa seguimientos sin trabajo manual repetitivo.",
+      description: "Crea tareas, agenda citas y activa seguimientos sin repetir trabajo manual.",
     },
     {
       icon: Handshake,
@@ -226,7 +226,7 @@ export const platformFeaturesByLocale = {
     {
       icon: BarChart3,
       title: "Analítica y seguimiento",
-      description: "Mide calidad, conversiones, derivaciones y resultados de cada agente.",
+      description: "Mide calidad, conversiones, derivaciones y oportunidades de mejora.",
     },
     {
       icon: Cable,
@@ -236,7 +236,7 @@ export const platformFeaturesByLocale = {
     {
       icon: LockKeyhole,
       title: "Controles de seguridad",
-      description: "Define permisos, registros de actividad, respuestas de seguridad y límites operativos.",
+      description: "Configura permisos, registros de actividad, respuestas seguras y límites operativos.",
     },
   ],
   en: [
@@ -291,13 +291,13 @@ export const useCasesByLocale = {
       title: "Atención al cliente",
       metric: "24/7",
       label: "primera respuesta",
-      description: "Responde preguntas frecuentes, recoge contexto y deriva casos complejos.",
+      description: "Responde preguntas frecuentes, recoge contexto y deriva casos que necesitan criterio humano.",
     },
     {
       title: "Cualificación de clientes potenciales",
       metric: "+32%",
       label: "mejor seguimiento",
-      description: "Identifica intención, encaje y prioridad antes de pasar la conversación a ventas.",
+      description: "Identifica intención, encaje y prioridad antes de pasar la oportunidad al equipo comercial.",
     },
     {
       title: "Reserva de citas",
@@ -315,7 +315,7 @@ export const useCasesByLocale = {
       title: "Asistente interno de operaciones",
       metric: "3,4x",
       label: "respuestas más rápidas",
-      description: "Encuentra políticas, recopila datos y deriva solicitudes internas.",
+      description: "Encuentra políticas, recopila datos y organiza solicitudes internas.",
     },
     {
       title: "Agente de preguntas frecuentes",
@@ -333,7 +333,7 @@ export const useCasesByLocale = {
       title: "Automatización de seguimiento",
       metric: "100%",
       label: "próximos pasos claros",
-      description: "Envía recordatorios, resúmenes y mensajes de seguimiento a tiempo.",
+      description: "Envía recordatorios, resúmenes y próximos pasos sin depender de tareas manuales.",
     },
   ],
   en: [

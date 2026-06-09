@@ -32,7 +32,7 @@ export function Footer() {
               </Button>
               <Button asChild variant="secondary">
                 <TrackedLink href="/contact" eventProperties={{ location: "footer" }}>
-                  {locale === "es" ? "Consulta gratuita" : "Start Free Consultation"}
+                  {locale === "es" ? "Solicitar consulta" : "Start Free Consultation"}
                 </TrackedLink>
               </Button>
             </div>

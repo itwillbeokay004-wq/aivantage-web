@@ -166,7 +166,10 @@ export function DemoForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="glass-panel rounded-lg p-5 sm:p-6">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="glass-panel relative rounded-2xl p-6 sm:p-7"
+    >
       <div
         className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
         aria-hidden="true"

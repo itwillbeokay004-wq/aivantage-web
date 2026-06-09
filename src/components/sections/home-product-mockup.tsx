@@ -35,15 +35,64 @@ export function HomeProductMockup() {
   const { locale } = useLocale();
 
   return (
-    <div className="relative mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-[#07101f] p-4 shadow-panel sm:p-5">
+    <div className="relative mx-auto w-full overflow-hidden rounded-2xl border border-white/10 bg-[#07101f] p-3 shadow-panel sm:p-4">
       <div className="absolute inset-0 hero-mesh opacity-70" />
       <div className="absolute inset-0 signal-grid opacity-25" />
-      <div className="relative grid gap-4 lg:grid-cols-[1.08fr_0.92fr]">
+      <div className="relative sm:hidden">
+        <div className="rounded-xl border border-white/10 bg-white/[0.055] p-4">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="grid size-10 place-items-center rounded-md bg-blue-400/10 text-blue-200">
+                <Bot className="size-5" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-white">
+                  {locale === "es" ? "Agente AiVantage" : "AiVantage agent"}
+                </p>
+                <p className="text-xs text-slate-400">
+                  {locale === "es" ? "Chat, voz y procesos" : "Chat, voice, workflows"}
+                </p>
+              </div>
+            </div>
+            <span className="rounded-full bg-emerald-300/10 px-3 py-1 text-xs font-medium text-emerald-200">
+              {locale === "es" ? "Activo" : "Live"}
+            </span>
+          </div>
+          <div className="mt-5 rounded-lg border border-cyan-300/20 bg-cyan-300/10 p-3 text-sm leading-6 text-slate-100">
+            {locale === "es"
+              ? "He captado la intención, cualificado la consulta y preparado el siguiente paso."
+              : "I captured intent, qualified the request, and prepared the next step."}
+          </div>
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            <div className="rounded-lg border border-white/10 bg-white/[0.04] p-3">
+              <Mic2 className="size-4 text-violet-200" />
+              <p className="mt-2 text-xs font-medium text-white">
+                {locale === "es" ? "Voz" : "Voice"}
+              </p>
+            </div>
+            <div className="rounded-lg border border-white/10 bg-white/[0.04] p-3">
+              <Workflow className="size-4 text-cyan-200" />
+              <p className="mt-2 text-xs font-medium text-white">
+                {locale === "es" ? "Proceso" : "Workflow"}
+              </p>
+            </div>
+          </div>
+          <div className="mt-4 grid grid-cols-3 gap-2">
+            {analytics[locale].map((item) => (
+              <div key={item.label} className="rounded-lg border border-white/10 bg-white/[0.04] p-2">
+                <p className="text-[10px] text-slate-400">{item.label}</p>
+                <p className="mt-1 text-sm font-semibold text-white">{item.value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="relative hidden gap-3 sm:grid sm:grid-cols-2 xl:grid-cols-[1.08fr_0.92fr]">
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
-          className="rounded-xl border border-white/10 bg-white/[0.055] p-4 shadow-sm"
+          className="col-span-2 rounded-xl border border-white/10 bg-white/[0.055] p-4 shadow-sm xl:col-span-1"
         >
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
@@ -72,11 +121,7 @@ export function HomeProductMockup() {
             <motion.div
               initial={shouldReduceMotion ? false : { opacity: 0.5 }}
               animate={{ opacity: 1 }}
-              transition={
-                shouldReduceMotion
-                  ? { duration: 0 }
-                  : { duration: 1.2, repeat: Infinity, repeatType: "reverse" }
-              }
+              transition={{ duration: shouldReduceMotion ? 0 : 0.45 }}
               className="max-w-[88%] rounded-lg border border-cyan-300/20 bg-cyan-300/10 p-3 text-sm leading-6 text-slate-100"
             >
               {locale === "es"
@@ -111,20 +156,11 @@ export function HomeProductMockup() {
               <p className="truncate text-sm font-medium text-white">
                 {locale === "es" ? "Llamada entrante" : "Inbound call"}
               </p>
-              <div className="mt-2 flex h-2 gap-1">
+              <div className="mt-2 flex h-3 items-end gap-1">
                 {[42, 70, 54, 90, 62, 78, 48].map((height, index) => (
-                  <motion.span
+                  <span
                     key={`${height}-${index}`}
-                    animate={
-                      shouldReduceMotion
-                        ? { height: `${height / 5}px` }
-                        : { height: [`${height / 7}px`, `${height / 4}px`, `${height / 7}px`] }
-                    }
-                    transition={{
-                      duration: shouldReduceMotion ? 0 : 1.4,
-                      repeat: shouldReduceMotion ? 0 : Infinity,
-                      delay: shouldReduceMotion ? 0 : index * 0.08,
-                    }}
+                    style={{ height: `${height / 10}px` }}
                     className="w-full rounded-sm bg-gradient-to-t from-blue-600 to-sky-300"
                   />
                 ))}
@@ -137,7 +173,7 @@ export function HomeProductMockup() {
           initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: shouldReduceMotion ? 0 : 0.5, delay: shouldReduceMotion ? 0 : 0.18 }}
-          className="rounded-xl border border-white/10 bg-white/[0.055] p-4 shadow-sm"
+          className="col-span-2 rounded-xl border border-white/10 bg-white/[0.055] p-4 shadow-sm xl:col-span-1"
         >
           <div className="mb-4 flex items-center gap-3 text-sm font-semibold text-white">
             <Workflow className="size-5 text-cyan-200" />
@@ -152,7 +188,7 @@ export function HomeProductMockup() {
                 transition={
                   shouldReduceMotion
                     ? { duration: 0 }
-                    : { duration: 0.55, delay: index * 0.18, repeat: Infinity, repeatDelay: 3 }
+                    : { duration: 0.55, delay: index * 0.12 }
                 }
                 className="rounded-lg border border-cyan-300/20 bg-cyan-300/10 p-3"
               >
@@ -173,7 +209,7 @@ export function HomeProductMockup() {
             <BarChart3 className="size-5 text-cyan-200" />
             {locale === "es" ? "Tarjetas de analítica" : "Analytics cards"}
           </div>
-          <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+          <div className="grid gap-3 xl:grid-cols-1">
             {analytics[locale].map((item) => (
               <div key={item.label} className="rounded-lg border border-white/10 bg-white/[0.04] p-3">
                 <p className="text-xs text-slate-400">{item.label}</p>

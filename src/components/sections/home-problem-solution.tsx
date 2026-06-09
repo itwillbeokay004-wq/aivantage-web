@@ -49,7 +49,7 @@ export function HomeProblemSolution() {
   const { locale } = useLocale();
 
   return (
-    <section className="container py-16">
+    <section className="container py-16 sm:py-20">
       <SectionHeading
         eyebrow={locale === "es" ? "Problema y solución" : "Problem and solution"}
         title={
@@ -68,7 +68,7 @@ export function HomeProblemSolution() {
           <Reveal
             key={item.problem}
             delay={index * 0.05}
-            className="rounded-lg border border-white/10 bg-white/[0.04] p-5"
+            className="h-full rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.075] to-white/[0.025] p-5 shadow-sm shadow-black/20 transition hover:border-cyan-300/25 hover:bg-white/[0.07]"
           >
             <div className="grid gap-4 sm:grid-cols-[1fr_auto_1fr] sm:items-start">
               <div>

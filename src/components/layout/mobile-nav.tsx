@@ -64,9 +64,10 @@ export function MobileNav() {
       {isOpen ? (
         <div
           id={panelId}
-          className="absolute inset-x-0 top-16 border-t border-white/10 bg-[#020617]/95 shadow-xl shadow-black/40 backdrop-blur-xl"
+          data-mobile-nav-panel
+          className="absolute inset-x-0 top-20 z-[60] max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-white/10 bg-[#020617] shadow-xl shadow-black/40"
         >
-          <div className="container flex flex-col gap-2 py-4">
+          <div className="container flex flex-col gap-2 py-5">
             <nav className="flex flex-col gap-2" aria-label="Mobile navigation">
               {navLinks.map((link, index) => (
                 <div key={link.href} className="contents">
@@ -99,23 +100,14 @@ export function MobileNav() {
                 </div>
               ))}
             </nav>
-            <div className="mt-2 grid gap-2 rounded-2xl border border-white/10 bg-white/5 p-2 sm:grid-cols-3">
+            <div className="mt-2 grid gap-2 rounded-2xl border border-white/10 bg-white/5 p-2 sm:grid-cols-2">
               <Button asChild variant="secondary">
                 <TrackedLink
                   href="/contact"
                   onClick={() => setIsOpen(false)}
-                  eventProperties={{ location: "mobile_nav_login_placeholder" }}
+                  eventProperties={{ location: "mobile_nav_contact" }}
                 >
-                  {locale === "es" ? "Entrar" : "Login"}
-                </TrackedLink>
-              </Button>
-              <Button asChild variant="secondary">
-                <TrackedLink
-                  href="/contact"
-                  onClick={() => setIsOpen(false)}
-                  eventProperties={{ location: "mobile_nav_signup" }}
-                >
-                  {locale === "es" ? "Registrarse" : "Sign up"}
+                  {locale === "es" ? "Contactar" : "Contact"}
                 </TrackedLink>
               </Button>
               <Button asChild>
@@ -128,7 +120,7 @@ export function MobileNav() {
                 </TrackedLink>
               </Button>
               <LanguageSwitcher
-                className="sm:col-span-3"
+                className="sm:col-span-2"
                 onNavigate={() => setIsOpen(false)}
                 variant="mobile"
               />

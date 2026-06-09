@@ -13,12 +13,12 @@ export type ResourceArticle = {
 export const resourceArticlesByLocale = {
   es: [
     {
-      title: "¿Qué es un agente de IA para pequeñas empresas?",
+      title: "Qué es un agente de IA para empresas",
       category: "IA básica",
       readingTime: "5 min",
-      slug: "what-is-an-ai-agent-for-small-businesses",
+      slug: "que-es-un-agente-de-ia-para-empresas",
       excerpt:
-        "Una guía simple sobre agentes de IA, cómo se diferencian de chatbots básicos y dónde empezar.",
+        "Una guía clara sobre qué hace un agente de IA, en qué se diferencia de un chatbot básico y cómo empezar con un proceso útil.",
       body: [
         "Un agente de IA es un asistente de software diseñado para entender una solicitud, usar contexto aprobado del negocio y completar una tarea útil. Para una pequeña empresa, esa tarea puede ser responder una pregunta frecuente, captar un cliente potencial, reservar una cita o enrutar una solicitud.",
         "Los agentes más prácticos empiezan con responsabilidades concretas. En vez de automatizar todo el negocio, se enfocan en procesos repetibles con disparadores claros, respuestas conocidas y una derivación segura cuando una persona debe tomar el control.",
@@ -31,10 +31,10 @@ export const resourceArticlesByLocale = {
       ],
     },
     {
-      title: "Cómo los chatbots web captan más clientes potenciales",
+      title: "Cómo un chatbot web puede captar más clientes potenciales",
       category: "Automatización web",
       readingTime: "6 min",
-      slug: "how-website-chatbots-capture-more-leads",
+      slug: "como-un-chatbot-web-puede-captar-mas-clientes-potenciales",
       excerpt:
         "Cómo un asistente web convierte visitas anónimas en conversaciones útiles, consultas calificadas y seguimiento más limpio.",
       body: [
@@ -52,7 +52,7 @@ export const resourceArticlesByLocale = {
       title: "Agentes de voz con IA para llamadas perdidas",
       category: "Agentes de voz",
       readingTime: "5 min",
-      slug: "ai-voice-agents-for-missed-calls",
+      slug: "agentes-de-voz-con-ia-para-llamadas-perdidas",
       excerpt:
         "Por qué las llamadas perdidas son un punto de partida práctico para automatización de voz en negocios de servicio.",
       body: [
@@ -67,10 +67,10 @@ export const resourceArticlesByLocale = {
       ],
     },
     {
-      title: "Uso de IA en gestión de propiedades",
+      title: "Cómo usar IA en gestión de propiedades",
       category: "Inmobiliario",
       readingTime: "7 min",
-      slug: "using-ai-in-property-management",
+      slug: "como-usar-ia-en-gestion-de-propiedades",
       excerpt:
         "Formas prácticas de usar agentes de IA para alquileres, mantenimiento, preguntas frecuentes de residentes y seguimiento.",
       body: [
@@ -88,7 +88,7 @@ export const resourceArticlesByLocale = {
       title: "Cómo preparar tus preguntas frecuentes para un asistente de IA",
       category: "Base de conocimiento",
       readingTime: "6 min",
-      slug: "how-to-prepare-your-faqs-for-an-ai-assistant",
+      slug: "como-preparar-tus-preguntas-frecuentes-para-un-asistente-de-ia",
       excerpt:
         "Un marco simple para convertir preguntas frecuentes, políticas y documentos dispersos en material útil para un asistente de IA.",
       body: [
@@ -103,10 +103,10 @@ export const resourceArticlesByLocale = {
       ],
     },
     {
-      title: "¿Cuándo debe la IA derivar a una persona?",
+      title: "Cuándo debe un agente de IA derivar a una persona",
       category: "Gobernanza",
       readingTime: "5 min",
-      slug: "when-should-ai-hand-off-to-a-human",
+      slug: "cuando-debe-un-agente-de-ia-derivar-a-una-persona",
       excerpt:
         "Cómo diseñar reglas de derivación para preguntas sensibles, baja confianza, casos complejos y oportunidades valiosas.",
       body: [

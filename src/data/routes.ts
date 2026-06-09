@@ -54,3 +54,36 @@ export const routeKeysByLocalizedPath = Object.fromEntries(
     [routePaths[routeKey].en, routeKey],
   ]),
 ) as Record<string, RouteKey>;
+
+export const resourceSlugMappings = [
+  {
+    es: "que-es-un-agente-de-ia-para-empresas",
+    en: "what-is-an-ai-agent-for-small-businesses",
+  },
+  {
+    es: "como-un-chatbot-web-puede-captar-mas-clientes-potenciales",
+    en: "how-website-chatbots-capture-more-leads",
+  },
+  {
+    es: "agentes-de-voz-con-ia-para-llamadas-perdidas",
+    en: "ai-voice-agents-for-missed-calls",
+  },
+  {
+    es: "como-usar-ia-en-gestion-de-propiedades",
+    en: "using-ai-in-property-management",
+  },
+  {
+    es: "como-preparar-tus-preguntas-frecuentes-para-un-asistente-de-ia",
+    en: "how-to-prepare-your-faqs-for-an-ai-assistant",
+  },
+  {
+    es: "cuando-debe-un-agente-de-ia-derivar-a-una-persona",
+    en: "when-should-ai-hand-off-to-a-human",
+  },
+] as const satisfies readonly Record<Locale, string>[];
+
+export function getLocalizedResourceSlug(slug: string, locale: Locale) {
+  return resourceSlugMappings.find(
+    (mapping) => mapping.es === slug || mapping.en === slug,
+  )?.[locale];
+}

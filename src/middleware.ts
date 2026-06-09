@@ -3,6 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import {
   defaultLocale,
   isLocale,
+  localizeHref,
   localizedRoutes,
   resolvePublicPathname,
   type Locale,
@@ -45,7 +46,7 @@ export function middleware(request: NextRequest) {
   }
 
   if (pathname.startsWith("/resources/")) {
-    return redirectTo(request, pathname.replace(/^\/resources/, "/recursos"));
+    return redirectTo(request, localizeHref(pathname, defaultLocale));
   }
 
   if (pathname === "/about" || pathname.startsWith("/about/")) {

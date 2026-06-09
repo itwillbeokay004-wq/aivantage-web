@@ -1,4 +1,5 @@
 import {
+  getLocalizedResourceSlug,
   internalRoutePaths,
   routeKeysByInternalPath,
   routeKeysByLocalizedPath,
@@ -194,8 +195,14 @@ export function localizeHref(href: string, locale: Locale) {
 
   if (normalizedPath.startsWith("/resources/")) {
     const localizedPrefix = locale === "es" ? "/recursos" : "/en/resources";
+    const slug = normalizedPath.replace(/^\/resources\//, "");
+    const localizedSlug = getLocalizedResourceSlug(slug, locale);
 
-    return `${normalizedPath.replace(/^\/resources/, localizedPrefix)}${suffix}`;
+    if (localizedSlug) {
+      return `${localizedPrefix}/${localizedSlug}${suffix}`;
+    }
+
+    return `${getLocalizedPath("resources", locale)}${suffix}`;
   }
 
   return `${normalizedPath}${suffix}`;

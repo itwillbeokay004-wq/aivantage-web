@@ -4,11 +4,26 @@ import { siteConfig } from "@/data/site";
 import { defaultLocale, localizeHref, type Locale } from "@/lib/i18n";
 
 export function absoluteUrl(path = "") {
-  if (!path) {
+  if (!path || path === "/") {
     return siteConfig.url;
   }
 
   return `${siteConfig.url}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+export function localizedSeoUrls(path: string, locale: Locale = defaultLocale) {
+  const canonical = absoluteUrl(localizeHref(path, locale));
+  const spanish = absoluteUrl(localizeHref(path, "es"));
+  const english = absoluteUrl(localizeHref(path, "en"));
+
+  return {
+    canonical,
+    languages: {
+      es: spanish,
+      en: english,
+      "x-default": spanish,
+    },
+  } as const;
 }
 
 export function pageMetadata({
@@ -22,26 +37,20 @@ export function pageMetadata({
   path: string;
   locale?: Locale;
 }): Metadata {
-  const url = absoluteUrl(localizeHref(path, locale));
-  const spanishUrl = absoluteUrl(localizeHref(path, "es"));
-  const englishUrl = absoluteUrl(localizeHref(path, "en"));
+  const { canonical, languages } = localizedSeoUrls(path, locale);
 
   return {
     title,
     description,
     metadataBase: new URL(siteConfig.url),
     alternates: {
-      canonical: url,
-      languages: {
-        es: spanishUrl,
-        en: englishUrl,
-        "x-default": spanishUrl,
-      },
+      canonical,
+      languages,
     },
     openGraph: {
       title,
       description,
-      url,
+      url: canonical,
       siteName: siteConfig.name,
       type: "website",
       locale: locale === "es" ? "es_ES" : "en_US",

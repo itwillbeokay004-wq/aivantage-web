@@ -7,7 +7,7 @@ import { TrackedLink } from "@/components/analytics";
 import { Button } from "@/components/ui/button";
 import { resourceArticles, getResourceArticle } from "@/data/resources";
 import { siteConfig } from "@/data/site";
-import { localizeHref } from "@/lib/i18n";
+import { localizedSeoUrls } from "@/lib/seo";
 import { getRequestLocale } from "@/lib/server-locale";
 
 type ResourceArticlePageProps = {
@@ -36,28 +36,24 @@ export async function generateMetadata({
   }
 
   const path = `/resources/${article.slug}`;
-  const url = `${siteConfig.url}${localizeHref(path, locale)}`;
-  const spanishUrl = `${siteConfig.url}${localizeHref(path, "es")}`;
-  const englishUrl = `${siteConfig.url}${localizeHref(path, "en")}`;
+  const { canonical, languages } = localizedSeoUrls(path, locale);
 
   return {
     metadataBase: new URL(siteConfig.url),
     title: article.title,
     description: article.excerpt,
     alternates: {
-      canonical: url,
-      languages: {
-        es: spanishUrl,
-        en: englishUrl,
-        "x-default": spanishUrl,
-      },
+      canonical,
+      languages,
     },
     openGraph: {
       title: article.title,
       description: article.excerpt,
-      url,
+      url: canonical,
       siteName: siteConfig.name,
       type: "article",
+      locale: locale === "es" ? "es_ES" : "en_US",
+      alternateLocale: [locale === "es" ? "en_US" : "es_ES"],
     },
     twitter: {
       card: "summary_large_image",
